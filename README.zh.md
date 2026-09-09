@@ -1,5 +1,5 @@
 <h1 align="center">GPT Image 2/2.5 Prompt Gallery + Agent Skills + CLI</h1>
-<p align="center"><em>OpenAI GPT Image 2/2.5 Prompt Gallery、Image Prompt Library、Agent Skills + CLI — 面向支持 Skill 的 Agent 运行时的精选可复用提示词与可运行示例。</em></p>
+<p align="center"><em>GPT Image 2 与 2.5 的提示词、参考图、两个 Agent Skill 和 CLI。</em></p>
 
 <p align="center">
   <a href="README.md">English</a> · <a href="README.zh.md"><strong>中文</strong></a>
@@ -12,19 +12,18 @@
   <img src="https://img.shields.io/badge/python-%E2%89%A53.11-blue.svg" alt="Python ≥ 3.11"/>
 </p>
 
-<p align="center">
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20Agents&color=8AA399" alt="oosmetrics Top 1 in Agents by velocity"/></a>
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20LLMs&color=8798B5" alt="oosmetrics Top 1 in LLMs by velocity"/></a>
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20CLI&color=A58B9D" alt="oosmetrics Top 1 in CLI by velocity"/></a>
-</p>
 
 <p align="center">
   <a href="docs/assets/gptimage2skill-banner.png"><img src="docs/assets/gptimage2skill-banner.png" alt="GPTImage2Skill 横幅" width="100%"/></a>
 </p>
 
----
+<p align="center">
+  <a href="#overview">简介</a> · <a href="#sunburst-samples">2.5 样张</a> · <a href="#image-example">图片示例</a> · <a href="#quickstart">快速开始</a> · <a href="#install">安装</a> · <a href="#cli-reference">CLI 参数</a> · <a href="#guides">参考与阅读</a> · <a href="#gallery-index">图库</a> · <a href="#community">参与贡献</a>
+</p>
 
-## ✨ 一眼看懂
+<a id="overview"></a>
+
+## 🧭 关于这个 Report
 
 <table border="1" cellspacing="0" cellpadding="6">
   <tr>
@@ -33,15 +32,15 @@
   </tr>
   <tr>
     <td>图库规模</td>
-    <td><strong>小而能打</strong> · 重质量，不卷数量；README 展示精选样张</td>
+    <td><strong>163 个编号条目</strong>，分为 31 类；下方展示精选图片</td>
   </tr>
   <tr>
     <td>支持形态</td>
-    <td><strong>2 个 Agent Skill + CLI</strong> — Claude Code / Codex、OpenClaw、Hermes Agent，以及其他支持 Skill 的 Agent 运行时</td>
+    <td><strong>2 个 Agent Skill + CLI</strong>: Claude Code / Codex、OpenClaw、Hermes Agent，以及其他支持 Skill 的 Agent 运行时</td>
   </tr>
   <tr>
     <td>最后更新</td>
-    <td><strong>2026-09-09</strong></td>
+    <td><strong>2026-09-10</strong></td>
   </tr>
   <tr>
     <td>文档</td>
@@ -49,36 +48,164 @@
   </tr>
 </table>
 
-<p align="center">
-  <a href="https://starmapper.bruniaux.com/wuyoscar/GPT-Image2-Skill?utm_source=map-embed&utm_medium=readme&utm_campaign=stargazer-map">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=light" />
-      <img alt="GPT-Image2-Skill Stargazer map" src="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill" width="100%" />
-    </picture>
-  </a>
-</p>
+这里保留 GPT Image 2 的提示词和图库，也整理了 2.5 的接口、[阅读资料](#image-25-reading)和按任务拆分的参考。两个 Skill 分别负责生图/改图和从图片提取 Prompt。
 
----
+> TBH，我觉得 GPT Image 2.5 真的很强。我更愿意给它一个清楚的 reference，比如形状、草图或图片。有时，直接展示 PDF 里的版式，比描述半天更有效。这也很像我用 GPT-6 的习惯：**minimize the prompt，把参考给清楚。**
+>
+> 我把用得上的 Prompt、building blocks 和 reference 放在这里，希望能帮你了解 2.5 的工作方式，再挑适合自己的用法。谢谢大家喜欢这个小 gallery 🫶。
 
-## 🔎 这个仓库适合什么场景
+使用 CLI 时，先把相关 PDF 页面导出为 PNG、WebP 或 JPG，再通过 `-i` 附加。参见[支持的参考图片格式](https://developers.openai.com/api/reference/python/resources/images/methods/edit)。提示词里的必需文字和编辑约束仍要说清楚。
 
-你可以把它当作 **GPT Image 2/2.5 Prompt Gallery**、**Image Prompt Library**、**Text-to-Image Prompt Collection**、**Prompt-to-Image 示例仓库**、**Agent Skill Collection** 和 **gpt-image CLI**。精选示例覆盖科研配图、海报设计、UI Mockup、游戏 HUD、动漫 / 漫画、摄影风格、字体设计、地图导航、纹身设计和参考图编辑。
+做 PPT 时，可以试试矢量风格的信息图、图标和页面排版。[Image API 输出 PNG、JPEG 或 WebP](https://developers.openai.com/api/docs/guides/image-generation#output-format)；需要可编辑的 SVG 或 PowerPoint 形状时，再单独制作对应文件。
 
-> 这个项目并不是想收集越多 Prompt 越好。我们更想保留一组有代表性的例子：展示 GPT Image 模型能做什么，以及这些能力应该怎么用。也很感谢大家喜欢这个小 gallery 🫶；后续如果有时间，我也会把背后的自动化 patch / update 流程分享出来。
+<a id="sunburst-samples"></a>
 
-> [!CAUTION]
-> 对科研配图来说，生成图更适合作为参考、workflow sketch，或者帮助你复刻某种视觉风格。我们**不建议**把 GPT Image 生成的图片原封不动放进论文里当正式图使用；在学术表达里，这样很容易造成误导，也算是 bad practice。
+## ✨ GPT Image 2.5 实际出图
 
----
+两张 2K 样图：机械表的分层零件与标注，以及参考图驱动的多层咖啡街区剖面。均使用 `gpt-image-2.5-sunburst`、`2048x2048`、`high`。
 
-欢迎贡献 — 请查看 [CONTRIBUTING.md](CONTRIBUTING.md)、[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) 和 [SECURITY.md](SECURITY.md)。
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/technical-illustration/meridian8-sunburst.png"><img src="docs/technical-illustration/meridian8-sunburst.png" width="100%" alt="Sunburst exploded mechanical watch with numbered component callouts"/></a>
+      <sub>A · Meridian 8 机械表爆炸图<br/>2048x2048 · high · Curated</sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/isometric/cafe-cutaway-sunburst.png"><img src="docs/isometric/cafe-cutaway-sunburst.png" width="100%" alt="Sunburst isometric cafe district with illuminated cutaway interiors"/></a>
+      <sub>B · 夜间咖啡街区剖面<br/>2048x2048 · high · Curated adaptation</sub>
+    </td>
+  </tr>
+</table>
+
+**A · [No. 113](skills/gpt-image/references/gallery-technical-illustration.md) · Prompt**
+
+```text
+Create a premium technical exploded-view illustration of a fictional mechanical wristwatch called the Meridian 8, centered on a dark slate background with fine blueprint grid accents. Show the watch components separated vertically with precise spacing: sapphire crystal, dial, hands, chapter ring, movement plates, escapement, balance wheel, mainspring barrel, case, crown, and leather strap sections. Use realistic brushed steel, brass, ruby jewel accents, and deep navy dial details. Add crisp callouts and labels with the in-image text "Meridian 8", "Exploded Assembly", "42 mm Case", "25 Jewels", and "Power Reserve 72 h". Include numbered callouts "01" through "10" with short labels like "Balance Wheel", "Mainspring Barrel", and "Sapphire Crystal". The result should be highly detailed, technically believable, sharply rendered, and suitable for an industrial design plate with clean hierarchy, exact labeling, and refined material realism.
+```
+
+B 使用的参考图来自 [No. 54](skills/gpt-image/references/gallery-isometric.md)，保留街区的整体布局，并重新设计内部空间、楼层和照明。参考图署名：EvoLinkAI · [Source](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)。
+
+<a href="docs/isometric/isometric-cafe.png"><img src="docs/isometric/isometric-cafe.png" width="320" alt="Original isometric cafe district used as the edit reference"/></a>
+
+**B · [No. 54](skills/gpt-image/references/gallery-isometric.md) · 编辑 Prompt**
+
+```text
+Use the reference image as the layout anchor for a richly detailed isometric two-block cafe district at blue hour. Keep the street footprint, corner cafe, neighboring bookstore, bakery and fountain plaza recognizable. Transform it into a three-storey architectural cutaway diorama with coherent 30-degree isometric geometry.
+
+Open the front-facing walls to reveal the cafe espresso bar and upstairs jazz lounge; bookshelves, reading nooks and a spiral staircase in the bookstore; pastry cases and a working oven in the bakery. Add a rooftop glass greenhouse, tiny terraces, copper plumbing, tiled stairs, balconies, hanging plants and warm lights visible through rain-speckled windows. At street level show wet cobbles, bicycles, the coffee cart, varied miniature pedestrians and reflections around the fountain. Every floor, doorway and staircase should connect plausibly.
+
+Use warm amber interiors against deep teal evening shadows, tactile brick, glazed tiles, glass and brushed brass. Preserve crisp detail throughout the scene, with a clean dark navy background and room around the floating diorama. Give the scene depth through cutaway rooms and layered architecture. Use restrained, readable storefront lettering: "NIGHT OWL CAFE", "OPEN BOOKS", and "DAWN BAKERY". Keep the composition square and visually balanced.
+```
+
+完整设置、输入与检查结果见[样张记录](docs/sunburst-samples.md)。
+
+<a id="image-example"></a>
+
+## 🖼️ 从参考图到生成结果
+
+感谢 [@LunarXuan](https://github.com/LunarXuan) 贡献 **Get Prompt from Image**。把参考图交给支持视觉输入的 Agent，提取 Prompt 后交给 `gpt-image` 等工具生成。下面保留了贡献者提供的参考图和对应结果。
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <img src="docs/illustration/get-prompt-from-image-reference.jpg" width="100%" alt="贡献者提供的冬季城市小巷参考图"/>
+      <sub>参考原图 · Contributor-provided</sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <img src="docs/illustration/get-prompt-from-image-result.png" width="100%" alt="根据反推提示词生成的 ImageGen 结果"/>
+      <sub>生成结果 · ImageGen output</sub>
+    </td>
+  </tr>
+</table>
+
+上传图片后，可以使用 slash command、`$get-prompt-from-image`，或者直接用自然语言调用：
+
+```text
+/get-prompt-from-image
+从这张图片中提取可复用的英文正向 Prompt 和有针对性的负向 Prompt，然后使用 gpt-image 重新生成。
+```
+
+
+**📝 生成结果所使用的反推 Prompt**
+
+**正向 Prompt**
+
+~~~text
+高完成度半写实日系叙事插画，以厚涂数字绘画为主要画风，采用宽窄变化笔触、硬边与柔和过渡并存的塑形方式、边缘线和受控表面纹理，具有游戏概念美术般的冷峻电影叙事感。横幅约十六比九，冬季城市小巷形成明显纵深透视，积雪道路从前景向画面中央远处收束；一只体型高大、毛发蓬松的深灰蓝色狼犬位于左侧前景，身体侧面对右方，头部抬起，正与蹲在右侧中央的戴兜帽年轻女性互动。女性半蹲在雪地上，身体朝向左侧，一只戴手套的手轻轻触碰狼犬的鼻梁或额头，另一只手靠近膝盖保持平衡，动作克制而亲密。她穿浅灰色宽大防寒兜帽外套，兜帽顶部带尖耳形装饰，外套有深灰拼接、口袋、绑带和少量暗红橙色细节，内搭黑色衣物、黑色紧身裤和厚重深色靴子；黑色或深棕短发从兜帽下露出，面部被阴影部分遮挡，低头注视狼犬，表情安静、疲惫却温柔。狼犬毛发以分层笔触表现，背部、颈部和尾部蓬松厚重，冷蓝灰暗部与浅灰高光交错，轮廓被逆光勾亮。左侧是金属围栏、箱体和深色灌木，远处排列高耸城市建筑、路灯、电线杆和蓝灰天空；右侧是深色建筑立面、窗户、积雪屋檐、常青树枝以及前景纸箱和工业杂物，环境标识仅保留模糊图形，无清晰可读文字。主光从小巷远处偏左方向穿入，冷蓝环境光覆盖阴影，远处带温暖金黄色反光，雪地和人物、狼犬边缘形成细微轮廓光，光比中高，暖橙色衣物细节成为视觉焦点。前景积雪、泥水和浅薄积水具有湿润反射，背景建筑通过空气透视逐渐变淡，人物与狼犬保持清晰，空间依靠前中后景、遮挡和透视线建立层次而非强烈虚化。整体情绪是寒冷城市中的孤独、信任和短暂温柔，保留粗粝笔触、冷暖对照、电影级构图和后期，明确为二维半写实厚涂插画，不是摄影、纯扁平矢量或三维渲染。
+~~~
+
+**Negative Prompt**
+
+~~~text
+photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
+~~~
+
+
+<a id="quickstart"></a>
+
+## 🚀 快速开始
+
+| 想做什么 | 使用入口 |
+|---|---|
+| 生成或编辑图片 | [`gpt-image`](skills/gpt-image/SKILL.md) |
+| 从参考图提取 Prompt | [`get-prompt-from-image`](skills/get-prompt-from-image/SKILL.md) |
+| 在终端调用 | 下方 CLI 示例，按选定模型填写 `--model` |
+
+### 🎛️ 先选模型
+
+| 模型 | 适合的起点 |
+|---|---|
+| `gpt-image-2.5-flare` | 快速、高质量的日常生图 |
+| `gpt-image-2.5-sunburst` | 精确编辑与参考图工作流 |
+| `gpt-image-2` | 保留已有工作流使用的模型 |
+
+当用户没指定模型，或只说“GPT 2.5”等不明确名称时，Skill 会先提供上述选项，确认后再生成。明确选择支持的模型后即可继续。Skill 始终显式传入 `--model`；独立 CLI 仍默认使用 `gpt-image-2`。更换模型或增加出图数量前，先征得用户同意。
+
+两个 2.5 模型新增 `--quality xhigh` / `max`，并支持透明 PNG/WebP。建议先用 `low` 出草稿；更高质量可能增加耗时和费用。例如，选择 Flare 后：
+
+```bash
+gpt-image --model gpt-image-2.5-flare \
+  -p "原创扁平叶片图标，居中，留足边距，透明背景" \
+  --quality medium --background transparent --format png -f leaf.png
+```
+
+参见[模型兼容性与验证说明](skills/gpt-image/references/models.md)和 [GPT Image 2.5 Prompt 模板](skills/gpt-image/references/templates-gpt-image-2.5.md)。这些模板的本地出图验证仍待完成。已有图库保留原始模型和来源标注。
+
+安装后，下面每个图库条目都可以复制粘贴为 `gpt-image --model <已选模型> -p "…"`，也可以在任何支持 Skill 的 Agent 运行时里用自然语言请求，例如：*“生成技能图库中的波士顿春季海报”*。
+
+### 文本 → 图片
+
+```bash
+gpt-image --model gpt-image-2.5-flare -p "晚上10点的逼真便利店" --size 1k --quality high -f store.png
+```
+
+底层实现：`POST /v1/images/generations`，传入显式选择的模型。
+
+### 文字 + 参考图像 → 图像（编辑）
+
+```bash
+# 单参考图编辑 / 重风格化
+gpt-image --model gpt-image-2.5-sunburst -p "让它成为一个下大雪的冬日晚景" \
+  -i chess.png --quality high -f chess-winter.png
+
+# 多参考图编辑：edits 端点可以同时接收多张输入图
+gpt-image --model gpt-image-2.5-sunburst -p "把第 2 张图里的狗放到第 1 张图的女人旁边，匹配相同的光线、构图和背景，不要改动其他任何内容。" \
+  -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
+
+# 基于掩码的修补：不透明部分 = 保留，透明部分 = 重新生成
+gpt-image --model gpt-image-2.5-sunburst -p "将天空替换为极光" \
+  -i photo.jpg -m sky_mask.png -f aurora.png
+```
+
+底层实现：`POST /v1/images/edits`（多部分表单）。GPT Image 2 和两个 2.5 模型沿用此接口，支持多个 `-i` 输入及可选的 `-m` 掩码。响应仍从 `data[].b64_json` 读取，不传 `response_format`。详见[模型兼容性说明](skills/gpt-image/references/models.md)。
+
+<a id="install"></a>
 
 ## 📥 安装
 
 可以任选一个 Skill，也可以同时安装：`gpt-image` 负责生成和编辑图片，`get-prompt-from-image` 负责从参考图提取 Prompt。
 
-安装前先检查 Skill 或 CLI 是否已经可用。不要盲目重复安装、覆盖已有 skill 文件夹，或创建 / 替换 API Key 文件。优先使用你的运行时自带的 skill list/status 命令；全局 / 共享安装必须是用户明确选择，而不是自动 setup 的默认动作。
+安装前先检查 Skill 或 CLI 是否已经可用，保留已有 Skill 目录和 API Key 文件。优先使用运行时自带的 skill list/status 命令；安装到全局或共享目录前，先征得用户同意。
 
 ```bash
 command -v gpt-image || true
@@ -211,106 +338,14 @@ uv tool upgrade gpt-image-cli
 
 按 process env、`.env`、`~/.env` 的顺序读取 `OPENAI_API_KEY`，且不会覆盖已经设置好的环境变量。
 
-> **Agent 与 API Key 提醒。** 我们发现 Codex 其实自带生成 Image 的 skill，但它是黑盒的，无法在这里修改；Codex 用户如果更想走内置能力，可以自行切换。也感谢相关 issue 里提到的方法：如果你不想让 agent accidentally 调用你的 OpenAI API Key，直接在调用本地 CLI/Skill 前运行 `unset OPENAI_API_KEY` 即可。
+> **API Key：** CLI 会依次读取进程环境、`.env` 和 `~/.env`。要避免使用本地 Key，请检查这三处；`unset OPENAI_API_KEY` 只清除进程变量。Codex 用户也可以选择平台管理的内置生图工具。
 
----
+<a id="cli-reference"></a>
 
-## ⚡ 快速使用与提示词基础
-
-### 🆕 GPT Image 2.5：先选模型
-
-| 模型 | 适合的起点 |
-|---|---|
-| `gpt-image-2.5-flare` | 快速、高质量的日常生图 |
-| `gpt-image-2.5-sunburst` | 精确编辑与参考图工作流 |
-| `gpt-image-2` | 保留已有工作流使用的模型 |
-
-当用户没指定模型，或只说“GPT 2.5”等不明确名称时，Skill 会先提供上述选项，确认后再生成；明确给出支持的模型时，不重复确认。Skill 始终显式传入 `--model`；独立 CLI 仍默认使用 `gpt-image-2`。比较不同模型或 Prompt 前，先约定模型和出图数量，不静默切换模型，也不擅自增加生成次数。
-
-两个 2.5 模型新增 `--quality xhigh` / `max`，并支持透明 PNG/WebP。建议先用 `low` 出草稿；更高质量可能增加耗时和费用。例如，选择 Flare 后：
-
-```bash
-gpt-image --model gpt-image-2.5-flare \
-  -p "原创扁平叶片图标，居中，留足边距，透明背景" \
-  --quality medium --background transparent --format png -f leaf.png
-```
-
-参见[模型兼容性与验证说明](skills/gpt-image/references/models.md)和 [GPT Image 2.5 Prompt 模板](skills/gpt-image/references/templates-gpt-image-2.5.md)。模板是待评估的起点，不代表已验证的出图效果。已有图库保留原始来源信息，不会因为这次更新就改标成 2.5 生成结果。
-
-### 🆕 Update：从图片获取 Prompt
-
-感谢 [@LunarXuan](https://github.com/LunarXuan) 贡献 **Get Prompt from Image**。把图片交给具备视觉能力的 Agent，这个 Skill 会提取可复用的 Prompt，再交给 `gpt-image` 或其他生图工具。Gemini 3.8 Flash、GPT-5.6 等模型支持视觉能力；每次生成会有一定随机性，但整体效果通常可以还原得很好。
-
-上传图片后，可以使用 slash command、`$get-prompt-from-image`，或者直接用自然语言调用：
-
-```text
-/get-prompt-from-image
-从这张图片中提取可复用的英文正向 Prompt 和有针对性的负向 Prompt，然后使用 gpt-image 重新生成。
-```
-
-#### 实际效果
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top">
-      <img src="docs/illustration/get-prompt-from-image-reference.jpg" width="100%" alt="贡献者提供的冬季城市小巷参考图"/>
-      <sub>参考原图 · Contributor-provided</sub>
-    </td>
-    <td width="50%" align="center" valign="top">
-      <img src="docs/illustration/get-prompt-from-image-result.png" width="100%" alt="根据反推提示词生成的 ImageGen 结果"/>
-      <sub>生成结果 · ImageGen output</sub>
-    </td>
-  </tr>
-</table>
+## 🛠️ CLI 参数与 SDK
 
 <details>
-<summary><strong>📝 生成结果所使用的反推 Prompt</strong></summary>
-
-**正向 Prompt**
-
-~~~text
-高完成度半写实日系叙事插画，以厚涂数字绘画为主要画风，采用宽窄变化笔触、硬边与柔和过渡并存的塑形方式、边缘线和受控表面纹理，具有游戏概念美术般的冷峻电影叙事感。横幅约十六比九，冬季城市小巷形成明显纵深透视，积雪道路从前景向画面中央远处收束；一只体型高大、毛发蓬松的深灰蓝色狼犬位于左侧前景，身体侧面对右方，头部抬起，正与蹲在右侧中央的戴兜帽年轻女性互动。女性半蹲在雪地上，身体朝向左侧，一只戴手套的手轻轻触碰狼犬的鼻梁或额头，另一只手靠近膝盖保持平衡，动作克制而亲密。她穿浅灰色宽大防寒兜帽外套，兜帽顶部带尖耳形装饰，外套有深灰拼接、口袋、绑带和少量暗红橙色细节，内搭黑色衣物、黑色紧身裤和厚重深色靴子；黑色或深棕短发从兜帽下露出，面部被阴影部分遮挡，低头注视狼犬，表情安静、疲惫却温柔。狼犬毛发以分层笔触表现，背部、颈部和尾部蓬松厚重，冷蓝灰暗部与浅灰高光交错，轮廓被逆光勾亮。左侧是金属围栏、箱体和深色灌木，远处排列高耸城市建筑、路灯、电线杆和蓝灰天空；右侧是深色建筑立面、窗户、积雪屋檐、常青树枝以及前景纸箱和工业杂物，环境标识仅保留模糊图形，无清晰可读文字。主光从小巷远处偏左方向穿入，冷蓝环境光覆盖阴影，远处带温暖金黄色反光，雪地和人物、狼犬边缘形成细微轮廓光，光比中高，暖橙色衣物细节成为视觉焦点。前景积雪、泥水和浅薄积水具有湿润反射，背景建筑通过空气透视逐渐变淡，人物与狼犬保持清晰，空间依靠前中后景、遮挡和透视线建立层次而非强烈虚化。整体情绪是寒冷城市中的孤独、信任和短暂温柔，保留粗粝笔触、冷暖对照、电影级构图和后期，明确为二维半写实厚涂插画，不是摄影、纯扁平矢量或三维渲染。
-~~~
-
-**Negative Prompt**
-
-~~~text
-photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
-~~~
-</details>
-
----
-
-<details>
-<summary><strong>CLI 快速使用</strong></summary>
-
-安装后，下面每个图库条目都可以复制粘贴为 `gpt-image --model <已选模型> -p "…"`，也可以在任何支持 Skill 的 Agent 运行时里用自然语言请求，例如：*“生成技能图库中的波士顿春季海报”*。
-
-### 文本 → 图片
-
-```bash
-gpt-image --model gpt-image-2.5-flare -p "晚上10点的逼真便利店" --size 1k --quality high -f store.png
-```
-
-底层实现：`POST /v1/images/generations`，传入显式选择的模型。
-
-### 文字 + 参考图像 → 图像（编辑）
-
-```bash
-# 单参考图编辑 / 重风格化
-gpt-image --model gpt-image-2.5-sunburst -p "让它成为一个下大雪的冬日晚景" \
-  -i chess.png --quality high -f chess-winter.png
-
-# 多参考图编辑：edits 端点可以同时接收多张输入图
-gpt-image --model gpt-image-2.5-sunburst -p "把第 2 张图里的狗放到第 1 张图的女人旁边，匹配相同的光线、构图和背景，不要改动其他任何内容。" \
-  -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
-
-# 基于掩码的修补：不透明部分 = 保留，透明部分 = 重新生成
-gpt-image --model gpt-image-2.5-sunburst -p "将天空替换为极光" \
-  -i photo.jpg -m sky_mask.png -f aurora.png
-```
-
-底层实现：`POST /v1/images/edits`（多部分表单）。GPT Image 2 和两个 2.5 模型沿用此接口，支持多个 `-i` 输入及可选的 `-m` 掩码。响应仍从 `data[].b64_json` 读取，不传 `response_format`。详见[模型兼容性说明](skills/gpt-image/references/models.md)。
+<summary><strong>参数、质量档位与 SDK 示例</strong></summary>
 
 ### 参数（完整）
 
@@ -319,35 +354,35 @@ gpt-image --model gpt-image-2.5-sunburst -p "将天空替换为极光" \
 
 | 标志 | 取值 | 默认值 | 适用范围 | 备注 |
 |---|---|---|---|---|
-| `-p, --prompt` | 字符串 | — 必需 | 两者 | 完整的提示文本。 |
+| `-p, --prompt` | 字符串 | 必需 | 两者 | 完整的提示文本。 |
 | `--model` | 上述精确模型 ID | `gpt-image-2` | 两者 | Skill 确认模型后始终显式传入；CLI 默认值保持兼容。 |
 | `-f, --file` | 路径 | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | 两者 | 明确输出路径。 |
-| `-i, --image` | 路径（可重复） | — | 编辑 | 存在时走 `/v1/images/edits` 路由。 |
-| `-m, --mask` | 路径（PNG，带alpha通道） | — | 编辑 | 不透明 = 保留，透明 = 重新生成。需要 `-i`。 |
+| `-i, --image` | 路径（可重复） | 不传 | 编辑 | 存在时走 `/v1/images/edits` 路由。 |
+| `-m, --mask` | 路径（PNG，带alpha通道） | 不传 | 编辑 | 不透明 = 保留，透明 = 重新生成。需要 `-i`。 |
 | `--input-fidelity` | `low` · `high` | 不传 | 编辑 | Image 2 无法设置，CLI 会省略此参数。2.5 仅在显式指定时透传，行为尚未验证；见模型说明。 |
-| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · 字面量如 `1024x1024` 等 | `1024x1024` | 两者 | 字面量必须为16像素倍数，最大边3840，比例限制3:1，像素总数介于655k–8.3M之间。 |
+| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · 字面量如 `1024x1024` 等 | `1024x1024` | 两者 | 字面量必须为16像素倍数，最大边3840，比例限制3:1，像素总数介于655k-8.3M之间。 |
 | `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | 两者 | `xhigh` / `max` 仅支持两个 2.5 模型；先用 `low` 草稿评估质量、延迟和费用。 |
-| `-n, --n` | 1–10 | 1 | 两者 | 批量生成。`n>1` 时文件名后缀依次为 `_0`、`_1`、… |
+| `-n, --n` | 1-10 | 1 | 两者 | 批量生成。`n>1` 时文件名后缀依次为 `_0`、`_1`、… |
 | `--background` | `auto` · `opaque` · `transparent` | API 默认 | 两者 | 透明背景必须用 PNG/WebP；Image 2 的透明支持仍为预览。 |
 | `--moderation` | `auto` · `low` | `low` | 生成 | 这里默认用 `low`，更适合广泛探索提示词；如果你想回到更严格的 API 侧默认行为，就手动切到 `auto`。 |
 | `--format` | `png` · `jpeg` · `webp` | `png` | 两者 | 响应编码格式。 |
-| `--compression` | 0–100 | — | 两者 | 仅适用于 JPEG/WebP。 |
+| `--compression` | 0-100 | 不传 | 两者 | 仅适用于 JPEG/WebP。 |
 
 </details>
 
 ### 预算 / 质量指南
 
-这里没有单独的 `budget` 标志——使用 `--quality` 作为预算调节。
+通过 `--quality` 调节生成预算。
 
 - `low` = 便宜的草稿 / 收集 / 多变体
 - `medium` = 正常探索 / 风格试探
 - `high` = 最终海报，中文文本，图表，论文图形，横幅
 
-如果你要生成数十个候选项，先从 `low` 开始，仅对决选的最终稿使用 `high` 重新运行。2.5 的 `xhigh` / `max` 可用于细节要求更高的版本，但不默认替用户增加生成次数或费用。
+如果你要生成数十个候选项，先从 `low` 开始，仅对决选的最终稿使用 `high` 重新运行。2.5 的 `xhigh` / `max` 可用于细节要求更高的版本。比较档位前，先约定新增出图数量和费用。
 
 ### 从画廊 Prompt → CLI / SDK
 
-下面每个条目**只给出提示词加一行元数据**（`"size"` · `"quality"` · 来源）。CLI 与 SDK 的调用永远按同样的方式装配——这里示范一次，后面的条目就不再重复这两段样板。以 `"portrait"` · `"high"` 条目为例：
+每个条目包含提示词和元数据（`"size"` · `"quality"` · 来源），调用时使用下面的 CLI / SDK 示例。这里采用 `"portrait"` 和 `"high"`：
 
 ```bash
 # CLI
@@ -372,36 +407,73 @@ result = client.images.generate(
 
 </details>
 
+<a id="guides"></a>
+
+## 📚 参考与阅读
+
+> [!CAUTION]
+> 科研配图可以用生成图作为参考、workflow sketch 或风格样稿。正式放入论文前，请另行制作并核验最终图示；直接采用未经处理的生成图容易误导读者。
+
 ### 📖 提示词基础
 
 <details>
 <summary><strong>显示提示词笔记</strong></summary>
 
-摘自 OpenAI 的[官方 GPT Image 提示指南](https://github.com/openai/openai-cookbook/blob/main/examples/multimodal/image-gen-models-prompting-guide.ipynb) （本地也存档于 [`skills/gpt-image/references/openai-cookbook.md`](skills/gpt-image/references/openai-cookbook.md) — 当你询问参数语义、编辑、UI 原型、推介幻灯片、科学视觉、虚拟试穿、广告牌模型或翻译编辑时，技能会按需加载）：
+通用技巧来自[历史 Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md)，当前 2.5 指南另行整理为[官方来源参考入口](skills/gpt-image/references/openai-image-2.5.md)。Image 2 保留原有 gallery-first 路径；2.5 在模型已确认、需求明确时无需加载参考，否则只选一份简短任务说明。迁移心得单独存放。接口参数统一放在[模型说明](skills/gpt-image/references/models.md)；社区模板单独保留来源标注。
 
 1. **先结构，再目标。** 使用一致的顺序：`背景/场景 → 主体 → 关键细节 → 限制条件`，并**说明预期用途**（广告、UI 原型、信息图），以便模型选择正确模式和润色等级。
-2. **任何格式都可；一致性更重要。** 简短提示、描述段落、JSON 风格结构、指令风格提示和标签式提示均可。生产中建议使用易快速浏览的模板，而非巧妙语法。
+2. **任何格式都可；一致性更重要。** 简短提示、描述段落、JSON 风格结构、指令风格提示和标签式提示均可。建议选择便于阅读和维护的提示词格式。
 3. **具体 + 质量线索。** 要具体说明材料、形状、纹理和媒介（照片、水彩、3D 渲染）。仅在必要时添加针对性的质量线索：*胶片颗粒*、*纹理笔触*、*微距细节*。要实现照片级真实感，直接写 *“photorealistic”*；*“真实照片”*、*“用真实相机拍摄”* 和 *“iPhone 照片”* 也有帮助。
-4. **将必需文本用引号括起来。** 任何必须出现在图片中的文本 —— 标语、价格、汉字 —— 应用直引号括起。不要在提示中换种说法。
-5. **提前选择宽高比。** 提示前先确定 1:1 / 3:4 / 4:3 / 9:16 / 16:9 / 3:1。并在提示文本中强化，而不仅仅是用 `--size` 。
+4. **原样引用必需文字。** 标语、价格、汉字等需要显示在图片中的内容，用直引号括起并保留原文。
+5. **提前选择宽高比。** 提示前先确定 1:1 / 3:4 / 4:3 / 9:16 / 16:9 / 3:1。提示词中的宽高比应与 `--size` 一致。
 6. **一主角，配角辅助。** 复杂场景最好有一个明显的主体，其它作为配角细节表现。
-7. **文本内嵌、密集图表、小标签和多面板布局用 `quality="high"`。** 中档会明显降低效果。
+7. **按实际任务评估质量档位。** 对 2.5 的文字、图表和多面板任务，在用户授权的设置内比较可读性与排版；CLI 仍默认 `high`，具体档位根据实际文字和排版效果选择。
 
-**Prompt 与图库的本地参考：**
-- [`skills/gpt-image/references/gallery.md`](skills/gpt-image/references/gallery.md) — 轻量级路由索引，用来为拆分后的 Reference Gallery Atlas 选择 category；它本身**不是**完整 Prompt dump。
-- `skills/gpt-image/references/gallery-*.md` — 每个 category 一个文件，只在相关任务中加载，例如 [`gallery-product-and-food.md`](skills/gpt-image/references/gallery-product-and-food.md)、[`gallery-ui-ux-mockups.md`](skills/gpt-image/references/gallery-ui-ux-mockups.md)、[`gallery-research-paper-figures.md`](skills/gpt-image/references/gallery-research-paper-figures.md)。这样既能复用 Skill 的参考图库，又不会撑爆上下文。
-- [`skills/gpt-image/references/craft.md`](skills/gpt-image/references/craft.md) — 扩展后的 19 节 Prompt Craft 清单，覆盖 gallery-first 使用方式、JSON/config-style Prompt、多面板排版、UI 规格、数据/图表语法、编辑不变量、参考图工作流、密集文本和分类 mini-schema。
-- [`skills/gpt-image/references/openai-cookbook.md`](skills/gpt-image/references/openai-cookbook.md) — OpenAI Cookbook 的逐字 Markdown 捕获（1004 行），保留历史参数表和第4/5节用例示例；当前参数以[模型说明](skills/gpt-image/references/models.md)及其官方来源为准。
+| 需要的资料 | 路径与用途 |
+|---|---|
+| 图库索引 | [`gallery.md`](skills/gpt-image/references/gallery.md)：先选分类，再读具体提示词。 |
+| 分类用例 | `gallery-*.md` 按需读取，例如[产品](skills/gpt-image/references/gallery-product-and-food.md)、[UI](skills/gpt-image/references/gallery-ui-ux-mockups.md)、[论文配图](skills/gpt-image/references/gallery-research-paper-figures.md)。 |
+| Prompt 写法 | [`craft.md`](skills/gpt-image/references/craft.md)：文字、构图、数据关系和编辑约束。 |
+| GPT Image 2.5 | [`参考索引`](skills/gpt-image/references/openai-image-2.5.md)：生成、排版文字、编辑和迁移分别存放。 |
+| Image 2 历史资料 | [`OpenAI Cookbook`](skills/gpt-image/references/openai-cookbook.md)：保留原来源与许可；实际调用采用[当前模型说明](skills/gpt-image/references/models.md)和用户选定的参数。 |
 
 </details>
 
----
+<a id="image-25-reading"></a>
+
+### 📚 GPT Image 2.5：先理解工作方式
+
+优先英文官方资料与知名媒体，再看开发者指南；中文资料只作补充。这些链接供按需阅读。接口细节以 OpenAI 文档为准。
+
+#### 🌐 英文优先 · 8 个来源
+
+| 来源 | 文章 | 值得看什么 |
+|---|---|---|
+| 🏛️ **1 · OpenAI** | [官方发布](https://openai.com/index/introducing-chatgpt-images-2-5/) | 参考图驱动的编辑、ChatGPT 新交互，以及 Flare/Sunburst 分工。 |
+| 📖 **2 · OpenAI Docs** | [Image prompting: GPT Image 2.5](https://developers.openai.com/api/docs/guides/image-prompting?model=gpt-image-2.5) | 官方模型选择、参考图角色分配、单点编辑与结果检查。 |
+| 📰 **3 · Axios** | [Exclusive hands-on](https://www.axios.com/2026/09/08/exclusive-hands-on-with-chatgpts-new-image-editor) | 记者对主体相似度保持和视觉定位编辑的上手体验。 |
+| 🧪 **4 · TechRadar** | [24 小时上手](https://www.techradar.com/ai-platforms-assistants/chatgpt/chatgpt-images-2-5-is-out-ive-been-testing-it-for-24-hours-and-these-are-the-3-new-features-youll-actually-use) | 日常编辑、草图生图与任务模板怎么用。 |
+| ✏️ **5 · The Verge** | [Sketch walkthrough](https://www.theverge.com/ai-artificial-intelligence/991727/openai-chatgpt-images-2-5-sketch) † | Sketch 主题报道，原文待获取。 |
+| 🛠️ **6 · Apidog** | [API 上手](https://apidog.com/blog/gpt-image-2-5-api/) · [模型对比](https://apidog.com/blog/gpt-image-2-5-flare-vs-sunburst-vs-gpt-image-2/) | 第三方实现与迁移思路；接口细节仍需对照官方文档。 |
+| ⚖️ **7 · OrcaRouter** | [面向开发者的 Flare / Sunburst 对比](https://www.orcarouter.ai/blog/gpt-image-2-5-flare-sunburst) ‡ | 按任务选择模型的建议，性能说法仍需独立核验。 |
+| 🧩 **8 · FindSkill** | [Sketch 分步指南](https://findskill.ai/blog/chatgpt-images-2-5-sketch-tool-explained/) | 用草图表达布局，再用文字补充要求。 |
+
+#### 🗂️ 中文补充 · 2 个来源
+
+| 来源 | 文章 | 值得看什么 |
+|---|---|---|
+| 🧪 **9 · 人人都是产品经理** | [读者补充链接](https://www.woshipm.com/ai/6461898.html) † | 提供者介绍为 2 与 2.5 的实测对比；内容仍待核验。 |
+| 🗞️ **10 · 軟體玩家** | [阿正老師的功能整理](https://pcrookie.com/chatgpt-images-2-5-intro-2026/) | 根据官方公告与媒体报道整理的功能介绍。 |
+
+*资料访问状态，核验于 2026-09-09：† The Verge 与人人都是产品经理的原文待核验。‡ OrcaRouter 仅取得索引内容。*
+
+**在 CLI 中使用 ChatGPT 草图：** Sketch、Templates、Comments 在 ChatGPT 中使用。将草图导出为图片后，通过 `-i` 附加。需要本地任务说明时，从 [2.5 可选参考索引](skills/gpt-image/references/openai-image-2.5.md)选择一份即可。
 
 <a id="gallery-index"></a>
 
-## 🎨 提示词精选展示
+## 🎨 分类图库
 
-> **关于这些提示词。** README 里展示的是一组有代表性的 prompt 及其对应生成图。完整 Reference Gallery 包含完整的精选 prompt / image atlas，按分类整理在 [`skills/gpt-image/references/gallery.md`](skills/gpt-image/references/gallery.md) 和对应的 `skills/gpt-image/references/gallery-*.md` 文件中。
+> 展开分类即可查看图片和提示词。完整的 163 个提示词见 [`gallery.md`](skills/gpt-image/references/gallery.md) 及其链接的 `gallery-*.md` 分类文件。
 >
 > **来源标签。** `Curated` 表示由本 repo 整理、改写或重新设计的 prompt / image；外部来源条目继续保留可见的作者和来源链接。
 
@@ -467,7 +539,8 @@ result = client.images.generate(
 
 <a id="gallery-anime-manga"></a>
 
-<h2 align="center">🎌 动漫与漫画</h2>
+
+### 🎌 动漫与漫画
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -492,25 +565,24 @@ result = client.images.generate(
 
 <p align="center"><sub>动漫与漫画 · 3 张 portrait 组图 · Curated</sub></p>
 
-<details>
-<summary><strong>📝 三张图的提示词</strong></summary>
 
-**提示词 A — 咖啡馆时尚写真**
+**📝 三张图的提示词**
+
+**提示词 A: 咖啡馆时尚写真**
 ```text
 Create a tasteful portrait-oriented anime fashion illustration of an adult woman, age 24, with a cute playful expression, looking at the camera in a cozy European cafe at golden hour. She wears a cream blouse, charcoal pleated skirt, tailored cropped jacket, sheer black stockings, loafers, and a small ribbon hair clip; she is seated sideways at a small marble table with latte art, a sketchbook, and warm window light. Composition: three-quarter fashion portrait, elegant legs visible but relaxed and non-explicit, wholesome editorial mood, no nudity, no lingerie, no school uniform, no explicit pose, adult character only. Use polished modern anime rendering, crisp line art, luminous eyes, soft cel shading, subtle fabric texture, gentle blush, background bokeh, and a refined magazine-cover color palette.
 ```
 
-**提示词 B — 霓虹街机时尚写真**
+**提示词 B: 霓虹街机时尚写真**
 ```text
 Create a portrait-oriented anime fashion illustration of an adult woman, age 25, in a neon arcade district at night. She has a cute confident smile and looks directly at the viewer while standing beside glowing claw machines and retro game cabinets. Outfit: black turtleneck, red satin bomber jacket, high-waisted skirt, patterned dark stockings, platform shoes, small crossbody bag, star earrings. Composition: full-body fashion portrait with strong silhouette, neon reflections on wet pavement, vending machines, sticker-covered walls, colorful signage, and cinematic rim light. Keep the pose playful but non-explicit, no nudity, no lingerie, no fetish framing, adult character only. Use high-end anime key visual rendering, crisp line art, saturated magenta-cyan lighting, clean readable background details, and glossy cyber-pop atmosphere.
 ```
 
-**提示词 C — 路边反光镜自拍**
+**提示词 C: 路边反光镜自拍**
 ```text
 Create a portrait-oriented anime fashion illustration of an adult woman, age 24, taking a playful roadside mirror selfie in the reflection of a parked scooter mirror on a quiet Tokyo side street. She looks into the mirror with a bright mischievous smile, one hand making a small peace sign near her cheek, the other holding a phone with a cute sticker case. Outfit: soft ivory knit cardigan, navy pleated skirt, sheer black stockings, loafers, small shoulder bag, ribbon hair clip, tasteful everyday street fashion. Composition: the mirror reflection is the main frame, with blurred street signs, vending machine glow, crosswalk stripes, and spring evening light around the mirror edge. Keep the pose cute, stylish, and non-explicit; no nudity, no lingerie, no fetish framing, adult character only. Use polished modern anime rendering, crisp line art, luminous eyes, soft cel shading, warm reflections, natural street-photo energy, and a charming slice-of-life mood.
 ```
 
-</details>
 
 ---
 
@@ -522,8 +594,8 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一幅采用MAPPA公司制作的《咒术回战》（2020年电视动画）视觉风格的动画动作定格画面。横向16:9比例。
@@ -535,7 +607,6 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 艺术指导：MAPPA风格的数字二维动画——重厚的卡通阴影，清晰的线条艺术，两人物体带有边缘光，能量球周围带有运动模糊光线。色彩方案采用深海军蓝、电青色、猩红色点缀。动感冲击构图，延续《咒术回战》涩谷篇的传统。
 ```
 
-</details>
 
 ---
 
@@ -547,8 +618,8 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一幅少年动漫战斗关键视觉图，采用Pierrot工作室制作的《火影忍者疾风传》视觉风格。横向16:9比例。
@@ -562,7 +633,6 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 艺术指导：Pierrot工作室火影忍者疾风传风格——动态透视，冲突中心放射强烈速度线，动漫动作关键帧品质，数字二维卡通阴影，色彩饱和但不发光，明显原画品质线条，戏剧性背光。
 ```
 
-</details>
 
 ---
 
@@ -583,10 +653,10 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 
 <p align="center"><sub>动漫与漫画 · 1×2 组图 · Curated</sub></p>
 
-<details>
-<summary><strong>📝 两张漫画/动漫组图的提示词</strong></summary>
 
-**提示词 A — 少年漫画双页版面（篮球扣篮）**
+**📝 两张漫画/动漫组图的提示词**
+
+**提示词 A: 少年漫画双页版面（篮球扣篮）**
 ```text
 一幅黑白少年漫画双页版面（横向16:9作为单一画面，带有微弱的中央分割线）。高对比墨线与网点，周刊少年Jump篮球漫画传统（井上雄彦《灌篮高手》/ 藤巻忠俊《黑子的篮球》）。
 
@@ -604,12 +674,11 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 对白气泡故意留白，仅显示两个音效词。
 ```
 
-**提示词 B — 十宫格动漫角色设定板**
+**提示词 B: 十宫格动漫角色设定板**
 ```text
 Create a single landscape image containing a clean 2×5 ten-panel anime character grid. Each panel shows a different adult young woman, age 22 to 26, designed as a cute gentle heroine archetype: bookish librarian, cheerful cafe barista, shy violinist, sporty tennis player, elegant student-council president, sleepy illustrator, flower-shop assistant, soft-spoken witch apprentice, city-pop singer, and cozy winter commuter. Keep all panels consistent in art direction: modern polished anime, crisp line art, soft cel shading, luminous eyes, pastel accent colors, tidy white gutters, small readable name tag at the bottom of each panel, and a balanced character-design-sheet feel. Every character should have a distinct hairstyle, outfit, prop, and expression. The overall board should feel like a collectible anime cast sheet / ten-grid poster, cute and wholesome, no nudity, no lingerie, no explicit pose, adult characters only.
 ```
 
-</details>
 
 ---
 
@@ -621,14 +690,13 @@ Create a single landscape image containing a clean 2×5 ten-panel anime characte
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://mp.weixin.qq.com/s/ASxig6mFVYxrIE8-8Fthew"><code>"微信"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 创建一个16格表情网格，描绘一个银发、蓝眼的动漫女孩。她的脸型、发型和服装在所有格子中必须保持高度一致。16种表情包括：开心、伤心、生气、惊讶、害羞、无语、邪恶笑容、沉思、好奇、自豪、委屈、轻蔑、困惑、害怕、哭泣，以及一个心形表情。
 ```
 
-</details>
 
 ---
 
@@ -640,20 +708,21 @@ Create a single landscape image containing a clean 2×5 ten-panel anime characte
 
 <p align="center"><sub><code>"tall 2160×3840"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create one tall manga chapter proof sheet containing 19 numbered miniature pages for an original shonen pirate manga, not based on any existing series. Title: "TIDE BROTHERS: THE STARFALL MAP". Main characters: Rune, a cheerful rubbery-armed young pirate captain with a straw-colored scarf but original costume; and Ash, his older flame-wielding brother with a red coat, freckles, and a calm smile. They are original characters, not existing IP. Show 19 small pages arranged as a readable contact sheet, each page with 1 to 3 manga panels, black-and-white ink, screentone, dynamic speed lines, expressive faces, and clear speech bubbles. Complete plot beats: 1 cover page with the brothers on a stormy deck; 2 reunion at a floating harbor; 3 discovery of a star-shaped map; 4 alien sea-beast emerges; 5 Rune jokes "Adventure found us first!"; 6 Ash replies "Then we answer together."; 7 rival sky pirates attack; 8 slapstick cooking scene; 9 quiet flashback promise; 10 double-page-style action pose compressed into one page; 11 map glows with alien constellations; 12 crew cheers; 13 villain captain steals the compass; 14 chase across rooftop sails; 15 Ash shields Rune with fire; 16 Rune launches a spring-like punch; 17 brothers laugh after victory; 18 cliffhanger: moon door opens; 19 final page text "NEXT: THE ISLAND ABOVE THE CLOUDS". Keep dialogue short, legible, and complete. Style: classic weekly shonen manga energy, original pirate adventure, wholesome brotherhood, no gore, no existing copyrighted characters.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-gaming"></a>
 
-<h2 align="center">🎮 游戏</h2>
+
+### 🎮 游戏
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -662,32 +731,31 @@ Create one tall manga chapter proof sheet containing 19 numbered miniature pages
 <table>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/gaming/hitman-openai.png"><img src="docs/gaming/hitman-openai.png" width="100%" alt="Hitman 游戏演示 — OpenAI 总部"/></a><br/>
-      <sub><strong>A · Hitman 游戏演示 — OpenAI 总部</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/flowersslop"><code>"X"</code></a></sub>
+      <a href="docs/gaming/hitman-openai.png"><img src="docs/gaming/hitman-openai.png" width="100%" alt="Hitman 游戏演示: OpenAI 总部"/></a><br/>
+      <sub><strong>A · Hitman 游戏演示: OpenAI 总部</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/flowersslop"><code>"X"</code></a></sub>
     </td>
     <td width="50%" align="center" valign="top">
-      <a href="docs/gaming/gta6-beach.png"><img src="docs/gaming/gta6-beach.png" width="100%" alt="GTA 6 游戏演示 — 副城市海滩"/></a><br/>
-      <sub><strong>B · GTA 6 游戏演示 — 副城市海滩</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
+      <a href="docs/gaming/gta6-beach.png"><img src="docs/gaming/gta6-beach.png" width="100%" alt="GTA 6 游戏演示: 副城市海滩"/></a><br/>
+      <sub><strong>B · GTA 6 游戏演示: 副城市海滩</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
     </td>
   </tr>
 </table>
 
 <p align="center"><sub>游戏 · 2-image landscape gameplay panel</sub></p>
 
-<details>
-<summary><strong>📝 潜入与开放世界动作面板的提示词</strong></summary>
 
-**提示词 A — Hitman 游戏演示 — OpenAI 总部**
+**📝 潜入与开放世界动作面板的提示词**
+
+**提示词 A: Hitman 游戏演示: OpenAI 总部**
 ```text
 一个 Hitman 关卡，你在 OpenAI 总部，你的任务是在不被发现的情况下盗取 GPT-6
 ```
 
-**提示词 B — GTA 6 游戏演示 — 副城市海滩**
+**提示词 B: GTA 6 游戏演示: 副城市海滩**
 ```text
 GTA 6 游戏内画面，非常详细，非常逼真。从一台静止的 4k 显示器拍摄的特写镜头。（画面有轻微模糊，感觉像是手持拍摄）。宽广明亮的环境。逼真的细节。角色与 /:dog 一起在海滩上行走。
 ```
 
-</details>
 
 ---
 
@@ -708,20 +776,19 @@ GTA 6 游戏内画面，非常详细，非常逼真。从一台静止的 4k 显�
 
 <p align="center"><sub>游戏 · 2-image landscape gameplay panel</sub></p>
 
-<details>
-<summary><strong>📝 奇幻冒险面板的提示词</strong></summary>
 
-**提示词 A — 暗黑奇幻沼泽首领狩猎**
+**📝 奇幻冒险面板的提示词**
+
+**提示词 A: 暗黑奇幻沼泽首领狩猎**
 ```text
 创作一个原创 AAA 级暗黑奇幻动作 RPG 截图。银发的怪物猎人身穿多层皮甲，站在蓝调时刻的废弃沼泽中，拔剑指向从迷雾中升起的巨大战翼沼泽兽。电影化的肩部过肩镜头，可信的 HUD，包含生命值、耐力、药水图标、任务文本和小地图。湿石，枯树，火把光，月光雾气，微妙炼金术符文，高度细节材料，戏剧性但易读的构图，顶级次世代游戏风格，16:9 横向。
 ```
 
-**提示词 B — 史诗伙伴桥梁靠近场景**
+**提示词 B: 史诗伙伴桥梁靠近场景**
 ```text
 创作一个原创史诗奇幻 RPG 关键艺术截图。一小队旅行者穿越一座巨大的古石桥，朝向日出时分发光的山城前进。一名游侠领路，一名法师提灯，一个侏儒锻造师持锤，旗帜在风中飘扬。巨大山谷、瀑布、金色云朵、风化石砌，电影级规模，微妙的 HUD 任务标记和指南针，丰富细节的盔甲和环境，AAA 级奇幻冒险风格，16:9 横向，高度细节和振奋人心。
 ```
 
-</details>
 
 ---
 
@@ -752,30 +819,29 @@ GTA 6 游戏内画面，非常详细，非常逼真。从一台静止的 4k 显�
 
 <p align="center"><sub>游戏 · 2×2 横版 gameplay HUD 面板</sub></p>
 
-<details>
-<summary><strong>📝 风格化游戏 HUD 面板的提示词</strong></summary>
 
-**提示词 A — 复古日式城镇像素 RPG**
+**📝 风格化游戏 HUD 面板的提示词**
+
+**提示词 A: 复古日式城镇像素 RPG**
 ```text
 创作一个等角像素艺术 RPG 截图，描绘传统日本村庄的樱花季。樱花花瓣飘落空中，武士玩家角色在广场练习剑法，村民在附近观看，界面包含物品栏、耐力条、技能冷却计时器和微妙的任务 UI。温馨复古主机氛围，柔和环境粉彩光线，清晰像素细节，16:9 游戏画面构图。
 ```
 
-**提示词 B — 赛博朋克欧洲动作 HUD**
+**提示词 B: 赛博朋克欧洲动作 HUD**
 ```text
 创作一张第三人称赛博朋克动作游戏截图，设定在一个霓虹灯照耀的欧洲首都夜晚。主角拥有发光的赛博义体，站在雨水打湿的街道上，靠近著名地标。全景中有全息投影、无人机和飞行交通。添加一个精致的游戏 HUD，包含生命条、弹药数、雷达、潜行/能量仪表和任务叠加。鲜艳的青品红调色板，湿润反射，电影级强度，16:9。
 ```
 
-**提示词 C — 动漫风开放世界冒险 HUD**
+**提示词 C: 动漫风开放世界冒险 HUD**
 ```text
 创作一张第三人称肩膀视角的怀旧动漫风开放世界冒险游戏截图。主角站在茂密森林中，细节丰富的植被和鲜艳阴影，拉弓瞄准远处敌人。添加清晰的屏幕 HUD：任务日志，顶部的指南针，左下角的角色头像和状态效果，细微的雨滴效果，阳光透过树叶的光线。保持构图动感，森林沉浸感强，UI 逼真，像顶级动作 RPG 截图。
 ```
 
-**提示词 D — 手机 MOBA 竞技场 HUD**
+**提示词 D: 手机 MOBA 竞技场 HUD**
 ```text
 创建一张原创横版手机 MOBA / 动作 RPG 游戏截图，参考竞技型分路对战游戏的构图逻辑，但不要复制任何现有游戏。16:9 landscape，精致移动端 HUD。场景：金色黄昏中的明亮幻想竞技场，三名风格化英雄在中央河道桥与发光水晶目标附近交战。镜头：略高的等距第三人称游戏视角，战场路线、小兵、技能特效、草丛、塔轮廓和远处 boss 目标坑位都要清晰可读。HUD 设计：左下角半透明虚拟摇杆，右下角四个圆形技能按钮并带冷却数字，终极技能按钮发光但显示 87% 充能，顶部中央比分栏显示 "12 - 11"，比赛时间 "08:42"，队伍血条，左上角小地图，物品快捷栏，金币 "3,420"，干净的移动端安全边距，图标清晰，不要真实游戏 logo。美术方向：高品质 anime-fantasy 3D 手机游戏，饱和的青绿 / 金色 / 紫色调，UI 清晰可读，动态技能特效，高细节材质，可读文字，像真实屏幕截图，不是海报，也不是 mockup board。
 ```
 
-</details>
 
 ---
 
@@ -787,19 +853,18 @@ GTA 6 游戏内画面，非常详细，非常逼真。从一台静止的 4k 显�
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/aleenaamiir/status/2046866168208916503"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a square 3x3 worldbuilding set for an original dark-fantasy universe called "Saltwind Reach". Each panel is a distinct but consistent scene: a storm-battered coastal fortress at dawn, a foggy market street, a knight relic close-up, a handwritten map fragment, a monster silhouette study, a candlelit tavern interior, an alchemist kit flat lay, a moonlit harbor, and a faction banner concept. Keep one cohesive art direction across all nine panels: painterly realism, muted teal / rust / bone palette, cinematic weather, premium concept-art presentation, small caption labels, and strong consistency across costume motifs, architecture, symbols, and lighting. The full board should feel like a polished pre-production worldbuilding sheet rather than a collage of unrelated images.
 ```
 
-</details>
-
 
 <a id="gallery-retro-cyberpunk"></a>
 
-<h2 align="center">🤖 复古与赛博朋克</h2>
+
+### 🤖 复古与赛博朋克
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -811,14 +876,13 @@ Create a square 3x3 worldbuilding set for an original dark-fantasy universe call
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts"><code>"GitHub archive"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一位十几岁的机甲少女，苍白的皮肤沾染着煤烟和盐雾，锐利的琥珀色眼睛带有发光的HUD准星，及腰的灰白色头发绑成高马尾，在海风中飘扬，哑光枪金属外骨骼装甲护住肩膀、前臂和小腿，关节处露出液压活塞，胸甲有发光的青色冷却管线，超大号染满油渍的飞行员夹克半滑落一肩，巨大的轨道炮架在右肩，颈项悬挂军牌和磨损的红色缎带，站在倾斜钢平台生锈的边缘偏左处，平台向深色海面凸出，体重偏向一条腿，左手攥着炮带，头略微转向镜头，目光坚定且沉静，背部推进器冒着蒸汽，马尾和夹克在盐风中横向飘扬，黄昏时分一座废弃海上城市，巨大的未知用途超级结构从海洋中错落耸立剪影，骨白色的整体塔楼与附着了藤壶的钢铁融合，巨大的环形构筑在破碎角度倾斜，生锈的骨架吊车架穿过死线缆，支柱间黑暗的波浪滚动，脚下半吞噬的沉船，浓厚的海雾笼罩基座而上部结构刺破斑驳天空，塔顶散布微弱闪烁的灯光如远方眼睛，情绪化的低调光源，阴天带来冷青绿色环境光，右摄像机方向远处建筑透出温暖琥珀色钠灯光，背后低悬太阳形成强烈逆光勾勒剪影，体积感神光穿越海雾，装甲湿润的高光反射，35mm变形镜头，轻微低角度从肩膀后仰望结构，中景宽幅镜头，浅景深前景生锈处柔焦，水平镜头光晕，细腻大气雾霭将远方超级结构压缩成分层剪影，电影感动漫主视觉，画意数字插画，线条清晰，去饱和的海洋调色板包含青色、骨白和铁锈色，点缀少量暖色光，胶片颗粒，高对比编选海报美学。格式16:9。
 ```
 
-</details>
 
 ---
 ---
@@ -831,14 +895,13 @@ Create a square 3x3 worldbuilding set for an original dark-fantasy universe call
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a cyberpunk character-and-city design board in a premium magazine-layout format, landscape 16:9. Title text: "NEON ORCHID DISTRICT". The board is divided into five asymmetric panels: one large cinematic street scene of a rain-soaked elevated night market, two close-up portrait panels of original adult cyberpunk couriers with glowing orchid tattoos, one small isometric map panel showing alleys and drone routes, and one artifact panel showing encrypted transit passes, cybernetic gloves, and vending-machine stickers. Use layered neon magenta, cyan, acid green, wet asphalt reflections, holographic signage, dense but readable composition, editorial margins, small labels, and a cohesive retro-future anime/cyberpunk style. Original characters only, no existing IP, no explicit content.
 ```
 
-</details>
 
 ---
 
@@ -850,19 +913,18 @@ Create a cyberpunk character-and-city design board in a premium magazine-layout 
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW". Layout: a clean 3×3 grid of nine cards with thin chrome borders. Each card shows a different original alien or android nightlife character: glass-horn DJ, koi-scale bartender, moth-wing hacker, chrome geisha bassist, jellyfish courier, neon priestess, reptile fashion model, vending-machine oracle, and masked dancer. Each card has a tiny readable name tag and a unique color accent, but the whole grid shares a polished late-90s anime cyberpunk aesthetic, black background, fluorescent rim lights, glossy materials, sticker-like UI glyphs, playful stylish energy, no gore, no explicit content, original designs only.
 ```
 
-</details>
-
 
 <a id="gallery-cinematic-animation"></a>
 
-<h2 align="center">🎬 电影与动画</h2>
+
+### 🎬 电影与动画
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -874,8 +936,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一个皮克斯品质的3D动画静帧，横向16:9。电影剧场版风格，温暖的工作室灯光。
@@ -887,7 +949,6 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 艺术指导：全CG皮克斯美学——耳朵和胡须的次表面散射，基于物理的材质，柔和阴影的环境光遮蔽，体积晨光束，浅景深。整洁的风格化形状，与《卢卡》《灵魂》《元素战记》一致——非真实感恐怖谷效果。
 ```
 
-</details>
 
 ---
 
@@ -899,8 +960,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一张1940年代黑色电影黑白电影静帧，横向16:9，高对比度。用35毫米胶片拍摄，带有可见颗粒。
@@ -910,7 +971,6 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 灯光：经典明暗对比法——单个强硬的主光源从右上方照射，后墙投下百叶窗阴影。浓重的黑色，银色高光，完整的色调范围从纯白到纯黑。无色彩。画面感觉应当像《马耳他之鹰》《双重赔偿》或《第三人》的片段。
 ```
 
-</details>
 
 ---
 
@@ -922,8 +982,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一个6格电影分镜，布局为3×2网格，整体横向16:9。每个格子是一个矩形的铅笔和马克笔速写，带有白色边距和下方的小信息条。
@@ -940,7 +1000,6 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 艺术指导：经典动画学派分镜——铅笔线条，灰色马克笔阴影，画格2和5上有红铅笔箭头注释（摄像机移动和动作轨迹）。浅米色纸张纹理背景。
 ```
 
-</details>
 
 ---
 
@@ -952,8 +1011,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 一个吉卜力风格手绘动画静帧，横向16:9。一座小木屋坐落在长满草的山坡上，俯瞰山谷的金色时刻。一名赤脚孩子站在木屋门口，向藏在草丛中的小毛茸茸森林精灵挥手。远处有一列火车穿过谷底，燕子在头顶盘旋。
@@ -961,7 +1020,6 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 艺术指导：经典宫崎骏/吉卜力水彩与蛋彩画风。柔和的画笔边缘，稍微去饱和的绿色和温暖的肤色，云朵和草地上可见刷子质感。角色上用细腻的墨线绘制。柔和的大气透视。整个画面应像《龙猫》或《魔女宅急便》中的动画片段，而非3D渲染。
 ```
 
-</details>
 
 ---
 
@@ -973,20 +1031,21 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1jk0p3v/tried_to_push_the_new_image_model_with_an/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 创建一个1990年代杂货店的混乱监控摄像头静帧。一个穿着全套中世纪盔甲的男子定格在奔跑中，偷窃了几只烤鸡，正经过乳制品区。头顶的荧光灯在盔甲上反光。地板是婴儿蓝色瓷砖。加上一个时间戳“08/13/96 04:44 AM”和墙上海报写着“新！烤面包机千层酥！”。画面画质低，荒诞且稍显激烈，有运动模糊、VHS色彩溢出、监控噪音和真实模拟店铺灯光。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-character-design"></a>
 
-<h2 align="center">👤 角色设计</h2>
+
+### 👤 角色设计
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -998,8 +1057,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/MANISH1027512"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 基于此角色和背景，请创建一份类似官方设定资料的角色参考图。
@@ -1011,7 +1070,6 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 - 整体采用有条理的布局（白色背景，插画风格）
 ```
 
-</details>
 
 ---
 
@@ -1023,20 +1081,21 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/midjourney/comments/1jrcpan/fantasy_concept_arts_with_v7_prompts_included/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 创建一页以神秘精灵弓箭手为核心、穿着飘逸长袍的奇幻概念艺术素描簿页面。用松散的石墨笔触绘制主角轮廓，并用精确的墨线细节表现。主画周围环绕侧视图，展示披风变体，一幅半成品的带尺寸标注的弓研究，缩略的动作姿势，关于魔法刺绣图案的手写注释，及森林绿和银色晕染到页边的淡水彩测试。此页应如同真正艺术总监的开发稿：探索性、优美、易读且触感丰富。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-typography-posters"></a>
 
-<h2 align="center">📝 排版与海报</h2>
+
+### 📝 排版与海报
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1061,15 +1120,15 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub>排版与海报 · 3 张 poster 组图 · Curated 条目 + 带来源标注的社区 Prompt</sub></p>
 
-<details>
-<summary><strong>📝 三张海报的提示词</strong></summary>
 
-**提示词 A — 重庆雨夜城市宣传海报**
+**📝 三张海报的提示词**
+
+**提示词 A: 重庆雨夜城市宣传海报**
 ```text
 做一张 3:4 城市宣传海报，主题是"山城雨夜·重庆"。整体像高端城市文旅 campaign poster，不要廉价旅行社风格。画面中心是层叠山城建筑、轻轨穿楼、湿润街道、霓虹倒影、江边雾气和夜色中的坡道。用现代中文排版，加入少量准确标题与副标题："山城雨夜" / "CHONGQING" / "8D 城市 / 江雾 / 火锅 / 轻轨 / 夜景"。信息密度适中，留白克制，色彩以深蓝、暖橙、湿润霓虹红为主，像一本设计年鉴里的城市品牌海报。
 ```
 
-**提示词 B — Vogue风格时尚杂志封面**
+**提示词 B: Vogue风格时尚杂志封面**
 ```text
 一张高端时尚杂志封面，3:4 竖版，Vogue Paris / British Vogue编辑风格。
 
@@ -1091,7 +1150,7 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 光影：经典时尚编辑风格 — 柔光主光源，细微补光，一侧面颊阴影深邃，细腻胶片颗粒。
 ```
 
-**提示词 C — 1950年代 Astounding Stories 通俗科幻杂志封面**
+**提示词 C: 1950年代 Astounding Stories 通俗科幻杂志封面**
 ```text
 一张1950年代复古科幻通俗杂志封面，3:4 竖版。经典的《Astounding Science Fiction》/《Galaxy》风格 — 手绘水粉画插图，通俗黄色纸张纹理，丝网印刷印刷略有错位，边缘带微黄棕色旧纸色调。
 
@@ -1105,13 +1164,14 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 艺术指导：水粉绘制，笔触明显，浓烈通俗配色（亮黄、橙、红、电紫、铬银），手写标题，轻微粗糙纸张纹理，角落轻微虫蛀色斑。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-illustration"></a>
 
-<h2 align="center">🎨 插画</h2>
+
+### 🎨 插画
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1123,14 +1183,13 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 现代铅笔插画风格的复古旅游海报插画，主题是意大利阿马尔菲海岸，展示全景沿海悬崖公路场景，经典1960年代白色汽车沿着弯曲的海边道路行驶，深蓝色地中海海面上有小帆船，色彩丰富的粉彩色山丘村落，明亮蓝天带柔和云朵，前景框架由鲜艳黄柠檬的柠檬树枝构成，温暖的夏日阳光，鲜明艳丽的色彩，复古1950年代旅游海报风格，电影级构图，高细节，丝网印刷质感，图形插画。手绘风格，采用松散笔触和清晰轮廓。高对比色彩调色板，保持背景与元素间的色彩和谐。现代且装饰性的美学。
 ```
 
-</details>
 
 ---
 
@@ -1142,18 +1201,18 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a landscape editorial illustration in layered paper-cut style: a tiny forest night market hidden beneath giant mushrooms and fern leaves. Include warm lantern stalls selling acorn cakes, beetle taxis, a fox calligrapher, a badger tea vendor, children holding leaf umbrellas, and fireflies forming soft dotted paths. Style anchor: mid-century children’s book illustration meets contemporary layered paper diorama, visible cut-paper edges, soft shadows between layers, muted moss green, pumpkin orange, cream, and ink-blue palette. First glance: a cozy glowing market silhouette. Second glance: many small vendor stories. Third glance: handmade paper texture, tiny signage, and playful animal gestures. No photorealism, no 3D plastic look, no cluttered unreadable faces.
 ```
 
-</details>
 
 <a id="gallery-watercolor"></a>
 
-<h2 align="center">💧 水彩</h2>
+
+### 💧 水彩
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1165,18 +1224,18 @@ Create a landscape editorial illustration in layered paper-cut style: a tiny for
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a delicate watercolor illustration of a rainy botanical greenhouse in early morning. Landscape composition, transparent washes, granulating pigments, soft wet-on-wet blooms, visible cold-pressed paper texture. Scene: arched glass greenhouse ribs, raindrops streaming down panes, hanging ferns, orchids, clay pots, a narrow stone path, a wooden bench with an open gardening notebook, and diffused silver daylight. Palette: sage green, eucalyptus gray, pale lavender, warm terracotta, and tiny yellow flower accents. Keep the image airy and poetic, with preserved white paper highlights, no hard digital gradients, no photorealistic lens effects, and no heavy outlines.
 ```
 
-</details>
 
 <a id="gallery-ink-chinese"></a>
 
-<h2 align="center">🖌️ 墨与中国</h2>
+
+### 🖌️ 墨与中国
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1188,18 +1247,18 @@ Create a delicate watercolor illustration of a rainy botanical greenhouse in ear
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty riverside night market. Use gongbi-level architectural detail combined with loose ink atmosphere: arched stone bridge, lantern boats, teahouse balconies, book stalls, noodle steam, scholars reading under lamps, children chasing paper rabbits, and distant city walls fading into mist. Add small readable Chinese shop signs in brush style: "茶", "书", "面", "灯市". Palette: black ink, warm lantern ochre, muted cinnabar seals, and pale blue-gray moonlight. Composition should read as a continuous scroll with rhythmic clusters of people and negative-space water. Avoid modern objects, anime faces, fake calligraphy clutter, and overly saturated poster lighting.
 ```
 
-</details>
 
 <a id="gallery-pixel-art"></a>
 
-<h2 align="center">🕹️ 像素艺术</h2>
+
+### 🕹️ 像素艺术
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1220,26 +1279,27 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 
 <p align="center"><sub>像素艺术 · 1×2 组图 · 每张单独标注来源</sub></p>
 
-<details>
-<summary><strong>📝 两张像素艺术图的提示词</strong></summary>
 
-**提示词 A — 像素艺术汽车精灵图集**
+**📝 两张像素艺术图的提示词**
+
+**提示词 A: 像素艺术汽车精灵图集**
 ```text
 一个10x10的像素艺术复古电子游戏汽车精灵图集，16位时代美学。十行十列的小型车辆精灵，背景为干净的浅灰色网格，每个格子64x64像素。精灵种类多样：轿车、跑车、肌肉车、SUV、皮卡、面包车、出租车、警车、敞篷车和改装跑车，色彩丰富，涵盖整个彩虹色谱。所有精灵均采用一致的3/4俯视角度渲染，阴影一致，像素边缘清晰，无抗锯齿，每个精灵调色板限制约16色，采用SNES / 超级任天堂卡丁车游戏传统风格。
 ```
 
-**提示词 B — 像素艺术早餐静物**
+**提示词 B: 像素艺术早餐静物**
 ```text
 创造一个怀旧的像素艺术早餐静物。展示一叠绵软金黄的松饼，上面淋有光亮的枫糖浆，顶端摆放草莓和蓝莓，像素化的蒸汽从中升腾而起。盘子放在浅色桌布上，背景有一杯热咖啡。使用丰富的早餐色彩，精心的光照和美味的纹理细节，同时保持干净、清晰易读的像素艺术风格。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-isometric"></a>
 
-<h2 align="center">📐 等距视图</h2>
+
+### 📐 等距视图
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1251,20 +1311,21 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/midjourney/comments/1hkqr4x/isometric_maps_prompts_included/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 创建一个充满活力的等距视图奇幻村庄地图，采用干净的基于网格布局，使用3x3米瓷砖。包括茅草屋顶的木屋、鹅卵石小路和中央石制喷泉。地图的一角升起一个约2米高的小草坪小丘，设有连接较低地面的楼梯。保持等距角度精准且适合游戏使用。温暖的阳光投射出清晰的光线和长长的阴影在屋顶上。使场景易读，像手工制作的策略游戏地图，瓷砖逻辑清晰，环境细节迷人，色彩丰富但受控。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-product-food"></a>
 
-<h2 align="center">📦 产品与食品</h2>
+
+### 📦 产品与食品
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1289,15 +1350,15 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 
 <p align="center"><sub>产品与食品 · 3 张组图 · 每张单独标注来源</sub></p>
 
-<details>
-<summary><strong>📝 三张产品与食品图的提示词</strong></summary>
 
-**提示词 A — 从展开图装配成 3D 产品盒**
+**📝 三张产品与食品图的提示词**
+
+**提示词 A: 从展开图装配成 3D 产品盒**
 ```text
 将展开图组装成一个完美的3D盒子，面板准确，折痕干净，文字不失真，图案完全保留。竖直拍摄，采用精致的三分之三角度，极简高端工作室布景，柔和中性色背景，漫反射光，细微阴影，无道具，真实颜色，哑光纸板质感，逼真的编辑细节。盒子正面写有"AURAE / COLD-BREW MATCHA / 12 fl oz"，采用干净的无衬线字体。侧面板显示8pt字体的小配料表，营养成分块。风格干净、编辑感强，获奖级产品照美学。
 ```
 
-**提示词 B — 巧克力威化产品渲染（JSON 风格）**
+**提示词 B: 巧克力威化产品渲染（JSON 风格）**
 ```text
 /* PRODUCT_RENDER_CONFIG: 巧克力威化榛子版
    版本: 2.0.1
@@ -1327,18 +1388,19 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 }
 ```
 
-**提示词 C — 通用商业海报模板**
+**提示词 C: 通用商业海报模板**
 ```text
 设计一张名为"Aurora Oolong Cold Brew"的高端商业海报。极简风格，干净构图，主角瓶和茶杯居中，柔和工作室灯光，真实材质纹理，优雅的水汽细节，充足的留白空间，高端品牌视觉语言，电影光影，精致包装字体排版，极致细节处理。让它有豪华饮品广告的感觉，可用于地铁灯箱或时尚杂志。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-brand-systems-identity"></a>
 
-<h2 align="center">🧩 品牌系统与视觉识别</h2>
+
+### 🧩 品牌系统与视觉识别
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1350,14 +1412,13 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/LexnLin/status/2046952493213429886"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a square high-end brand identity showcase board for a fictional brand called "Moss Radio". The brand should feel analog, cultured, warm, tactile, and design-forward. It operates in independent audio hardware and café-retail and should appeal to creative professionals and music obsessives. The overall mood should be nostalgic but modern. Design a polished modular grid of multiple tiles, each showing a different application of one cohesive visual identity system. Include logo explorations, wordmarks, app icon variations, editorial posters, product cards, landing page fragments, packaging concepts, typography specimens, interface snippets, color palette presentations, sticker systems, patterns, branded mockups, and small motion-inspired compositions. Use Swiss-inspired typography, rounded industrial shapes, and a moss green / parchment / charcoal / copper palette. Dense but elegant layout, sharp alignment, strong hierarchy, premium case-study presentation.
 ```
 
-</details>
 
 ---
 
@@ -1369,14 +1430,12 @@ Create a square high-end brand identity showcase board for a fictional brand cal
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/den_turbin/status/2046863385791467773"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Create a clean brand kit presented as one square modular board for a fictional revival of the PlayStation One era called "PS1 1998 Reboot". The identity should merge Japanese editorial design, Y2K nostalgia, acid green accents, VHS texture, silver plastics, disc-menu UI motifs, retail stickers, controller packaging, startup-screen typography, and memory-card iconography. Show multiple coordinated tiles including posters, packaging, interface snippets, collectible cards, typography studies, icons, and branded mockups. Keep it polished, cohesive, art-directed, and emotionally nostalgic, like a real top-tier design studio case study rather than generic merch.
 ```
-
-</details>
 
 
 #### 俏皮品牌系统：Mochi Metro
@@ -1387,20 +1446,21 @@ Create a clean brand kit presented as one square modular board for a fictional r
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/aleenaamiir/status/2047207315976368584"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 为虚构品牌“Mochi Metro”设计一张俏皮、鲜艳、现代的品牌系统展示板。使用大胆配色、有趣字体和模块化方形版式，内容包括 logo 研究、包装片段、海报、App 图标、贴纸、UI 界面碎片，以及一整套围绕东京零食文化展开的快乐视觉系统。要求排版清晰、信息密但不乱、整体高度 polished，像真实设计工作室交付的品牌 case board。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-photography"></a>
 
-<h2 align="center">📷 摄影</h2>
+
+### 📷 摄影
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1409,8 +1469,8 @@ Create a clean brand kit presented as one square modular board for a fictional r
 <table>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/photography/photoreal-subway.png"><img src="docs/photography/photoreal-subway.png" width="100%" alt="RAW iPhone — 42街地铁"/></a><br/>
-      <sub><strong>A · RAW iPhone — 42街地铁</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
+      <a href="docs/photography/photoreal-subway.png"><img src="docs/photography/photoreal-subway.png" width="100%" alt="RAW iPhone: 42街地铁"/></a><br/>
+      <sub><strong>A · RAW iPhone: 42街地铁</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/photography/handwritten-notebook.png"><img src="docs/photography/handwritten-notebook.png" width="100%" alt="手写笔记本平铺图"/></a><br/>
@@ -1431,27 +1491,27 @@ Create a clean brand kit presented as one square modular board for a fictional r
 
 <p align="center"><sub>摄影 · 2×2 组图 · 每张单独标注来源</sub></p>
 
-<details>
-<summary><strong>📝 四张摄影图的提示词</strong></summary>
 
-**提示词 A — RAW iPhone — 42街地铁**
+**📝 四张摄影图的提示词**
+
+**提示词 A: RAW iPhone: 42街地铁**
 ```text
 创建一张完全RAW质量、未经处理、未编辑的图片，具有完整的iPhone相机质量。美国的一个地铁站，一个瞬间的模糊。地铁正在运动。地铁前面有一位老年女性和一位老年男性。
 ```
 
-**提示词 B — 手写笔记本平铺图**
+**提示词 B: 手写笔记本平铺图**
 ```text
 一张业余拍摄的照片，拍摄一册摊开的笔记本，里面用黑色圆珠笔写满手写笔记。字迹随意且稍显凌乱，像是个人笔记，有自然的瑕疵、划掉的单词以及带下划线的标题。从略高角度拍摄，窗户自然光，无闪光灯。休闲的书桌环境，用iPhone拍摄。
 ```
 
-**提示词 C — 棋盘中盘比赛**
+**提示词 C: 棋盘中盘比赛**
 ```text
 生成一张严肃棋赛中盘时期棋盘的写实照片。俯视三分之三角度视图，浅景深。所有棋子清晰可辨且形状正确：兵、车、马（带马头轮廓）、象（主教帽顶）、后、王（带十字饰顶）。棋局处于中盘阶段：若干棋子已被吃掉，放置在棋盘右侧，一些兵已前进，棋子聚集在中央d4-e5-f4列周围。
 
 材质：抛光木质斯汤顿式棋子——黑方为紫檀木，白方为枫木。棋盘由拼嵌的枫木和胡桃木方块组成。一块数字象棋时钟位于左侧，显示“00:14:28 / 00:08:47”。柔和的头顶比赛用光，背景为模糊的比赛大厅。所有棋子准确无误，无变异体，无额外棋子。
 ```
 
-**提示词 D — 360° 等幅投影丛林全景**
+**提示词 D: 360° 等幅投影丛林全景**
 ```text
 一幅密集史前丛林场景的360度等幅矩形全景图。电影级细节。严格2:1长宽比（如4096×2048）。无拼接失真——左右边缘必须完美无缝连接。
 
@@ -1460,7 +1520,6 @@ Create a clean brand kit presented as one square modular board for a fictional r
 光照：下午晚些时候金色时刻，暖色方向性的背光穿透树冠。高动态范围，微弱的大气雾气。等幅矩形投影，适合球形/360度观看器。
 ```
 
-</details>
 
 ---
 
@@ -1474,10 +1533,10 @@ Create a clean brand kit presented as one square modular board for a fictional r
 
 <p align="center"><sub>摄影 · <code>portrait</code> · <code>1087×1447</code> · Author: @LunarXuan · Source: <a href="https://github.com/LunarXuan/natural-sns-portrait">GitHub</a></sub></p>
 
-以下为源 Skill 的英文写实指南，搭配贡献者选定的镜自拍示例。使用时请结合场景、服装、姿势和构图要求；这份指南并非该示例图的完整生成提示词。
+以下为源 Skill 的英文写实指南，搭配贡献者选定的镜前自拍示例。使用时补充自己的场景、服装、姿势和构图要求。
 
-<details>
-<summary><strong>📝 英文提示词</strong></summary>
+
+**📝 英文提示词**
 
 ```text
 # Realism Guidelines
@@ -1523,13 +1582,14 @@ Apply these as the default aesthetic target.
 Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beauty-app face reshaping, huge eyes, perfectly symmetrical face, over-sharpened eyelashes, waxy highlights, glam studio lighting, commercial fashion campaign, artificial rim light, extreme bokeh, hyper-detailed pore texture, over-HDR, unreal anatomy, extra fingers, fused fingers, floating accessories, warped glasses, duplicated jewelry, fake text, malformed background objects.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-screen-photography"></a>
 
-<h2 align="center">🖥️ 屏幕摄影</h2>
+
+### 🖥️ 屏幕摄影
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1550,26 +1610,27 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub>屏幕摄影 · 1×2 真实手机拍屏幕 palette · A 来源 Reddit prompt 结构，B Curated</sub></p>
 
-<details>
-<summary><strong>📝 两张屏幕摄影图的提示词</strong></summary>
 
-**提示词 A — 音乐播放器 + Webcam 预览**
+**📝 两张屏幕摄影图的提示词**
+
+**提示词 A: 音乐播放器 + Webcam 预览**
 ```text
 制作一张真实手机拍摄笔记本电脑屏幕的照片，不是截图。画幅 3:4，高角度俯拍视角，像夜晚站在桌前低头看电脑。屏幕占据画面主体，下方只露出一条很窄的实体键盘。重点呈现 RGB 像素网格、轻微摩尔纹、屏幕玻璃上的微尘、淡淡指纹、柔和环境反光、手机手持噪点、轻微透视偏斜和不完美玻璃质感。macOS 深色模式。背景应用是通用音乐播放器的 Liked Songs 页面，出现虚构曲目："City Lights"、"Late Night Walk"、"Summer Static"、"Blue Hour"。前景应用是一个浮在右侧的小型 webcam preview 窗口，里面只显示温馨桌角：陶瓷杯、笔记本、小熊玩偶、暖色台灯和米白墙面。整体像随手拍到的真实屏幕照片，真实、偶然、不精修。不要人物、不要人脸、不要名人名、不要真实人物肖像、不要截图、不要扁平 UI、不要完美干净玻璃、不要棚拍灯光、不要卡通、不要 3D 渲染、不要水印。
 ```
 
-**提示词 B — Notes + FaceTime 工作屏幕**
+**提示词 B: Notes + FaceTime 工作屏幕**
 ```text
 制作一张真实手机拍摄笔记本电脑屏幕的照片，不是截图。画幅 3:4，夜晚从书桌上方向下俯拍。笔记本屏幕占据大部分画面，底部只露出一条黑色键盘和触控板。强真实感：可见 RGB 子像素网格、轻微摩尔纹、小灰尘、淡指纹、不均匀玻璃反射、手持手机噪点、轻微透视倾斜，不要棚拍质感。macOS 深色模式。背景应用是 Apple Notes，一条深夜学习笔记标题为 "Design Critique"，可见短项目符号："layout"、"lighting"、"source links"、"ship tomorrow"。前景应用是一个浮在右下角的 FaceTime live preview 窗口，里面显示一位虚构的二十多岁成年男性坐在凌乱书桌前，穿 hoodie，表情疲惫但有点被逗笑，身后有暖色台灯、书本和便利贴。背后还部分露出一个带图片缩略图的 Finder 小窗口。整体像偶然拍到的真实工作电脑屏幕。不要真实人物肖像、不要美颜滤镜、不要完美 UI、不要截图、不要水印、不要卡通、不要 3D 渲染。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-infographics-field-guides"></a>
 
-<h2 align="center">📊 信息图表与实地指南</h2>
+
+### 📊 信息图表与实地指南
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1581,14 +1642,13 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/Panda20230902"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 “宋代人物的朋友圈” / “宋代社交媒体动态”，古今穿越幽默融合界面设计风格，图片模拟手机社交媒体界面，但内容完全为宋代场景，头像是宋代文人肖像，用户名“Su Dongpo SuShi_Official”，发布内容“刚到黄州，降职但心情还好。今天自己做了东坡肉，味道棒极了，附上食谱：”，附图为工笔画风格东坡肉特写，点赞列表“黄庭坚、秦观、佛印等126人”，评论区“王安石：呵呵”“司马光：味道依旧”，界面元素如点赞图标用宋代图案替换，状态栏显示“Great Song Mobile 5G”和“元丰三年”，配色方案为手机暗黑模式搭配雅致的宋代色调，是历史与社交媒体趣味碰撞的杰作
 ```
 
-</details>
 
 ---
 
@@ -1600,8 +1660,8 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/MrLarus"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 请基于[主题]自动生成一张“博物馆目录风格中文拆解信息图”。
@@ -1622,7 +1682,6 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 避免：海报感、摄影棚肖像感、电商感、动漫感、角色扮演感、乱注释、结构错误、文字模糊、假质感、过度装饰。
 ```
 
-</details>
 
 ---
 
@@ -1634,8 +1693,8 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/MrLarus"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 生成高质量纵向百科风格信息图，主题为[topic]。
@@ -1657,7 +1716,6 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 避免商业宣传海报感。强调知识组织、模块化信息和实地指南展示。
 ```
 
-</details>
 
 ---
 
@@ -1669,14 +1727,13 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://www.xiaohongshu.com/explore/69e832170000000023012116"><code>"Xiaohongshu"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 生成一张关于“雪豹 Snow Leopard”的高质量纵向科学百科卡片。其风格应如一张可收藏的模块化知识信息图，而非普通海报。包含一张精美主图，多幅局部放大细节注释，圆角信息模块，清晰的标题层次，紧凑的百科内容，评分卡片与Top 5趣闻模块。建议章节：基本资料、栖息地、外观、捕猎行为、保护风险、气候适应、适宜环境以及快速评分卡。视觉风格：干净明亮底色、柔和配色、细腻阴影、精致图标、圆角信息框、信息密度大但可读性强、精美编辑排版、高收藏价值。
 ```
 
-</details>
 
 #### 小红书风格烹饪教程卡
 
@@ -1686,14 +1743,14 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://www.xiaohongshu.com/explore/69e8eeed0000000021004a54"><code>"Xiaohongshu"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 创建一张小红书风格的爆款烹饪教程图，纵向3:4布局，主题为自制葱油拌面。营造温馨家常氛围，暖色调生活美学，4至6步的网格布局，干净间距，真实食物摄影，柔和自然光，略带胶片质感，暖色调调色，显油光、蒸汽、酱料质地及手部互动。添加简短中文注释如“切葱”、“熬油”、“拌面”、“出锅”。避免画面拥挤或文字过多。
 ```
 
-</details>
+
 ---
 
 #### iPhone 摄影相机风格参考信息图
@@ -1704,20 +1761,21 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/Vtrivedy10/status/2046771959157887014"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 提示词</strong></summary>
+
+**📝 提示词**
 
 ```text
 Make me an image in 35 mm film style of a diagram showing the knowledge of camera styles, presets, and what to know about them as an aspiring iPhone photographer that wants to pursue their passion. Build it as a rich multi-panel reference board with labeled sections for film looks, digital presets, portrait approaches, street photography styles, color temperature, grain, contrast, flash, framing, and common mistakes. Each camera and preset style should appear in its actual style instead of being rendered uniformly in one style. Make it visually dense, highly educational, beautifully designed, and easy to scan.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-research-paper-figures"></a>
 
-<h2 align="center">📚 研究论文图示</h2>
+
+### 📚 研究论文图示
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -1746,8 +1804,8 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/research-paper-figures/transformer-arch.png"><img src="docs/research-paper-figures/transformer-arch.png" width="100%" alt="Transformer 编码器–解码器架构"/></a><br/>
-      <sub><strong>E · Transformer 编码器–解码器架构</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
+      <a href="docs/research-paper-figures/transformer-arch.png"><img src="docs/research-paper-figures/transformer-arch.png" width="100%" alt="Transformer 编码器-解码器架构"/></a><br/>
+      <sub><strong>E · Transformer 编码器-解码器架构</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/research-paper-figures/agent-architecture.png"><img src="docs/research-paper-figures/agent-architecture.png" width="100%" alt="多智能体 LLM 系统架构"/></a><br/>
@@ -1786,8 +1844,8 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/research-paper-figures/model-timeline.png"><img src="docs/research-paper-figures/model-timeline.png" width="100%" alt="前沿 LLM 家族树（2018–2026）"/></a><br/>
-      <sub><strong>M · 前沿 LLM 家族树（2018–2026）</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
+      <a href="docs/research-paper-figures/model-timeline.png"><img src="docs/research-paper-figures/model-timeline.png" width="100%" alt="前沿 LLM 家族树（2018-2026）"/></a><br/>
+      <sub><strong>M · 前沿 LLM 家族树（2018-2026）</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/research-paper-figures/react-trace.png"><img src="docs/research-paper-figures/react-trace.png" width="100%" alt="ReAct 推理轨迹"/></a><br/>
@@ -1808,10 +1866,10 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
 
 <p align="center"><sub>研究论文图示 · 8×2 literature-science 图示网格 · Curated / 来源提示词见下方</sub></p>
 
-<details>
-<summary><strong>📝 16 张研究图示的提示词</strong></summary>
 
-**提示词 A — 患者队列与多模态生物标志物流程**
+**📝 16 张研究图示的提示词**
+
+**提示词 A: 患者队列与多模态生物标志物流程**
 ```text
 Create a Nature Medicine / Science Translational Medicine style research paper figure, landscape 3:2 (1536×1024), soft literature-science palette, minimal and elegant.
 
@@ -1826,7 +1884,7 @@ D. Compact table-style performance summary with three rows: "AUROC", "C-index", 
 Style requirements: white background, light gray axes, thin lines, ample margins, muted teal, dusty blue, soft coral, pale sand, no neon, no dark background, Nature journal figure aesthetics, readable labels, precise arrows, subtle gridlines, no decorative clutter, no fake logos, no watermark.
 ```
 
-**提示词 B — 单细胞免疫图谱**
+**提示词 B: 单细胞免疫图谱**
 ```text
 Create a polished Nature / Cell style biomedical research figure, landscape 3:2 (1536×1024), soft minimal palette, publication-ready.
 
@@ -1841,7 +1899,7 @@ D. Pseudotime trajectory diagram: a clean branching curve from "naive" to "effec
 Style requirements: literature-science design, white background, thin gray axes, compact legends, readable micro-labels, restrained typography, soft colors, elegant spacing, no 3D, no glossy UI, no fake journal logo, no watermark.
 ```
 
-**提示词 C — 多模态医疗 AI 方法图**
+**提示词 C: 多模态医疗 AI 方法图**
 ```text
 Create a Nature Biomedical Engineering / NeurIPS medical-AI method figure, landscape 3:2 (1536×1024), soft literature-science colors and minimal academic layout.
 
@@ -1855,7 +1913,7 @@ C. Outputs on the right: three task heads "diagnosis", "risk score", "treatment 
 Style requirements: soft Nature/Science palette (muted teal, dusty blue, sage green, warm sand, coral accents), white background, precise vector-like arrows, modest shadows only, readable labels, lots of whitespace, no futuristic HUD, no clinical gore, no real hospital logos, no watermark.
 ```
 
-**提示词 D — 治疗响应统计图**
+**提示词 D: 治疗响应统计图**
 ```text
 Create a Nature Medicine style statistical results figure, landscape 3:2 (1536×1024), soft, restrained, publication-quality.
 
@@ -1870,7 +1928,7 @@ D. Minimal mechanism schematic: adaptive therapy reduces inflammatory signaling 
 Style requirements: literature-science aesthetic, white background, soft desaturated colors, thin gray axes, clear legends, compact labels, generous margins, Nature-style figure polish, no fake values that look too random, no decorative background, no watermark.
 ```
 
-**提示词 E — Transformer 编码器–解码器架构**
+**提示词 E: Transformer 编码器-解码器架构**
 ```text
 横向 16:9 学术概念图，展示 Transformer 编码器-解码器架构，NeurIPS 定稿风格。左右两列垂直堆叠，中间用虚线分隔。
 
@@ -1881,7 +1939,7 @@ Style requirements: literature-science aesthetic, white background, soft desatur
 标题："Transformer: encoder–decoder with multi-head attention"。副标题："Vaswani et al., 2017"。
 ```
 
-**提示词 F — 多智能体 LLM 系统架构**
+**提示词 F: 多智能体 LLM 系统架构**
 ```text
 横向 16:9 高保真系统图，描绘多智能体 LLM 架构，风格类似细致的 AutoGen / LangGraph / Anthropic Managed Agents 图 1。细微阴影，暖铜色高光，编号流程标记 ①②③④。
 
@@ -1898,7 +1956,7 @@ Style requirements: literature-science aesthetic, white background, soft desatur
 标题："Agentic LLM system: planner orchestrates specialised workers over a shared tool and memory layer"。副标题："adapted from AutoGen (Wu et al., 2023), LangGraph, and Anthropic Managed Agents patterns"。
 ```
 
-**提示词 G — 去噪扩散正/逆向链**
+**提示词 G: 去噪扩散正/逆向链**
 ```text
 横向 16:9 学术图示，展示扩散正向 + 逆向链，两个水平链垂直堆叠。
 
@@ -1911,7 +1969,7 @@ Style requirements: literature-science aesthetic, white background, soft desatur
 标题："Denoising Diffusion: forward corruption and learned reverse"。副标题："Ho et al., 2020"。
 ```
 
-**提示词 H — 经验缩放规律图**
+**提示词 H: 经验缩放规律图**
 ```text
 横向 16:9 对数刻度训练损失与计算量关系图，四条不同模型规模的曲线。
 
@@ -1925,7 +1983,7 @@ X 轴 "Training compute (FLOPs)" 以对数刻度标注 "1e20"、"1e21"、"1e22"�
 标题："Empirical scaling laws: loss vs training compute"。副标题："四种模型规模使用固定数据混合；阴影带表示三次实验的 ±1 标准差。"
 ```
 
-**提示词 I — 基准对比热图**
+**提示词 I: 基准对比热图**
 ```text
 横向 16:9 模型 × 基准热度矩阵。
 
@@ -1939,7 +1997,7 @@ X 轴 "Training compute (FLOPs)" 以对数刻度标注 "1e20"、"1e21"、"1e22"�
 标题："Benchmark comparison across 10 frontier LLMs"。副标题："零次准确率；每个基准的最佳分数以加粗描边标出。评测时间：2026年3月。"
 ```
 
-**提示词 J — 带误差条的消融柱状图**
+**提示词 J: 带误差条的消融柱状图**
 ```text
 横向 16:9 分组柱状消融图。
 
@@ -1956,7 +2014,7 @@ X 轴：5 个基准组 "MMLU"、"GSM8K"、"HumanEval"、"BBH"、"MATH"。Y 轴 "
 标题："Ablation of core reasoning components across 5 benchmarks"。副标题："误差条表示三次运行的 ±1 标准差；每根柱子顶部显示相对完整模型的数值下降"。
 ```
 
-**提示词 K — LLM 预训练数据混合桑基图**
+**提示词 K: LLM 预训练数据混合桑基图**
 ```text
 横向 16:9 桑基图，展示预训练数据混合，三阶段带透明色带。
 
@@ -1971,7 +2029,7 @@ X 轴：5 个基准组 "MMLU"、"GSM8K"、"HumanEval"、"BBH"、"MATH"。Y 轴 "
 标题："LLM pretraining data mixture and downstream splits"。副标题："去重及质量过滤后的标记数；色带厚度 ∝ 标记流量"。
 ```
 
-**提示词 L — 多头注意力热图**
+**提示词 L: 多头注意力热图**
 ```text
 横向 16:9 图示，4 个注意力热图（2×2 网格），共享 12 标记输入。
 
@@ -1988,7 +2046,7 @@ X 轴和 Y 轴的标记标签（X 轴旋转 45°）：“The”、“quick”、
 标题：“Representative multi-head attention patterns in a 16-layer Transformer”。副标题：“4 个头中的示例，精心挑选以展示不同头部功能；灵感来自 Clark et al., 2019。”
 ```
 
-**提示词 M — 前沿 LLM 家族树（2018–2026）**
+**提示词 M: 前沿 LLM 家族树（2018-2026）**
 ```text
 横向 16:9 时间线 / 家族树，展示 2018–2026 年前沿 LLM，三条竖直堆叠的车道，横向时间轴。
 
@@ -2003,7 +2061,7 @@ X 轴和 Y 轴的标记标签（X 轴旋转 45°）：“The”、“quick”、
 标题："Frontier LLM lineage, 2018 – 2026"。副标题："芯片 = 模型发布；实线弧线 = 家族内后继；虚线弧线 = 跨家族蒸馏"。
 ```
 
-**提示词 N — ReAct 推理轨迹**
+**提示词 N: ReAct 推理轨迹**
 ```text
 横向 16:9 图示，ReAct 轨迹，针对事实问答任务，竖直排列 7 个交替块。
 
@@ -2025,12 +2083,12 @@ Thought 块：左侧尘土绿松石边框，斜体，带大脑符号。Action �
 标题："ReAct trace: interleaved reasoning and tool-use on a factual-QA task"。副标题："Yao et al., 2022."。
 ```
 
-**提示词 O — Frontier 安全评测循环**
+**提示词 O: Frontier 安全评测循环**
 ```text
 创建一张美观的研究流程图，用于 AI 安全基准管道，名为 Frontier Safety Eval Loop。横向图示，白色背景，大型字体，矢量风格图形，柔和的靛青、珊瑚、鼠尾草和石墨色调。展示阶段 Prompt Suite、Model Runs、Judge Models、Human Audit、Failure Taxonomy、Patch Queue 和 Re-run。采用干净的泳道、编号标注、紧凑图例、优质论文风格。高细节，色彩和谐，富有留白，无杂乱，会议级质量图。
 ```
 
-**提示词 P — LLM Persona Atlas**
+**提示词 P: LLM Persona Atlas**
 ```text
 Create a premium conceptual figure for an EMNLP / ACL paper, landscape 16:9, high-resolution, polished editorial-academic style. Theme: "LLM Persona Atlas". This should not look like a generic pipeline diagram. It should look like a beautifully designed Figure 1 from a top NLP / agent paper: minimal, refined, memorable, with a strong central visual metaphor.
 
@@ -2041,15 +2099,16 @@ Composition: left "Utterance Stream" with small translucent speech fragments flo
 Keep typography sparse, crisp, and clean. Add a small title "LLM Persona Atlas" and subtitle "from utterance style to model profile". Avoid dense method labels, big boxes, fake equations, fake citations, garbled text, photoreal humans, childish cartoon avatars, heavy shadows, and purple gradient backgrounds.
 ```
 
-</details>
 
 ---
 
-专为 ML/AI 论文设计的子库。包含十六种模板，涵盖 literature-science 医学图、架构图、绘图、热图、桑基图、时间线、跟踪和安全流程。当您需要一次性生成 NeurIPS 级别的论文图示时，可以使用这些模板。
+专为 ML/AI 论文设计的子库。包含十六种模板，涵盖 literature-science 医学图、架构图、绘图、热图、桑基图、时间线、跟踪和安全流程。这些模板可用于制作 ML/AI 论文配图草稿。
+
 
 <a id="gallery-official-openai-cookbook"></a>
 
-<h2 align="center">🏢 官方 OpenAI Cookbook 示例</h2>
+
+### 🏢 官方 OpenAI Cookbook 示例
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2076,17 +2135,17 @@ Keep typography sparse, crisp, and clean. Add a small title "LLM Persona Atlas" 
 
 <p align="center"><sub>OpenAI Cookbook 官方示例 · 1×3 竖版面板</sub></p>
 
-<details>
-<summary><strong>📝 官方提示词三联面板的提示词</strong></summary>
 
-**提示词 A — 自动咖啡机信息图**
+**📝 官方提示词三联面板的提示词**
+
+**提示词 A: 自动咖啡机信息图**
 ```text
 Create a detailed Infographic of the functioning and flow of an automatic coffee machine like a Jura.
 From bean basket, to grinding, to scale, water tank, boiler, etc.
 I'd like to understand technically and visually the flow.
 ```
 
-**提示词 B — 写实年长水手照片**
+**提示词 B: 写实年长水手照片**
 ```text
 Create a photorealistic candid photograph of an elderly sailor standing on a small fishing boat.
 He has weathered skin with visible wrinkles, pores, and sun texture, and a few faded traditional sailor tattoos on his arms.
@@ -2095,7 +2154,7 @@ Soft coastal daylight, shallow depth of field, subtle film grain, natural color 
 The image should feel honest and unposed, with real skin texture, worn materials, and everyday detail. No glamorization, no heavy retouching.
 ```
 
-**提示词 C — 四格宠物漫画**
+**提示词 C: 四格宠物漫画**
 ```text
 Create a short vertical comic-style reel with 4 equal-sized panels.
 Panel 1: The owner leaves through the front door. The pet is framed in the window behind them, small against the glass, eyes wide, paws pressed high, the house suddenly quiet.
@@ -2104,11 +2163,11 @@ Panel 3: The house transformed. The pet sprawls across the couch like it owns th
 Panel 4: The door opens. The pet is seated perfectly by the entrance, alert and composed, as if nothing happened.
 ```
 
-</details>
 
 <a id="gallery-edit-endpoint-showcase"></a>
 
-<h2 align="center">✨ 编辑端点展示</h2>
+
+### ✨ 编辑端点展示
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2139,17 +2198,17 @@ Panel 4: The door opens. The pet is seated perfectly by the entrance, alert and 
 
 <p align="center"><sub>编辑端点展示 · 2×2 before / after 编辑 palette · 来源已标注</sub></p>
 
-<details>
-<summary><strong>📝 原图提示词 + Edit CLI 命令</strong></summary>
 
-**A · 原图提示词 — 国际象棋中局输入图**
+**📝 原图提示词 + Edit CLI 命令**
+
+**A · 原图提示词: 国际象棋中局输入图**
 ```text
 生成一张严肃棋赛中盘时期棋盘的写实照片。俯视三分之三角度视图，浅景深。所有棋子清晰可辨且形状正确：兵、车、马（带马头轮廓）、象（主教帽顶）、后、王（带十字饰顶）。棋局处于中盘阶段：若干棋子已被吃掉，放置在棋盘右侧，一些兵已前进，棋子聚集在中央d4-e5-f4列周围。
 
 材质：抛光木质斯汤顿式棋子——黑方为紫檀木，白方为枫木。棋盘由拼嵌的枫木和胡桃木方块组成。一块数字象棋时钟位于左侧，显示“00:14:28 / 00:08:47”。柔和的头顶比赛用光，背景为模糊的比赛大厅。所有棋子准确无误，无变异体，无额外棋子。
 ```
 
-**B · Edit 命令 — 冬日晚景输出图**
+**B · Edit 命令: 冬日晚景输出图**
 ```bash
 gpt-image \
   -p 'Make it a winter evening with heavy snowfall, snow dusted on the board and pieces, breath vapor in the air, cold blue-grey lighting, chess position still clearly readable. Preserve the original chess-board composition and landscape aspect ratio exactly; keep the board and pieces aligned and readable.' \
@@ -2158,7 +2217,7 @@ gpt-image \
   -f docs/edit-endpoint-showcase/edit-chess-winter.png
 ```
 
-**C · 原图提示词 — 中国茶海报输入图**
+**C · 原图提示词: 中国茶海报输入图**
 ```text
 Design a 3:4 vertical poster for a new Chinese trendy tea launch. Use a New Chinese visual style that feels light-luxury and restrained. The palette should be dark green, off-white, and gold, with rice-paper texture, elegant negative space, landscape accents, and modern layout design.
 
@@ -2178,7 +2237,7 @@ Fine print: "图片仅供参考，请以门店实际售卖为准"
 Maintain a clear promotional hierarchy while keeping the overall feeling sophisticated rather than cheap or overly e-commerce-like. Pay special attention to small text, numbers, prices, info modules, and Chinese typography aesthetics.
 ```
 
-**D · Edit 命令 — 地铁灯箱输出图**
+**D · Edit 命令: 地铁灯箱输出图**
 ```bash
 gpt-image \
   -p 'Transform the provided tea poster into a realistic metro-station lightbox mockup while preserving the poster artwork and Chinese typography as much as possible. Show the poster behind glossy glass in a vertical illuminated advertising frame on a clean subway platform wall. Add subtle reflections, brushed metal frame, floor tiles, soft overhead transit lighting, and a few blurred commuters in the distance. Keep the poster straight, legible, and dominant; do not redesign the poster, do not change its main text, and do not add fake brand logos.' \
@@ -2187,13 +2246,14 @@ gpt-image \
   -f docs/edit-endpoint-showcase/tea-poster-metro-lightbox.png
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-uiux-mockups"></a>
 
-<h2 align="center">📱 UI/UX 原型图</h2>
+
+### 📱 UI/UX 原型图
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2214,20 +2274,19 @@ gpt-image \
 
 <p align="center"><sub>UI/UX Mockups · 1×2 手机界面面板</sub></p>
 
-<details>
-<summary><strong>📝 两个移动端 UI 面板的提示词</strong></summary>
 
-**提示词 A — Web3 钱包界面概念**
+**📝 两个移动端 UI 面板的提示词**
+
+**提示词 A: Web3 钱包界面概念**
 ```text
 Design a premium mobile web3 wallet app mockup for a fictional wallet called NOVA VAULT on a 1179x2556 phone screen, centered on a dark graphite background with faint aurora gradients. Use a refined palette of black, electric cyan, emerald, violet-blue, and soft white. The app should feel modern but credible, with crisp typography, glassmorphism only where useful, and strong financial UI clarity. Include in-image text: "NOVA VAULT", "Portfolio $48,920.14", "24h +3.82%", "Send", "Receive", "Swap", and "History". Show token cards labeled "SOLAR 18.42", "LATTICE 244.7", and "USDX 12,840.00" with small sparkline charts. Add a security section reading "Shield Level 96" and a network selector labeled "Mainnet". Include a recent activity list with "Swap SOLAR to USDX", "Received 240 LATTICE", and "Gas 0.0021". Prioritize crisp labels, exact numbers, clean hierarchy, believable wallet UX, and polished gpt-image-2-friendly UI detail.
 ```
 
-**提示词 B — 健康追踪 App Mockup**
+**提示词 B: 健康追踪 App Mockup**
 ```text
 Create a refined mobile health tracking app screen for a fictional wellness product named VITA LOOP, displayed on a tall smartphone with a bright editorial UI aesthetic. Use a palette of soft mint, deep forest green, cream, coral, and cool gray. Compose a daily overview screen with clean cards, circular progress rings, miniature charts, and a tidy bottom navigation. Include crisp in-image text: "VITA LOOP", "Daily Summary", "Steps 8,420", "Sleep 7.6 h", "Heart Rate 64 bpm", and "Hydration 2.1 L". Add three progress rings labeled "Move 78%", "Recovery 84%", and "Focus 66%". Show a weekly chart labeled "Mon Tue Wed Thu Fri Sat Sun" and two buttons reading "Log Meal" and "Start Session". Add a health insight card with the text "Recovery improved 12% this week". The result should feel production-ready, medically clean, carefully spaced, sharply rendered, and optimized for crisp typography and accurate labels.
 ```
 
-</details>
 
 ---
 
@@ -2248,24 +2307,24 @@ Create a refined mobile health tracking app screen for a fictional wellness prod
 
 <p align="center"><sub>UI/UX Mockups · 组件板与桌面仪表盘面板</sub></p>
 
-<details>
-<summary><strong>📝 设计系统面板的提示词</strong></summary>
 
-**提示词 A — 设计系统组件卡片集**
+**📝 设计系统面板的提示词**
+
+**提示词 A: 设计系统组件卡片集**
 ```text
 Generate a clean design system overview board for a fictional product language called LUMEN UI, arranged as a square component gallery on a 2048x2048 canvas. Use a neutral palette of ivory, charcoal, muted blue, sage, and coral accents. The composition should be an orderly grid of cards showing buttons, input fields, badges, toggles, tabs, avatars, alerts, and pricing cards. Include crisp typography, even spacing, subtle shadows, and exact alignment as if exported from a professional design tool. Add labeled sections with the in-image text "LUMEN UI", "Buttons", "Inputs", "Status", "Cards", and "Type Scale". Include sample button labels "Primary", "Secondary", and "Danger"; badge labels "Success", "Pending", and "Error"; and typography specimens "Display 48", "Heading 24", and "Body 16". Ensure the board feels systematic, editorial, and highly legible, with clean hierarchy, correct labels, and polished component consistency suitable for a design systems gallery.
 ```
 
-**提示词 B — 桌面运营仪表盘**
+**提示词 B: 桌面运营仪表盘**
 ```text
 Create a high-end desktop SaaS analytics dashboard mockup for a fictional platform named HELIX OPS, displayed on a 16:10 monitor canvas at 1600x1000. Use a cool palette of slate, cobalt blue, teal, pale gray, and white, with subtle glass panels and tight grid alignment. The layout should include a left sidebar, top filter bar, KPI cards, line charts, data table, and alert panel. Use crisp typography and correct labels. Include in-image text: "HELIX OPS", "Operations Overview", "Last 30 Days", "Uptime 99.982%", "Tickets 184", "Latency 42 ms", and "Conversion 6.4%". Show a line chart labeled "Apr 1" through "Apr 30", a donut chart titled "Traffic Sources", and a table with columns "Site", "Status", "Region", and "Load". Add alert pills reading "3 Critical" and "12 Warning". Composition should feel realistic and presentation-ready, with clean hierarchy, precise spacing, balanced negative space, and ultra-sharp dashboard UI rendering.
 ```
 
-</details>
 
 <a id="gallery-data-visualization"></a>
 
-<h2 align="center">📊 数据可视化</h2>
+
+### 📊 数据可视化
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2286,20 +2345,19 @@ Create a high-end desktop SaaS analytics dashboard mockup for a fictional platfo
 
 <p align="center"><sub>数据可视化 · 1×2 图表面板</sub></p>
 
-<details>
-<summary><strong>📝 编辑型数据可视化面板的提示词</strong></summary>
 
-**提示词 A — 小多重气候网格**
+**📝 编辑型数据可视化面板的提示词**
+
+**提示词 A: 小多重气候网格**
 ```text
 Produce a clean editorial data visualization poster showing a 4x3 small-multiples grid of monthly climate charts for 12 fictional cities. Use a white background, generous margins, and a restrained palette of navy, rust, sky blue, olive, and charcoal. Each mini-panel should contain a temperature line and precipitation bars with consistent axes and ultra-legible labels. Include a title block with the in-image text "Annual Climate Profiles" and subtitle "12 Cities, 2025". Label panels "Northport", "Solmere", "Aster Bay", "Ridgefall", "Halcyon", "Verdin", "Glass Harbor", "Red Mesa", "Moonfield", "Lake Arden", "Cinder Point", and "Juniper". Use month labels "J F M A M J J A S O N D" and axis labels "Temp °C" and "Rain mm". Add numeric legend values "0", "10", "20", "30", and "100". Keep the composition highly structured, scientifically clear, and visually elegant, with crisp typography, aligned scales, and publication-grade chart rendering.
 ```
 
-**提示词 B — 网络图协作地图**
+**提示词 B: 网络图协作地图**
 ```text
 Generate a sophisticated network graph visualization on a dark charcoal canvas showing collaborations across a fictional research consortium called ORBIT GRID. Use glowing node colors in teal, amber, coral, pale blue, and white, with fine connecting lines and clean labels. The composition should be balanced, readable, and intentionally designed rather than random. Include a title in crisp text reading "ORBIT GRID Collaboration Network" and a legend with "Institute", "Lab", "Project", and "Advisory". Show approximately 36 nodes, with larger hubs labeled "Helix Center", "Nova Lab", "Aster Institute", "Cinder Bio", and "Polar Systems". Add edge labels sparingly, such as "shared data", "joint grant", and "coauthor". Include a right-side stats card reading "Nodes 36", "Edges 92", and "Density 0.146". Emphasize clean hierarchy, accurate node-label placement, anti-overlap spacing, subtle depth, and crisp typography suited for a polished technical visualization generated by gpt-image-2.
 ```
 
-</details>
 
 ---
 
@@ -2320,24 +2378,24 @@ Generate a sophisticated network graph visualization on a dark charcoal canvas s
 
 <p align="center"><sub>数据可视化 · 1×2 分配/地图面板</sub></p>
 
-<details>
-<summary><strong>📝 分配与地图面板的提示词</strong></summary>
 
-**提示词 A — 预算分配矩形树图**
+**📝 分配与地图面板的提示词**
+
+**提示词 A: 预算分配矩形树图**
 ```text
 Design a modern treemap infographic showing a fictional company budget allocation for LUMEN BIO in fiscal year 2026. Use a light neutral background and a controlled palette of forest green, desaturated blue, amber, terracotta, lavender-gray, and charcoal outlines. The composition should be a clean rectangular treemap with strong visual grouping and crisp typography. Include a header with the in-image text "LUMEN BIO Budget Allocation" and "FY 2026". Major blocks should be labeled "R&D 38%", "Manufacturing 22%", "Clinical 14%", "Operations 10%", "Marketing 7%", "IT 5%", and "Legal 4%". Within some blocks, add smaller labels like "Prototypes", "Reagents", "QA", "Cloud", and "Field Trials". Include a compact side legend reading "Total Budget $84.0M". Ensure the chart has precise edges, balanced annotation density, clean hierarchy, and sharp text rendering suitable for a technical gallery prompt.
 ```
 
-**提示词 B — 地理分级统计产量地图**
+**提示词 B: 地理分级统计产量地图**
 ```text
 Produce a polished geographic choropleth map infographic of a fictional agricultural region called the Solterra Basin, showing harvest yield by district. Use a minimalist cartographic style on an off-white background with muted terrain hints and a sequential palette from pale sand to deep green. The map should include 14 clearly separated districts with clean borders, crisp labels, and a right-side legend. Include in-image text: "Solterra Basin Harvest Yield", "2025", and legend title "tons / hectare". Label districts with names such as "North Vale", "Riverbend", "Copper Plain", "East Orchard", and "Cinder Ridge". Include legend values "1.2", "2.4", "3.6", "4.8", and "6.0". Add a compact annotation box reading "Highest yield: East Orchard 5.8" and "Lowest yield: Dry Steppe 1.4". Prioritize clean typography, accurate map-like geometry, balanced composition, subtle cartographic detail, and publication-grade infographic clarity.
 ```
 
-</details>
 
 <a id="gallery-technical-illustration"></a>
 
-<h2 align="center">⚙️ 技术插图</h2>
+
+### ⚙️ 技术插图
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2368,34 +2426,34 @@ Produce a polished geographic choropleth map infographic of a fictional agricult
 
 <p align="center"><sub>技术插画 · 2×2 混合技术面板</sub></p>
 
-<details>
-<summary><strong>📝 技术插画面板的提示词</strong></summary>
 
-**提示词 A — 机械腕表爆炸视图**
+**📝 技术插画面板的提示词**
+
+**提示词 A: 机械腕表爆炸视图**
 ```text
 Create a premium technical exploded-view illustration of a fictional mechanical wristwatch called the Meridian 8, centered on a dark slate background with fine blueprint grid accents. Show the watch components separated vertically with precise spacing: sapphire crystal, dial, hands, chapter ring, movement plates, escapement, balance wheel, mainspring barrel, case, crown, and leather strap sections. Use realistic brushed steel, brass, ruby jewel accents, and deep navy dial details. Add crisp callouts and labels with the in-image text "Meridian 8", "Exploded Assembly", "42 mm Case", "25 Jewels", and "Power Reserve 72 h". Include numbered callouts "01" through "10" with short labels like "Balance Wheel", "Mainspring Barrel", and "Sapphire Crystal". The result should be highly detailed, technically believable, sharply rendered, and suitable for an industrial design plate with clean hierarchy, exact labeling, and refined material realism.
 ```
 
-**提示词 B — 智能手机内部层叠视图**
+**提示词 B: 智能手机内部层叠视图**
 ```text
 Produce a sleek exploded-view illustration of a fictional flagship smartphone called the HELIX ONE, shown front and back in a vertically layered assembly on a soft charcoal gradient background. Separate the glass, OLED panel, midframe, battery, camera island, wireless charging coil, logic board, cooling vapor chamber, speakers, and rear shell. Use realistic materials including brushed titanium edges, ceramic back, black glass, copper thermal elements, and blue PCB traces. Add crisp labels and in-image text: "HELIX ONE", "Layered Internal Architecture", "6.7 in OLED", "5,100 mAh", and "Vapor Chamber 3,200 mm2". Label components "Main Camera 50 MP", "Ultrawide 13 MP", "Coil", "Battery", "Logic Board", and "Speaker Module". Keep the composition elegant, technical, and believable, with exact spacing, sharp typography, clean callout leaders, and premium product-visualization quality.
 ```
 
-**提示词 C — 机械键盘爆炸装配图**
+**提示词 C: 机械键盘爆炸装配图**
 ```text
 Design a crisp exploded-view product illustration of a custom mechanical keyboard named LUMEN K65, shown in three-quarter perspective on a pale gray background with subtle shadow. Separate the layers clearly: keycaps, switches, plate, PCB, foam, gasket mounts, case top, battery module, rotary knob, and case bottom. Use anodized silver, matte black, translucent smoke keycaps, and small teal accent parts. Add clean technical callouts and in-image text reading "LUMEN K65", "Exploded Assembly", "65% Layout", "Hot-Swap PCB", and "3,200 mAh". Include labels for "PBT Keycaps", "Linear Switch", "Aluminum Plate", "Poron Foam", "USB-C", and "Encoder Knob". Show a compact dimension note "317 mm x 112 mm x 31 mm". The composition should feel like an industrial design presentation board: precise spacing, realistic materials, sharp typography, correct labels, and highly legible component hierarchy.
 ```
 
-**提示词 D — 汽车动力总成透明剖视图**
+**提示词 D: 汽车动力总成透明剖视图**
 ```text
 Create a high-detail transparent cutaway illustration of a fictional hybrid sports coupe powertrain on a dark neutral studio background. Show the vehicle in side profile with semi-transparent bodywork revealing the front electric motor, battery pack, rear combustion engine, transmission tunnel, cooling loops, and rear differential. Use realistic metallic surfaces, matte graphite body panels, orange high-voltage cables, and blue coolant lines. Add clean engineering callouts with crisp in-image text: "Project VELA GT", "Hybrid Powertrain", "System Output 412 kW", "Battery 18.6 kWh", and "0-100 km/h 3.8 s". Label key parts "Inverter", "Motor", "Battery Pack", "Turbo Inline-4", "Radiator", and "Rear Differential". Include a simple legend showing cable colors for "HV", "Coolant", and "Fuel". The rendering should be technically believable, photorealistic where appropriate, sharply annotated, and composed like a premium automotive engineering poster.
 ```
 
-</details>
 
 <a id="gallery-architecture-interior"></a>
 
-<h2 align="center">🏛️ 建筑与室内设计</h2>
+
+### 🏛️ 建筑与室内设计
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2426,36 +2484,37 @@ Create a high-detail transparent cutaway illustration of a fictional hybrid spor
 
 <p align="center"><sub>建筑与室内设计 · 2×2 建筑可视化 pad · Curated</sub></p>
 
-<details>
-<summary><strong>📝 四张建筑图的提示词</strong></summary>
 
-**提示词 A — 日式极简客厅**
+**📝 四张建筑图的提示词**
+
+**提示词 A: 日式极简客厅**
 ```text
 以写实建筑可视化风格渲染一个宁静的日式极简客厅内饰，从眼平视角和28毫米镜头视角拍摄。空间应采用浅橡木地板、灵感来源于障子门的滑动面板、低矮模块化座椅、凹进的床榻洞、亚麻纹理，以及从左侧射入的柔和晨光。配色克制，采用温暖米色、浅橡木色、炭黑色、柔和苔绿色和宣纸白色。画面中包含一个小巧装框的平面图板，上面有细微字体显示“Room 6.4 m x 4.8 m”和“AURAE House”。添加一个低茶几、一只陶瓷花瓶、一棵盆景植物以及3000K的间接槽灯光。构图应保持平和均衡，拥有强烈的负空间、真实阴影、准确的材质表现和杂志品质的室内渲染。优先保证写实性、建筑细节、锐利边缘以及品味优良的极简而非风格化幻想。
 ```
 
-**提示词 B — 野兽派混凝土博物馆中庭**
+**提示词 B: 野兽派混凝土博物馆中庭**
 ```text
 制作一幅写实的室内渲染图，展示纪念性野兽派风格博物馆中庭，采用暴露的模板混凝土，大气的天窗，长缓坡道和巨大的几何空洞。视角略低且宽广，突出垂直尺度和阴影。使用冷灰混凝土、黑色钢材、柔和砂岩、淡白昼光和少量锈色导示标识作为配色。包含稀疏的标识牌，清晰的画中文字为：“Gallery A”，“Level 02”，和“Atrium 18.0 m”。添加若干小型人体模型以表现比例，但建筑为主体。空间包含悬吊步道、中央雕塑基座，并反射抛光混凝土地板的光线。构图须具电影感且建筑精确，真实材质纹理、精准照明、合理对比及画廊级质量渲染。重点实现可信空间深度、干净几何、微妙气氛透视和锐利标识。
 ```
 
-**提示词 C — 中世纪现代办公室**
+**提示词 C: 中世纪现代办公室**
 ```text
 用写实室内风格渲染一个精致的中世纪现代创意办公室，配备核桃木工艺、黄铜装饰、橄榄色软装、水磨石地面、烟熏玻璃隔断和大窗户投射的下午晚光。采用丰富的核桃棕、橄榄绿、奶油色、黄铜金和柔和的赭石色调色板。构图展示中央行政办公桌、内置书架、休闲角落与墙上规划板。规划板上有细微画中文字“Studio North”、“Q3 Review”与“14:30”。添加真实配件如绘图工具、书籍、陶瓷灯具和唱片机，但保持场景整理有序无杂乱。镜头角度富有编辑感，约32毫米，保持平衡透视线和写实景深。优先考虑触感材质、可信照明、干净几何和精致建筑可视化品质，细节锐利、构图精准。
 ```
 
-**提示词 D — 亲自然生物科技实验室**
+**提示词 D: 亲自然生物科技实验室**
 ```text
 生成一个高端写实的面向未来的生物科技实验室渲染图，融合亲自然设计理念。展示一个明亮开放的实验室，配有玻璃隔断、活体苔藓墙、悬挂植物、淡木质细节、白色复合工作台和先进科研设备。采用清新配色，包含白色、鼠尾草绿、浅橡木、不锈钢和清澈青蓝色显示器点缀。配置精准的4200K建筑光照、天窗漫射和洁净反射。添加细微的墙面图形与清晰画中文字“HELIX BIO LAB 03”、“Clean Zone”和“22 C”。场景应包含实验台、显微镜、样品存储塔和协作座椅，空间布局清晰。构图需令人向往且可信，设备比例合理、表面洁净、杂乱控制得当并具优质可视化效果。强调写实、材质准确渲染、层次分明，及自然与科学工作空间设计的优雅融合。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-scientific-educational"></a>
 
-<h2 align="center">🔬 科学与教育</h2>
+
+### 🔬 科学与教育
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2480,15 +2539,15 @@ Create a high-detail transparent cutaway illustration of a fictional hybrid spor
 
 <p align="center"><sub>科学与教育 · 1×3 竖版解剖海报面板</sub></p>
 
-<details>
-<summary><strong>📝 人体解剖教育海报三联面板的提示词</strong></summary>
 
-**提示词 A — 人体肌肉系统海报**
+**📝 人体解剖教育海报三联面板的提示词**
+
+**提示词 A: 人体肌肉系统海报**
 ```text
 Create a clean educational anatomy poster showing the human muscular system in anterior and posterior views on a pale cream background. Use an academic but visually refined style with precise linework, muted reds and umbers for muscle groups, cool gray bones, and thin charcoal labels. Include a centered title with crisp in-image text "Human Muscular System" and a subtitle "Anterior and Posterior Views". Label key structures such as "Deltoid", "Pectoralis Major", "Rectus Abdominis", "Biceps Femoris", "Gastrocnemius", and "Trapezius". Add a compact scale note reading "Adult height reference 175 cm" and a small legend with "Superficial" and "Deep". Keep the composition symmetrical, scientifically accurate in appearance, and suitable for a classroom wall chart. Prioritize correct labels, crisp typography, clean hierarchy, subtle shading, and publication-quality educational clarity without gore or excessive realism.
 ```
 
-**提示词 B — 人体骨骼系统海报**
+**提示词 B: 人体骨骼系统海报**
 ```text
 Create a clean educational anatomy poster showing the human skeletal system in anterior and posterior views on a pale cream background. Use a refined academic wall-chart style with precise bone linework, cool gray and ivory bone shading, charcoal labels, and subtle blue accent rules. Include a centered title with crisp in-image text "Human Skeletal System" and subtitle "Anterior and Posterior Views". Label key structures such as "Skull", "Clavicle", "Sternum", "Humerus", "Radius", "Ulna", "Pelvis", "Femur", "Tibia", and "Fibula". Add a compact scale note reading "Adult height reference 175 cm" and a small legend with "Axial" and "Appendicular". Keep the composition symmetrical, scientifically accurate in appearance, suitable for a classroom wall chart, non-gory, clean, precise, and publication-quality.
 ```
@@ -2501,7 +2560,7 @@ gpt-image \
   -f docs/scientific-educational/human-anatomy-skeletal-poster.png
 ```
 
-**提示词 C — 人体循环系统海报**
+**提示词 C: 人体循环系统海报**
 ```text
 Create a clean educational anatomy poster showing the human circulatory system in anterior and posterior views on a pale cream background. Use an academic but visually refined medical-wall-chart style with precise vascular linework, muted crimson and deep blue vessels, soft ivory body silhouettes, and thin charcoal labels. Include a centered title with crisp in-image text "Human Circulatory System" and subtitle "Major Arteries and Veins". Label key structures such as "Heart", "Aorta", "Carotid Artery", "Vena Cava", "Pulmonary Artery", "Radial Artery", "Femoral Artery", "Saphenous Vein", and "Capillary Beds". Add a compact legend with "Arteries" and "Veins" plus a note reading "Educational schematic". Keep the composition symmetrical, scientifically accurate in appearance, classroom-safe, non-gory, highly legible, and publication-quality.
 ```
@@ -2514,7 +2573,6 @@ gpt-image \
   -f docs/scientific-educational/human-anatomy-circulatory-poster.png
 ```
 
-</details>
 
 ---
 
@@ -2545,34 +2603,34 @@ gpt-image \
 
 <p align="center"><sub>科学与教育 · 2×2 宽屏图表面板</sub></p>
 
-<details>
-<summary><strong>📝 科学图表面板的提示词</strong></summary>
 
-**提示词 A — 元素周期表光谱变体**
+**📝 科学图表面板的提示词**
+
+**提示词 A: 元素周期表光谱变体**
 ```text
 Design a distinctive periodic table poster variant where each element tile is colored by fictional emission-spectrum families while preserving clean scientific layout. Use a dark navy background with luminous but disciplined colors: cyan, magenta, amber, lime, and silver-white. Arrange the periodic table accurately with clear periods and groups, including separate lanthanide and actinide rows. Add a crisp title reading "Periodic Table of the Elements" and subtitle "Spectral Classification Variant". Ensure visible labels for representative tiles such as "H 1", "He 2", "C 6", "Fe 26", "Ag 47", and "U 92". Include side legends titled "Alkali", "Transition", "Metalloid", "Noble Gas", and "Actinide". Add small group numbers "1" through "18" and period numbers "1" through "7". The result should feel educational, modern, and highly legible, with precise typography, clean cell alignment, balanced glow effects, and accurate table structure.
 ```
 
-**提示词 B — 生命之树海报**
+**提示词 B: 生命之树海报**
 ```text
 Generate an elegant scientific poster visualizing a stylized tree of life as a radial phylogeny diagram on an ivory background. Use fine botanical-meets-scientific linework with a restrained palette of moss green, deep teal, amber, plum, and charcoal. The diagram should branch outward from a central root labeled with crisp in-image text "Last Universal Common Ancestor". Main clades should be labeled "Bacteria", "Archaea", and "Eukaryota", with outer branches including "Plants", "Fungi", "Animals", "Protists", and "Cyanobacteria". Add a title at the top reading "Tree of Life" and a subtitle "Simplified Radial Phylogeny". Include a small scale note "Approximate branching only". Keep labels readable and branch geometry balanced, with clean hierarchy and educational clarity. The overall design should feel like a museum-science graphic: structured, accurate in spirit, visually rich, and rendered with crisp text and refined detail.
 ```
 
-**提示词 C — 天气系统示意图**
+**提示词 C: 天气系统示意图**
 ```text
 Create a polished meteorology infographic showing a mid-latitude cyclone system from a top-down synoptic view. Use a cool palette of ocean blue, cloud white, storm gray, crimson, and cobalt, with smooth contour lines and crisp symbols. Include pressure isobars, cloud bands, warm and cold fronts, arrows for wind direction, and rainfall zones. Add clear in-image text: "Mid-Latitude Cyclone", "Low Pressure 984 hPa", "Warm Front", "Cold Front", and "Occluded Front". Include city labels "Northport", "Elmside", and "Cedar Bay" for context, plus a legend reading "Rain", "Snow", and "Thunderstorm". Show temperature markers "8 C", "14 C", and "21 C" in different air masses. The composition should be educational and publication-ready, with sharp labels, clean hierarchy, accurate diagram conventions, and strong visual readability suitable for a textbook or science exhibit panel.
 ```
 
-**提示词 D — 地质地层剖面图**
+**提示词 D: 地质地层剖面图**
 ```text
 Produce a detailed geological cross-section poster of layered earth strata cutting through a fictional canyon basin. Use a natural scientific palette of sandstone beige, iron oxide red, shale gray, limestone cream, basalt charcoal, and muted green vegetation above ground. Show clearly differentiated layers, a fault line, an aquifer, fossil-bearing beds, and a volcanic intrusion. Add crisp in-image text: "Geological Cross-Section", "Solterra Basin", "Scale 0-500 m", and labels "Sandstone", "Shale", "Limestone", "Coal Seam", "Aquifer", and "Basalt Dike". Include a vertical scale with "0 m", "100 m", "250 m", and "500 m". Add small annotations "Marine fossils" and "Groundwater flow" with arrows. The composition should be highly legible, educational, and neatly diagrammed, with clean linework, correct label placement, balanced annotation density, and publication-quality scientific illustration clarity.
 ```
 
-</details>
 
 <a id="gallery-fashion-editorial"></a>
 
-<h2 align="center">👗 时尚与编辑</h2>
+
+### 👗 时尚与编辑
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2603,30 +2661,29 @@ Produce a detailed geological cross-section poster of layered earth strata cutti
 
 <p align="center"><sub>时尚与编辑 · 2×2 同尺寸竖版调色板 · Curated 与已标注来源</sub></p>
 
-<details>
-<summary><strong>📝 四个时尚肖像面板的提示词</strong></summary>
 
-**提示词 A — 都市街头穿搭：涩谷夜景**
+**📝 四个时尚肖像面板的提示词**
+
+**提示词 A: 都市街头穿搭：涩谷夜景**
 ```text
 Full-body lookbook photography of a model standing in the center of a rain-slicked Shibuya crossing at twilight. The model wears an oversized, multi-pocketed technical puffer jacket in 'Electric Cobalt' with reflective silver detailing, paired with wide-leg cargo trousers in matte black and chunky platform sneakers. The composition is a sharp medium-wide shot using a 35mm lens, capturing the vibrant neon signs of the background blurred into a soft bokeh of pinks and cyans. Lighting is dramatic and directional, sourced from the surrounding digital billboards, creating high-contrast highlights on the jacket's texture. The mood is urban and fast-paced, with a subtle film grain characteristic of Portra 400. The image features a clean vertical layout suitable for a fashion magazine, with the text 'NEO-URBAN' subtly embossed in the corner in a minimalist sans-serif font. No brand logos are visible.
 ```
 
-**提示词 B — 先锋时装：有机超现实主义**
+**提示词 B: 先锋时装：有机超现实主义**
 ```text
 A high-fashion editorial shot in a surreal desert landscape where the sand is white and the sky is a deep, dark indigo. The model wears an avant-garde garment that appears to be grown from bioluminescent fungi and dried desert vines, featuring intricate organic textures and glowing veins of 'Acid Green'. The silhouette is exaggerated and asymmetrical, blending into the surrounding rock formations. The lighting is otherworldly, with the model illuminated by a soft internal glow from the dress and a faint lunar backlight. The composition is a low-angle shot to make the model appear monumental and god-like. The camera uses a wide-angle lens to capture the vast, empty horizon. The color palette is strictly limited to white, indigo, and bioluminescent green, creating a haunting and futuristic aesthetic that challenges the boundaries of clothing.
 ```
 
-**提示词 C — 低饱和街头风棚拍时装肖像**
+**提示词 C: 低饱和街头风棚拍时装肖像**
 ```text
 A high-end studio photoshoot featuring a half-body portrait of a person in their mid-30s to early 40s with a naturally fit build. The subject stands in a relaxed yet confident pose, with a calm, neutral, self-assured expression. They are dressed in modern, minimal casual streetwear, such as a well-fitted t-shirt or a light jacket, using neutral, muted tones. Shot at eye level using an 85mm portrait lens with an aperture of f/2.8, keeping the subject tack sharp while creating a soft, shallow depth of field that gently blurs the background. The lighting is professional studio quality: a softbox key light from the front, subtle fill lighting to balance shadows, and a gentle rim light to separate the subject from the background. Shadows are soft and natural, with accurate, realistic skin tones. The background is a clean studio backdrop with a smooth, minimal texture and a soft neutral gradient, completely distraction-free. The overall style is highly realistic with an editorial fashion portrait look. Color grading is natural and balanced, with no filters or overprocessing. Rendered in ultra-high detail.
 ```
 
-**提示词 D — 埃菲尔铁塔夜间奢华时尚大片**
+**提示词 D: 埃菲尔铁塔夜间奢华时尚大片**
 ```text
 Dramatic, low-angle ground perspective full-body shot captured with a 50mm lens at f/1.4, featuring a stylish bearded man with slicked-back hair and aviator glasses, wearing tailored high-fashion modern clothing, standing on the platform of Trocadéro at night. He is dressed in a structured black velvet blazer over a black cashmere roll-neck sweater, tailored black trousers, and polished black boots, looking up intently at the fully illuminated Eiffel Tower, which dominates the background. Directly behind him is a deep sapphire blue Bugatti Chiron reflecting the surrounding city lights. One foot is planted on the rear tire, with his body leaning casually back. Use a shallow depth of field, rendering distant Parisian street lights and crowd into creamy bokeh. Spotlighting from city lamps creates dramatic, high-contrast shadows. Photorealistic, cinematic, luxury high-fashion editorial aesthetic.
 ```
 
-</details>
 
 ---
 
@@ -2638,19 +2695,19 @@ Dramatic, low-angle ground perspective full-body shot captured with a 50mm lens 
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Y2K 回潮：Cyber-Pop 棚拍的提示词</strong></summary>
 
-**提示词 A — Y2K 回潮：Cyber-Pop 棚拍**
+**📝 Y2K 回潮：Cyber-Pop 棚拍的提示词**
+
+**提示词 A: Y2K 回潮：Cyber-Pop 棚拍**
 ```text
 A vibrant Y2K-inspired fashion editorial shot in a studio with a high-gloss white floor and a curved lavender backdrop. The model is styled in a 'Cyber-Pink' velour tracksuit with butterfly motifs, tinted translucent sunglasses, and frosted blue eyeshadow. The lighting is bright and 'bubbly,' using ring lights to create circular catchlights in the eyes and a soft, glowy skin texture reminiscent of early 2000s music videos. The composition is a close-up fish-eye lens shot, distorting the proportions for a playful, energetic effect. Colors are saturated neon greens, hot pinks, and icy blues. Floating around the model are low-poly 3D heart shapes and plastic-textured stars. The text 'GLOSS' is written in a chunky, 3D chrome bubble font across the top. The overall aesthetic is nostalgic, plastic, and hyper-digital.
 ```
 
-</details>
 
 <a id="gallery-fine-art-painting"></a>
 
-<h2 align="center">🎨 纯艺绘画</h2>
+
+### 🎨 纯艺绘画
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2671,20 +2728,19 @@ A vibrant Y2K-inspired fashion editorial shot in a studio with a high-gloss whit
 
 <p align="center"><sub>纯艺术绘画 · 1×2 宽屏绘画面板</sub></p>
 
-<details>
-<summary><strong>📝 风景与壁画绘画面板的提示词</strong></summary>
 
-**提示词 A — 印象派脉络：黄昏河流**
+**📝 风景与壁画绘画面板的提示词**
+
+**提示词 A: 印象派脉络：黄昏河流**
 ```text
 A serene landscape painting in the lineage of late 19th-century Impressionism, depicting a wide river reflecting a hazy violet and gold sunset. The water is rendered with short, horizontal dabs of color—'Lavender', 'Pale Peach', and 'Sage Green'—that suggest the gentle ripple of the surface. On the banks, weeping willows are suggested by soft, blurred strokes of dark emerald and charcoal. The atmosphere is thick with moisture and light, where the sky and water seem to merge at the horizon. There are no sharp lines or defined edges; the entire scene is a study of light, color, and atmospheric perspective. The lighting is the fleeting 'blue hour,' where the last rays of sun catch the tips of the waves. The mood is tranquil and meditative, capturing a fleeting moment of natural beauty through a soft, atmospheric lens.
 ```
 
-**提示词 B — 社会现实主义：大型铸造厂**
+**提示词 B: 社会现实主义：大型铸造厂**
 ```text
 A grand-scale public mural in the lineage of early 20th-century social realism and Mexican muralism. The scene depicts an industrial foundry where diverse workers are engaged in the heroic labor of forging massive steel gears. The figures are rendered with heavy, rounded forms and powerful muscularity, colored in earthy tones of 'Sienna', 'Slate Grey', and 'Iron Rust'. The composition is dense and rhythmic, filled with the interlocking shapes of machinery, pipes, and human bodies. In the center, a golden glow emanates from a crucible of molten metal, illuminating the faces of the workers with a dramatic 'Fire Orange'. The style is bold and graphic, with strong black outlines and a flattened perspective that emphasizes the collective effort. The mural covers a vast curved wall, suggesting a narrative of progress, unity, and the dignity of the working class.
 ```
 
-</details>
 
 ---
 
@@ -2705,24 +2761,24 @@ A grand-scale public mural in the lineage of early 20th-century social realism a
 
 <p align="center"><sub>纯艺术绘画 · 混合画幅绘画面板</sub></p>
 
-<details>
-<summary><strong>📝 肌理与现代主义绘画面板的提示词</strong></summary>
 
-**提示词 A — 厚涂花卉节奏**
+**📝 肌理与现代主义绘画面板的提示词**
+
+**提示词 A: 厚涂花卉节奏**
 ```text
 A vivid oil painting in the lineage of post-impressionist impasto, featuring a dense garden of sunflowers and irises. The paint is applied in thick, rhythmic swirls and heavy dollops with a palette knife, creating a tangible 3D texture on the canvas. The color palette is an explosion of 'Chrome Yellow', 'Deep Ultramarine', and 'Vermilion Red', with visible strokes of white lead to indicate shimmering light. The composition is a tight, chaotic floral arrangement that seems to vibrate with energy. The lighting is harsh midday sun, which creates deep shadows within the ridges of the thick paint. There are no flat surfaces; every inch of the 'canvas' is covered in expressive, turbulent movement. The overall effect is one of raw emotion and the physical presence of the medium, focusing on the light-play over the peaks of the oil paint.
 ```
 
-**提示词 B — 中世纪现代：蓝色泳池**
+**提示词 B: 中世纪现代：蓝色泳池**
 ```text
 A flat, vibrant acrylic painting in the lineage of 1960s California modernism. The scene features a sparkling turquoise swimming pool in the foreground, with highly stylized white splash lines indicating a recent dive. In the background, a minimalist glass-and-steel house sits under a cloudless 'Cerulean' sky, flanked by two perfectly manicured palm trees. The color palette is dominated by saturated primaries: 'Turquoise Blue', 'Lemon Yellow', and 'Terracotta'. The lighting is the flat, shadowless glare of a Los Angeles afternoon, emphasizing the geometric shapes and clean lines of the architecture. The composition is strictly horizontal and balanced, with a sense of artificial stillness and leisure. The texture is smooth and matte, avoiding any visible brushstrokes to maintain a clean, graphic quality. It is a portrait of a sunny, suburban utopia.
 ```
 
-</details>
 
 <a id="gallery-more-illustration-styles"></a>
 
-<h2 align="center">✏️ 更多插画风格</h2>
+
+### ✏️ 更多插画风格
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2743,24 +2799,24 @@ A flat, vibrant acrylic painting in the lineage of 1960s California modernism. T
 
 <p align="center"><sub>更多插画风格 · 1×2 精选风格面板</sub></p>
 
-<details>
-<summary><strong>📝 精选插画风格双图面板的提示词</strong></summary>
 
-**提示词 A — Q版风格：星光面包房**
+**📝 精选插画风格双图面板的提示词**
+
+**提示词 A: Q版风格：星光面包房**
 ```text
 A hyper-cute 'Q-style' or chibi illustration of a tiny, magical bakery run by a group of small forest animals. The characters have oversized heads, large twinkling eyes, and tiny limbs, dressed in miniature baker hats and aprons. They are decorating giant, glowing cupcakes that look like planets. The color palette is 'Pastel Rainbow': mint, strawberry pink, lavender, and lemon. The line art is soft and rounded, in a dark chocolate brown rather than black. The background is a cozy, rounded kitchen with jars of sparkling stardust and windows looking out onto a crescent moon. The lighting is warm and sparkly, with many small 'twinkle' effects and soft white glows around the pastries. The mood is sugary-sweet, whimsical, and extremely comforting, designed for a sticker set or a children's book.
 ```
 
-**提示词 B — 贴纸设计：赛博探索者俱乐部**
+**提示词 B: 贴纸设计：赛博探索者俱乐部**
 ```text
 A collection of five high-quality die-cut sticker designs arranged on a dark carbon-fiber background. The central sticker is a circular badge featuring a stylized astronaut helmet with the text 'EXPLORE' in a bold, futuristic font. The other stickers include a retro-style rocket, a planet with rings, and a lightning bolt. The art style is 'Neo-Traditional Sticker,' with thick white borders and vibrant, saturated colors. A 'holographic' texture overlay is applied to certain areas, creating a rainbow-sheen effect that shifts with the light. The lighting features bright specular highlights to give the stickers a 3D, plastic, and slightly glossy feel. The colors are 'Electric Purple', 'Cyan', and 'Neon Yellow'. Each sticker has a subtle drop shadow to make it appear as if it's peeling slightly off the surface.
 ```
 
-</details>
 
 <a id="gallery-cinematic-film-references"></a>
 
-<h2 align="center">🎥 电影风格参考</h2>
+
+### 🎥 电影风格参考
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2799,46 +2855,47 @@ A collection of five high-quality die-cut sticker designs arranged on a dark car
 
 <p align="center"><sub>电影风格参考 · 2×3 cinematic palette · Curated</sub></p>
 
-<details>
-<summary><strong>📝 六张电影参考图的提示词</strong></summary>
 
-**提示词 A — 对称粉彩：宏伟温室**
+**📝 六张电影参考图的提示词**
+
+**提示词 A: 对称粉彩：宏伟温室**
 ```text
 一张完美对称的广角电影镜头，继承了韦斯·安德森奇思妙想的美学血统。场景是一座宏伟的玻璃温室，里面摆满了异国植物和粉红色火烈鸟，中央是一张完美摆放的黄色丝绒沙发。色彩调色板严格采用‘千禧粉’、‘开心果绿’和‘芥末黄’的粉彩配色。画面中的每个元素都精心摆放，采用平面正面视角，感觉像一个娃娃屋。光线柔和均匀，没有强烈阴影，赋予场景一种超现实的绘画质感。画面中央，一位穿着薰衣草色行李员制服的男子静静地站立，手持一朵红玫瑰。摄像机是复古的Panavision，捕捉清晰细腻的画面，带有一丝怀旧暖色调。氛围古怪、迷人且高度受控，强调强迫症式的完美组织之美。
 ```
 
-**提示词 B — 巨石科幻：黑曜石之门**
+**提示词 B: 巨石科幻：黑曜石之门**
 ```text
 一幅令人惊叹的电影广角镜头，继承丹尼斯·维伦纽瓦巨石科幻风格。一名孤独微小的人物站在一块巨大的、无特征的黑曜石岩板前，这块岩板高耸入尘土飞扬的橙色天空，极其巨大以致人物犹如一粒沙尘。环境是一片辽阔平坦的盐碱地，日光暗淡朦胧。光线低对比且富有氛围感，巨石表面反射着暗淡油亮的光泽。色彩调色板为“工业单色”：深黑、板岩灰和柔和的沙黄色。传达出一种巨大重量感和古老的沉寂。镜头采用广角镜头和深景深，强调构筑物的震撼规模。氛围充满敬畏、恐惧，以及高级外星智慧的崇高神秘。设计极简且粗犷。
 ```
 
-**提示词 C — 梦境景观：漂浮花园**
+**提示词 C: 梦境景观：漂浮花园**
 ```text
 一幅郁郁葱葱、手绘风格的电影画面，继承宫崎骏梦幻动画的血脉。场景描绘一系列小型草地岛屿漂浮在蓬松的白色积云海洋上，背景是明亮的绿松石蓝天。古老的石头废墟覆盖着鲜艳的‘翡翠绿’苔藓，夹杂在开花果树之间。柔和的风吹动长草摇曳，白色飞鸟翱翔。光线是夏日清晨明亮且乐观的清晰感，伴有柔和、绘画般的阴影和温柔的光晕。色彩调色板丰富自然：天蓝色、春绿色和花朵粉。构图开阔通透，带有无限的奇妙与和平感。质感柔和如水粉画，每片叶子和草叶都充满生命力和细致关怀。这里是纯粹想象与环境和谐的世界。
 ```
 
-**提示词 D — 慢镜头电影：迷雾果园**
+**提示词 D: 慢镜头电影：迷雾果园**
 ```text
 一幅富有沉思意味的长镜头电影画面，继承塔可夫斯基慢镜头电影风格。浓密银色雾气笼罩着黎明时分被遗弃的苹果果园。中央是一张简朴的木桌，上面放着一杯水，周围是高而湿润的草丛。颜色近乎单色调，由‘苔藓绿’、‘冷灰色’和‘潮湿棕’主导，远处的灯笼闪烁着一丝琥珀色光芒。光线自然且带有忧郁，透过厚重雾气和树冠过滤。画面传递出时间流逝、寂静和精神重量的深刻感受。摄像机静止，伴随缓慢、几乎察觉不到的变焦。质感真实：木头腐烂、水杯上的露珠和空气的湿润感。氛围哲学性、孤独，深深扎根于自然世界和家的记忆中。
 ```
 
-**提示词 E — 新黑色电影：橙色迷雾**
+**提示词 E: 新黑色电影：橙色迷雾**
 ```text
 一幅继承《银翼杀手2049》风格的电影广角镜头，描绘一座被厚重、有毒的橙色放射性雾气笼罩的未来城市。破败的古老雕像轮廓和锯齿状摩天大楼隐约可见。一个孤独的悬浮载具带着蓝色推进光穿透橙色阴霾，形成鲜明的色彩对比。光线压抑且漫散，没有可见的太阳，只有持续的诡异橙色光芒，使所有特征变得扁平。色彩调色板为醒目的“琥珀与钴蓝”双色调。构图采用低角度，仰望城市压迫性的建筑。摄像机使用35mm变形镜头，创造宽银幕电影画面比例和细微镜头光晕。氛围末世感强烈，孤独且在荒芜中视觉震撼，着重表现大气密度和废墟规模。
 ```
 
-**提示词 F — 表现主义黑色电影：发条小巷**
+**提示词 F: 表现主义黑色电影：发条小巷**
 ```text
 一幅戏剧化的电影宽幅画面，灵感来自德国表现主义黑色电影与早期默片舞台布景。午夜时分，一条被雨水打湿的发条小巷，瘦高且扭曲的建筑像剧场布景板一样向内倾斜，在湿润鹅卵石路面上投下尖锐三角阴影。画面中心，一位穿着深炭色长外套的孤独信使，手里提着一只装在玻璃笼中的发光黄铜自动机械鸟。色彩以墨黑、氧化黄铜、骨白为主，并用远处剧院招牌 “MIDNIGHT COURIER” 的猩红光作为唯一强调色。灯光采用高反差明暗法，硬质逆光、通风口蒸汽、水洼反射和锐利剪影。镜头为32mm变形宽幅，低机位，强引导线，深景深，细微胶片颗粒。整体应像高级电影剧照：超现实、图形感强、情绪浓郁、构图严谨，不要血腥恐怖，不要真实人物肖像。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-beauty-lifestyle"></a>
 
-<h2 align="center">💄 美妆与生活方式</h2>
+
+### 💄 美妆与生活方式
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2859,26 +2916,27 @@ A collection of five high-quality die-cut sticker designs arranged on a dark car
 
 <p align="center"><sub>美妆与生活方式 · 1×2 精选 lifestyle palette · Curated</sub></p>
 
-<details>
-<summary><strong>📝 两张美妆生活方式图的提示词</strong></summary>
 
-**提示词 A — 静奢护肤晨间托盘**
+**📝 两张美妆生活方式图的提示词**
+
+**提示词 A: 静奢护肤晨间托盘**
 ```text
 Create a 3:4 vertical beauty lifestyle photograph for a premium skincare morning routine. Scene: a travertine bathroom counter beside a soft frosted window, with a minimal glass serum bottle, ceramic cleanser tube, cream jar, folded linen towel, jade roller, small dish of pearl hair clips, and a single dewy white camellia flower. Lighting: natural morning side light, gentle reflections, realistic glass thickness, soft shadows, clean negative space. Aesthetic: quiet luxury, Japanese minimalism meets modern spa editorial, cream / warm stone / translucent pale green palette. No visible brand logos, no readable fake labels except a tiny generic mark "AM ROUTINE", no human face, no clutter, no overdone CGI shine.
 ```
 
-**提示词 B — 香氛夜间仪式梳妆台**
+**提示词 B: 香氛夜间仪式梳妆台**
 ```text
 制作一张竖版高端美妆与生活方式编辑摄影，主题是精品香氛的夜间仪式。场景：蓝调时刻，一处温暖的大理石梳妆台靠近柔和发光的卧室窗边，摆放两只雕塑感香水瓶、一条丝带、珍珠发夹、一张小手写便签、一杯气泡水，以及几朵带露感的白色花。整体风格应是静奢、女性化、现代、令人向往，但自然克制而不是过度商业棚拍。色彩使用香槟金、暖象牙白、灰玫瑰色、柔和薰衣草阴影和清透玻璃高光。光线：烛光混合冷调夜窗光，大理石上有精致反射，浅景深，真实高级产品摄影。构图：竖版杂志静物，优雅留白，无品牌 logo，无真实人物肖像，无杂乱，除一张小而精致的便签写有 “EVENING RITUAL” 外不出现文字。
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-events-experience"></a>
 
-<h2 align="center">🎟️ 活动与体验</h2>
+
+### 🎟️ 活动与体验
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2899,10 +2957,10 @@ Create a 3:4 vertical beauty lifestyle photograph for a premium skincare morning
 
 <p align="center"><sub>活动与体验 · 1×2 导览地图面板</sub></p>
 
-<details>
-<summary><strong>📝 游客导览地图面板的提示词</strong></summary>
 
-**提示词 A — 动物园游客导览地图**
+**📝 游客导览地图面板的提示词**
+
+**提示词 A: 动物园游客导览地图**
 ```text
 Design a polished visitor wayfinding map for a fictional modern city zoo named "RIVERGATE ZOO". Landscape 3:2 orientation (1536×1024), friendly illustrated navigation-map style, clean paths and zones, readable labels, cute animal icons, and practical visitor signage. Include crisp in-image text: "RIVERGATE ZOO", "Main Gate", "Panda Forest", "Savanna Loop", "Aviary", "Reptile House", "Kids Farm", "Cafe", "Restrooms", "First Aid", and "Exit". Show color-coded walking routes, numbered landmarks, small legend, north arrow, accessibility icons, and soft botanical details. Palette: warm cream paper, zoo green, sky blue, coral, amber, and charcoal labels. Make it charming, useful, and map-like rather than a generic poster; avoid fake sponsor logos and cluttered microtext.
 ```
@@ -2915,7 +2973,7 @@ gpt-image \
   -f docs/events-experience/zoo-visitor-wayfinding-map.png
 ```
 
-**提示词 B — 华山 5A 景区游览导览图**
+**提示词 B: 华山 5A 景区游览导览图**
 ```text
 Design a polished Chinese 5A scenic-area visitor navigation map for Huashan, titled with crisp Chinese text "华山游览导览图" and subtitle "国家5A级旅游景区". Landscape 3:2 orientation (1536×1024), premium illustrated map style for a visitor center brochure. Show dramatic mountain ridges, cable car routes, trail paths, scenic nodes, and safety icons. Include readable labels: "北峰", "西峰", "南峰", "东峰", "中峰", "游客中心", "索道", "栈道", "观景台", "卫生间", "急救点". Add a small legend, route colors, elevation hints, north arrow, and a compact note "请量力而行 注意安全". Palette: ink-wash mountain gray, pine green, sunrise gold, cinnabar red route marks, and clean black Chinese typography. Make it practical, beautiful, culturally Chinese, and suitable for a tourism wayfinding panel; no fake official seals, no sponsor logos.
 ```
@@ -2928,11 +2986,11 @@ gpt-image \
   -f docs/events-experience/huashan-5a-scenic-wayfinding-map.png
 ```
 
-</details>
 
 <a id="gallery-tattoo-design"></a>
 
-<h2 align="center">🖋️ 纹身设计</h2>
+
+### 🖋️ 纹身设计
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ 图库索引</kbd></a></sub></p>
 
@@ -2963,40 +3021,31 @@ gpt-image \
 
 <p align="center"><sub>纹身设计 · 2×2 tattoo flash panel · Curated</sub></p>
 
-<details>
-<summary><strong>📝 四张纹身设计图的提示词</strong></summary>
 
-**提示词 A — 写实黑灰袖臂纹身设计**
+**📝 四张纹身设计图的提示词**
+
+**提示词 A: 写实黑灰袖臂纹身设计**
 ```text
 Create a portrait tattoo design sheet for a realistic black-and-grey forearm sleeve. Subject: a highly detailed raven skull nested with realistic peonies, smoke ribbons, tiny moths, and cracked marble fragments. Present it as premium tattoo flash on warm off-white paper with a faint arm-placement silhouette behind the main artwork. Style: ultra-realistic tattoo shading, smooth dotwork gradients, crisp stencil-ready outlines, high contrast but not muddy, strong negative-space gaps for skin breathing room. Include small layout notes in clean text: "BLACK & GREY" / "FOREARM SLEEVE" / "NEGATIVE SPACE". No gore, no body horror, no brand logos, no actual person, no photorealistic skin photo; make it a professional tattoo design presentation.
 ```
 
-**提示词 B — 彩色新传统狐狸花卉纹身**
+**提示词 B: 彩色新传统狐狸花卉纹身**
 ```text
 Create a colorful neo-traditional tattoo flash poster. Central subject: a clever red fox head framed by chrysanthemum, peony, bluebells, small sparks, and decorative leaves. Use bold clean outlines, saturated but tasteful color fills, limited palette of vermilion, teal, golden ochre, deep navy, and cream highlights. Composition: symmetrical badge-like upper-arm tattoo design with separate small color swatches and a tiny stencil thumbnail on the side. Text must be small and readable: "NEO TRADITIONAL" / "FOX & FLORA". Make it vibrant, tattooable, and polished, with visible paper grain. Avoid cartoon mascot feel, avoid clutter, avoid gradients that would not tattoo well, no brand logos.
 ```
 
-**提示词 C — 日本传统龙与鲤鱼背部纹身**
+**提示词 C: 日本传统龙与鲤鱼背部纹身**
 ```text
 Create a Japanese traditional irezumi tattoo design poster for a full back piece. Subject: a powerful coiling dragon above a koi fish leaping through stylized waves, maple leaves, wind bars, and storm clouds. Use traditional Japanese tattoo aesthetics: bold black linework, strong flat color blocks, deep indigo waves, red-orange maple leaves, emerald dragon scales, cream highlights, and rhythmic negative space. Present as a clean tattoo flash / back-piece layout on rice-paper texture, not on a real person. Include small calligraphy-style labels: "龍" and "鯉". Make the composition balanced, tattooable, dramatic, and respectful of classic irezumi design language. Avoid anime style, avoid modern cyberpunk, avoid random fake kanji clutter.
 ```
 
-**提示词 D — 暗黑超现实飞蛾教堂纹身**
+**提示词 D: 暗黑超现实飞蛾教堂纹身**
 ```text
 Create a dark surrealist tattoo design sheet in portrait format. Subject: a giant lunar moth with eye-like wing markings, its body transforming into a tiny gothic cathedral, black roses, thorn halos, melting moon phases, and a staircase fading into mist. Style: dark surrealism meets fine-line tattoo and blackwork, with selective muted color accents in bruised violet, cold blue, and oxidized gold. Composition: vertical sternum-or-back tattoo concept with clean stencil-ready silhouette, ornamental framing, and clear negative-space breaks. Include small readable labels: "DARK SURREAL" / "MOTH CATHEDRAL". Mood: mysterious and elegant, not gore. Avoid horror splatter, avoid excessive tiny details that cannot tattoo, no real human body, no brand logos.
 ```
 
-</details>
 
-## 🙏 致谢
-
-这个 Gallery 建立在很多公开资料和社区探索之上：
-
-- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
-- [Anil-matcha/Awesome-GPT-Image-2-API-Prompts](https://github.com/Anil-matcha/Awesome-GPT-Image-2-API-Prompts)
-- [EvoLinkAI/awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)
-- [YouMind-OpenLab/awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
-- [ZeroLu/awesome-gpt-image](https://github.com/ZeroLu/awesome-gpt-image)
+<a id="community"></a>
 
 ## 🤝 参与贡献
 
@@ -3009,7 +3058,35 @@ Create a dark surrealist tattoo design sheet in portrait format. Subject: a gian
 - [支持说明](SUPPORT.md)
 - [Pull request 模板](.github/PULL_REQUEST_TEMPLATE.md)
 
-## ⭐ Star History
+### 🙏 致谢
+
+感谢以下项目和社区分享资料：
+
+- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
+- [Anil-matcha/Awesome-GPT-Image-2-API-Prompts](https://github.com/Anil-matcha/Awesome-GPT-Image-2-API-Prompts)
+- [EvoLinkAI/awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)
+- [YouMind-OpenLab/awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
+- [ZeroLu/awesome-gpt-image](https://github.com/ZeroLu/awesome-gpt-image)
+- [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)：README 表格与章节组织参考。
+
+<details>
+<summary><strong>社区动态</strong></summary>
+
+<p align="center">
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20Agents&color=8AA399" alt="oosmetrics Top 1 in Agents by velocity"/></a>
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20LLMs&color=8798B5" alt="oosmetrics Top 1 in LLMs by velocity"/></a>
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20CLI&color=A58B9D" alt="oosmetrics Top 1 in CLI by velocity"/></a>
+</p>
+
+<p align="center">
+  <a href="https://starmapper.bruniaux.com/wuyoscar/GPT-Image2-Skill?utm_source=map-embed&utm_medium=readme&utm_campaign=stargazer-map">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=light" />
+      <img alt="GPT-Image2-Skill Stargazer map" src="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill" width="100%" />
+    </picture>
+  </a>
+</p>
 
 <p align="center">
   <a href="https://www.star-history.com/#wuyoscar/gpt_image_2_skill&Date">
@@ -3017,6 +3094,8 @@ Create a dark surrealist tattoo design sheet in portrait format. Subject: a gian
   </a>
 </p>
 
+</details>
+
 ## 📄 License
 
-本项目基于 [MIT License](LICENSE) 发布。仍请保留外部来源 Prompt 的 attribution，并尊重 Gallery 条目中链接到的原作者。
+本项目采用 [MIT License](LICENSE) 许可。请保留图库条目的作者和来源标注。

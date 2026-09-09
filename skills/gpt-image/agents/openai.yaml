@@ -1,4 +1,4 @@
 interface:
   display_name: "GPT Image"
   short_description: "Generate/edit GPT Image 2 and 2.5 visuals with model choice"
-  default_prompt: "Use $gpt-image to resolve my image model choice, search the Reference Gallery, and generate or edit through the packaged CLI with the chosen model."
+  default_prompt: "Use $gpt-image to resolve my image model choice, consult references only when needed, and generate or edit through the packaged CLI with the chosen model."

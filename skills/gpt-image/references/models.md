@@ -2,7 +2,8 @@
 
 Checked against official OpenAI documentation on 2026-09-09. This is the active
 API reference for this skill; `openai-cookbook.md` remains an earlier GPT Image 2
-cookbook, not a current model catalog.
+cookbook, not a current model catalog. The [2.5 index](openai-image-2.5.md) is
+optional; use [migration notes](openai-image-2.5-migration.md) only for comparisons.
 
 ## Choose before generating
 
@@ -81,15 +82,28 @@ that all intervening and future versions were tested.
 Run `PYTHONPATH=src python -m unittest discover -s tests -v` for offline tests.
 They use in-process HTTP responses, no credentials or paid image generation.
 
-Live access check on 2026-09-09: the available project's key received HTTP 404
-`model_not_found` from `models.retrieve` for both 2.5 IDs. No 2.5 generation or
-edit request was made; output quality, template reproduction, and explicit
-2.5 input fidelity remain unverified. This is an account-specific access-check
-result, not proof that the models are globally unavailable.
+Live checks on 2026-09-09: the model list omitted 2.5 and
+`models.retrieve` returned `404 model_not_found`, while the repository CLI
+successfully completed three Sunburst generation requests and two reference edits
+(HTTP 200, `quality=high`, PNG, one image per request). The initial three runs
+did not record credential fingerprints. The two replacement-showcase runs
+captured a private fingerprint and passed the verified credential to the CLI.
+A separate read-only audit verified the current local credential and account
+through `/v1/me` and `/v1/models` (HTTP 200). Model metadata lookup
+alone cannot establish generation availability. See the
+[samples, exact settings and visual checks](../../../docs/sunburst-samples.md).
 
-Run a separately authorized small live sample for each selected model and
-endpoint. Record exact model, prompt, size, quality, response/error, and output
-path. Check transparency, exact text, requested edits and preserved regions.
+These runs cover Sunburst generation and single-reference editing. Flare,
+masks, transparency, `xhigh`/`max`, explicit 2.5 input fidelity, and the separate
+community templates still require live validation. The poster's knife shadow
+points in the wrong direction despite successful generation.
+
+Before release testing, verify the effective key source, endpoint, project
+and organization. Keep a non-secret credential fingerprint in private run
+evidence; never publish keys or account details. Report blocking failures
+before proposing a release. Run a separately authorized small live sample for
+each selected model and endpoint. Record exact model, prompt, size, quality,
+response/error, and output path. Check transparency, exact text, requested edits and preserved regions.
 Do not treat mocked requests, model listings, or another author's examples as
 successful local image generation.
 
