@@ -4,6 +4,8 @@ captured: 2026-04-23
 license: MIT (OpenAI cookbook)
 ---
 
+> **Local editorial notice (2026-09-09): historical Image 2 capture.** The source body below is retained from 2026-04-23. Its model recommendations, parameter tables and executable defaults must not override the user's chosen model or [current API notes](models.md). For 2.5 comparisons, optionally consult [migration notes](openai-image-2.5-migration.md); reuse this capture only for relevant historical task examples.
+
 > **Local copy of OpenAI's official GPT Image prompting guide.** Loaded on demand from the skill's `references/` directory — do NOT inline into SKILL.md. See the source URL above for the living document.
 
 # GPT Image Generation Models Prompting Guide

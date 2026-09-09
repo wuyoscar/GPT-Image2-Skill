@@ -94,3 +94,11 @@ Assemble the dieline into a flawless 3D box with accurate panels, clean folds, u
 ```text
 Design a high-end commercial poster for a product called "Aurora Oolong Cold Brew". Minimalist style, clean frame, centered hero bottle and tea glass, soft studio lighting, realistic material textures, elegant condensation details, generous negative space, premium brand visual language, cinematic light and shadow, refined packaging typography, and ultra-detailed finish. Make it feel like a luxury beverage campaign that could run in a subway lightbox or fashion magazine.
 ```
+
+- Sunburst output using the same prompt: `docs/product-food/aurora-oolong-sunburst.png`
+
+  <img src="../../../docs/product-food/aurora-oolong-sunburst.png" alt="Sunburst Aurora Oolong Cold Brew bottle and tea glass commercial scene" width="420"/>
+- Output metadata: `gpt-image-2.5-sunburst` · `high` · `1024x1024` · `2026-09-09`
+- Prompt attribution: Author: Unknown · Source: [Xiaohongshu](https://www.xiaohongshu.com/explore/69e7878300000000230050bb)
+- Visual QA: The output adds decorative commercial copy not specified in the prompt; treat it as unverified, not factual product claims.
+- Run evidence: [Sunburst sample runs](../../../docs/sunburst-samples.md).

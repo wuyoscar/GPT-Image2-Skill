@@ -1,5 +1,5 @@
-<h1 align="center">GPT Image 2 Prompt Gallery + Agent Skills + CLI</h1>
-<p align="center"><em>OpenAI GPT Image 2 prompt gallery, image prompt library, agent skills, and CLI — curated, copy-paste prompts and runnable examples for skill-capable agents.</em></p>
+<h1 align="center">GPT Image 2/2.5 Prompt Gallery + Agent Skills + CLI</h1>
+<p align="center"><em>Prompts, reference images, two agent skills and a CLI for GPT Image 2 and 2.5.</em></p>
 
 <p align="center">
   <a href="README.md"><strong>English</strong></a> · <a href="README.zh.md">中文</a>
@@ -8,30 +8,22 @@
 <p align="center">
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"/></a>
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
-  <img src="https://img.shields.io/badge/model-gpt--image--2-purple.svg" alt="Model: gpt-image-2"/>
+  <img src="https://img.shields.io/badge/models-GPT%20Image%202%20%2F%202.5-purple.svg" alt="Models: GPT Image 2 / 2.5"/>
   <img src="https://img.shields.io/badge/python-%E2%89%A53.11-blue.svg" alt="Python ≥ 3.11"/>
 </p>
 
-<p align="center">
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20Agents&color=8AA399" alt="oosmetrics Top 1 in Agents by velocity"/></a>
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20LLMs&color=8798B5" alt="oosmetrics Top 1 in LLMs by velocity"/></a>
-  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20CLI&color=A58B9D" alt="oosmetrics Top 1 in CLI by velocity"/></a>
-</p>
 
 <p align="center">
   <a href="docs/assets/gptimage2skill-banner.png"><img src="docs/assets/gptimage2skill-banner.png" alt="GPTImage2Skill banner" width="100%"/></a>
 </p>
 
+<p align="center">
+  <a href="#overview">Overview</a> · <a href="#sunburst-samples">2.5 samples</a> · <a href="#image-example">Example</a> · <a href="#quickstart">Quick start</a> · <a href="#install">Install</a> · <a href="#cli-reference">CLI reference</a> · <a href="#guides">Guides</a> · <a href="#gallery-index">Gallery</a> · <a href="#community">Contribute</a>
+</p>
 
+<a id="overview"></a>
 
-
-
-
-
-
-
-
-## ✨ At a glance
+## 🧭 What about this report
 
 <table border="1" cellspacing="0" cellpadding="6">
   <tr>
@@ -40,15 +32,15 @@
   </tr>
   <tr>
     <td>Gallery size</td>
-    <td><strong>Small but mighty</strong> · curated for signal, not volume; README shows a selected showcase</td>
+    <td><strong>163 numbered entries</strong> across 31 categories, with selected images below</td>
   </tr>
   <tr>
     <td>Surfaces</td>
-    <td><strong>2 Agent Skills + CLI</strong> — Claude Code / Codex, OpenClaw, Hermes Agent and other skill-capable agent runtimes</td>
+    <td><strong>2 Agent Skills + CLI</strong>: Claude Code / Codex, OpenClaw, Hermes Agent and other skill-capable agent runtimes</td>
   </tr>
   <tr>
     <td>Last update</td>
-    <td><strong>2026-09-04</strong></td>
+    <td><strong>2026-09-10</strong></td>
   </tr>
   <tr>
     <td>Docs</td>
@@ -56,39 +48,163 @@
   </tr>
 </table>
 
-<p align="center">
-  <a href="https://starmapper.bruniaux.com/wuyoscar/GPT-Image2-Skill?utm_source=map-embed&utm_medium=readme&utm_campaign=stargazer-map">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=light" />
-      <img alt="Stargazer map for GPT-Image2-Skill" src="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill" width="100%" />
-    </picture>
-  </a>
-</p>
+The repo keeps the GPT Image 2 prompt collection and gallery alongside 2.5 API support, [reading material](#image-25-reading) and task-specific references. The two skills handle image generation/editing and image-to-prompt extraction.
+
+> TBH, GPT Image 2.5 feels seriously capable. I prefer giving it a clear reference: a shape, a sketch or an image. Sometimes showing a layout from a PDF is more useful than describing it at length. It's how I like to work with GPT-6, too: **minimize the prompt; make the reference clear.**
+>
+> I collect prompts, useful building blocks and references here to help you find a workflow that suits the job. Thanks for all the love this little gallery has received 🫶.
+
+For the CLI, export the relevant PDF pages as PNG, WebP or JPG, then attach them with `-i`. See the [supported image-reference formats](https://developers.openai.com/api/reference/python/resources/images/methods/edit). Keep required text and edit constraints explicit.
+
+For PPT work, try vector-style diagrams, icons and slide layouts. The [Image API outputs PNG, JPEG or WebP](https://developers.openai.com/api/docs/guides/image-generation#output-format); editable SVG or PowerPoint shapes need a separate authoring step.
+
+<a id="sunburst-samples"></a>
+
+## ✨ Made with GPT Image 2.5
+
+Two 2K samples: an exploded watch assembly with detailed callouts, and a multi-storey cafe cutaway built from a reference image. Both use `gpt-image-2.5-sunburst`, `2048x2048` and `high`.
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/technical-illustration/meridian8-sunburst.png"><img src="docs/technical-illustration/meridian8-sunburst.png" width="100%" alt="Sunburst exploded mechanical watch with numbered component callouts"/></a>
+      <sub>A · Meridian 8 exploded assembly<br/>2048x2048 · high · Curated</sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="docs/isometric/cafe-cutaway-sunburst.png"><img src="docs/isometric/cafe-cutaway-sunburst.png" width="100%" alt="Sunburst isometric cafe district with illuminated cutaway interiors"/></a>
+      <sub>B · Night cafe cutaway<br/>2048x2048 · high · Curated adaptation</sub>
+    </td>
+  </tr>
+</table>
+
+**A · [No. 113](skills/gpt-image/references/gallery-technical-illustration.md) · Prompt**
+
+```text
+Create a premium technical exploded-view illustration of a fictional mechanical wristwatch called the Meridian 8, centered on a dark slate background with fine blueprint grid accents. Show the watch components separated vertically with precise spacing: sapphire crystal, dial, hands, chapter ring, movement plates, escapement, balance wheel, mainspring barrel, case, crown, and leather strap sections. Use realistic brushed steel, brass, ruby jewel accents, and deep navy dial details. Add crisp callouts and labels with the in-image text "Meridian 8", "Exploded Assembly", "42 mm Case", "25 Jewels", and "Power Reserve 72 h". Include numbered callouts "01" through "10" with short labels like "Balance Wheel", "Mainspring Barrel", and "Sapphire Crystal". The result should be highly detailed, technically believable, sharply rendered, and suitable for an industrial design plate with clean hierarchy, exact labeling, and refined material realism.
+```
+
+B uses the reference from [No. 54](skills/gpt-image/references/gallery-isometric.md), keeping the overall street layout while reworking the interiors, floors and lighting. Reference attribution: EvoLinkAI · [Source](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts).
+
+<a href="docs/isometric/isometric-cafe.png"><img src="docs/isometric/isometric-cafe.png" width="320" alt="Original isometric cafe district used as the edit reference"/></a>
+
+**B · [No. 54](skills/gpt-image/references/gallery-isometric.md) · Edit prompt**
+
+```text
+Use the reference image as the layout anchor for a richly detailed isometric two-block cafe district at blue hour. Keep the street footprint, corner cafe, neighboring bookstore, bakery and fountain plaza recognizable. Transform it into a three-storey architectural cutaway diorama with coherent 30-degree isometric geometry.
+
+Open the front-facing walls to reveal the cafe espresso bar and upstairs jazz lounge; bookshelves, reading nooks and a spiral staircase in the bookstore; pastry cases and a working oven in the bakery. Add a rooftop glass greenhouse, tiny terraces, copper plumbing, tiled stairs, balconies, hanging plants and warm lights visible through rain-speckled windows. At street level show wet cobbles, bicycles, the coffee cart, varied miniature pedestrians and reflections around the fountain. Every floor, doorway and staircase should connect plausibly.
+
+Use warm amber interiors against deep teal evening shadows, tactile brick, glazed tiles, glass and brushed brass. Preserve crisp detail throughout the scene, with a clean dark navy background and room around the floating diorama. Give the scene depth through cutaway rooms and layered architecture. Use restrained, readable storefront lettering: "NIGHT OWL CAFE", "OPEN BOOKS", and "DAWN BAKERY". Keep the composition square and visually balanced.
+```
+
+See the [sample record](docs/sunburst-samples.md) for settings, inputs and review notes.
+
+<a id="image-example"></a>
+
+## 🖼️ From reference image to result
+
+Thanks to [@LunarXuan](https://github.com/LunarXuan) for **Get Prompt from Image**. A vision-capable agent extracts a prompt from a reference image, then passes it to `gpt-image` or another generator. The contributor-provided reference and its generated result are shown below.
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <img src="docs/illustration/get-prompt-from-image-reference.jpg" width="100%" alt="Contributor-provided snowy urban alley reference image"/>
+      <sub>Reference image · Contributor-provided</sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <img src="docs/illustration/get-prompt-from-image-result.png" width="100%" alt="ImageGen result generated from the reverse-engineered prompt"/>
+      <sub>Generated result · ImageGen output</sub>
+    </td>
+  </tr>
+</table>
+
+Attach an image and invoke the skill with a slash command, `$get-prompt-from-image`, or plain language:
+
+```text
+/get-prompt-from-image
+Extract a reusable English positive prompt and a targeted negative prompt from this image, then recreate it with gpt-image.
+```
 
 
+**📝 Extracted prompt used for the generated result**
+
+**Positive Prompt**
+
+~~~text
+A highly polished semi-realistic Japanese narrative illustration rendered in a painterly digital style, using varied brush widths, a combination of hard edges and soft transitions, restrained contour lines, and controlled surface texture. The image should feel like a cold cinematic game-concept artwork. Use a wide 16:9 composition with strong depth in a snowy urban alley, where the snow-covered road narrows toward a distant vanishing point near the center. Place a large fluffy dark blue-gray wolfdog in the left foreground, shown in side profile facing right with its head raised, interacting with a hooded young woman kneeling near the center-right. She crouches in the snow facing left, gently touching the wolfdog’s muzzle or forehead with one gloved hand while the other rests near her knee for balance, creating a restrained and intimate gesture. She wears an oversized pale-gray winter hooded jacket with pointed ear-like details on top, dark gray panels, pockets, straps, and small muted red-orange accents, over black clothing, fitted black pants, and heavy dark boots. Short black or deep-brown hair falls from beneath the hood; her face is partly shadowed as she looks down at the wolfdog with a quiet, tired, yet gentle expression. Render the wolfdog’s fur with layered directional brushstrokes, making the back, neck, and tail thick and voluminous, with cool blue-gray shadows, pale highlights, and a subtle rim light along the silhouette. On the left, include metal fencing, utility boxes, and dense dark shrubs; in the distance, show tall urban buildings, street lamps, utility poles, and a blue-gray sky. On the right, include dark building facades, windows, snow-covered roof edges, evergreen branches, and foreground cardboard boxes and industrial clutter. Any environmental labels should remain blurred graphic marks with no readable text. Let the main light enter from the distant upper-left side of the alley, combining cold blue ambient shadows with warm golden reflections in the distance. Add subtle rim light to the snow, the woman, and the wolfdog, with medium-high contrast and warm orange clothing details acting as focal accents. Snow, slush, and shallow puddles in the foreground should show damp reflections. Use atmospheric perspective to soften distant buildings while keeping the woman and wolfdog clear. Establish depth through foreground, middle ground, background, occlusion, and perspective lines rather than strong blur. The mood is loneliness, trust, and a brief moment of tenderness in a frozen city. Preserve rough painterly strokes, cool-warm contrast, cinematic composition, and refined post-processing. Clearly remain a 2D semi-realistic painterly illustration, not photography, pure flat vector art, or 3D rendering.
+~~~
+
+**Negative Prompt**
+
+~~~text
+photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
+~~~
 
 
----
+<a id="quickstart"></a>
 
-## 🔎 What is this repo for?
+## 🚀 Quick start
 
-Use this repo as a **GPT Image 2 prompt gallery**, **image prompt library**, **generated-image showcase**, **agent-skill collection**, and **gpt-image-2 CLI**. The selected examples cover research paper figures, posters, UI mockups, game HUDs, anime / manga, photography, typography, maps, tattoo design, and reference-image editing.
+| Task | Use |
+|---|---|
+| Generate or edit an image | [`gpt-image`](skills/gpt-image/SKILL.md) |
+| Extract a prompt from a reference | [`get-prompt-from-image`](skills/get-prompt-from-image/SKILL.md) |
+| Work in a terminal | CLI examples below, with the selected `--model` |
 
-> This project is not trying to collect every prompt on the internet. We keep a selected set of examples that show what GPT Image 2 can do and how to use it well. Thanks for all the love this little gallery has received 🫶.
+### 🎛️ Choose a model
 
-> [!CAUTION]
-> For research figures, treat generated images as references, workflow sketches, or reproducible style targets. We do **not** recommend dropping GPT Image 2 outputs directly into a paper as-is; for academic communication, that can be misleading and is generally bad practice.
+| Model | Best starting point |
+|---|---|
+| `gpt-image-2.5-flare` | Fast, high-quality everyday generation |
+| `gpt-image-2.5-sunburst` | Precise edits and reference-image workflows |
+| `gpt-image-2` | Retain the model used by existing workflows |
 
----
+The Skill offers this menu when the model is missing or ambiguous (for example, “GPT 2.5”), then confirms the choice before generating. An exact supported model choice proceeds directly. It always passes an explicit `--model`; the standalone CLI still defaults to `gpt-image-2`. Changing models or adding outputs requires the user's approval.
 
-Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md).
+Both 2.5 models add `--quality xhigh` / `max` and support transparent PNG/WebP output. Start with `low` drafts; higher quality can increase latency and cost. For example, after choosing Flare:
 
-## 📥 
+```bash
+gpt-image --model gpt-image-2.5-flare \
+  -p "An original flat leaf icon, centered with generous padding, transparent background" \
+  --quality medium --background transparent --format png -f leaf.png
+```
 
+See [model compatibility and verification notes](skills/gpt-image/references/models.md) and [GPT Image 2.5 prompt templates](skills/gpt-image/references/templates-gpt-image-2.5.md). Local output validation for these templates is pending. Existing gallery images keep their original model and source credits.
+
+After install, every gallery entry below can be copy-pasted as `gpt-image --model <CHOSEN_MODEL> -p "…"` or requested from any skill-capable agent runtime in natural language, e.g. *"generate the Boston Spring poster from the skill gallery"*.
+
+### Text → image
+
+```bash
+gpt-image --model gpt-image-2.5-flare -p "a photorealistic convenience store at 10pm" --size 1k --quality high -f store.png
+```
+
+Under the hood: `POST /v1/images/generations` with the explicitly selected model.
+
+### Text + reference image → image (edit)
+
+```bash
+# Single-reference edit / restyle
+gpt-image --model gpt-image-2.5-sunburst -p "Make it a winter evening with heavy snowfall" \
+  -i chess.png --quality high -f chess-winter.png
+
+# Multi-reference edit: the edits endpoint accepts multiple input images
+gpt-image --model gpt-image-2.5-sunburst -p "Place the dog from image 2 next to the woman in image 1. Match the same lighting, composition, and background. Do not change anything else." \
+  -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
+
+# Mask-based inpaint: opaque = keep, transparent = regenerate
+gpt-image --model gpt-image-2.5-sunburst -p "replace sky with aurora" \
+  -i photo.jpg -m sky_mask.png -f aurora.png
+```
+
+Under the hood: `POST /v1/images/edits` (multipart form). GPT Image 2 and both 2.5 models use this endpoint, with multiple `-i` inputs and an optional `-m` mask. Read results from `data[].b64_json` and omit `response_format`. See [model compatibility](skills/gpt-image/references/models.md).
+
+<a id="install"></a>
+
+## 📥 Install
 Choose either skill or install both: `gpt-image` generates and edits images, while `get-prompt-from-image` extracts prompts from reference images.
 
-Before installing, check whether the skill or CLI is already available. Do not reinstall blindly, overwrite an existing skill folder, or create/replace API-key files. Use your runtime's own skill list/status command when available; global/shared installs should be an explicit user choice, not an automatic setup step.
+Check for an existing skill or CLI before installing. Preserve existing skill folders and API-key files. Use your runtime's skill list/status command when available, and ask before installing into a global or shared directory.
 
 ```bash
 command -v gpt-image || true
@@ -163,7 +279,7 @@ npx --yes skills@latest add wuyoscar/gpt_image_2_skill \
 
 These examples intentionally avoid `--global`. Add `--global` only when you explicitly want this skill installed into that runtime's global/shared skills directory.
 
-If your runtime is not listed by `skills@latest` yet, use the manual Agent Skill install below.
+Other runtimes can use the manual agent-skill installation below.
 
 </details>
 
@@ -195,11 +311,11 @@ done
 <summary><strong>CLI</strong></summary>
 
 ```bash
-uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image -p "a cat astronaut"
+uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
 
 # or install to PATH if not already installed
 command -v gpt-image >/dev/null || uv tool install git+https://github.com/wuyoscar/gpt_image_2_skill
-gpt-image -p "a cat astronaut"
+gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
 ```
 
 </details>
@@ -221,86 +337,14 @@ uv tool upgrade gpt-image-cli
 
 Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without overriding an already-set env var.
 
-> **Agent + API-key note.** Codex also has its own built-in image-generation skill, but that path is black-box and cannot be edited here; Codex users can switch to it if they prefer. Thanks to the related issue discussion for the simple safety tip: if you do not want an agent to accidentally use your OpenAI API key, run `unset OPENAI_API_KEY` before invoking the local CLI/skill.
+> **API keys:** This CLI reads the process environment, `.env` and `~/.env`. To avoid using a local key, check all three locations; `unset OPENAI_API_KEY` clears the process variable only. Codex users can choose its built-in image tool when they prefer platform-managed generation.
 
----
+<a id="cli-reference"></a>
 
-## ⚡ Quick Usage & Prompting Fundamentals
-
-### 🆕 Update: Get Prompt from Image
-
-Thanks to [@LunarXuan](https://github.com/LunarXuan) for contributing **Get Prompt from Image**. Give a vision-capable agent an image, and this skill extracts a reusable prompt that you can pass to `gpt-image` or another image-generation tool. Models such as Gemini 3.8 Flash and GPT-5.6 support vision; results vary between runs, but the overall look can often be recreated surprisingly well.
-
-Attach an image and invoke the skill with a slash command, `$get-prompt-from-image`, or plain language:
-
-```text
-/get-prompt-from-image
-Extract a reusable English positive prompt and a targeted negative prompt from this image, then recreate it with gpt-image.
-```
-
-#### Example
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top">
-      <img src="docs/illustration/get-prompt-from-image-reference.jpg" width="100%" alt="Contributor-provided snowy urban alley reference image"/>
-      <sub>Reference image · Contributor-provided</sub>
-    </td>
-    <td width="50%" align="center" valign="top">
-      <img src="docs/illustration/get-prompt-from-image-result.png" width="100%" alt="ImageGen result generated from the reverse-engineered prompt"/>
-      <sub>Generated result · ImageGen output</sub>
-    </td>
-  </tr>
-</table>
+## 🛠️ CLI reference
 
 <details>
-<summary><strong>📝 Extracted prompt used for the generated result</strong></summary>
-
-**Positive Prompt**
-
-~~~text
-A highly polished semi-realistic Japanese narrative illustration rendered in a painterly digital style, using varied brush widths, a combination of hard edges and soft transitions, restrained contour lines, and controlled surface texture. The image should feel like a cold cinematic game-concept artwork. Use a wide 16:9 composition with strong depth in a snowy urban alley, where the snow-covered road narrows toward a distant vanishing point near the center. Place a large fluffy dark blue-gray wolfdog in the left foreground, shown in side profile facing right with its head raised, interacting with a hooded young woman kneeling near the center-right. She crouches in the snow facing left, gently touching the wolfdog’s muzzle or forehead with one gloved hand while the other rests near her knee for balance, creating a restrained and intimate gesture. She wears an oversized pale-gray winter hooded jacket with pointed ear-like details on top, dark gray panels, pockets, straps, and small muted red-orange accents, over black clothing, fitted black pants, and heavy dark boots. Short black or deep-brown hair falls from beneath the hood; her face is partly shadowed as she looks down at the wolfdog with a quiet, tired, yet gentle expression. Render the wolfdog’s fur with layered directional brushstrokes, making the back, neck, and tail thick and voluminous, with cool blue-gray shadows, pale highlights, and a subtle rim light along the silhouette. On the left, include metal fencing, utility boxes, and dense dark shrubs; in the distance, show tall urban buildings, street lamps, utility poles, and a blue-gray sky. On the right, include dark building facades, windows, snow-covered roof edges, evergreen branches, and foreground cardboard boxes and industrial clutter. Any environmental labels should remain blurred graphic marks with no readable text. Let the main light enter from the distant upper-left side of the alley, combining cold blue ambient shadows with warm golden reflections in the distance. Add subtle rim light to the snow, the woman, and the wolfdog, with medium-high contrast and warm orange clothing details acting as focal accents. Snow, slush, and shallow puddles in the foreground should show damp reflections. Use atmospheric perspective to soften distant buildings while keeping the woman and wolfdog clear. Establish depth through foreground, middle ground, background, occlusion, and perspective lines rather than strong blur. The mood is loneliness, trust, and a brief moment of tenderness in a frozen city. Preserve rough painterly strokes, cool-warm contrast, cinematic composition, and refined post-processing. Clearly remain a 2D semi-realistic painterly illustration, not photography, pure flat vector art, or 3D rendering.
-~~~
-
-**Negative Prompt**
-
-~~~text
-photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
-~~~
-</details>
-
----
-
-<details>
-<summary><strong>CLI quick usage</strong></summary>
-
-After install, every gallery entry below can be copy-pasted as `gpt-image -p "…"` or requested from any skill-capable agent runtime in natural language, e.g. *"generate the Boston Spring poster from the skill gallery"*.
-
-### Text → image
-
-```bash
-gpt-image -p "a photorealistic convenience store at 10pm" --size 1k --quality high -f store.png
-```
-
-Under the hood: `POST /v1/images/generations` with `model=gpt-image-2`.
-
-### Text + reference image → image (edit)
-
-```bash
-# Single-reference edit / restyle
-gpt-image -p "Make it a winter evening with heavy snowfall" \
-  -i chess.png --quality high -f chess-winter.png
-
-# Multi-reference edit: the edits endpoint accepts multiple input images
-gpt-image -p "Place the dog from image 2 next to the woman in image 1. Match the same lighting, composition, and background. Do not change anything else." \
-  -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
-
-# Mask-based inpaint: opaque = keep, transparent = regenerate
-gpt-image -p "replace sky with aurora" \
-  -i photo.jpg -m sky_mask.png -f aurora.png
-```
-
-Under the hood: `POST /v1/images/edits` (multipart form), the official endpoint in the OpenAI cookbook. `gpt-image-2` supports `image`, `mask`, `prompt`, `size`, `quality`, `background`, `output_format`, and `n`. Multiple `-i` inputs are supported for multi-reference edits.
+<summary><strong>Parameters, quality settings and SDK examples</strong></summary>
 
 ### Parameters (complete)
 
@@ -309,38 +353,39 @@ Under the hood: `POST /v1/images/edits` (multipart form), the official endpoint 
 
 | Flag | Values | Default | Applies to | Notes |
 |---|---|---|---|---|
-| `-p, --prompt` | str | — required | both | Full prompt text. |
+| `-p, --prompt` | str | required | both | Full prompt text. |
+| `--model` | exact model ID above | `gpt-image-2` | both | The Skill always passes the confirmed model explicitly; the CLI default stays backward-compatible. |
 | `-f, --file` | path | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | both | Explicit output path. |
-| `-i, --image` | path (repeatable) | — | edits | Presence routes through `/v1/images/edits`. |
-| `-m, --mask` | path (PNG, alpha) | — | edits | Opaque = preserved, transparent = regenerated. Requires `-i`. |
-| `--input-fidelity` | `low` · `high` | — | edits | Supported on `gpt-image-1`/`1.5`. `gpt-image-2` rejects this parameter, so the CLI drops it locally. |
-| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · literal `1024x1024` etc. | `1024x1024` | both | Literals must be 16-px multiples, max edge 3840, 3:1 cap, 655k–8.3M total pixels. |
-| `--quality` | `auto` · `low` · `medium` · `high` | `high` | both | This is the practical budget dial: `low` for cheap drafts / large sweeps, `medium` for normal exploration, `high` for final text-heavy or shipping-facing assets. |
-| `-n, --n` | int | 1 | both | Batch generation. `n>1` suffixes filenames `_0`, `_1`, … |
-| `--background` | `auto` · `opaque` | API default | generations | `opaque` disables transparency. |
+| `-i, --image` | path (repeatable) | omitted | edits | Presence routes through `/v1/images/edits`. |
+| `-m, --mask` | path (PNG, alpha) | omitted | edits | Opaque = preserved, transparent = regenerated. Requires `-i`. |
+| `--input-fidelity` | `low` · `high` | omitted | edits | Image 2 cannot set it, so the CLI omits it. For 2.5, explicit values pass through but behavior remains unverified; see model notes. |
+| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · literal `1024x1024` etc. | `1024x1024` | both | Literals must be 16-px multiples, max edge 3840, 3:1 cap, 655k-8.3M total pixels. |
+| `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | both | `xhigh` / `max` require a 2.5 model; use `low` drafts to assess quality, latency, and cost first. |
+| `-n, --n` | 1-10 | 1 | both | Batch generation. `n>1` suffixes filenames `_0`, `_1`, … |
+| `--background` | `auto` · `opaque` · `transparent` | API default | both | Transparency requires PNG/WebP; Image 2 transparency remains in preview. |
 | `--moderation` | `auto` · `low` | `low` | generations | `low` is the default here for broader prompt exploration; switch to `auto` if you want the stricter API-side default. |
 | `--format` | `png` · `jpeg` · `webp` | `png` | both | Response encoding. |
-| `--compression` | 0–100 | — | both | JPEG/WebP only. |
+| `--compression` | 0-100 | omitted | both | JPEG/WebP only. |
 
 </details>
 
 ### Budget / quality guide
 
-There is no separate `budget` flag here — use `--quality` as the budget knob.
+Use `--quality` to manage the generation budget.
 
 - `low` = cheap draft / collect / many variants
 - `medium` = normal exploration / style probing
 - `high` = final posters, Chinese text, diagrams, paper figures, banners
 
-If you are generating dozens of candidates, start at `low` and only rerun finalists at `high`.
+If you are generating dozens of candidates, start at `low` and only rerun finalists at `high`. On 2.5, compare `xhigh` / `max` for detail-critical assets. Agree on additional outputs and costs before comparing settings.
 
 ### From gallery prompt → CLI / SDK
 
-Every entry below ships **just the prompt plus a metadata line** (`"size"` · `"quality"` · source). Assemble the CLI / SDK call the same way every time — worked once here so per-entry code blocks can stay out of your way. Example for a `"portrait"` · `"high"` entry:
+Each entry includes a prompt and metadata (`"size"` · `"quality"` · source). Use the shared CLI/SDK pattern below. This example uses `"portrait"` and `"high"`:
 
 ```bash
 # CLI
-gpt-image -p "<PROMPT FROM ENTRY>" --size portrait --quality high -f out.png
+gpt-image --model gpt-image-2.5-flare -p "<PROMPT FROM ENTRY>" --size portrait --quality high -f out.png
 ```
 
 ```python
@@ -348,49 +393,86 @@ gpt-image -p "<PROMPT FROM ENTRY>" --size portrait --quality high -f out.png
 from openai import OpenAI
 client = OpenAI()
 result = client.images.generate(
-    model="gpt-image-2",
+    model="gpt-image-2.5-flare",
     prompt="<PROMPT FROM ENTRY>",
     size="1024x1536",
     quality="high",
 )
 ```
 
-For reference-based edits, add `-i ref.png` (repeatable) and optionally `-m mask.png` on the CLI, or call `client.images.edit(...)` with `image=[open(p, "rb") for p in refs]`. Everything else stays identical to the generate path.
+For reference-based edits, add `-i ref.png` (repeatable) and optionally `-m mask.png` on the CLI, or call `client.images.edit(...)` with `image=[open(p, "rb") for p in refs]`. Shared output options stay the same. `--moderation` applies to generation; edit calls omit it.
 
 Exit codes: `0` success · `1` API/refusal error (full response body echoed to stderr) · `2` bad args or missing `OPENAI_API_KEY`.
 
 </details>
+
+<a id="guides"></a>
+
+## 📚 Guides and reading
+
+> [!CAUTION]
+> Use generated images as references, workflow sketches or style targets for research figures. Prepare and verify the final figure separately before including it in a paper; directly publishing a raw generation can mislead readers.
 
 ### 📖 Prompting Fundamentals
 
 <details>
 <summary><strong>Show prompting notes</strong></summary>
 
-Distilled from OpenAI's [official GPT Image prompting guide](https://github.com/openai/openai-cookbook/blob/main/examples/multimodal/image-gen-models-prompting-guide.ipynb) (also archived locally at [`skills/gpt-image/references/openai-cookbook.md`](skills/gpt-image/references/openai-cookbook.md) — loaded on demand by the skill when you ask about parameter semantics, edits, UI mockups, pitch-deck slides, scientific visuals, virtual try-on, billboard mockups, or translation edits):
+Shared techniques from the [historical Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md), with current 2.5 guidance organized in a separate [official-source reference router](skills/gpt-image/references/openai-image-2.5.md). Image 2 retains gallery-first guidance. A precise, model-confirmed 2.5 request needs no reference loading; otherwise choose one short task slice. Migration notes are separate. API parameters stay in [model notes](skills/gpt-image/references/models.md); community templates remain separately attributed.
 
 1. **Structure, then goal.** Use a consistent order: `background/scene → subject → key details → constraints`, and **state the intended use** (ad, UI mock, infographic) so the model picks the right mode and polish level.
-2. **Any format works; consistency matters more.** Minimal prompts, descriptive paragraphs, JSON-style structures, instruction-style prompts, and tag-based prompts all work. For production, prefer a skimmable template over clever syntax.
+2. **Any format works; consistency matters more.** Minimal prompts, descriptive paragraphs, JSON-style structures, instruction-style prompts, and tag-based prompts all work. For production, choose a format you can easily read and maintain.
 3. **Specificity + quality cues.** Be concrete about materials, shapes, textures, and medium (photo, watercolor, 3D render). Add targeted levers only when they matter: *film grain*, *textured brushstrokes*, *macro detail*. For photorealism, say *"photorealistic"* directly; *"real photograph"*, *"taken on a real camera"*, and *"iPhone photo"* also help.
-4. **Put required text in quotes.** Any text that must appear in the image — slogans, prices, kanji — should be in straight quotes. Do not paraphrase it inside the prompt.
-5. **Choose aspect ratio early.** Decide 1:1 / 3:4 / 4:3 / 9:16 / 16:9 / 3:1 before writing the prompt. Reinforce it in the prompt text, not only with `--size`.
+4. **Quote the exact text.** Put required slogans, prices and labels in straight quotes. Copy the wording verbatim.
+5. **Choose aspect ratio early.** Decide 1:1 / 3:4 / 4:3 / 9:16 / 16:9 / 3:1 before writing the prompt. Keep the prompt's aspect ratio consistent with `--size`.
 6. **One hero, supporting cast.** Complex scenes work best when one subject is clearly primary and the rest is framed as supporting detail.
-7. **Use `quality="high"` for in-image text, dense diagrams, small labels, and multi-panel layouts.** Those cases degrade visibly at `medium`.
+7. **Evaluate quality against the actual task.** For 2.5 text, diagrams and multi-panel layouts, compare approved settings against legibility and layout requirements; `high` remains the CLI default. Judge each setting by the resulting text and layout.
 
-**The skill ships four local reference surfaces:**
-- [`skills/gpt-image/references/gallery.md`](skills/gpt-image/references/gallery.md) — lightweight routing index for the split Reference Gallery Atlas. It should be read first to pick a category; it does **not** contain the full prompt dump.
-- `skills/gpt-image/references/gallery-*.md` — one category per file, loaded only when relevant, e.g. [`gallery-product-and-food.md`](skills/gpt-image/references/gallery-product-and-food.md), [`gallery-ui-ux-mockups.md`](skills/gpt-image/references/gallery-ui-ux-mockups.md), [`gallery-research-paper-figures.md`](skills/gpt-image/references/gallery-research-paper-figures.md). This keeps the skill useful without overflowing context.
-- [`skills/gpt-image/references/craft.md`](skills/gpt-image/references/craft.md) — expanded 19-section prompt-craft checklist covering gallery-first usage, JSON/config-style prompts, multi-panel boards, UI specs, data/diagram grammar, edit invariants, reference workflows, dense text, and category mini-schemas.
-- [`skills/gpt-image/references/openai-cookbook.md`](skills/gpt-image/references/openai-cookbook.md) — verbatim Markdown capture of OpenAI's cookbook (1004 lines), including the authoritative parameter-coverage table and every §4 / §5 use-case example.
+| What you need | Reference |
+|---|---|
+| Gallery index | [`gallery.md`](skills/gpt-image/references/gallery.md): choose a category, then read its prompts. |
+| Concrete examples | Load a relevant `gallery-*.md` file, such as [products](skills/gpt-image/references/gallery-product-and-food.md), [UI](skills/gpt-image/references/gallery-ui-ux-mockups.md) or [paper figures](skills/gpt-image/references/gallery-research-paper-figures.md). |
+| Prompt craft | [`craft.md`](skills/gpt-image/references/craft.md): text, composition, data relationships and edit constraints. |
+| GPT Image 2.5 | [Reference index](skills/gpt-image/references/openai-image-2.5.md): separate generation, layout/text, editing and migration notes. |
+| Historical Image 2 guidance | [OpenAI Cookbook](skills/gpt-image/references/openai-cookbook.md), with original source and license. Use [current model notes](skills/gpt-image/references/models.md) and the user's settings for API calls. |
 
 </details>
 
----
+<a id="image-25-reading"></a>
+
+### 📚 GPT Image 2.5: understand the workflow
+
+English-language official sources and established publications first, developer guides next; Chinese-language reading supplements them. Read these links when useful. OpenAI's documentation is the reference for API details.
+
+#### 🌐 English-first · 8 sources
+
+| Source | Read | What to take away |
+|---|---|---|
+| 🏛️ **1 · OpenAI** | [Official launch](https://openai.com/index/introducing-chatgpt-images-2-5/) | Reference-led editing, ChatGPT's new creative tools, and the Flare/Sunburst lineup. |
+| 📖 **2 · OpenAI Docs** | [Image prompting: GPT Image 2.5](https://developers.openai.com/api/docs/guides/image-prompting?model=gpt-image-2.5) | Official model selection, reference roles, focused edits and output checks. |
+| 📰 **3 · Axios** | [Exclusive hands-on](https://www.axios.com/2026/09/08/exclusive-hands-on-with-chatgpts-new-image-editor) | A reporter's experience with likeness preservation and visually targeted edits. |
+| 🧪 **4 · TechRadar** | [24-hour hands-on](https://www.techradar.com/ai-platforms-assistants/chatgpt/chatgpt-images-2-5-is-out-ive-been-testing-it-for-24-hours-and-these-are-the-3-new-features-youll-actually-use) | Everyday editing controls, sketch-based creation and task templates. |
+| ✏️ **5 · The Verge** | [Sketch walkthrough](https://www.theverge.com/ai-artificial-intelligence/991727/openai-chatgpt-images-2-5-sketch) † | Sketch coverage; full-text retrieval pending. |
+| 🛠️ **6 · Apidog** | [API walkthrough](https://apidog.com/blog/gpt-image-2-5-api/) · [Model comparison](https://apidog.com/blog/gpt-image-2-5-flare-vs-sunburst-vs-gpt-image-2/) | Third-party implementation and migration perspectives; verify API details against official docs. |
+| ⚖️ **7 · OrcaRouter** | [Flare vs Sunburst for builders](https://www.orcarouter.ai/blog/gpt-image-2-5-flare-sunburst) ‡ | Model-selection advice by workload; performance claims need independent checking. |
+| 🧩 **8 · FindSkill** | [Sketch step by step](https://findskill.ai/blog/chatgpt-images-2-5-sketch-tool-explained/) | Use a drawing for layout and text for additional instructions. |
+
+#### 🗂️ Chinese-language supplements · 2 sources
+
+| Source | Read | What to take away |
+|---|---|---|
+| 🧪 **9 · 人人都是产品经理** | [Reader-supplied article](https://www.woshipm.com/ai/6461898.html) † | Supplied as a 2 vs 2.5 hands-on comparison; content remains unverified. |
+| 🗞️ **10 · 軟體玩家** | [Feature roundup by 阿正老師](https://pcrookie.com/chatgpt-images-2-5-intro-2026/) | A feature roundup based on official announcements and media reports. |
+
+*Source-access status, checked 2026-09-09: † Full text pending for The Verge and 人人都是产品经理. ‡ Indexed content only for OrcaRouter.*
+
+**Using ChatGPT sketches with the CLI:** Sketch, Templates and Comments operate inside ChatGPT. Export a sketch as an image and attach it with `-i`. For task-specific local notes, choose one slice from the [optional 2.5 reference index](skills/gpt-image/references/openai-image-2.5.md).
 
 <a id="gallery-index"></a>
 
-## 🎨 Prompt Showcase
+## 🎨 Gallery
 
-> **About the prompts.** This README showcases a representative selection of prompts together with their generated images. The larger Reference Gallery contains the full curated prompt/image atlas, organized by category in [`skills/gpt-image/references/gallery.md`](skills/gpt-image/references/gallery.md) and the matching `skills/gpt-image/references/gallery-*.md` files.
+> Open a category to view its images and prompts. The complete 163-prompt collection is indexed in [`gallery.md`](skills/gpt-image/references/gallery.md), with full entries in the linked `gallery-*.md` files.
 >
 > **Source labels.** `Curated` means a repo-curated or substantially reworked prompt/image; outside-source items keep visible author/source links.
 
@@ -456,7 +538,8 @@ Distilled from OpenAI's [official GPT Image prompting guide](https://github.com/
 
 <a id="gallery-anime-manga"></a>
 
-<h2 align="center">🎌 Anime & Manga</h2>
+
+### 🎌 Anime & Manga
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -481,25 +564,24 @@ Distilled from OpenAI's [official GPT Image prompting guide](https://github.com/
 
 <p align="center"><sub>Anime & Manga · 3-image portrait set · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all three panels</strong></summary>
 
-**Prompt A — Elegant cafe fashion**
+**📝 Prompts for all three panels**
+
+**Prompt A: Elegant cafe fashion**
 ```text
 Create a tasteful portrait-oriented anime fashion illustration of an adult woman, age 24, with a cute playful expression, looking at the camera in a cozy European cafe at golden hour. She wears a cream blouse, charcoal pleated skirt, tailored cropped jacket, sheer black stockings, loafers, and a small ribbon hair clip; she is seated sideways at a small marble table with latte art, a sketchbook, and warm window light. Composition: three-quarter fashion portrait, elegant legs visible but relaxed and non-explicit, wholesome editorial mood, no nudity, no lingerie, no school uniform, no explicit pose, adult character only. Use polished modern anime rendering, crisp line art, luminous eyes, soft cel shading, subtle fabric texture, gentle blush, background bokeh, and a refined magazine-cover color palette.
 ```
 
-**Prompt B — Neon arcade fashion**
+**Prompt B: Neon arcade fashion**
 ```text
 Create a portrait-oriented anime fashion illustration of an adult woman, age 25, in a neon arcade district at night. She has a cute confident smile and looks directly at the viewer while standing beside glowing claw machines and retro game cabinets. Outfit: black turtleneck, red satin bomber jacket, high-waisted skirt, patterned dark stockings, platform shoes, small crossbody bag, star earrings. Composition: full-body fashion portrait with strong silhouette, neon reflections on wet pavement, vending machines, sticker-covered walls, colorful signage, and cinematic rim light. Keep the pose playful but non-explicit, no nudity, no lingerie, no fetish framing, adult character only. Use high-end anime key visual rendering, crisp line art, saturated magenta-cyan lighting, clean readable background details, and glossy cyber-pop atmosphere.
 ```
 
-**Prompt C — Roadside mirror selfie**
+**Prompt C: Roadside mirror selfie**
 ```text
 Create a portrait-oriented anime fashion illustration of an adult woman, age 24, taking a playful roadside mirror selfie in the reflection of a parked scooter mirror on a quiet Tokyo side street. She looks into the mirror with a bright mischievous smile, one hand making a small peace sign near her cheek, the other holding a phone with a cute sticker case. Outfit: soft ivory knit cardigan, navy pleated skirt, sheer black stockings, loafers, small shoulder bag, ribbon hair clip, tasteful everyday street fashion. Composition: the mirror reflection is the main frame, with blurred street signs, vending machine glow, crosswalk stripes, and spring evening light around the mirror edge. Keep the pose cute, stylish, and non-explicit; no nudity, no lingerie, no fetish framing, adult character only. Use polished modern anime rendering, crisp line art, luminous eyes, soft cel shading, warm reflections, natural street-photo energy, and a charming slice-of-life mood.
 ```
 
-</details>
 
 ---
 
@@ -511,8 +593,8 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 An anime action still in the visual style of MAPPA's Jujutsu Kaisen (2020 TV anime). Landscape 16:9.
@@ -524,7 +606,6 @@ Backdrop: ruined urban street at dusk, shattered asphalt, cracked neon kanji sig
 Art direction: MAPPA-style digital 2D animation — heavy cel shading, crisp line-art, rim-light on both figures, motion-blur streaks around the energy sphere. Palette of deep navy, electric cyan, crimson splashes. Kinetic-impact composition in the tradition of JJK's Shibuya arc.
 ```
 
-</details>
 
 ---
 
@@ -536,8 +617,8 @@ Art direction: MAPPA-style digital 2D animation — heavy cel shading, crisp lin
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A shōnen anime battle key-visual in the visual style of Studio Pierrot's Naruto Shippuden. Landscape 16:9.
@@ -551,7 +632,6 @@ Backdrop: nighttime valley, cracked earth, giant uprooted trees mid-crash, moonl
 Art direction: Studio Pierrot Naruto-Shippuden aesthetic — dynamic perspective, strong speed lines radiating from the collision, anime-action key-frame quality, digital 2D cel shading, saturated but not neon, visible genga-quality line-art, dramatic backlight.
 ```
 
-</details>
 
 ---
 
@@ -572,10 +652,10 @@ Art direction: Studio Pierrot Naruto-Shippuden aesthetic — dynamic perspective
 
 <p align="center"><sub>Anime & Manga · 1×2 panel · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for both manga/anime panels</strong></summary>
 
-**Prompt A — Shōnen manga two-page spread (basketball slam dunk)**
+**📝 Prompts for both manga/anime panels**
+
+**Prompt A: Shōnen manga two-page spread (basketball slam dunk)**
 ```text
 A black-and-white shōnen manga two-page spread (landscape 16:9 as a single composition, with a faint centre-gutter line). High-contrast ink plus screentone, Weekly Shōnen Jump basketball-manga tradition (Inoue's Slam Dunk / Fujimaki's Kuroko no Basuke).
 
@@ -593,12 +673,11 @@ Art direction: professional mangaka quality — confident inking, dramatic scree
 Dialogue balloons intentionally blank; only the two sound effects are visible.
 ```
 
-**Prompt B — Ten-panel anime character grid**
+**Prompt B: Ten-panel anime character grid**
 ```text
 Create a single landscape image containing a clean 2×5 ten-panel anime character grid. Each panel shows a different adult young woman, age 22 to 26, designed as a cute gentle heroine archetype: bookish librarian, cheerful cafe barista, shy violinist, sporty tennis player, elegant student-council president, sleepy illustrator, flower-shop assistant, soft-spoken witch apprentice, city-pop singer, and cozy winter commuter. Keep all panels consistent in art direction: modern polished anime, crisp line art, soft cel shading, luminous eyes, pastel accent colors, tidy white gutters, small readable name tag at the bottom of each panel, and a balanced character-design-sheet feel. Every character should have a distinct hairstyle, outfit, prop, and expression. The overall board should feel like a collectible anime cast sheet / ten-grid poster, cute and wholesome, no nudity, no lingerie, no explicit pose, adult characters only.
 ```
 
-</details>
 
 ---
 
@@ -610,14 +689,13 @@ Create a single landscape image containing a clean 2×5 ten-panel anime characte
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://mp.weixin.qq.com/s/ASxig6mFVYxrIE8-8Fthew"><code>"WeChat"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a 16-panel expression grid of a silver-haired, blue-eyed anime girl. Her face shape, hairstyle, and clothing must remain highly consistent across all panels. The 16 expressions should include: happy, sad, angry, surprised, shy, speechless, evil grin, contemplative, curious, proud, wronged, disdainful, confused, scared, crying, and a heart expression.
 ```
 
-</details>
 
 ---
 
@@ -629,20 +707,21 @@ Create a 16-panel expression grid of a silver-haired, blue-eyed anime girl. Her 
 
 <p align="center"><sub><code>"tall 2160×3840"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create one tall manga chapter proof sheet containing 19 numbered miniature pages for an original shonen pirate manga, not based on any existing series. Title: "TIDE BROTHERS: THE STARFALL MAP". Main characters: Rune, a cheerful rubbery-armed young pirate captain with a straw-colored scarf but original costume; and Ash, his older flame-wielding brother with a red coat, freckles, and a calm smile. They are original characters, not existing IP. Show 19 small pages arranged as a readable contact sheet, each page with 1 to 3 manga panels, black-and-white ink, screentone, dynamic speed lines, expressive faces, and clear speech bubbles. Complete plot beats: 1 cover page with the brothers on a stormy deck; 2 reunion at a floating harbor; 3 discovery of a star-shaped map; 4 alien sea-beast emerges; 5 Rune jokes "Adventure found us first!"; 6 Ash replies "Then we answer together."; 7 rival sky pirates attack; 8 slapstick cooking scene; 9 quiet flashback promise; 10 double-page-style action pose compressed into one page; 11 map glows with alien constellations; 12 crew cheers; 13 villain captain steals the compass; 14 chase across rooftop sails; 15 Ash shields Rune with fire; 16 Rune launches a spring-like punch; 17 brothers laugh after victory; 18 cliffhanger: moon door opens; 19 final page text "NEXT: THE ISLAND ABOVE THE CLOUDS". Keep dialogue short, legible, and complete. Style: classic weekly shonen manga energy, original pirate adventure, wholesome brotherhood, no gore, no existing copyrighted characters.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-gaming"></a>
 
-<h2 align="center">🎮 Gaming</h2>
+
+### 🎮 Gaming
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -651,32 +730,31 @@ Create one tall manga chapter proof sheet containing 19 numbered miniature pages
 <table>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/gaming/hitman-openai.png"><img src="docs/gaming/hitman-openai.png" width="100%" alt="Hitman gameplay — OpenAI HQ"/></a><br/>
-      <sub><strong>A · Hitman gameplay — OpenAI HQ</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/flowersslop"><code>"X"</code></a></sub>
+      <a href="docs/gaming/hitman-openai.png"><img src="docs/gaming/hitman-openai.png" width="100%" alt="Hitman gameplay: OpenAI HQ"/></a><br/>
+      <sub><strong>A · Hitman gameplay: OpenAI HQ</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/flowersslop"><code>"X"</code></a></sub>
     </td>
     <td width="50%" align="center" valign="top">
-      <a href="docs/gaming/gta6-beach.png"><img src="docs/gaming/gta6-beach.png" width="100%" alt="GTA 6 gameplay — Vice City beach"/></a><br/>
-      <sub><strong>B · GTA 6 gameplay — Vice City beach</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
+      <a href="docs/gaming/gta6-beach.png"><img src="docs/gaming/gta6-beach.png" width="100%" alt="GTA 6 gameplay: Vice City beach"/></a><br/>
+      <sub><strong>B · GTA 6 gameplay: Vice City beach</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
     </td>
   </tr>
 </table>
 
 <p align="center"><sub>Gaming · 2-image landscape gameplay panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for Stealth and open-world action panel</strong></summary>
 
-**Prompt A — Hitman gameplay — OpenAI HQ**
+**📝 Prompts for Stealth and open-world action panel**
+
+**Prompt A: Hitman gameplay: OpenAI HQ**
 ```text
 A Hitman level where you are in the OpenAI HQ and your mission is to steal GPT-6 without getting caught
 ```
 
-**Prompt B — GTA 6 gameplay — Vice City beach**
+**Prompt B: GTA 6 gameplay: Vice City beach**
 ```text
 GTA 6 in-game footage, very detailed, very realistic. Close-up shot taken from a stationary 4k monitor. (There's a slight blurriness in the image, as it feels like it was taken handheld). A wide, bright environment. Realistic details. The character is walking on the beach with /:dog.
 ```
 
-</details>
 
 ---
 
@@ -697,20 +775,19 @@ GTA 6 in-game footage, very detailed, very realistic. Close-up shot taken from a
 
 <p align="center"><sub>Gaming · 2-image landscape gameplay panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for Fantasy adventure panel</strong></summary>
 
-**Prompt A — Dark-fantasy swamp boss hunt**
+**📝 Prompts for Fantasy adventure panel**
+
+**Prompt A: Dark-fantasy swamp boss hunt**
 ```text
 Create an original AAA dark-fantasy action RPG screenshot. A silver-haired monster hunter in layered leather armor stands in a ruined marsh at blue hour, sword drawn toward a huge winged swamp beast rising from mist. Cinematic over-the-shoulder framing, believable HUD with health, stamina, potion icons, quest text, and minimap. Wet stones, dead trees, torchlight, moonlit fog, subtle alchemy glyphs, highly detailed materials, dramatic but readable composition, premium next-gen game look, 16:9 landscape.
 ```
 
-**Prompt B — Epic fellowship bridge approach**
+**Prompt B: Epic fellowship bridge approach**
 ```text
 Create an original epic fantasy RPG key-art screenshot. A small fellowship of travelers crosses a colossal ancient stone bridge toward a luminous mountain city at sunrise. One ranger leads, a mage carries a lantern, a dwarf-like smith bears a hammer, and banners whip in the wind. Vast valley below, waterfalls, golden clouds, weathered masonry, cinematic scale, subtle HUD quest marker and compass, richly detailed armor and environment, AAA fantasy adventure tone, 16:9 landscape, highly detailed and uplifting.
 ```
 
-</details>
 
 ---
 
@@ -741,30 +818,29 @@ Create an original epic fantasy RPG key-art screenshot. A small fellowship of tr
 
 <p align="center"><sub>Gaming · 2×2 landscape gameplay HUD panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for Stylized game HUD panel</strong></summary>
 
-**Prompt A — Retro Japanese town pixel RPG**
+**📝 Prompts for Stylized game HUD panel**
+
+**Prompt A: Retro Japanese town pixel RPG**
 ```text
 Create an isometric pixel-art RPG screenshot of a traditional Japanese village during cherry blossom season. Sakura petals drift through the air, a samurai player character practices sword moves in the square, villagers watch nearby, and the interface includes an inventory panel, stamina gauge, skill cooldown timers, and subtle quest UI. Cozy retro console feeling, soft ambient pastel lighting, crisp pixel details, 16:9 gameplay composition.
 ```
 
-**Prompt B — Cyberpunk Europe action HUD**
+**Prompt B: Cyberpunk Europe action HUD**
 ```text
 Create a third-person cyberpunk action game screenshot set in a neon-soaked European capital at night. The protagonist has glowing cybernetic implants and stands on rain-slick streets near a famous landmark while holograms, drones, and flying traffic crowd the skyline. Add a polished game HUD with health bar, ammo count, radar, stealth/energy meters, and mission overlays. Vivid cyan-magenta palette, wet reflections, cinematic intensity, 16:9.
 ```
 
-**Prompt C — Anime open-world adventure HUD**
+**Prompt C: Anime open-world adventure HUD**
 ```text
 Create a third-person over-the-shoulder screenshot from a nostalgic anime-style open-world adventure game. The protagonist stands in a lush forest with detailed foliage and vibrant shading, drawing a bow toward distant enemies. Add a clean on-screen HUD: quest log, compass at the top, character portrait and status effects at bottom left, subtle rain droplets on screen, and sun rays filtering through trees. Keep the composition dynamic, the forest immersive, and the UI believable like a premium action-RPG screenshot.
 ```
 
-**Prompt D — Mobile MOBA arena HUD**
+**Prompt D: Mobile MOBA arena HUD**
 ```text
 Create an original landscape mobile MOBA / action-RPG gameplay screenshot, inspired by competitive lane-battle games but not copying any existing franchise. 16:9 landscape, polished mobile game HUD. Scene: a bright fantasy arena at golden-hour dusk, three stylized heroes clash near a central river bridge and glowing crystal objective. Camera: slightly elevated isometric third-person gameplay view, readable battlefield lanes, minions, spell effects, terrain brush, turret silhouettes, and a boss-objective pit in the distance. HUD design: bottom-left translucent virtual joystick, bottom-right four circular ability buttons with cooldown numbers, ultimate button glowing but 87% charged, top-center score bar reading "12 - 11", match timer "08:42", team health bars, mini-map in the top-left, item quick slots, gold counter "3,420", clean mobile-safe margins, crisp icons, no real game logos. Art direction: premium anime-fantasy 3D mobile game, saturated teal / gold / violet palette, sharp readable UI, dynamic spell VFX, high-detail materials, readable text, screen-capture feel, not a poster, not a mockup board.
 ```
 
-</details>
 
 ---
 
@@ -776,19 +852,18 @@ Create an original landscape mobile MOBA / action-RPG gameplay screenshot, inspi
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/aleenaamiir/status/2046866168208916503"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a square 3x3 worldbuilding set for an original dark-fantasy universe called "Saltwind Reach". Each panel is a distinct but consistent scene: a storm-battered coastal fortress at dawn, a foggy market street, a knight relic close-up, a handwritten map fragment, a monster silhouette study, a candlelit tavern interior, an alchemist kit flat lay, a moonlit harbor, and a faction banner concept. Keep one cohesive art direction across all nine panels: painterly realism, muted teal / rust / bone palette, cinematic weather, premium concept-art presentation, small caption labels, and strong consistency across costume motifs, architecture, symbols, and lighting. The full board should feel like a polished pre-production worldbuilding sheet rather than a collage of unrelated images.
 ```
 
-</details>
-
 
 <a id="gallery-retro-cyberpunk"></a>
 
-<h2 align="center">🤖 Retro & Cyberpunk</h2>
+
+### 🤖 Retro & Cyberpunk
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -800,14 +875,13 @@ Create a square 3x3 worldbuilding set for an original dark-fantasy universe call
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts"><code>"GitHub archive"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A mecha girl mid-teens, pale skin smudged with soot and salt spray, sharp amber eyes with glowing HUD reticles, waist-length ash-white hair tied in a high ponytail whipping in the sea wind, matte gunmetal exoskeleton armor plating her shoulders, forearms and shins, exposed hydraulic pistons at the joints, chest rig with glowing cyan coolant lines, oversized oil-stained hangar jacket half slipping off one shoulder, a massive rail cannon resting on her right shoulder, dog tags and frayed red ribbon at her collar, standing off-center to the left on the rusted edge of a tilted steel platform jutting out over dark water, weight shifted onto one leg, left hand gripping the cannon strap, head turned slightly toward camera with a quiet defiant stare, steam venting from her back thrusters, her ponytail and jacket streaming sideways in the salt wind, a vast derelict sea-city at dusk, colossal megastructures of unknown purpose rising from the ocean in staggered silhouettes, bone-white monolithic towers fused with barnacled steel, cyclopean ring-shaped constructs canted at broken angles, rusted skeletal gantries threaded with dead cables, dark swells rolling between the pylons, shipwrecks half-swallowed at their feet, thick sea fog clinging to the bases while the upper structures pierce into a bruised sky, scattered faint lights blinking high in the towers like distant eyes, moody low-key lighting, cold teal ambient from the overcast sky, warm amber sodium glow leaking from a distant structure camera-right, hard backlight from a low sun behind the towers carving her silhouette, volumetric god rays cutting through sea mist, wet specular highlights on her armor, 35mm anamorphic lens, slight low angle looking up past her shoulder toward the structures, medium-wide shot, shallow depth of field with foreground rust in soft focus, horizontal lens flares, fine atmospheric haze compressing the distant megastructures into layered silhouettes, cinematic anime key visual, painterly digital illustration with crisp line art, desaturated oceanic palette of teal, bone-white and rust punched by small warm accent lights, film grain, high-contrast editorial poster aesthetic. Format 16:9.
 ```
 
-</details>
 
 ---
 ---
@@ -820,14 +894,13 @@ A mecha girl mid-teens, pale skin smudged with soot and salt spray, sharp amber 
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a cyberpunk character-and-city design board in a premium magazine-layout format, landscape 16:9. Title text: "NEON ORCHID DISTRICT". The board is divided into five asymmetric panels: one large cinematic street scene of a rain-soaked elevated night market, two close-up portrait panels of original adult cyberpunk couriers with glowing orchid tattoos, one small isometric map panel showing alleys and drone routes, and one artifact panel showing encrypted transit passes, cybernetic gloves, and vending-machine stickers. Use layered neon magenta, cyan, acid green, wet asphalt reflections, holographic signage, dense but readable composition, editorial margins, small labels, and a cohesive retro-future anime/cyberpunk style. Original characters only, no existing IP, no explicit content.
 ```
 
-</details>
 
 ---
 
@@ -839,19 +912,18 @@ Create a cyberpunk character-and-city design board in a premium magazine-layout 
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW". Layout: a clean 3×3 grid of nine cards with thin chrome borders. Each card shows a different original alien or android nightlife character: glass-horn DJ, koi-scale bartender, moth-wing hacker, chrome geisha bassist, jellyfish courier, neon priestess, reptile fashion model, vending-machine oracle, and masked dancer. Each card has a tiny readable name tag and a unique color accent, but the whole grid shares a polished late-90s anime cyberpunk aesthetic, black background, fluorescent rim lights, glossy materials, sticker-like UI glyphs, playful stylish energy, no gore, no explicit content, original designs only.
 ```
 
-</details>
-
 
 <a id="gallery-cinematic-animation"></a>
 
-<h2 align="center">🎬 Cinematic & Animation</h2>
+
+### 🎬 Cinematic & Animation
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -863,8 +935,8 @@ Create a square cyberpunk alien nightclub catalog sheet called "SYNTH MOON CREW"
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A Pixar-quality 3D animation still, landscape 16:9. Cinematic feature-film look, warm studio lighting.
@@ -876,7 +948,6 @@ Character: kitten with expressive, slightly oversized eyes (classic Pixar propor
 Art direction: full-CG Pixar aesthetic — subsurface scattering on ears and whiskers, physically based materials, soft shadow ambient occlusion, volumetric morning beam, shallow depth of field. Clean stylised shapes consistent with "Luca", "Soul", "Elemental" — not photoreal uncanny-valley.
 ```
 
-</details>
 
 ---
 
@@ -888,8 +959,8 @@ Art direction: full-CG Pixar aesthetic — subsurface scattering on ears and whi
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A 1940s film-noir black-and-white movie still, landscape 16:9, high contrast. Shot on 35mm with visible grain.
@@ -899,7 +970,6 @@ Scene: a detective in trench coat and fedora stands alone at a rain-soaked stree
 Lighting: classic chiaroscuro — single hard key light above right, venetian-blind shadows on the wall behind him. Deep blacks, silvered highlights, full tonal range from pure white to pure black. No colour. Frame should feel lifted from "The Maltese Falcon", "Double Indemnity", or "The Third Man".
 ```
 
-</details>
 
 ---
 
@@ -911,8 +981,8 @@ Lighting: classic chiaroscuro — single hard key light above right, venetian-bl
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A 6-panel film storyboard laid out as a 3×2 grid, landscape 16:9 overall. Each panel is a rectangular pencil-and-marker sketch with a white margin border and a small information strip underneath.
@@ -929,7 +999,6 @@ Panel 6 — Match cut: runner's boots landing on wet rooftop; splash. Info: "PAN
 Art direction: classic animation-school storyboard — pencil line-work, grey marker shading, red-pencil arrow annotations on panels 2 and 5 (camera move and action arc). Off-white paper texture background.
 ```
 
-</details>
 
 ---
 
@@ -941,8 +1010,8 @@ Art direction: classic animation-school storyboard — pencil line-work, grey ma
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 A Studio-Ghibli-style hand-painted animation still, landscape 16:9. A small wooden cottage sits on a grassy hillside overlooking a valley at golden hour. A child stands barefoot at the cottage doorway waving to a small furry forest spirit half-hidden in the meadow grass. A distant train cuts across the valley floor, swallows dip overhead.
@@ -950,7 +1019,6 @@ A Studio-Ghibli-style hand-painted animation still, landscape 16:9. A small wood
 Art direction: classic Miyazaki / Studio Ghibli watercolor-gouache style. Soft painterly edges, slightly desaturated greens and warm skin tones, visible brush texture in the clouds and grass. Thin ink line art on the characters. Gentle atmospheric perspective. The whole frame should feel like a cel from "My Neighbor Totoro" or "Kiki's Delivery Service", not a 3D render.
 ```
 
-</details>
 
 ---
 
@@ -962,20 +1030,21 @@ Art direction: classic Miyazaki / Studio Ghibli watercolor-gouache style. Soft p
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1jk0p3v/tried_to_push_the_new_image_model_with_an/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a chaotic security-camera still from a 1990s grocery store. A man in full medieval armor is frozen mid-sprint stealing several rotisserie chickens past the dairy section. Overhead fluorescent lights reflect off the armor. The floor is baby-blue tile. Add a timestamp reading "08/13/96 04:44 AM" and a wall poster saying "NEW! TOASTER STRUDELS!". Make it low-fidelity, absurd, slightly intense, with motion blur, VHS color bleed, surveillance noise, and authentic analog-store lighting.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-character-design"></a>
 
-<h2 align="center">👤 Character Design</h2>
+
+### 👤 Character Design
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -987,8 +1056,8 @@ Create a chaotic security-camera still from a 1990s grocery store. A man in full
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/MANISH1027512"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Based on this character and background, please create a character reference sheet similar to official setting materials.
@@ -1000,7 +1069,6 @@ Based on this character and background, please create a character reference shee
 - Overall, use an organized layout (white background, illustration style)
 ```
 
-</details>
 
 ---
 
@@ -1012,20 +1080,21 @@ Based on this character and background, please create a character reference shee
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/midjourney/comments/1jrcpan/fantasy_concept_arts_with_v7_prompts_included/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a fantasy concept art sketchbook page centered on a mystical elven archer with flowing robes. Render the main figure in loose graphite strokes with precise ink detailing. Surround the hero sketch with side views exploring cloak variations, a half-finished bow study with measurements, thumbnail action poses, handwritten annotations about enchanted embroidery patterns, and faint watercolor tests bleeding into the margins in forest-green and silver. The page should feel like a real art director's development sheet: exploratory, beautiful, readable, and richly tactile.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-typography-posters"></a>
 
-<h2 align="center">📝 Typography & Posters</h2>
+
+### 📝 Typography & Posters
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1050,15 +1119,15 @@ Create a fantasy concept art sketchbook page centered on a mystical elven archer
 
 <p align="center"><sub>Typography & Posters · 3-poster panel · Mixed original + community</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all three posters</strong></summary>
 
-**Prompt A — Chongqing rainy-night city promo poster**
+**📝 Prompts for all three posters**
+
+**Prompt A: Chongqing rainy-night city promo poster**
 ```text
 做一张 3:4 城市宣传海报，主题是"山城雨夜·重庆"。整体像高端城市文旅 campaign poster，不要廉价旅行社风格。画面中心是层叠山城建筑、轻轨穿楼、湿润街道、霓虹倒影、江边雾气和夜色中的坡道。用现代中文排版，加入少量准确标题与副标题："山城雨夜" / "CHONGQING" / "8D 城市 / 江雾 / 火锅 / 轻轨 / 夜景"。信息密度适中，留白克制，色彩以深蓝、暖橙、湿润霓虹红为主，像一本设计年鉴里的城市品牌海报。
 ```
 
-**Prompt B — Vogue-style fashion magazine cover**
+**Prompt B: Vogue-style fashion magazine cover**
 ```text
 A high-fashion magazine cover, 3:4 portrait, Vogue Paris / British Vogue editorial aesthetic.
 
@@ -1080,7 +1149,7 @@ Exact cover typography (all English, crisp, correctly spelled):
 Lighting: classic fashion editorial — soft single-source key, subtle fill, deep shadow on one cheek, fine film grain.
 ```
 
-**Prompt C — 1950s Astounding Stories pulp cover**
+**Prompt C: 1950s Astounding Stories pulp cover**
 ```text
 A vintage sci-fi pulp magazine cover from the 1950s, 3:4 portrait. Classic "Astounding Science Fiction" / "Galaxy" aesthetic — painted gouache illustration with pulp-yellow paper texture, screen-printing registration slightly off, pale browned paper tone around edges.
 
@@ -1094,13 +1163,14 @@ Exact typography:
 Art direction: painted gouache with visible brush strokes, saturated pulp palette (canary yellow, orange, red, electric violet, chrome silver), hand-lettered headlines, slightly rough paper texture, faint foxing on corners.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-illustration"></a>
 
-<h2 align="center">🎨 Illustration</h2>
+
+### 🎨 Illustration
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1112,14 +1182,13 @@ Art direction: painted gouache with visible brush strokes, saturated pulp palett
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Modern pencil illustration of Vintage travel poster illustration of the Amalfi Coast, Italy, panoramic coastal cliff road scene, classic 1960s white car driving along a curved seaside road, deep blue Mediterranean sea with small sailboats, colorful pastel hillside village, bright blue sky with soft clouds, lemon tree branches with vibrant yellow lemons framing the foreground, warm summer sunlight, bold vibrant colors, retro 1950s travel poster style, cinematic composition, high detail, screen print texture, graphic illustration. Hand-drawn style, illustration with loose strokes and defined contours. High-contrast color palette, maintaining chromatic harmony between background and elements. Contemporary and decorative aesthetic.
 ```
 
-</details>
 
 ---
 
@@ -1131,18 +1200,18 @@ Modern pencil illustration of Vintage travel poster illustration of the Amalfi C
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a landscape editorial illustration in layered paper-cut style: a tiny forest night market hidden beneath giant mushrooms and fern leaves. Include warm lantern stalls selling acorn cakes, beetle taxis, a fox calligrapher, a badger tea vendor, children holding leaf umbrellas, and fireflies forming soft dotted paths. Style anchor: mid-century children’s book illustration meets contemporary layered paper diorama, visible cut-paper edges, soft shadows between layers, muted moss green, pumpkin orange, cream, and ink-blue palette. First glance: a cozy glowing market silhouette. Second glance: many small vendor stories. Third glance: handmade paper texture, tiny signage, and playful animal gestures. No photorealism, no 3D plastic look, no cluttered unreadable faces.
 ```
 
-</details>
 
 <a id="gallery-watercolor"></a>
 
-<h2 align="center">💧 Watercolor</h2>
+
+### 💧 Watercolor
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1154,18 +1223,18 @@ Create a landscape editorial illustration in layered paper-cut style: a tiny for
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a delicate watercolor illustration of a rainy botanical greenhouse in early morning. Landscape composition, transparent washes, granulating pigments, soft wet-on-wet blooms, visible cold-pressed paper texture. Scene: arched glass greenhouse ribs, raindrops streaming down panes, hanging ferns, orchids, clay pots, a narrow stone path, a wooden bench with an open gardening notebook, and diffused silver daylight. Palette: sage green, eucalyptus gray, pale lavender, warm terracotta, and tiny yellow flower accents. Keep the image airy and poetic, with preserved white paper highlights, no hard digital gradients, no photorealistic lens effects, and no heavy outlines.
 ```
 
-</details>
 
 <a id="gallery-ink-chinese"></a>
 
-<h2 align="center">🖌️ Ink & Chinese</h2>
+
+### 🖌️ Ink & Chinese
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1177,18 +1246,18 @@ Create a delicate watercolor illustration of a rainy botanical greenhouse in ear
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty riverside night market. Use gongbi-level architectural detail combined with loose ink atmosphere: arched stone bridge, lantern boats, teahouse balconies, book stalls, noodle steam, scholars reading under lamps, children chasing paper rabbits, and distant city walls fading into mist. Add small readable Chinese shop signs in brush style: "茶", "书", "面", "灯市". Palette: black ink, warm lantern ochre, muted cinnabar seals, and pale blue-gray moonlight. Composition should read as a continuous scroll with rhythmic clusters of people and negative-space water. Avoid modern objects, anime faces, fake calligraphy clutter, and overly saturated poster lighting.
 ```
 
-</details>
 
 <a id="gallery-pixel-art"></a>
 
-<h2 align="center">🕹️ Pixel Art</h2>
+
+### 🕹️ Pixel Art
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1209,26 +1278,27 @@ Create a horizontal Chinese ink-and-wash handscroll scene of a Song dynasty rive
 
 <p align="center"><sub>Pixel Art · 1×2 panel · Sources credited per panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for both pixel art panels</strong></summary>
 
-**Prompt A — Pixel art car sprite sheet**
+**📝 Prompts for both pixel art panels**
+
+**Prompt A: Pixel art car sprite sheet**
 ```text
 A 10x10 pixel art sprite sheet of retro video game cars, 16-bit era aesthetic. Ten rows by ten columns of small vehicle sprites on a clean light-grey grid background, each cell 64x64 pixels. Variety across sprites: sedans, sports cars, muscle cars, SUVs, pickup trucks, vans, taxi cabs, police cruisers, convertibles, and hot rods, in a full rainbow of colors. All sprites rendered in a consistent 3/4 top-down perspective with matching shading, crisp pixel edges, no anti-aliasing, palette limited to ~16 tones per sprite, SNES / Super Nintendo cart-racing game tradition.
 ```
 
-**Prompt B — Pixel art breakfast still life**
+**Prompt B: Pixel art breakfast still life**
 ```text
 Create a nostalgic pixel-art breakfast still life. Show a tall stack of fluffy golden pancakes drizzled with glossy maple syrup, topped with strawberries and blueberries, with pixelated steam rising into the air. The plate sits on a pastel tablecloth and a hot cup of coffee rests in the background. Use rich breakfast colors, careful lighting, and delicious texture detail while staying true to clean, readable pixel art.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-isometric"></a>
 
-<h2 align="center">📐 Isometric</h2>
+
+### 📐 Isometric
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1240,20 +1310,21 @@ Create a nostalgic pixel-art breakfast still life. Show a tall stack of fluffy g
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/midjourney/comments/1hkqr4x/isometric_maps_prompts_included/"><code>"Reddit"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a vibrant isometric fantasy village map with a clean grid-based layout using 3x3 meter tiles. Include wooden houses with thatched roofs, cobblestone paths, and a central stone fountain. One corner of the map rises into a small grassy hill about 2 meters high with stairs connecting to the lower ground. Keep the isometric angle precise and game-ready. Warm sunlight sends clear rays and long shadows across the rooftops. Make the scene readable like a handcrafted strategy-game map, with crisp tile logic, charming environmental detail, and rich but controlled color.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-product-food"></a>
 
-<h2 align="center">📦 Product & Food</h2>
+
+### 📦 Product & Food
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1278,15 +1349,15 @@ Create a vibrant isometric fantasy village map with a clean grid-based layout us
 
 <p align="center"><sub>Product & Food · 3-image panel · Sources credited per panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all three product & food panels</strong></summary>
 
-**Prompt A — 3D product box from dieline**
+**📝 Prompts for all three product & food panels**
+
+**Prompt A: 3D product box from dieline**
 ```text
 Assemble the dieline into a flawless 3D box with accurate panels, clean folds, undistorted type, and artwork preserved exactly. Shoot it upright at a refined three-quarter angle in a minimal premium studio setting with a soft neutral background, diffused light, subtle shadows, no props, true colours, matte paperboard texture, and realistic editorial detail. The box front reads "AURAE / COLD-BREW MATCHA / 12 fl oz" in clean sans-serif. Side panel shows small ingredient list in 8pt type, nutrition-facts-style block. Clean, editorial, award-winning packshot aesthetic.
 ```
 
-**Prompt B — Chocolate wafer product render (JSON-style)**
+**Prompt B: Chocolate wafer product render (JSON-style)**
 ```text
 /* PRODUCT_RENDER_CONFIG: Chocolate Wafer Hazelnut Edition
    VERSION: 2.0.1
@@ -1316,18 +1387,19 @@ Assemble the dieline into a flawless 3D box with accurate panels, clean folds, u
 }
 ```
 
-**Prompt C — Universal commercial poster template**
+**Prompt C: Universal commercial poster template**
 ```text
 Design a high-end commercial poster for a product called "Aurora Oolong Cold Brew". Minimalist style, clean frame, centered hero bottle and tea glass, soft studio lighting, realistic material textures, elegant condensation details, generous negative space, premium brand visual language, cinematic light and shadow, refined packaging typography, and ultra-detailed finish. Make it feel like a luxury beverage campaign that could run in a subway lightbox or fashion magazine.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-brand-systems-identity"></a>
 
-<h2 align="center">🧩 Brand Systems & Identity</h2>
+
+### 🧩 Brand Systems & Identity
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1339,14 +1411,13 @@ Design a high-end commercial poster for a product called "Aurora Oolong Cold Bre
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/LexnLin/status/2046952493213429886"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a square high-end brand identity showcase board for a fictional brand called "Moss Radio". The brand should feel analog, cultured, warm, tactile, and design-forward. It operates in independent audio hardware and café-retail and should appeal to creative professionals and music obsessives. The overall mood should be nostalgic but modern. Design a polished modular grid of multiple tiles, each showing a different application of one cohesive visual identity system. Include logo explorations, wordmarks, app icon variations, editorial posters, product cards, landing page fragments, packaging concepts, typography specimens, interface snippets, color palette presentations, sticker systems, patterns, branded mockups, and small motion-inspired compositions. Use Swiss-inspired typography, rounded industrial shapes, and a moss green / parchment / charcoal / copper palette. Dense but elegant layout, sharp alignment, strong hierarchy, premium case-study presentation.
 ```
 
-</details>
 
 ---
 
@@ -1358,14 +1429,12 @@ Create a square high-end brand identity showcase board for a fictional brand cal
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/den_turbin/status/2046863385791467773"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Create a clean brand kit presented as one square modular board for a fictional revival of the PlayStation One era called "PS1 1998 Reboot". The identity should merge Japanese editorial design, Y2K nostalgia, acid green accents, VHS texture, silver plastics, disc-menu UI motifs, retail stickers, controller packaging, startup-screen typography, and memory-card iconography. Show multiple coordinated tiles including posters, packaging, interface snippets, collectible cards, typography studies, icons, and branded mockups. Keep it polished, cohesive, art-directed, and emotionally nostalgic, like a real top-tier design studio case study rather than generic merch.
 ```
-
-</details>
 
 
 #### Playful brand kit: Mochi Metro
@@ -1376,20 +1445,21 @@ Create a clean brand kit presented as one square modular board for a fictional r
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <a href="https://x.com/aleenaamiir/status/2047207315976368584"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Playful brand kit for "Mochi Metro", bold colors, fun typography, modern layout, modular square board with logo studies, packaging snippets, posters, app icons, stickers, UI fragments, and a cheerful Tokyo-snack visual system. Crisp alignment, dense but clean, highly polished design presentation.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-photography"></a>
 
-<h2 align="center">📷 Photography</h2>
+
+### 📷 Photography
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1398,8 +1468,8 @@ Playful brand kit for "Mochi Metro", bold colors, fun typography, modern layout,
 <table>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/photography/photoreal-subway.png"><img src="docs/photography/photoreal-subway.png" width="100%" alt="RAW iPhone — 42nd Street subway"/></a><br/>
-      <sub><strong>A · RAW iPhone — 42nd Street subway</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
+      <a href="docs/photography/photoreal-subway.png"><img src="docs/photography/photoreal-subway.png" width="100%" alt="RAW iPhone: 42nd Street subway"/></a><br/>
+      <sub><strong>A · RAW iPhone: 42nd Street subway</strong><br/><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/WolfRiccardo"><code>"X"</code></a></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/photography/handwritten-notebook.png"><img src="docs/photography/handwritten-notebook.png" width="100%" alt="Handwritten notebook flatlay"/></a><br/>
@@ -1420,27 +1490,27 @@ Playful brand kit for "Mochi Metro", bold colors, fun typography, modern layout,
 
 <p align="center"><sub>Photography · 2×2 panel · Sources credited per panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all four photography panels</strong></summary>
 
-**Prompt A — RAW iPhone — 42nd Street subway**
+**📝 Prompts for all four photography panels**
+
+**Prompt A: RAW iPhone: 42nd Street subway**
 ```text
 Create a completely RAW quality, unprocessed, unedited image with full iPhone camera quality. A subway station in USA, a momentary blur. The subway is in motion. In front of the subway, there is an elderly woman and man.
 ```
 
-**Prompt B — Handwritten notebook flatlay**
+**Prompt B: Handwritten notebook flatlay**
 ```text
 Amateur photo of an open notebook lying flat, filled with handwritten notes in black ballpoint pen. The handwriting is casual and slightly messy, like personal notes, natural imperfections, crossed out words, underlined headings. Shot from slightly above, natural daylight from a window, no flash. Casual desk setting, shot on iPhone
 ```
 
-**Prompt C — Chess board mid-tournament game**
+**Prompt C: Chess board mid-tournament game**
 ```text
 Generate a photorealistic photo of a chess board during the middle of a serious tournament game. Top-down three-quarter view, shallow depth of field. All pieces clearly distinguishable and correctly shaped: pawns, rooks, knights (with horse-head silhouette), bishops (mitre tops), queens, kings (with cross finials). The position is mid-game: several pieces already captured and set aside to the right of the board, some pawns advanced, pieces clustered around the central files d4-e5-f4.
 
 Materials: polished wooden staunton-style pieces — dark side in rosewood, light side in maple. Board made of inlaid maple and walnut squares. A digital chess clock sits to the left showing "00:14:28 / 00:08:47". Soft overhead tournament lighting, blurred tournament-hall background. All pieces accurate, no mutants, no extra sets.
 ```
 
-**Prompt D — 360° equirectangular jungle panorama**
+**Prompt D: 360° equirectangular jungle panorama**
 ```text
 360 equirectangular panorama of a dense prehistoric jungle scene. Cinematic detail. Strict 2:1 aspect ratio (e.g. 4096×2048). No distortion at the seams — the left and right edges must wrap seamlessly.
 
@@ -1449,7 +1519,6 @@ Scene: towering fern-covered trees, shafts of golden sunlight piercing the canop
 Lighting: late-afternoon golden hour, warm directional backlight through the canopy. High dynamic range, slight atmospheric haze. Equirectangular projection suitable for spherical / 360 viewers.
 ```
 
-</details>
 
 ---
 
@@ -1463,10 +1532,10 @@ Lighting: late-afternoon golden hour, warm directional backlight through the can
 
 <p align="center"><sub>Photography · <code>portrait</code> · <code>1087×1447</code> · Author: @LunarXuan · Source: <a href="https://github.com/LunarXuan/natural-sns-portrait">GitHub</a></sub></p>
 
-English realism guidelines from the source skill, paired with a contributor-selected mirror-selfie example. Use these guidelines alongside a scene, outfit, pose, and framing request; they are not the complete generation prompt for this image.
+English realism guidelines from the source skill, paired with a contributor-selected mirror-selfie example. Add your scene, outfit, pose and framing requirements.
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 # Realism Guidelines
@@ -1512,13 +1581,14 @@ Apply these as the default aesthetic target.
 Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beauty-app face reshaping, huge eyes, perfectly symmetrical face, over-sharpened eyelashes, waxy highlights, glam studio lighting, commercial fashion campaign, artificial rim light, extreme bokeh, hyper-detailed pore texture, over-HDR, unreal anatomy, extra fingers, fused fingers, floating accessories, warped glasses, duplicated jewelry, fake text, malformed background objects.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-screen-photography"></a>
 
-<h2 align="center">🖥️ Screen Photography</h2>
+
+### 🖥️ Screen Photography
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1539,26 +1609,27 @@ Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beau
 
 <p align="center"><sub>Screen Photography · 1×2 raw phone-photo-of-screen palette · A adapted from Reddit prompt structure, B Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for both screen-photo panels</strong></summary>
 
-**Prompt A — Music app + webcam preview**
+**📝 Prompts for both screen-photo panels**
+
+**Prompt A: Music app + webcam preview**
 ```text
 Create a raw smartphone photo of a laptop screen, not a screenshot. Aspect ratio 3:4, high-angle downward POV looking down at a laptop on a desk at night. The screen fills most of the frame with a thin strip of physical keyboard visible at the bottom. Emphasize visible RGB pixel grid, subtle moire bands, micro dust on glass, faint fingerprints, soft ambient reflections, handheld phone noise, slight perspective skew, imperfect glass. macOS dark mode. Background app: a generic music player in Liked Songs view with fictional visible tracks: "City Lights", "Late Night Walk", "Summer Static", "Blue Hour". Foreground app: a small webcam preview window floating center-right, showing only a cozy desk corner with a ceramic mug, notebook, small plush bear, warm desk lamp, and off-white wall. Make it look like an accidental real phone photo of a screen, candid and unpolished. No people, no faces, no celebrity names, no real-person likeness, no screenshot, no flat UI, no perfect clean glass, no studio lighting, no cartoon, no 3D render, no watermark.
 ```
 
-**Prompt B — Notes + FaceTime work screen**
+**Prompt B: Notes + FaceTime work screen**
 ```text
 Create a raw smartphone photo of a laptop screen, not a screenshot. Aspect ratio 3:4, high-angle downward POV from someone standing over a desk at night. The laptop display fills most of the frame, with a narrow strip of black keyboard and trackpad visible at the bottom. Strong realism: visible RGB subpixel grid, subtle moire bands, small dust specks, faint fingerprints, uneven glass reflections, handheld phone noise, slight perspective skew, no studio polish. macOS dark mode. Background app: Apple Notes with a late-night study note titled "Design Critique" and short visible bullets: "layout", "lighting", "source links", "ship tomorrow". Foreground app: FaceTime live preview window floating lower-right, showing a fictional adult man in his 20s sitting at a cluttered desk, hoodie, tired but amused expression, warm desk lamp behind him, books and sticky notes in the room. A second small Finder window with image thumbnails is partly visible behind it. Make it feel like an accidental real phone photo of a working laptop screen. No real-person likeness, no beauty filter, no perfect UI, no screenshot, no watermark, no cartoon, no 3D render.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-infographics-field-guides"></a>
 
-<h2 align="center">📊 Infographics & Field Guides</h2>
+
+### 📊 Infographics & Field Guides
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1570,14 +1641,13 @@ Create a raw smartphone photo of a laptop screen, not a screenshot. Aspect ratio
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/Panda20230902"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 "Song Dynasty People's Moments"/"SONG DYNASTY SOCIAL MEDIA FEED", Ancient and modern time-travel humor fusion interface design style, The image simulates a mobile phone social media interface, but the content is entirely Song Dynasty scenes, The avatar is a portrait of a Song Dynasty literati, Username "Su Dongpo SuShi_Official", Post content "Just arrived in Huangzhou, demoted but feeling okay. Made Dongpo pork myself today, tastes amazing, recipe attached:", The attached image is a close-up of Dongpo pork in Gongbi painting style, Likes list "Huang Tingjian, Qin Guan, Fo Yin etc. 126 people", Comments section "Wang Anshi: Hehe" "Sima Guang: Still the same taste", Interface elements such as the like icon are replaced with Song Dynasty patterns, The status bar shows "Great Song Mobile 5G" and "Third Year of Yuanfeng", The color scheme is mobile phone dark mode paired with elegant Song Dynasty tones, A masterpiece of fun collision between history and social media
 ```
 
-</details>
 
 ---
 
@@ -1589,8 +1659,8 @@ Create a raw smartphone photo of a laptop screen, not a screenshot. Aspect ratio
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/MrLarus"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Please automatically generate a "museum catalog-style Chinese disassembly infographic" based on the [Subject].
@@ -1611,7 +1681,6 @@ If the subject is suitable for character display, use a full-body standing postu
 Avoid: poster feel, studio portrait feel, e-commerce feel, anime feel, cosplay feel, random annotations, incorrect structures, blurry text, fake materials, excessive decoration.
 ```
 
-</details>
 
 ---
 
@@ -1623,8 +1692,8 @@ Avoid: poster feel, studio portrait feel, e-commerce feel, anime feel, cosplay f
 
 <p align="center"><sub><code>"portrait"</code> · <code>"high"</code> · <a href="https://x.com/MrLarus"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Generate a high-quality vertical encyclopedia-style infographic for [topic].
@@ -1646,7 +1715,6 @@ Visual requirements: use a clean light background, soft colors, subtle shadows, 
 Do not make it look like a commercial promo poster. Emphasize knowledge organization, modular information, and a field-guide presentation.
 ```
 
-</details>
 
 ---
 
@@ -1659,20 +1727,21 @@ Do not make it look like a commercial promo poster. Emphasize knowledge organiza
 
 <p align="center"><sub><code>"landscape"</code> · <code>"high"</code> · <a href="https://x.com/Vtrivedy10/status/2046771959157887014"><code>"X"</code></a></sub></p>
 
-<details>
-<summary><strong>📝 Prompt</strong></summary>
+
+**📝 Prompt**
 
 ```text
 Make me an image in 35 mm film style of a diagram showing the knowledge of camera styles, presets, and what to know about them as an aspiring iPhone photographer that wants to pursue their passion. Build it as a rich multi-panel reference board with labeled sections for film looks, digital presets, portrait approaches, street photography styles, color temperature, grain, contrast, flash, framing, and common mistakes. Each camera and preset style should appear in its actual style instead of being rendered uniformly in one style. Make it visually dense, highly educational, beautifully designed, and easy to scan.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-research-paper-figures"></a>
 
-<h2 align="center">📚 Research Paper Figures</h2>
+
+### 📚 Research Paper Figures
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -1701,8 +1770,8 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/research-paper-figures/transformer-arch.png"><img src="docs/research-paper-figures/transformer-arch.png" width="100%" alt="Transformer encoder–decoder architecture"/></a><br/>
-      <sub><strong>E · Transformer encoder–decoder architecture</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
+      <a href="docs/research-paper-figures/transformer-arch.png"><img src="docs/research-paper-figures/transformer-arch.png" width="100%" alt="Transformer encoder-decoder architecture"/></a><br/>
+      <sub><strong>E · Transformer encoder-decoder architecture</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/research-paper-figures/agent-architecture.png"><img src="docs/research-paper-figures/agent-architecture.png" width="100%" alt="Multi-agent LLM system architecture"/></a><br/>
@@ -1741,8 +1810,8 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
   </tr>
   <tr>
     <td width="50%" align="center" valign="top">
-      <a href="docs/research-paper-figures/model-timeline.png"><img src="docs/research-paper-figures/model-timeline.png" width="100%" alt="Frontier LLM family tree (2018–2026)"/></a><br/>
-      <sub><strong>M · Frontier LLM family tree (2018–2026)</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
+      <a href="docs/research-paper-figures/model-timeline.png"><img src="docs/research-paper-figures/model-timeline.png" width="100%" alt="Frontier LLM family tree (2018-2026)"/></a><br/>
+      <sub><strong>M · Frontier LLM family tree (2018-2026)</strong><br/><code>"landscape"</code> · <code>"high"</code> · <code>"Curated"</code></sub>
     </td>
     <td width="50%" align="center" valign="top">
       <a href="docs/research-paper-figures/react-trace.png"><img src="docs/research-paper-figures/react-trace.png" width="100%" alt="ReAct reasoning trace"/></a><br/>
@@ -1763,10 +1832,10 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
 
 <p align="center"><sub>Research Paper Figures · 8×2 literature-science figure grid · Curated / source-attributed prompts retained below</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all 16 research figures</strong></summary>
 
-**Prompt A — Patient cohort and multimodal biomarker workflow**
+**📝 Prompts for all 16 research figures**
+
+**Prompt A: Patient cohort and multimodal biomarker workflow**
 ```text
 Create a Nature Medicine / Science Translational Medicine style research paper figure, landscape 3:2 (1536×1024), soft literature-science palette, minimal and elegant.
 
@@ -1781,7 +1850,7 @@ D. Compact table-style performance summary with three rows: "AUROC", "C-index", 
 Style requirements: white background, light gray axes, thin lines, ample margins, muted teal, dusty blue, soft coral, pale sand, no neon, no dark background, Nature journal figure aesthetics, readable labels, precise arrows, subtle gridlines, no decorative clutter, no fake logos, no watermark.
 ```
 
-**Prompt B — Single-cell immune atlas**
+**Prompt B: Single-cell immune atlas**
 ```text
 Create a polished Nature / Cell style biomedical research figure, landscape 3:2 (1536×1024), soft minimal palette, publication-ready.
 
@@ -1796,7 +1865,7 @@ D. Pseudotime trajectory diagram: a clean branching curve from "naive" to "effec
 Style requirements: literature-science design, white background, thin gray axes, compact legends, readable micro-labels, restrained typography, soft colors, elegant spacing, no 3D, no glossy UI, no fake journal logo, no watermark.
 ```
 
-**Prompt C — Multimodal medical-AI method**
+**Prompt C: Multimodal medical-AI method**
 ```text
 Create a Nature Biomedical Engineering / NeurIPS medical-AI method figure, landscape 3:2 (1536×1024), soft literature-science colors and minimal academic layout.
 
@@ -1810,7 +1879,7 @@ C. Outputs on the right: three task heads "diagnosis", "risk score", "treatment 
 Style requirements: soft Nature/Science palette (muted teal, dusty blue, sage green, warm sand, coral accents), white background, precise vector-like arrows, modest shadows only, readable labels, lots of whitespace, no futuristic HUD, no clinical gore, no real hospital logos, no watermark.
 ```
 
-**Prompt D — Therapeutic response statistics**
+**Prompt D: Therapeutic response statistics**
 ```text
 Create a Nature Medicine style statistical results figure, landscape 3:2 (1536×1024), soft, restrained, publication-quality.
 
@@ -1825,7 +1894,7 @@ D. Minimal mechanism schematic: adaptive therapy reduces inflammatory signaling 
 Style requirements: literature-science aesthetic, white background, soft desaturated colors, thin gray axes, clear legends, compact labels, generous margins, Nature-style figure polish, no fake values that look too random, no decorative background, no watermark.
 ```
 
-**Prompt E — Transformer encoder–decoder architecture**
+**Prompt E: Transformer encoder-decoder architecture**
 ```text
 Landscape 16:9 academic concept figure of the Transformer encoder-decoder architecture, NeurIPS camera-ready style. Two vertical column stacks side-by-side with a dashed divider.
 
@@ -1836,7 +1905,7 @@ RIGHT column header: "DECODER (×N)". Blocks bottom-to-top: "Output tokens (shif
 Title: "Transformer: encoder–decoder with multi-head attention". Subtitle: "Vaswani et al., 2017".
 ```
 
-**Prompt F — Multi-agent LLM system architecture**
+**Prompt F: Multi-agent LLM system architecture**
 ```text
 Landscape 16:9 high-fidelity systems figure of a multi-agent LLM architecture, in the style of a richly detailed AutoGen / LangGraph / Anthropic Managed Agents Figure 1. Subtle drop-shadows, warm-copper highlights, numbered flow markers ①②③④.
 
@@ -1853,7 +1922,7 @@ Bottom inset "Example trace": 8-step horizontal timeline chips from "User asks" 
 Title: "Agentic LLM system: planner orchestrates specialised workers over a shared tool and memory layer". Subtitle: "adapted from AutoGen (Wu et al., 2023), LangGraph, and Anthropic Managed Agents patterns".
 ```
 
-**Prompt G — Denoising diffusion forward/reverse chain**
+**Prompt G: Denoising diffusion forward/reverse chain**
 ```text
 Landscape 16:9 academic figure of diffusion forward + reverse chains, two horizontal chains stacked vertically.
 
@@ -1866,7 +1935,7 @@ Far-right curved arrow "T diffusion steps" connecting top-right to bottom-right;
 Title: "Denoising Diffusion: forward corruption and learned reverse". Subtitle: "Ho et al., 2020".
 ```
 
-**Prompt H — Empirical scaling laws plot**
+**Prompt H: Empirical scaling laws plot**
 ```text
 Landscape 16:9 log-scaled plot of training loss vs compute, four curves for different model sizes.
 
@@ -1880,7 +1949,7 @@ Warm-copper dashed diagonal line labeled "compute-optimal frontier"; open circle
 Title: "Empirical scaling laws: loss vs training compute". Subtitle: "four model sizes on a fixed data mixture; shaded bands = ±1 std over 3 seeds."
 ```
 
-**Prompt I — Benchmark comparison heatmap**
+**Prompt I: Benchmark comparison heatmap**
 ```text
 Landscape 16:9 heatmap matrix of models × benchmarks.
 
@@ -1894,7 +1963,7 @@ Vertical color bar on the right with ticks "0", "25", "50", "75", "100" and labe
 Title: "Benchmark comparison across 10 frontier LLMs". Subtitle: "zero-shot accuracy; best per benchmark outlined in bold. Evaluated March 2026."
 ```
 
-**Prompt J — Ablation bar chart with error bars**
+**Prompt J: Ablation bar chart with error bars**
 ```text
 Landscape 16:9 grouped-bar ablation chart.
 
@@ -1911,7 +1980,7 @@ Thin black ±1σ error bars on each; numeric label above each bar in monospace. 
 Title: "Ablation of core reasoning components across 5 benchmarks". Subtitle: "error bars = ±1 std over 3 runs; numeric drops relative to full model shown above each bar."
 ```
 
-**Prompt K — LLM pretraining data-mixture sankey**
+**Prompt K: LLM pretraining data-mixture sankey**
 ```text
 Landscape 16:9 sankey diagram of a pretraining data mixture, three stages with translucent colored ribbons.
 
@@ -1926,7 +1995,7 @@ Flow ribbons inherit source color with mid-labels showing token counts ("85B", "
 Title: "LLM pretraining data mixture and downstream splits". Subtitle: "token counts after deduplication and quality filtering; ribbon thickness ∝ token flow."
 ```
 
-**Prompt L — Multi-head attention heatmaps**
+**Prompt L: Multi-head attention heatmaps**
 ```text
 Landscape 16:9 figure of 4 attention heatmaps (2×2 grid), shared 12-token input.
 
@@ -1943,7 +2012,7 @@ Cells: dusty-teal gradient, darker = higher weight. Peak cells outlined in 1px s
 Title: "Representative multi-head attention patterns in a 16-layer Transformer". Subtitle: "four of 256 heads, hand-picked for illustrative head-role diversity; inspired by Clark et al., 2019."
 ```
 
-**Prompt M — Frontier LLM family tree (2018–2026)**
+**Prompt M: Frontier LLM family tree (2018-2026)**
 ```text
 Landscape 16:9 timeline / family tree of frontier LLMs 2018–2026, three vertically stacked lanes over a horizontal time axis.
 
@@ -1958,7 +2027,7 @@ Solid slate-gray arcs = intra-family successors; warm-copper dashed arcs = cross
 Title: "Frontier LLM lineage, 2018 – 2026". Subtitle: "chips = model releases; solid arcs = intra-family successors; dashed arcs = cross-family distillation."
 ```
 
-**Prompt N — ReAct reasoning trace**
+**Prompt N: ReAct reasoning trace**
 ```text
 Landscape 16:9 figure of a ReAct trace on a factual-QA task, vertical sequence of 7 alternating blocks.
 
@@ -1980,12 +2049,12 @@ Bottom: pill-shaped "Final answer: 2013" with a check glyph.
 Title: "ReAct trace: interleaved reasoning and tool-use on a factual-QA task". Subtitle: "Yao et al., 2022."
 ```
 
-**Prompt O — Frontier Safety Eval Loop**
+**Prompt O: Frontier Safety Eval Loop**
 ```text
 Create a beautiful research flowchart for an AI safety benchmark pipeline called Frontier Safety Eval Loop. Landscape figure, white background, large typography, vector-like shapes, soft indigo, coral, sage, and graphite palette. Show stages Prompt Suite, Model Runs, Judge Models, Human Audit, Failure Taxonomy, Patch Queue, and Re-run. Use clean swimlanes, numbered callouts, compact legends, and premium paper-ready styling. High detail, excellent color harmony, generous whitespace, no clutter, conference-quality diagram.
 ```
 
-**Prompt P — LLM Persona Atlas**
+**Prompt P: LLM Persona Atlas**
 ```text
 Create a premium conceptual figure for an EMNLP / ACL paper, landscape 16:9, high-resolution, polished editorial-academic style. Theme: "LLM Persona Atlas". This should not look like a generic pipeline diagram. It should look like a beautifully designed Figure 1 from a top NLP / agent paper: minimal, refined, memorable, with a strong central visual metaphor.
 
@@ -1996,15 +2065,16 @@ Composition: left "Utterance Stream" with small translucent speech fragments flo
 Keep typography sparse, crisp, and clean. Add a small title "LLM Persona Atlas" and subtitle "from utterance style to model profile". Avoid dense method labels, big boxes, fake equations, fake citations, garbled text, photoreal humans, childish cartoon avatars, heavy shadows, and purple gradient backgrounds.
 ```
 
-</details>
 
 ---
 
-A dedicated sub-library for ML/AI papers. Sixteen templates covering literature-science medical figures, architecture diagrams, plots, heatmaps, sankeys, timelines, traces, and security flows. Use these when you need NeurIPS-quality figures in one shot.
+A dedicated sub-library for ML/AI papers. Sixteen templates covering literature-science medical figures, architecture diagrams, plots, heatmaps, sankeys, timelines, traces, and security flows. Use these templates to draft ML/AI paper figures.
+
 
 <a id="gallery-official-openai-cookbook"></a>
 
-<h2 align="center">🏢 Official OpenAI Cookbook Examples</h2>
+
+### 🏢 Official OpenAI Cookbook Examples
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2031,17 +2101,17 @@ Verbatim prompts from OpenAI's [official GPT Image prompting guide](https://gith
 
 <p align="center"><sub>Official OpenAI Cookbook Examples · 1×3 portrait panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for Official prompt triptych</strong></summary>
 
-**Prompt A — Automatic coffee machine infographic**
+**📝 Prompts for Official prompt triptych**
+
+**Prompt A: Automatic coffee machine infographic**
 ```text
 Create a detailed Infographic of the functioning and flow of an automatic coffee machine like a Jura.
 From bean basket, to grinding, to scale, water tank, boiler, etc.
 I'd like to understand technically and visually the flow.
 ```
 
-**Prompt B — Photorealistic elderly sailor**
+**Prompt B: Photorealistic elderly sailor**
 ```text
 Create a photorealistic candid photograph of an elderly sailor standing on a small fishing boat.
 He has weathered skin with visible wrinkles, pores, and sun texture, and a few faded traditional sailor tattoos on his arms.
@@ -2050,7 +2120,7 @@ Soft coastal daylight, shallow depth of field, subtle film grain, natural color 
 The image should feel honest and unposed, with real skin texture, worn materials, and everyday detail. No glamorization, no heavy retouching.
 ```
 
-**Prompt C — 4-panel pet comic strip**
+**Prompt C: 4-panel pet comic strip**
 ```text
 Create a short vertical comic-style reel with 4 equal-sized panels.
 Panel 1: The owner leaves through the front door. The pet is framed in the window behind them, small against the glass, eyes wide, paws pressed high, the house suddenly quiet.
@@ -2059,11 +2129,11 @@ Panel 3: The house transformed. The pet sprawls across the couch like it owns th
 Panel 4: The door opens. The pet is seated perfectly by the entrance, alert and composed, as if nothing happened.
 ```
 
-</details>
 
 <a id="gallery-edit-endpoint-showcase"></a>
 
-<h2 align="center">✨ Edit Endpoint Showcase</h2>
+
+### ✨ Edit Endpoint Showcase
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2094,17 +2164,17 @@ Panel 4: The door opens. The pet is seated perfectly by the entrance, alert and 
 
 <p align="center"><sub>Edit Endpoint Showcase · 2×2 before / after edit palette · credited source noted</sub></p>
 
-<details>
-<summary><strong>📝 Input prompts + edit CLI commands</strong></summary>
 
-**A · Input prompt — Chess mid-game input**
+**📝 Input prompts + edit CLI commands**
+
+**A · Input prompt: Chess mid-game input**
 ```text
 Generate a photorealistic photo of a chess board during the middle of a serious tournament game. Top-down three-quarter view, shallow depth of field. All pieces clearly distinguishable and correctly shaped: pawns, rooks, knights (with horse-head silhouette), bishops (mitre tops), queens, kings (with cross finials). The position is mid-game: several pieces already captured and set aside to the right of the board, some pawns advanced, pieces clustered around the central files d4-e5-f4.
 
 Materials: polished wooden staunton-style pieces — dark side in rosewood, light side in maple. Board made of inlaid maple and walnut squares. A digital chess clock sits to the left showing "00:14:28 / 00:08:47". Soft overhead tournament lighting, blurred tournament-hall background. All pieces accurate, no mutants, no extra sets.
 ```
 
-**B · Edit command — Winter evening output**
+**B · Edit command: Winter evening output**
 ```bash
 gpt-image \
   -p 'Make it a winter evening with heavy snowfall, snow dusted on the board and pieces, breath vapor in the air, cold blue-grey lighting, chess position still clearly readable. Preserve the original chess-board composition and landscape aspect ratio exactly; keep the board and pieces aligned and readable.' \
@@ -2113,7 +2183,7 @@ gpt-image \
   -f docs/edit-endpoint-showcase/edit-chess-winter.png
 ```
 
-**C · Input prompt — Chinese tea poster input**
+**C · Input prompt: Chinese tea poster input**
 ```text
 Design a 3:4 vertical poster for a new Chinese trendy tea launch. Use a New Chinese visual style that feels light-luxury and restrained. The palette should be dark green, off-white, and gold, with rice-paper texture, elegant negative space, landscape accents, and modern layout design.
 
@@ -2133,7 +2203,7 @@ Fine print: "图片仅供参考，请以门店实际售卖为准"
 Maintain a clear promotional hierarchy while keeping the overall feeling sophisticated rather than cheap or overly e-commerce-like. Pay special attention to small text, numbers, prices, info modules, and Chinese typography aesthetics.
 ```
 
-**D · Edit command — Metro lightbox output**
+**D · Edit command: Metro lightbox output**
 ```bash
 gpt-image \
   -p 'Transform the provided tea poster into a realistic metro-station lightbox mockup while preserving the poster artwork and Chinese typography as much as possible. Show the poster behind glossy glass in a vertical illuminated advertising frame on a clean subway platform wall. Add subtle reflections, brushed metal frame, floor tiles, soft overhead transit lighting, and a few blurred commuters in the distance. Keep the poster straight, legible, and dominant; do not redesign the poster, do not change its main text, and do not add fake brand logos.' \
@@ -2142,13 +2212,14 @@ gpt-image \
   -f docs/edit-endpoint-showcase/tea-poster-metro-lightbox.png
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-uiux-mockups"></a>
 
-<h2 align="center">📱 UI/UX Mockups</h2>
+
+### 📱 UI/UX Mockups
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2169,20 +2240,19 @@ gpt-image \
 
 <p align="center"><sub>UI/UX Mockups · 1×2 mobile-interface pair</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for both mobile UI panels</strong></summary>
 
-**Prompt A — Web3 Wallet Interface Concept**
+**📝 Prompts for both mobile UI panels**
+
+**Prompt A: Web3 Wallet Interface Concept**
 ```text
 Design a premium mobile web3 wallet app mockup for a fictional wallet called NOVA VAULT on a 1179x2556 phone screen, centered on a dark graphite background with faint aurora gradients. Use a refined palette of black, electric cyan, emerald, violet-blue, and soft white. The app should feel modern but credible, with crisp typography, glassmorphism only where useful, and strong financial UI clarity. Include in-image text: "NOVA VAULT", "Portfolio $48,920.14", "24h +3.82%", "Send", "Receive", "Swap", and "History". Show token cards labeled "SOLAR 18.42", "LATTICE 244.7", and "USDX 12,840.00" with small sparkline charts. Add a security section reading "Shield Level 96" and a network selector labeled "Mainnet". Include a recent activity list with "Swap SOLAR to USDX", "Received 240 LATTICE", and "Gas 0.0021". Prioritize crisp labels, exact numbers, clean hierarchy, believable wallet UX, and polished gpt-image-2-friendly UI detail.
 ```
 
-**Prompt B — Health Tracker App Mockup**
+**Prompt B: Health Tracker App Mockup**
 ```text
 Create a refined mobile health tracking app screen for a fictional wellness product named VITA LOOP, displayed on a tall smartphone with a bright editorial UI aesthetic. Use a palette of soft mint, deep forest green, cream, coral, and cool gray. Compose a daily overview screen with clean cards, circular progress rings, miniature charts, and a tidy bottom navigation. Include crisp in-image text: "VITA LOOP", "Daily Summary", "Steps 8,420", "Sleep 7.6 h", "Heart Rate 64 bpm", and "Hydration 2.1 L". Add three progress rings labeled "Move 78%", "Recovery 84%", and "Focus 66%". Show a weekly chart labeled "Mon Tue Wed Thu Fri Sat Sun" and two buttons reading "Log Meal" and "Start Session". Add a health insight card with the text "Recovery improved 12% this week". The result should feel production-ready, medically clean, carefully spaced, sharply rendered, and optimized for crisp typography and accurate labels.
 ```
 
-</details>
 
 ---
 
@@ -2203,24 +2273,24 @@ Create a refined mobile health tracking app screen for a fictional wellness prod
 
 <p align="center"><sub>UI/UX Mockups · component board + desktop dashboard panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for design system panel</strong></summary>
 
-**Prompt A — Design System Card Set**
+**📝 Prompts for design system panel**
+
+**Prompt A: Design System Card Set**
 ```text
 Generate a clean design system overview board for a fictional product language called LUMEN UI, arranged as a square component gallery on a 2048x2048 canvas. Use a neutral palette of ivory, charcoal, muted blue, sage, and coral accents. The composition should be an orderly grid of cards showing buttons, input fields, badges, toggles, tabs, avatars, alerts, and pricing cards. Include crisp typography, even spacing, subtle shadows, and exact alignment as if exported from a professional design tool. Add labeled sections with the in-image text "LUMEN UI", "Buttons", "Inputs", "Status", "Cards", and "Type Scale". Include sample button labels "Primary", "Secondary", and "Danger"; badge labels "Success", "Pending", and "Error"; and typography specimens "Display 48", "Heading 24", and "Body 16". Ensure the board feels systematic, editorial, and highly legible, with clean hierarchy, correct labels, and polished component consistency suitable for a design systems gallery.
 ```
 
-**Prompt B — Desktop Operations Dashboard**
+**Prompt B: Desktop Operations Dashboard**
 ```text
 Create a high-end desktop SaaS analytics dashboard mockup for a fictional platform named HELIX OPS, displayed on a 16:10 monitor canvas at 1600x1000. Use a cool palette of slate, cobalt blue, teal, pale gray, and white, with subtle glass panels and tight grid alignment. The layout should include a left sidebar, top filter bar, KPI cards, line charts, data table, and alert panel. Use crisp typography and correct labels. Include in-image text: "HELIX OPS", "Operations Overview", "Last 30 Days", "Uptime 99.982%", "Tickets 184", "Latency 42 ms", and "Conversion 6.4%". Show a line chart labeled "Apr 1" through "Apr 30", a donut chart titled "Traffic Sources", and a table with columns "Site", "Status", "Region", and "Load". Add alert pills reading "3 Critical" and "12 Warning". Composition should feel realistic and presentation-ready, with clean hierarchy, precise spacing, balanced negative space, and ultra-sharp dashboard UI rendering.
 ```
 
-</details>
 
 <a id="gallery-data-visualization"></a>
 
-<h2 align="center">📊 Data Visualization</h2>
+
+### 📊 Data Visualization
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2241,20 +2311,19 @@ Create a high-end desktop SaaS analytics dashboard mockup for a fictional platfo
 
 <p align="center"><sub>Data Visualization · 1×2 chart panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for editorial data visualization pair</strong></summary>
 
-**Prompt A — Small Multiples Climate Grid**
+**📝 Prompts for editorial data visualization pair**
+
+**Prompt A: Small Multiples Climate Grid**
 ```text
 Produce a clean editorial data visualization poster showing a 4x3 small-multiples grid of monthly climate charts for 12 fictional cities. Use a white background, generous margins, and a restrained palette of navy, rust, sky blue, olive, and charcoal. Each mini-panel should contain a temperature line and precipitation bars with consistent axes and ultra-legible labels. Include a title block with the in-image text "Annual Climate Profiles" and subtitle "12 Cities, 2025". Label panels "Northport", "Solmere", "Aster Bay", "Ridgefall", "Halcyon", "Verdin", "Glass Harbor", "Red Mesa", "Moonfield", "Lake Arden", "Cinder Point", and "Juniper". Use month labels "J F M A M J J A S O N D" and axis labels "Temp °C" and "Rain mm". Add numeric legend values "0", "10", "20", "30", and "100". Keep the composition highly structured, scientifically clear, and visually elegant, with crisp typography, aligned scales, and publication-grade chart rendering.
 ```
 
-**Prompt B — Network Graph Collaboration Map**
+**Prompt B: Network Graph Collaboration Map**
 ```text
 Generate a sophisticated network graph visualization on a dark charcoal canvas showing collaborations across a fictional research consortium called ORBIT GRID. Use glowing node colors in teal, amber, coral, pale blue, and white, with fine connecting lines and clean labels. The composition should be balanced, readable, and intentionally designed rather than random. Include a title in crisp text reading "ORBIT GRID Collaboration Network" and a legend with "Institute", "Lab", "Project", and "Advisory". Show approximately 36 nodes, with larger hubs labeled "Helix Center", "Nova Lab", "Aster Institute", "Cinder Bio", and "Polar Systems". Add edge labels sparingly, such as "shared data", "joint grant", and "coauthor". Include a right-side stats card reading "Nodes 36", "Edges 92", and "Density 0.146". Emphasize clean hierarchy, accurate node-label placement, anti-overlap spacing, subtle depth, and crisp typography suited for a polished technical visualization generated by gpt-image-2.
 ```
 
-</details>
 
 ---
 
@@ -2275,24 +2344,24 @@ Generate a sophisticated network graph visualization on a dark charcoal canvas s
 
 <p align="center"><sub>Data Visualization · 1×2 allocation/map panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for allocation and map panel</strong></summary>
 
-**Prompt A — Treemap Budget Allocation**
+**📝 Prompts for allocation and map panel**
+
+**Prompt A: Treemap Budget Allocation**
 ```text
 Design a modern treemap infographic showing a fictional company budget allocation for LUMEN BIO in fiscal year 2026. Use a light neutral background and a controlled palette of forest green, desaturated blue, amber, terracotta, lavender-gray, and charcoal outlines. The composition should be a clean rectangular treemap with strong visual grouping and crisp typography. Include a header with the in-image text "LUMEN BIO Budget Allocation" and "FY 2026". Major blocks should be labeled "R&D 38%", "Manufacturing 22%", "Clinical 14%", "Operations 10%", "Marketing 7%", "IT 5%", and "Legal 4%". Within some blocks, add smaller labels like "Prototypes", "Reagents", "QA", "Cloud", and "Field Trials". Include a compact side legend reading "Total Budget $84.0M". Ensure the chart has precise edges, balanced annotation density, clean hierarchy, and sharp text rendering suitable for a technical gallery prompt.
 ```
 
-**Prompt B — Geographic Choropleth Yield Map**
+**Prompt B: Geographic Choropleth Yield Map**
 ```text
 Produce a polished geographic choropleth map infographic of a fictional agricultural region called the Solterra Basin, showing harvest yield by district. Use a minimalist cartographic style on an off-white background with muted terrain hints and a sequential palette from pale sand to deep green. The map should include 14 clearly separated districts with clean borders, crisp labels, and a right-side legend. Include in-image text: "Solterra Basin Harvest Yield", "2025", and legend title "tons / hectare". Label districts with names such as "North Vale", "Riverbend", "Copper Plain", "East Orchard", and "Cinder Ridge". Include legend values "1.2", "2.4", "3.6", "4.8", and "6.0". Add a compact annotation box reading "Highest yield: East Orchard 5.8" and "Lowest yield: Dry Steppe 1.4". Prioritize clean typography, accurate map-like geometry, balanced composition, subtle cartographic detail, and publication-grade infographic clarity.
 ```
 
-</details>
 
 <a id="gallery-technical-illustration"></a>
 
-<h2 align="center">⚙️ Technical Illustration</h2>
+
+### ⚙️ Technical Illustration
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2323,34 +2392,34 @@ Produce a polished geographic choropleth map infographic of a fictional agricult
 
 <p align="center"><sub>Technical Illustration · 2×2 mixed technical panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for technical illustration panel</strong></summary>
 
-**Prompt A — Mechanical Watch Exploded View**
+**📝 Prompts for technical illustration panel**
+
+**Prompt A: Mechanical Watch Exploded View**
 ```text
 Create a premium technical exploded-view illustration of a fictional mechanical wristwatch called the Meridian 8, centered on a dark slate background with fine blueprint grid accents. Show the watch components separated vertically with precise spacing: sapphire crystal, dial, hands, chapter ring, movement plates, escapement, balance wheel, mainspring barrel, case, crown, and leather strap sections. Use realistic brushed steel, brass, ruby jewel accents, and deep navy dial details. Add crisp callouts and labels with the in-image text "Meridian 8", "Exploded Assembly", "42 mm Case", "25 Jewels", and "Power Reserve 72 h". Include numbered callouts "01" through "10" with short labels like "Balance Wheel", "Mainspring Barrel", and "Sapphire Crystal". The result should be highly detailed, technically believable, sharply rendered, and suitable for an industrial design plate with clean hierarchy, exact labeling, and refined material realism.
 ```
 
-**Prompt B — Smartphone Internals Layered View**
+**Prompt B: Smartphone Internals Layered View**
 ```text
 Produce a sleek exploded-view illustration of a fictional flagship smartphone called the HELIX ONE, shown front and back in a vertically layered assembly on a soft charcoal gradient background. Separate the glass, OLED panel, midframe, battery, camera island, wireless charging coil, logic board, cooling vapor chamber, speakers, and rear shell. Use realistic materials including brushed titanium edges, ceramic back, black glass, copper thermal elements, and blue PCB traces. Add crisp labels and in-image text: "HELIX ONE", "Layered Internal Architecture", "6.7 in OLED", "5,100 mAh", and "Vapor Chamber 3,200 mm2". Label components "Main Camera 50 MP", "Ultrawide 13 MP", "Coil", "Battery", "Logic Board", and "Speaker Module". Keep the composition elegant, technical, and believable, with exact spacing, sharp typography, clean callout leaders, and premium product-visualization quality.
 ```
 
-**Prompt C — Mechanical Keyboard Exploded Assembly**
+**Prompt C: Mechanical Keyboard Exploded Assembly**
 ```text
 Design a crisp exploded-view product illustration of a custom mechanical keyboard named LUMEN K65, shown in three-quarter perspective on a pale gray background with subtle shadow. Separate the layers clearly: keycaps, switches, plate, PCB, foam, gasket mounts, case top, battery module, rotary knob, and case bottom. Use anodized silver, matte black, translucent smoke keycaps, and small teal accent parts. Add clean technical callouts and in-image text reading "LUMEN K65", "Exploded Assembly", "65% Layout", "Hot-Swap PCB", and "3,200 mAh". Include labels for "PBT Keycaps", "Linear Switch", "Aluminum Plate", "Poron Foam", "USB-C", and "Encoder Knob". Show a compact dimension note "317 mm x 112 mm x 31 mm". The composition should feel like an industrial design presentation board: precise spacing, realistic materials, sharp typography, correct labels, and highly legible component hierarchy.
 ```
 
-**Prompt D — Car Powertrain Transparent Cutaway**
+**Prompt D: Car Powertrain Transparent Cutaway**
 ```text
 Create a high-detail transparent cutaway illustration of a fictional hybrid sports coupe powertrain on a dark neutral studio background. Show the vehicle in side profile with semi-transparent bodywork revealing the front electric motor, battery pack, rear combustion engine, transmission tunnel, cooling loops, and rear differential. Use realistic metallic surfaces, matte graphite body panels, orange high-voltage cables, and blue coolant lines. Add clean engineering callouts with crisp in-image text: "Project VELA GT", "Hybrid Powertrain", "System Output 412 kW", "Battery 18.6 kWh", and "0-100 km/h 3.8 s". Label key parts "Inverter", "Motor", "Battery Pack", "Turbo Inline-4", "Radiator", and "Rear Differential". Include a simple legend showing cable colors for "HV", "Coolant", and "Fuel". The rendering should be technically believable, photorealistic where appropriate, sharply annotated, and composed like a premium automotive engineering poster.
 ```
 
-</details>
 
 <a id="gallery-architecture-interior"></a>
 
-<h2 align="center">🏛️ Architecture & Interior</h2>
+
+### 🏛️ Architecture & Interior
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2381,36 +2450,37 @@ Create a high-detail transparent cutaway illustration of a fictional hybrid spor
 
 <p align="center"><sub>Architecture & Interior · 2×2 architectural visualization pad · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all four architecture panels</strong></summary>
 
-**Prompt A — Japanese Minimalist Living Room**
+**📝 Prompts for all four architecture panels**
+
+**Prompt A: Japanese Minimalist Living Room**
 ```text
 Render a serene Japanese minimalist living room interior in photorealistic architectural visualization style, viewed from eye level with a 28 mm lens feel. The space should feature light oak flooring, shoji-inspired sliding panels, low modular seating, a recessed tokonoma niche, linen textures, and soft morning light entering from the left. Use a restrained palette of warm beige, pale oak, charcoal, muted moss green, and rice-paper white. Include subtle in-image text on a small framed floor plan board that reads "Room 6.4 m x 4.8 m" and "AURAE House". Add a low tea table, one ceramic vase, a bonsai-like plant, and indirect cove lighting at 3000 K. Composition should be calm and balanced with strong negative space, realistic shadows, accurate material behavior, and magazine-quality interior rendering. Prioritize photorealism, architectural detail, crisp edges, and tasteful minimalism rather than stylized fantasy.
 ```
 
-**Prompt B — Brutalist Concrete Museum Atrium**
+**Prompt B: Brutalist Concrete Museum Atrium**
 ```text
 Create a photorealistic interior render of a monumental brutalist museum atrium with exposed board-formed concrete, dramatic skylights, long ramps, and massive geometric voids. Viewpoint is slightly low and wide, emphasizing vertical scale and shadow. Use a palette of cool gray concrete, black steel, muted sandstone, pale daylight, and a few rust-colored wayfinding accents. Include sparse signage with crisp in-image text: "Gallery A", "Level 02", and "Atrium 18.0 m". Add a few small human figures for scale, but keep the architecture dominant. The space should include suspended walkways, a central sculpture plinth, and reflected light from polished concrete floors. Composition must feel cinematic yet architecturally precise, with realistic material textures, accurate lighting, controlled contrast, and gallery-quality rendering. Prioritize believable spatial depth, clean geometry, subtle atmospheric perspective, and sharp signage.
 ```
 
-**Prompt C — Mid-Century Modern Office**
+**Prompt C: Mid-Century Modern Office**
 ```text
 Render a sophisticated mid-century modern creative office in photorealistic interior style, with walnut millwork, brass accents, olive upholstery, terrazzo flooring, smoked glass partitions, and large windows casting late-afternoon light. Use a rich palette of walnut brown, olive green, cream, brass gold, and muted terracotta. The composition should show a central executive desk, built-in shelving, a lounge corner, and a wall-mounted planning board. On the board, include subtle in-image text "Studio North", "Q3 Review", and "14:30". Add realistic accessories like drafting tools, books, ceramic lamps, and a record player, but keep the scene curated and uncluttered. Camera angle should feel editorial, around 32 mm, with balanced perspective lines and realistic depth of field. Prioritize tactile materials, believable lighting, clean geometry, and polished architectural-visualization quality with crisp details and intentional composition.
 ```
 
-**Prompt D — Biophilic Biotech Lab**
+**Prompt D: Biophilic Biotech Lab**
 ```text
 Generate a high-end photorealistic render of a future-facing biotech laboratory that integrates biophilic design. Show a bright open lab with glass partitions, living moss walls, hanging plants, pale wood details, white composite worktops, and advanced research equipment. Use a fresh palette of white, sage green, pale oak, stainless steel, and clear cyan monitor accents. Include precise architectural lighting at 4200 K, skylight diffusion, and clean reflections. Add subtle wall graphics with crisp in-image text "HELIX BIO LAB 03", "Clean Zone", and "22 C". The scene should include lab benches, microscopes, sample storage towers, and collaborative seating, arranged with strong spatial clarity. Composition must feel aspirational but credible, with realistic equipment proportions, hygienic surfaces, controlled clutter, and premium visualization quality. Emphasize photorealism, accurate material rendering, clean hierarchy, and an elegant fusion of nature and scientific workspace design.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-scientific-educational"></a>
 
-<h2 align="center">🔬 Scientific & Educational</h2>
+
+### 🔬 Scientific & Educational
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2435,15 +2505,15 @@ Generate a high-end photorealistic render of a future-facing biotech laboratory 
 
 <p align="center"><sub>Scientific & Educational · 1×3 tall anatomy poster panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for human anatomy poster triptych</strong></summary>
 
-**Prompt A — Human Muscular System Poster**
+**📝 Prompts for human anatomy poster triptych**
+
+**Prompt A: Human Muscular System Poster**
 ```text
 Create a clean educational anatomy poster showing the human muscular system in anterior and posterior views on a pale cream background. Use an academic but visually refined style with precise linework, muted reds and umbers for muscle groups, cool gray bones, and thin charcoal labels. Include a centered title with crisp in-image text "Human Muscular System" and a subtitle "Anterior and Posterior Views". Label key structures such as "Deltoid", "Pectoralis Major", "Rectus Abdominis", "Biceps Femoris", "Gastrocnemius", and "Trapezius". Add a compact scale note reading "Adult height reference 175 cm" and a small legend with "Superficial" and "Deep". Keep the composition symmetrical, scientifically accurate in appearance, and suitable for a classroom wall chart. Prioritize correct labels, crisp typography, clean hierarchy, subtle shading, and publication-quality educational clarity without gore or excessive realism.
 ```
 
-**Prompt B — Human Skeletal System Poster**
+**Prompt B: Human Skeletal System Poster**
 ```text
 Create a clean educational anatomy poster showing the human skeletal system in anterior and posterior views on a pale cream background. Use a refined academic wall-chart style with precise bone linework, cool gray and ivory bone shading, charcoal labels, and subtle blue accent rules. Include a centered title with crisp in-image text "Human Skeletal System" and subtitle "Anterior and Posterior Views". Label key structures such as "Skull", "Clavicle", "Sternum", "Humerus", "Radius", "Ulna", "Pelvis", "Femur", "Tibia", and "Fibula". Add a compact scale note reading "Adult height reference 175 cm" and a small legend with "Axial" and "Appendicular". Keep the composition symmetrical, scientifically accurate in appearance, suitable for a classroom wall chart, non-gory, clean, precise, and publication-quality.
 ```
@@ -2456,7 +2526,7 @@ gpt-image \
   -f docs/scientific-educational/human-anatomy-skeletal-poster.png
 ```
 
-**Prompt C — Human Circulatory System Poster**
+**Prompt C: Human Circulatory System Poster**
 ```text
 Create a clean educational anatomy poster showing the human circulatory system in anterior and posterior views on a pale cream background. Use an academic but visually refined medical-wall-chart style with precise vascular linework, muted crimson and deep blue vessels, soft ivory body silhouettes, and thin charcoal labels. Include a centered title with crisp in-image text "Human Circulatory System" and subtitle "Major Arteries and Veins". Label key structures such as "Heart", "Aorta", "Carotid Artery", "Vena Cava", "Pulmonary Artery", "Radial Artery", "Femoral Artery", "Saphenous Vein", and "Capillary Beds". Add a compact legend with "Arteries" and "Veins" plus a note reading "Educational schematic". Keep the composition symmetrical, scientifically accurate in appearance, classroom-safe, non-gory, highly legible, and publication-quality.
 ```
@@ -2469,7 +2539,6 @@ gpt-image \
   -f docs/scientific-educational/human-anatomy-circulatory-poster.png
 ```
 
-</details>
 
 ---
 
@@ -2500,34 +2569,34 @@ gpt-image \
 
 <p align="center"><sub>Scientific & Educational · 2×2 widescreen diagram panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for science diagram panel</strong></summary>
 
-**Prompt A — Periodic Table Spectral Variant**
+**📝 Prompts for science diagram panel**
+
+**Prompt A: Periodic Table Spectral Variant**
 ```text
 Design a distinctive periodic table poster variant where each element tile is colored by fictional emission-spectrum families while preserving clean scientific layout. Use a dark navy background with luminous but disciplined colors: cyan, magenta, amber, lime, and silver-white. Arrange the periodic table accurately with clear periods and groups, including separate lanthanide and actinide rows. Add a crisp title reading "Periodic Table of the Elements" and subtitle "Spectral Classification Variant". Ensure visible labels for representative tiles such as "H 1", "He 2", "C 6", "Fe 26", "Ag 47", and "U 92". Include side legends titled "Alkali", "Transition", "Metalloid", "Noble Gas", and "Actinide". Add small group numbers "1" through "18" and period numbers "1" through "7". The result should feel educational, modern, and highly legible, with precise typography, clean cell alignment, balanced glow effects, and accurate table structure.
 ```
 
-**Prompt B — Tree of Life Poster**
+**Prompt B: Tree of Life Poster**
 ```text
 Generate an elegant scientific poster visualizing a stylized tree of life as a radial phylogeny diagram on an ivory background. Use fine botanical-meets-scientific linework with a restrained palette of moss green, deep teal, amber, plum, and charcoal. The diagram should branch outward from a central root labeled with crisp in-image text "Last Universal Common Ancestor". Main clades should be labeled "Bacteria", "Archaea", and "Eukaryota", with outer branches including "Plants", "Fungi", "Animals", "Protists", and "Cyanobacteria". Add a title at the top reading "Tree of Life" and a subtitle "Simplified Radial Phylogeny". Include a small scale note "Approximate branching only". Keep labels readable and branch geometry balanced, with clean hierarchy and educational clarity. The overall design should feel like a museum-science graphic: structured, accurate in spirit, visually rich, and rendered with crisp text and refined detail.
 ```
 
-**Prompt C — Weather Systems Diagram**
+**Prompt C: Weather Systems Diagram**
 ```text
 Create a polished meteorology infographic showing a mid-latitude cyclone system from a top-down synoptic view. Use a cool palette of ocean blue, cloud white, storm gray, crimson, and cobalt, with smooth contour lines and crisp symbols. Include pressure isobars, cloud bands, warm and cold fronts, arrows for wind direction, and rainfall zones. Add clear in-image text: "Mid-Latitude Cyclone", "Low Pressure 984 hPa", "Warm Front", "Cold Front", and "Occluded Front". Include city labels "Northport", "Elmside", and "Cedar Bay" for context, plus a legend reading "Rain", "Snow", and "Thunderstorm". Show temperature markers "8 C", "14 C", and "21 C" in different air masses. The composition should be educational and publication-ready, with sharp labels, clean hierarchy, accurate diagram conventions, and strong visual readability suitable for a textbook or science exhibit panel.
 ```
 
-**Prompt D — Geological Strata Cross-Section**
+**Prompt D: Geological Strata Cross-Section**
 ```text
 Produce a detailed geological cross-section poster of layered earth strata cutting through a fictional canyon basin. Use a natural scientific palette of sandstone beige, iron oxide red, shale gray, limestone cream, basalt charcoal, and muted green vegetation above ground. Show clearly differentiated layers, a fault line, an aquifer, fossil-bearing beds, and a volcanic intrusion. Add crisp in-image text: "Geological Cross-Section", "Solterra Basin", "Scale 0-500 m", and labels "Sandstone", "Shale", "Limestone", "Coal Seam", "Aquifer", and "Basalt Dike". Include a vertical scale with "0 m", "100 m", "250 m", and "500 m". Add small annotations "Marine fossils" and "Groundwater flow" with arrows. The composition should be highly legible, educational, and neatly diagrammed, with clean linework, correct label placement, balanced annotation density, and publication-quality scientific illustration clarity.
 ```
 
-</details>
 
 <a id="gallery-fashion-editorial"></a>
 
-<h2 align="center">👗 Fashion Editorial</h2>
+
+### 👗 Fashion Editorial
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2558,30 +2627,29 @@ Produce a detailed geological cross-section poster of layered earth strata cutti
 
 <p align="center"><sub>Fashion Editorial · 2×2 same-size portrait palette · Curated plus credited sources</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all four fashion portrait panels</strong></summary>
 
-**Prompt A — Urban Streetwear Lookbook: Shibuya Night**
+**📝 Prompts for all four fashion portrait panels**
+
+**Prompt A: Urban Streetwear Lookbook: Shibuya Night**
 ```text
 Full-body lookbook photography of a model standing in the center of a rain-slicked Shibuya crossing at twilight. The model wears an oversized, multi-pocketed technical puffer jacket in 'Electric Cobalt' with reflective silver detailing, paired with wide-leg cargo trousers in matte black and chunky platform sneakers. The composition is a sharp medium-wide shot using a 35mm lens, capturing the vibrant neon signs of the background blurred into a soft bokeh of pinks and cyans. Lighting is dramatic and directional, sourced from the surrounding digital billboards, creating high-contrast highlights on the jacket's texture. The mood is urban and fast-paced, with a subtle film grain characteristic of Portra 400. The image features a clean vertical layout suitable for a fashion magazine, with the text 'NEO-URBAN' subtly embossed in the corner in a minimalist sans-serif font. No brand logos are visible.
 ```
 
-**Prompt B — Avant-Garde: Organic Surrealism**
+**Prompt B: Avant-Garde: Organic Surrealism**
 ```text
 A high-fashion editorial shot in a surreal desert landscape where the sand is white and the sky is a deep, dark indigo. The model wears an avant-garde garment that appears to be grown from bioluminescent fungi and dried desert vines, featuring intricate organic textures and glowing veins of 'Acid Green'. The silhouette is exaggerated and asymmetrical, blending into the surrounding rock formations. The lighting is otherworldly, with the model illuminated by a soft internal glow from the dress and a faint lunar backlight. The composition is a low-angle shot to make the model appear monumental and god-like. The camera uses a wide-angle lens to capture the vast, empty horizon. The color palette is strictly limited to white, indigo, and bioluminescent green, creating a haunting and futuristic aesthetic that challenges the boundaries of clothing.
 ```
 
-**Prompt C — Muted streetwear studio editorial portrait**
+**Prompt C: Muted streetwear studio editorial portrait**
 ```text
 A high-end studio photoshoot featuring a half-body portrait of a person in their mid-30s to early 40s with a naturally fit build. The subject stands in a relaxed yet confident pose, with a calm, neutral, self-assured expression. They are dressed in modern, minimal casual streetwear, such as a well-fitted t-shirt or a light jacket, using neutral, muted tones. Shot at eye level using an 85mm portrait lens with an aperture of f/2.8, keeping the subject tack sharp while creating a soft, shallow depth of field that gently blurs the background. The lighting is professional studio quality: a softbox key light from the front, subtle fill lighting to balance shadows, and a gentle rim light to separate the subject from the background. Shadows are soft and natural, with accurate, realistic skin tones. The background is a clean studio backdrop with a smooth, minimal texture and a soft neutral gradient, completely distraction-free. The overall style is highly realistic with an editorial fashion portrait look. Color grading is natural and balanced, with no filters or overprocessing. Rendered in ultra-high detail.
 ```
 
-**Prompt D — Eiffel Tower luxury night editorial**
+**Prompt D: Eiffel Tower luxury night editorial**
 ```text
 Dramatic, low-angle ground perspective full-body shot captured with a 50mm lens at f/1.4, featuring a stylish bearded man with slicked-back hair and aviator glasses, wearing tailored high-fashion modern clothing, standing on the platform of Trocadéro at night. He is dressed in a structured black velvet blazer over a black cashmere roll-neck sweater, tailored black trousers, and polished black boots, looking up intently at the fully illuminated Eiffel Tower, which dominates the background. Directly behind him is a deep sapphire blue Bugatti Chiron reflecting the surrounding city lights. One foot is planted on the rear tire, with his body leaning casually back. Use a shallow depth of field, rendering distant Parisian street lights and crowd into creamy bokeh. Spotlighting from city lamps creates dramatic, high-contrast shadows. Photorealistic, cinematic, luxury high-fashion editorial aesthetic.
 ```
 
-</details>
 
 ---
 
@@ -2593,19 +2661,19 @@ Dramatic, low-angle ground perspective full-body shot captured with a 50mm lens 
 
 <p align="center"><sub><code>"square"</code> · <code>"high"</code> · <code>"Curated"</code></sub></p>
 
-<details>
-<summary><strong>📝 Prompts for Y2K Revival: Cyber-Pop Studio Session</strong></summary>
 
-**Prompt A — Y2K Revival: Cyber-Pop Studio Session**
+**📝 Prompts for Y2K Revival: Cyber-Pop Studio Session**
+
+**Prompt A: Y2K Revival: Cyber-Pop Studio Session**
 ```text
 A vibrant Y2K-inspired fashion editorial shot in a studio with a high-gloss white floor and a curved lavender backdrop. The model is styled in a 'Cyber-Pink' velour tracksuit with butterfly motifs, tinted translucent sunglasses, and frosted blue eyeshadow. The lighting is bright and 'bubbly,' using ring lights to create circular catchlights in the eyes and a soft, glowy skin texture reminiscent of early 2000s music videos. The composition is a close-up fish-eye lens shot, distorting the proportions for a playful, energetic effect. Colors are saturated neon greens, hot pinks, and icy blues. Floating around the model are low-poly 3D heart shapes and plastic-textured stars. The text 'GLOSS' is written in a chunky, 3D chrome bubble font across the top. The overall aesthetic is nostalgic, plastic, and hyper-digital.
 ```
 
-</details>
 
 <a id="gallery-fine-art-painting"></a>
 
-<h2 align="center">🎨 Fine Art Painting</h2>
+
+### 🎨 Fine Art Painting
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2626,20 +2694,19 @@ A vibrant Y2K-inspired fashion editorial shot in a studio with a high-gloss whit
 
 <p align="center"><sub>Fine Art Painting · 1×2 widescreen painting panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for landscape and mural painting panel</strong></summary>
 
-**Prompt A — Impressionist Lineage: River at Dusk**
+**📝 Prompts for landscape and mural painting panel**
+
+**Prompt A: Impressionist Lineage: River at Dusk**
 ```text
 A serene landscape painting in the lineage of late 19th-century Impressionism, depicting a wide river reflecting a hazy violet and gold sunset. The water is rendered with short, horizontal dabs of color—'Lavender', 'Pale Peach', and 'Sage Green'—that suggest the gentle ripple of the surface. On the banks, weeping willows are suggested by soft, blurred strokes of dark emerald and charcoal. The atmosphere is thick with moisture and light, where the sky and water seem to merge at the horizon. There are no sharp lines or defined edges; the entire scene is a study of light, color, and atmospheric perspective. The lighting is the fleeting 'blue hour,' where the last rays of sun catch the tips of the waves. The mood is tranquil and meditative, capturing a fleeting moment of natural beauty through a soft, atmospheric lens.
 ```
 
-**Prompt B — Social Realism: The Great Foundry**
+**Prompt B: Social Realism: The Great Foundry**
 ```text
 A grand-scale public mural in the lineage of early 20th-century social realism and Mexican muralism. The scene depicts an industrial foundry where diverse workers are engaged in the heroic labor of forging massive steel gears. The figures are rendered with heavy, rounded forms and powerful muscularity, colored in earthy tones of 'Sienna', 'Slate Grey', and 'Iron Rust'. The composition is dense and rhythmic, filled with the interlocking shapes of machinery, pipes, and human bodies. In the center, a golden glow emanates from a crucible of molten metal, illuminating the faces of the workers with a dramatic 'Fire Orange'. The style is bold and graphic, with strong black outlines and a flattened perspective that emphasizes the collective effort. The mural covers a vast curved wall, suggesting a narrative of progress, unity, and the dignity of the working class.
 ```
 
-</details>
 
 ---
 
@@ -2660,24 +2727,24 @@ A grand-scale public mural in the lineage of early 20th-century social realism a
 
 <p align="center"><sub>Fine Art Painting · mixed-format painting panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for texture and modernist painting panel</strong></summary>
 
-**Prompt A — Vibrant Impasto: Floral Rhythms**
+**📝 Prompts for texture and modernist painting panel**
+
+**Prompt A: Vibrant Impasto: Floral Rhythms**
 ```text
 A vivid oil painting in the lineage of post-impressionist impasto, featuring a dense garden of sunflowers and irises. The paint is applied in thick, rhythmic swirls and heavy dollops with a palette knife, creating a tangible 3D texture on the canvas. The color palette is an explosion of 'Chrome Yellow', 'Deep Ultramarine', and 'Vermilion Red', with visible strokes of white lead to indicate shimmering light. The composition is a tight, chaotic floral arrangement that seems to vibrate with energy. The lighting is harsh midday sun, which creates deep shadows within the ridges of the thick paint. There are no flat surfaces; every inch of the 'canvas' is covered in expressive, turbulent movement. The overall effect is one of raw emotion and the physical presence of the medium, focusing on the light-play over the peaks of the oil paint.
 ```
 
-**Prompt B — Mid-Century Modern: The Blue Pool**
+**Prompt B: Mid-Century Modern: The Blue Pool**
 ```text
 A flat, vibrant acrylic painting in the lineage of 1960s California modernism. The scene features a sparkling turquoise swimming pool in the foreground, with highly stylized white splash lines indicating a recent dive. In the background, a minimalist glass-and-steel house sits under a cloudless 'Cerulean' sky, flanked by two perfectly manicured palm trees. The color palette is dominated by saturated primaries: 'Turquoise Blue', 'Lemon Yellow', and 'Terracotta'. The lighting is the flat, shadowless glare of a Los Angeles afternoon, emphasizing the geometric shapes and clean lines of the architecture. The composition is strictly horizontal and balanced, with a sense of artificial stillness and leisure. The texture is smooth and matte, avoiding any visible brushstrokes to maintain a clean, graphic quality. It is a portrait of a sunny, suburban utopia.
 ```
 
-</details>
 
 <a id="gallery-more-illustration-styles"></a>
 
-<h2 align="center">✏️ More Illustration Styles</h2>
+
+### ✏️ More Illustration Styles
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2698,24 +2765,24 @@ A flat, vibrant acrylic painting in the lineage of 1960s California modernism. T
 
 <p align="center"><sub>More Illustration Styles · 1×2 selected style panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for selected illustration-style pair</strong></summary>
 
-**Prompt A — Chibi Style: The Starry Bakery**
+**📝 Prompts for selected illustration-style pair**
+
+**Prompt A: Chibi Style: The Starry Bakery**
 ```text
 A hyper-cute 'Q-style' or chibi illustration of a tiny, magical bakery run by a group of small forest animals. The characters have oversized heads, large twinkling eyes, and tiny limbs, dressed in miniature baker hats and aprons. They are decorating giant, glowing cupcakes that look like planets. The color palette is 'Pastel Rainbow': mint, strawberry pink, lavender, and lemon. The line art is soft and rounded, in a dark chocolate brown rather than black. The background is a cozy, rounded kitchen with jars of sparkling stardust and windows looking out onto a crescent moon. The lighting is warm and sparkly, with many small 'twinkle' effects and soft white glows around the pastries. The mood is sugary-sweet, whimsical, and extremely comforting, designed for a sticker set or a children's book.
 ```
 
-**Prompt B — Sticker Design: Cyber-Explorer Club**
+**Prompt B: Sticker Design: Cyber-Explorer Club**
 ```text
 A collection of five high-quality die-cut sticker designs arranged on a dark carbon-fiber background. The central sticker is a circular badge featuring a stylized astronaut helmet with the text 'EXPLORE' in a bold, futuristic font. The other stickers include a retro-style rocket, a planet with rings, and a lightning bolt. The art style is 'Neo-Traditional Sticker,' with thick white borders and vibrant, saturated colors. A 'holographic' texture overlay is applied to certain areas, creating a rainbow-sheen effect that shifts with the light. The lighting features bright specular highlights to give the stickers a 3D, plastic, and slightly glossy feel. The colors are 'Electric Purple', 'Cyan', and 'Neon Yellow'. Each sticker has a subtle drop shadow to make it appear as if it's peeling slightly off the surface.
 ```
 
-</details>
 
 <a id="gallery-cinematic-film-references"></a>
 
-<h2 align="center">🎥 Cinematic Film References</h2>
+
+### 🎥 Cinematic Film References
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2754,46 +2821,47 @@ A collection of five high-quality die-cut sticker designs arranged on a dark car
 
 <p align="center"><sub>Cinematic Film References · 2×3 cinematic palette · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all six cinematic panels</strong></summary>
 
-**Prompt A — Symmetric Pastel: The Grand Conservatory**
+**📝 Prompts for all six cinematic panels**
+
+**Prompt A: Symmetric Pastel: The Grand Conservatory**
 ```text
 A perfectly symmetrical, wide-angle cinematic shot in the lineage of Wes Anderson's whimsical aesthetic. The scene is a grand glass conservatory filled with exotic plants and pink flamingos, centered on a perfectly placed yellow velvet sofa. The color palette is a strict pastel scheme of 'Millennial Pink', 'Pistachio Green', and 'Mustard Yellow'. Every element in the frame is meticulously arranged, with a flat, front-on perspective that feels like a dollhouse. The lighting is soft and even, with no harsh shadows, giving the scene a surreal, painterly quality. In the center of the frame, a man in a lavender bellhop uniform stands perfectly still, holding a single red rose. The camera is a vintage Panavision, capturing a crisp, detailed image with a slight, nostalgic warmth. The mood is quirky, charming, and highly controlled, emphasizing the beauty of obsessive organization.
 ```
 
-**Prompt B — Monolithic Scifi: The Obsidian Gate**
+**Prompt B: Monolithic Scifi: The Obsidian Gate**
 ```text
 A breathtaking cinematic wide shot in the lineage of Denis Villeneuve's monolithic sci-fi. A lone, tiny figure stands before a gargantuan, featureless obsidian slab that rises miles into a dusty orange sky. The scale is incomprehensible, making the person look like a grain of sand. The environment is a vast, flat salt plain under a hazy, dim sun. The lighting is low-contrast and atmospheric, with the monolith's surface reflecting a dull, oily sheen. The color palette is 'Industrial Monochrome': deep blacks, slate greys, and a muted, sandy ochre. There is a sense of immense weight and ancient silence. The camera uses a wide-angle lens with a deep focus to emphasize the terrifying scale of the structure. The mood is one of awe, dread, and the sublime mystery of an advanced, alien intelligence. Minimalist and brutalist in design.
 ```
 
-**Prompt C — Dreamscape: The Floating Garden**
+**Prompt C: Dreamscape: The Floating Garden**
 ```text
 A lush, hand-painted cinematic frame in the lineage of Hayao Miyazaki's dreamlike animation. The scene features a series of small, grassy islands floating in a sea of puffy, white cumulus clouds under a brilliant turquoise sky. Ancient stone ruins covered in vibrant 'Emerald Green' moss sit among flowering fruit trees. A gentle wind is visible through the swaying of long grass and the flight of white birds. The lighting is the bright, optimistic clarity of a summer morning, with soft, painted shadows and a gentle glow on every surface. The color palette is rich and natural: cerulean, spring green, and blossom pink. The composition is open and airy, with a sense of infinite wonder and peace. The textures have a soft, gouache-like quality, with every leaf and blade of grass feeling alive and cared for. It is a world of pure imagination and environmental harmony.
 ```
 
-**Prompt D — Slow Cinema: The Misty Orchard**
+**Prompt D: Slow Cinema: The Misty Orchard**
 ```text
 A contemplative, long-take cinematic frame in the lineage of Tarkovsky's slow cinema. A dense, silver mist clings to a neglected apple orchard at dawn. In the center, a simple wooden table with a single glass of water sits among the tall, wet grass. The colors are nearly monochromatic, dominated by 'Mossy Green', 'Cold Grey', and 'Damp Brown', with a single spark of amber from a distant lantern. The lighting is natural and melancholy, filtered through the thick fog and the canopy of trees. There is a profound sense of time passing, silence, and spiritual weight. The camera is static, with a slow, almost imperceptible zoom. The textures are tangible: the rot on the wood, the droplets of dew on the glass, the dampness of the air. The mood is philosophical, lonely, and deeply grounded in the natural world and the memory of a home.
 ```
 
-**Prompt E — Neo-Noir: The Orange Fog**
+**Prompt E: Neo-Noir: The Orange Fog**
 ```text
 A cinematic wide shot in the lineage of Blade Runner 2049, depicting a futuristic city buried in a thick, toxic orange radioactive fog. The silhouettes of crumbling, ancient statues and jagged skyscrapers are barely visible through the haze. A lone hover-vehicle with blue thruster lights cuts through the orange gloom, creating a sharp color contrast. The lighting is oppressive and diffused, with no visible sun, only a constant, eerie orange glow that flattens all features. The color palette is a striking 'Amber and Cobalt' duo-tone. The composition is low-angle, looking up at the oppressive structures of the city. The camera uses a 35mm anamorphic lens, creating a cinematic wide aspect ratio and subtle lens flares. The mood is apocalyptic, lonely, and visually stunning in its desolation, focusing on the atmospheric density and the scale of the ruins.
 ```
 
-**Prompt F — Expressionist Noir: The Clockwork Alley**
+**Prompt F: Expressionist Noir: The Clockwork Alley**
 ```text
 A dramatic cinematic wide frame inspired by German Expressionist noir and early silent-film set design, showing a rain-slick clockwork alley at midnight. Tall crooked buildings lean inward like theatrical flats, casting jagged triangular shadows across wet cobblestones. In the center, a solitary courier in a long charcoal coat carries a small glowing brass automaton bird in a glass cage. The palette is deep ink black, tarnished brass, bone white, and one controlled accent of crimson from a distant theatre sign reading "MIDNIGHT COURIER". Lighting is high-contrast chiaroscuro with hard backlight, steam from vents, reflected puddles, and sharp silhouettes. Camera: 32mm anamorphic wide shot, low angle, strong leading lines, deep focus, subtle film grain. The scene should feel like a premium production still: surreal, graphic, moody, and meticulously composed, not horror-gory, no real person likeness.
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-beauty-lifestyle"></a>
 
-<h2 align="center">💄 Beauty & Lifestyle</h2>
+
+### 💄 Beauty & Lifestyle
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2814,26 +2882,27 @@ A dramatic cinematic wide frame inspired by German Expressionist noir and early 
 
 <p align="center"><sub>Beauty & Lifestyle · 1×2 curated lifestyle palette · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for both beauty lifestyle panels</strong></summary>
 
-**Prompt A — Quiet-luxury skincare morning tray**
+**📝 Prompts for both beauty lifestyle panels**
+
+**Prompt A: Quiet-luxury skincare morning tray**
 ```text
 Create a 3:4 vertical beauty lifestyle photograph for a premium skincare morning routine. Scene: a travertine bathroom counter beside a soft frosted window, with a minimal glass serum bottle, ceramic cleanser tube, cream jar, folded linen towel, jade roller, small dish of pearl hair clips, and a single dewy white camellia flower. Lighting: natural morning side light, gentle reflections, realistic glass thickness, soft shadows, clean negative space. Aesthetic: quiet luxury, Japanese minimalism meets modern spa editorial, cream / warm stone / translucent pale green palette. No visible brand logos, no readable fake labels except a tiny generic mark "AM ROUTINE", no human face, no clutter, no overdone CGI shine.
 ```
 
-**Prompt B — Fragrance evening ritual vanity**
+**Prompt B: Fragrance evening ritual vanity**
 ```text
 Create a portrait-oriented premium beauty and lifestyle editorial image for a boutique fragrance evening ritual. Scene: a warm marble vanity beside a softly lit bedroom window at blue hour, with two sculptural perfume bottles, a silk ribbon, pearl hair pins, a small handwritten note, a crystal glass of sparkling water, and a few dewy white flowers. Styling should feel quiet-luxury, feminine, modern, and aspirational, but natural rather than overproduced. Use a palette of champagne gold, warm ivory, dusty rose, soft lavender shadows, and clear glass highlights. Lighting: candle glow mixed with cool evening window light, glossy reflections on marble, shallow depth of field, premium product-photography realism. Composition: vertical magazine still life, elegant negative space, no brand logos, no real-person likeness, no clutter, no text except a tiny tasteful note reading "EVENING RITUAL".
 ```
 
-</details>
 
 ---
 
+
 <a id="gallery-events-experience"></a>
 
-<h2 align="center">🎟️ Events & Experience</h2>
+
+### 🎟️ Events & Experience
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2854,10 +2923,10 @@ Create a portrait-oriented premium beauty and lifestyle editorial image for a bo
 
 <p align="center"><sub>Events & Experience · 1×2 wayfinding map panel</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for visitor navigation map panel</strong></summary>
 
-**Prompt A — Zoo visitor wayfinding map**
+**📝 Prompts for visitor navigation map panel**
+
+**Prompt A: Zoo visitor wayfinding map**
 ```text
 Design a polished visitor wayfinding map for a fictional modern city zoo named "RIVERGATE ZOO". Landscape 3:2 orientation (1536×1024), friendly illustrated navigation-map style, clean paths and zones, readable labels, cute animal icons, and practical visitor signage. Include crisp in-image text: "RIVERGATE ZOO", "Main Gate", "Panda Forest", "Savanna Loop", "Aviary", "Reptile House", "Kids Farm", "Cafe", "Restrooms", "First Aid", and "Exit". Show color-coded walking routes, numbered landmarks, small legend, north arrow, accessibility icons, and soft botanical details. Palette: warm cream paper, zoo green, sky blue, coral, amber, and charcoal labels. Make it charming, useful, and map-like rather than a generic poster; avoid fake sponsor logos and cluttered microtext.
 ```
@@ -2870,7 +2939,7 @@ gpt-image \
   -f docs/events-experience/zoo-visitor-wayfinding-map.png
 ```
 
-**Prompt B — Huashan 5A scenic wayfinding map**
+**Prompt B: Huashan 5A scenic wayfinding map**
 ```text
 Design a polished Chinese 5A scenic-area visitor navigation map for Huashan, titled with crisp Chinese text "华山游览导览图" and subtitle "国家5A级旅游景区". Landscape 3:2 orientation (1536×1024), premium illustrated map style for a visitor center brochure. Show dramatic mountain ridges, cable car routes, trail paths, scenic nodes, and safety icons. Include readable labels: "北峰", "西峰", "南峰", "东峰", "中峰", "游客中心", "索道", "栈道", "观景台", "卫生间", "急救点". Add a small legend, route colors, elevation hints, north arrow, and a compact note "请量力而行 注意安全". Palette: ink-wash mountain gray, pine green, sunrise gold, cinnabar red route marks, and clean black Chinese typography. Make it practical, beautiful, culturally Chinese, and suitable for a tourism wayfinding panel; no fake official seals, no sponsor logos.
 ```
@@ -2883,11 +2952,11 @@ gpt-image \
   -f docs/events-experience/huashan-5a-scenic-wayfinding-map.png
 ```
 
-</details>
 
 <a id="gallery-tattoo-design"></a>
 
-<h2 align="center">🖋️ Tattoo Design</h2>
+
+### 🖋️ Tattoo Design
 
 <p align="right"><sub><a href="#gallery-index"><kbd>↑ Gallery index</kbd></a></sub></p>
 
@@ -2918,52 +2987,33 @@ gpt-image \
 
 <p align="center"><sub>Tattoo Design · 2×2 tattoo flash panel · Curated</sub></p>
 
-<details>
-<summary><strong>📝 Prompts for all four tattoo design panels</strong></summary>
 
-**Prompt A — Realistic black-and-grey sleeve study**
+**📝 Prompts for all four tattoo design panels**
+
+**Prompt A: Realistic black-and-grey sleeve study**
 ```text
 Create a portrait tattoo design sheet for a realistic black-and-grey forearm sleeve. Subject: a highly detailed raven skull nested with realistic peonies, smoke ribbons, tiny moths, and cracked marble fragments. Present it as premium tattoo flash on warm off-white paper with a faint arm-placement silhouette behind the main artwork. Style: ultra-realistic tattoo shading, smooth dotwork gradients, crisp stencil-ready outlines, high contrast but not muddy, strong negative-space gaps for skin breathing room. Include small layout notes in clean text: "BLACK & GREY" / "FOREARM SLEEVE" / "NEGATIVE SPACE". No gore, no body horror, no brand logos, no actual person, no photorealistic skin photo; make it a professional tattoo design presentation.
 ```
 
-**Prompt B — Color neo-traditional fox and flora**
+**Prompt B: Color neo-traditional fox and flora**
 ```text
 Create a colorful neo-traditional tattoo flash poster. Central subject: a clever red fox head framed by chrysanthemum, peony, bluebells, small sparks, and decorative leaves. Use bold clean outlines, saturated but tasteful color fills, limited palette of vermilion, teal, golden ochre, deep navy, and cream highlights. Composition: symmetrical badge-like upper-arm tattoo design with separate small color swatches and a tiny stencil thumbnail on the side. Text must be small and readable: "NEO TRADITIONAL" / "FOX & FLORA". Make it vibrant, tattooable, and polished, with visible paper grain. Avoid cartoon mascot feel, avoid clutter, avoid gradients that would not tattoo well, no brand logos.
 ```
 
-**Prompt C — Japanese traditional dragon and koi back piece**
+**Prompt C: Japanese traditional dragon and koi back piece**
 ```text
 Create a Japanese traditional irezumi tattoo design poster for a full back piece. Subject: a powerful coiling dragon above a koi fish leaping through stylized waves, maple leaves, wind bars, and storm clouds. Use traditional Japanese tattoo aesthetics: bold black linework, strong flat color blocks, deep indigo waves, red-orange maple leaves, emerald dragon scales, cream highlights, and rhythmic negative space. Present as a clean tattoo flash / back-piece layout on rice-paper texture, not on a real person. Include small calligraphy-style labels: "龍" and "鯉". Make the composition balanced, tattooable, dramatic, and respectful of classic irezumi design language. Avoid anime style, avoid modern cyberpunk, avoid random fake kanji clutter.
 ```
 
-**Prompt D — Dark surrealist moth cathedral**
+**Prompt D: Dark surrealist moth cathedral**
 ```text
 Create a dark surrealist tattoo design sheet in portrait format. Subject: a giant lunar moth with eye-like wing markings, its body transforming into a tiny gothic cathedral, black roses, thorn halos, melting moon phases, and a staircase fading into mist. Style: dark surrealism meets fine-line tattoo and blackwork, with selective muted color accents in bruised violet, cold blue, and oxidized gold. Composition: vertical sternum-or-back tattoo concept with clean stencil-ready silhouette, ornamental framing, and clear negative-space breaks. Include small readable labels: "DARK SURREAL" / "MOTH CATHEDRAL". Mood: mysterious and elegant, not gore. Avoid horror splatter, avoid excessive tiny details that cannot tattoo, no real human body, no brand logos.
 ```
 
-</details>
 
+<a id="community"></a>
 
-<a href="https://www.star-history.com/?repos=wuyoscar%2Fgpt_image_2_skill&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&theme=dark&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
- </picture>
-</a>
-
-
-## 🙏 Acknowledgments
-
-This gallery stands on top of excellent public work and community exploration:
-
-- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
-- [Anil-matcha/Awesome-GPT-Image-2-API-Prompts](https://github.com/Anil-matcha/Awesome-GPT-Image-2-API-Prompts)
-- [EvoLinkAI/awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)
-- [YouMind-OpenLab/awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
-- [ZeroLu/awesome-gpt-image](https://github.com/ZeroLu/awesome-gpt-image)
-- [LINUX DO](https://linux.do)
-## 🤝 Contributing
+## 🤝 Contribute
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before adding prompts, images, categories, or runtime integrations.
 
@@ -2974,7 +3024,47 @@ Community standards:
 - [Support](SUPPORT.md)
 - [Pull request template](.github/PULL_REQUEST_TEMPLATE.md)
 
+### 🙏 Thanks
+
+Thanks to the projects and communities below for sharing their work:
+
+- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
+- [Anil-matcha/Awesome-GPT-Image-2-API-Prompts](https://github.com/Anil-matcha/Awesome-GPT-Image-2-API-Prompts)
+- [EvoLinkAI/awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)
+- [YouMind-OpenLab/awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
+- [ZeroLu/awesome-gpt-image](https://github.com/ZeroLu/awesome-gpt-image)
+- [LINUX DO](https://linux.do)
+- [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) (README layout reference).
+
+<details>
+<summary><strong>Community activity</strong></summary>
+
+<p align="center">
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20Agents&color=8AA399" alt="oosmetrics Top 1 in Agents by velocity"/></a>
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20LLMs&color=8798B5" alt="oosmetrics Top 1 in LLMs by velocity"/></a>
+  <a href="https://oosmetrics.com/repo/wuyoscar/gpt_image_2_skill"><img src="https://img.shields.io/static/v1?label=oosmetrics&message=Top%201%20CLI&color=A58B9D" alt="oosmetrics Top 1 in CLI by velocity"/></a>
+</p>
+
+<p align="center">
+  <a href="https://starmapper.bruniaux.com/wuyoscar/GPT-Image2-Skill?utm_source=map-embed&utm_medium=readme&utm_campaign=stargazer-map">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill?theme=light" />
+      <img alt="Stargazer map for GPT-Image2-Skill" src="https://starmapper.bruniaux.com/api/map-image/wuyoscar/GPT-Image2-Skill" width="100%" />
+    </picture>
+  </a>
+</p>
+
+<a href="https://www.star-history.com/?repos=wuyoscar%2Fgpt_image_2_skill&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&theme=dark&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=wuyoscar/gpt_image_2_skill&type=date&legend=top-left&sealed_token=AMPlH2pDA70J58rYTnqfwEso2sIVFwUfPziEjl1YFH9rg3tOmWADGEOgdy2E2cycN93N2GdMj9sG5ZyOmdvJM8EBEfuIjO35tqxluAhs4xEoontfXRQsNA" />
+ </picture>
+</a>
+
+</details>
 
 ## 📄 License
 
-This project is released under the [MIT License](LICENSE). Please still preserve attribution for outside-source prompts and respect the original authors linked in each gallery entry.
+Released under the [MIT License](LICENSE). Preserve the author and source credits attached to gallery entries.

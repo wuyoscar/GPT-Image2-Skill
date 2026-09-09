@@ -19,6 +19,14 @@ Load this file only when the request matches this category. For cross-cutting wr
 Make it a winter evening with heavy snowfall, snow dusted on the board and pieces, breath vapor in the air, cold blue-grey lighting, chess position still clearly readable. Preserve the original chess-board composition and landscape aspect ratio exactly; keep the board and pieces aligned and readable.
 ```
 
+- Sunburst edit of the original chess image using the same prompt: `docs/edit-endpoint-showcase/chess-winter-sunburst.png`
+
+  <img src="../../../docs/edit-endpoint-showcase/chess-winter-sunburst.png" alt="Sunburst winter edit of the original chess-board image" width="420"/>
+- Output metadata: `gpt-image-2.5-sunburst` · `high` · `1536x1024` · `2026-09-09`
+- Prompt attribution: Author: OpenAI · Source: [OpenAI Cookbook](https://github.com/openai/openai-cookbook/blob/main/examples/multimodal/image-gen-models-prompting-guide.ipynb)
+- Visual QA: Winter effects are visible, and the visible board and piece arrangement appears preserved on visual inspection; this is not a pixel-exact preservation check.
+- Run evidence: [Sunburst sample runs](../../../docs/sunburst-samples.md).
+
 ### No. 102 · Tea poster → metro lightbox mockup
 
 - Image: `docs/edit-endpoint-showcase/tea-poster-metro-lightbox.png`

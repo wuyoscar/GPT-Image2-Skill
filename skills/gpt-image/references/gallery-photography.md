@@ -58,7 +58,7 @@ Lighting: late-afternoon golden hour, warm directional backlight through the can
 
 - Image: `docs/photography/natural-sns-portrait.png`
 
-  <img src="../../../../docs/photography/natural-sns-portrait.png" alt="Natural upper-body mirror selfie" width="420"/>
+  <img src="../../../docs/photography/natural-sns-portrait.png" alt="Natural upper-body mirror selfie" width="420"/>
 - Metadata: Photography · `portrait` · `1087x1447` · Author: @LunarXuan · Source: [GitHub](https://github.com/LunarXuan/natural-sns-portrait)
 
 English realism guidelines from the source skill, paired with a contributor-selected mirror-selfie example. Use these guidelines alongside a scene, outfit, pose, and framing request; they are not the complete generation prompt for this image.

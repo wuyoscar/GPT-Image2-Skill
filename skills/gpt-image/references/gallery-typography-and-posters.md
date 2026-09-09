@@ -61,6 +61,14 @@ Exact typography:
 Palette: cream, charcoal black, crimson red, mustard-yellow accent. Pure flat graphic design, no photo elements, no gradients, no 3D — in the lineage of Bass's "Anatomy of a Murder", "Vertigo", and "The Man with the Golden Arm".
 ```
 
+- Sunburst output using the same prompt: `docs/typography-posters/saul-bass-sunburst.png`
+
+  <img src="../../../docs/typography-posters/saul-bass-sunburst.png" alt="Sunburst thriller poster with the title THE LAST HEIR" width="420"/>
+- Output metadata: `gpt-image-2.5-sunburst` · `high` · `768x1024` · `2026-09-09`
+- Prompt attribution: Curated
+- Visual QA: The title, tagline, and credit wording are readable and correct; the knife-shaped shadow points down-right rather than up into the title as requested.
+- Run evidence: [Sunburst sample runs](../../../docs/sunburst-samples.md).
+
 ### No. 36 · Vogue-style fashion magazine cover
 
 - Image: `docs/typography-posters/vogue-cover.png`
