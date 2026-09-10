@@ -2,11 +2,11 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#     "openai>=1.55",
+#     "openai>=2.32.0",
 #     "python-dotenv>=1.0",
 # ]
 # ///
-"""General-purpose CLI for OpenAI GPT Image 2.
+"""General-purpose CLI for OpenAI GPT Image 2 and 2.5.
 
 Mirrors the two official endpoints from the OpenAI cookbook using the official
 `openai` Python SDK:
@@ -14,11 +14,11 @@ Mirrors the two official endpoints from the OpenAI cookbook using the official
     client.images.generate(...)   — text → image          (no  -i)
     client.images.edit(...)       — text + image(s) → image (with -i; mask via -m)
 
-Every documented parameter is exposed as a flag. Reads OPENAI_API_KEY from
+Common generation and editing parameters are exposed as flags. Reads OPENAI_API_KEY from
 process env, then .env, then ~/.env without overriding existing env. The
 optional Atlas Cloud text-to-image provider reads ATLASCLOUD_API_KEY or
-ATLAS_CLOUD_API_KEY and uses Atlas Cloud's async media API. Writes the returned
-PNG/JPEG/WebP bytes to disk and prints the output path(s) on stdout.
+ATLAS_CLOUD_API_KEY and uses Atlas Cloud's async media API. Writes the
+returned PNG/JPEG/WebP bytes to disk and prints the output path(s) on stdout.
 
 Exit codes: 0 success, 1 API error, 2 bad args.
 
@@ -38,7 +38,7 @@ Examples:
     # Alpha-channel inpaint (mask opaque = keep, transparent = regenerate)
     gpt-image -p "replace sky with aurora" -i photo.jpg -m sky_mask.png -f aurora.png
 
-    # Grid of 4, transparent background, webp
+    # Grid of 4, opaque background, webp
     gpt-image -p "isometric chair, minimalist" -n 4 --background opaque --format webp
 
     # Skill launcher (same implementation, installed skill-folder path)
@@ -111,13 +111,13 @@ def resolve_size(value: str) -> str:
 
 
 def model_rejects_input_fidelity(model: str) -> bool:
-    return model.strip().lower().startswith("gpt-image-2")
+    return re.fullmatch(r"gpt-image-2(?:-\d{4}-\d{2}-\d{2})?", model) is not None
 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="gpt-image",
-        description="Call OpenAI GPT Image 2 (generations or edits) via the official openai Python SDK.",
+        description="Call OpenAI GPT Image 2/2.5 (generations or edits) via the official openai Python SDK.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     p.add_argument("-p", "--prompt", required=True, help="Text prompt / edit instruction.")
@@ -145,7 +145,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--model",
         default=DEFAULT_MODEL,
-        help=f"Model ID. Defaults to {DEFAULT_MODEL} for openai and {ATLAS_CLOUD_DEFAULT_MODEL} for atlascloud.",
+        help=f"Model ID: gpt-image-2.5-flare, gpt-image-2.5-sunburst, or {DEFAULT_MODEL} "
+             f"(compatibility default); {ATLAS_CLOUD_DEFAULT_MODEL} for --provider atlascloud.",
     )
     p.add_argument(
         "--size", default=DEFAULT_SIZE,
@@ -154,14 +155,14 @@ def parse_args() -> argparse.Namespace:
              "(1k, 2k, 4k, portrait, landscape, square, wide, tall). Default 1024x1024.",
     )
     p.add_argument(
-        "--quality", default="high", choices=["auto", "low", "medium", "high"],
-        help="Rendering fidelity / budget knob (cost scales ~10× per step). Default high. "
-        "Use low for cheap drafts, medium for normal exploration, high for final text-heavy or shipping-facing assets.",
+        "--quality", default="high", choices=["auto", "low", "medium", "high", "xhigh", "max"],
+        help="Rendering fidelity / budget knob. Default high; xhigh/max require GPT Image 2.5. "
+             "Use low for cheap drafts, medium for normal exploration, high for final text-heavy or shipping-facing assets.",
     )
     p.add_argument("-n", "--n", type=int, default=1, help="Number of images to return. Default 1.")
     p.add_argument(
-        "--background", default=None, choices=["auto", "opaque"],
-        help="`opaque` disables transparency. Default API-side auto.",
+        "--background", default=None, choices=["auto", "opaque", "transparent"],
+        help="`transparent` requires png or webp. Default API-side auto.",
     )
     p.add_argument(
         "--moderation", default=DEFAULT_MODERATION, choices=["auto", "low"],
@@ -169,7 +170,7 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--input-fidelity", dest="input_fidelity", default=None, choices=["low", "high"],
-        help="Edits only. gpt-image-2 rejects this parameter, so the CLI drops it locally before calling the API.",
+        help="Edits only; omitted by default. Dropped for gpt-image-2; explicit 2.5 values are passed to the API (support unverified).",
     )
     p.add_argument(
         "--format", dest="output_format", default=None,
@@ -196,7 +197,37 @@ def parse_args() -> argparse.Namespace:
         default=POLL_TIMEOUT_SECONDS,
         help=f"Maximum seconds to wait for an Atlas Cloud prediction. Default {POLL_TIMEOUT_SECONDS:g}.",
     )
-    return p.parse_args()
+    args = p.parse_args()
+    # Provider-independent checks: these constrain the flags themselves, not a
+    # particular model id.
+    if args.background == "transparent" and args.output_format == "jpeg":
+        p.error("--background transparent requires --format png or webp")
+    if not 1 <= args.n <= 10:
+        p.error("--n must be between 1 and 10")
+    if args.output_compression is not None and not 0 <= args.output_compression <= 100:
+        p.error("--compression must be between 0 and 100")
+    if args.mask and not args.image:
+        p.error("--mask requires --image (edits endpoint only)")
+    if args.provider == "atlascloud":
+        # The remaining checks are phrased in terms of OpenAI model ids, which an
+        # Atlas model id never matches; applying them here would reject valid
+        # requests with advice about --model gpt-image-2.5-*. The Atlas route
+        # validates its own unsupported flags in call_atlascloud_generate.
+        return args
+    image25 = re.fullmatch(r"gpt-image-2\.5-(?:flare|sunburst)(?:-\d{4}-\d{2}-\d{2})?", args.model) is not None
+    if args.quality in ("xhigh", "max") and not image25:
+        p.error("--quality xhigh/max requires --model gpt-image-2.5-flare or gpt-image-2.5-sunburst")
+    size = resolve_size(args.size)
+    if (image25 or model_rejects_input_fidelity(args.model)) and size != "auto":
+        match = re.fullmatch(r"(\d+)x(\d+)", size)
+        if not match:
+            p.error("--size must be auto, a size shortcut, or WIDTHxHEIGHT")
+        width, height = map(int, match.groups())
+        if (min(width, height) <= 0 or max(width, height) > 3840
+                or width % 16 or height % 16 or max(width, height) > 3 * min(width, height)
+                or not 655360 <= width * height <= 8294400):
+            p.error("--size requires 16px multiples, edges <=3840px, aspect ratio <=3:1, and 655360–8294400 pixels")
+    return args
 
 
 def _filter_none(d: dict[str, Any]) -> dict[str, Any]:
@@ -214,7 +245,7 @@ def call_generate(client: OpenAI, args: argparse.Namespace) -> Any:
         "background": args.background,
         "moderation": args.moderation,
         "output_format": args.output_format,
-        "output_compression": args.output_compression,
+        "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
         "user": args.user,
     }))
 
@@ -250,7 +281,7 @@ def call_edit(client: OpenAI, args: argparse.Namespace) -> Any:
             "background": args.background,
             "input_fidelity": input_fidelity,
             "output_format": args.output_format,
-            "output_compression": args.output_compression,
+            "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
             "user": args.user,
         }))
     finally:
@@ -447,10 +478,6 @@ def main() -> int:
         )
         return 2
 
-    if args.mask and not args.image:
-        print("error: --mask requires --image (edits endpoint only)", file=sys.stderr)
-        return 2
-
     ext = args.output_format or "png"
     out_path = Path(args.file).expanduser().resolve() if args.file else default_output_path(args.prompt, ext)
 
@@ -469,7 +496,7 @@ def main() -> int:
             print(p)
         return 0
 
-    client = OpenAI()  # auto-reads OPENAI_API_KEY
+    client = OpenAI(max_retries=0)  # No hidden retries of potentially billable generation requests.
 
     try:
         result = call_edit(client, args) if args.image else call_generate(client, args)

@@ -26,7 +26,7 @@ Cross-cutting principles distilled from the full 162-prompt Gallery Atlas. Use t
 
 ## 0. Use the Reference Gallery before writing from scratch
 
-Before drafting a prompt, open `gallery.md` as the category index, then read 3–8 nearby cases from the matching `gallery-<category>.md` file. The skill should not behave like a bare CLI wrapper: it should remix the repo's collected patterns.
+For Image 2's gallery-first workflow, open `gallery.md`, then read nearby cases in the matching category. For 2.5, use only the craft section needed; do not restart a gallery search or load the whole checklist.
 
 Fast routing examples:
 - Anime/manga or multi-character boards → No. 1–12.
