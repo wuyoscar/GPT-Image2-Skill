@@ -181,6 +181,16 @@ gpt-image --model gpt-image-2.5-flare -p "晚上10点的逼真便利店" --size 
 
 底层实现：`POST /v1/images/generations`，传入显式选择的模型。
 
+### Atlas Cloud 文本 → 图片（可选）
+
+```bash
+export ATLASCLOUD_API_KEY="your-atlascloud-api-key"
+gpt-image --provider atlascloud -p "晚上10点的逼真便利店" \
+  --size 1k --quality high -f store.png
+```
+
+底层实现：`POST /api/v1/model/generateImage`，使用 `model=openai/gpt-image-2/text-to-image`，随后轮询 prediction 结果。该 provider 目前只覆盖文本生成图片；参考图编辑和 inpainting 仍走 OpenAI provider。
+
 ### 文字 + 参考图像 → 图像（编辑）
 
 ```bash
@@ -336,7 +346,7 @@ uv tool upgrade gpt-image-cli
 
 </details>
 
-按 process env、`.env`、`~/.env` 的顺序读取 `OPENAI_API_KEY`，且不会覆盖已经设置好的环境变量。
+按 process env、`.env`、`~/.env` 的顺序读取 `OPENAI_API_KEY`，且不会覆盖已经设置好的环境变量。可选的 Atlas Cloud 文生图路径会读取 `ATLASCLOUD_API_KEY` 或 `ATLAS_CLOUD_API_KEY`。
 
 > **API Key：** CLI 会依次读取进程环境、`.env` 和 `~/.env`。要避免使用本地 Key，请检查这三处；`unset OPENAI_API_KEY` 只清除进程变量。Codex 用户也可以选择平台管理的内置生图工具。
 
@@ -355,7 +365,8 @@ uv tool upgrade gpt-image-cli
 | 标志 | 取值 | 默认值 | 适用范围 | 备注 |
 |---|---|---|---|---|
 | `-p, --prompt` | 字符串 | 必需 | 两者 | 完整的提示文本。 |
-| `--model` | 上述精确模型 ID | `gpt-image-2` | 两者 | Skill 确认模型后始终显式传入；CLI 默认值保持兼容。 |
+| `--provider` | `openai` · `atlascloud` | `openai` | 生成 | `atlascloud` 使用 Atlas Cloud 异步文生图 API，并读取 `ATLASCLOUD_API_KEY`。 |
+| `--model` | 上述精确模型 ID | `gpt-image-2` | 两者 | Skill 确认模型后始终显式传入；CLI 默认值保持兼容。使用 `--provider atlascloud` 时，默认映射为 `openai/gpt-image-2/text-to-image`。 |
 | `-f, --file` | 路径 | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | 两者 | 明确输出路径。 |
 | `-i, --image` | 路径（可重复） | 不传 | 编辑 | 存在时走 `/v1/images/edits` 路由。 |
 | `-m, --mask` | 路径（PNG，带alpha通道） | 不传 | 编辑 | 不透明 = 保留，透明 = 重新生成。需要 `-i`。 |

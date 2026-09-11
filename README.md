@@ -181,6 +181,16 @@ gpt-image --model gpt-image-2.5-flare -p "a photorealistic convenience store at 
 
 Under the hood: `POST /v1/images/generations` with the explicitly selected model.
 
+### Atlas Cloud text → image (optional)
+
+```bash
+export ATLASCLOUD_API_KEY="your-atlascloud-api-key"
+gpt-image --provider atlascloud -p "a photorealistic convenience store at 10pm" \
+  --size 1k --quality high -f store.png
+```
+
+Under the hood: `POST /api/v1/model/generateImage` with `model=openai/gpt-image-2/text-to-image`, followed by prediction polling. This provider currently covers text-to-image generation only; reference edits and inpainting still use the OpenAI provider.
+
 ### Text + reference image → image (edit)
 
 ```bash
@@ -335,7 +345,7 @@ uv tool upgrade gpt-image-cli
 
 </details>
 
-Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without overriding an already-set env var.
+Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without overriding an already-set env var. The optional Atlas Cloud text-to-image path reads `ATLASCLOUD_API_KEY` or `ATLAS_CLOUD_API_KEY`.
 
 > **API keys:** This CLI reads the process environment, `.env` and `~/.env`. To avoid using a local key, check all three locations; `unset OPENAI_API_KEY` clears the process variable only. Codex users can choose its built-in image tool when they prefer platform-managed generation.
 
@@ -354,7 +364,8 @@ Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without over
 | Flag | Values | Default | Applies to | Notes |
 |---|---|---|---|---|
 | `-p, --prompt` | str | required | both | Full prompt text. |
-| `--model` | exact model ID above | `gpt-image-2` | both | The Skill always passes the confirmed model explicitly; the CLI default stays backward-compatible. |
+| `--provider` | `openai` · `atlascloud` | `openai` | generation | `atlascloud` uses Atlas Cloud's async text-to-image API and reads `ATLASCLOUD_API_KEY`. |
+| `--model` | exact model ID above | `gpt-image-2` | both | The Skill always passes the confirmed model explicitly; the CLI default stays backward-compatible. With `--provider atlascloud`, the default maps to `openai/gpt-image-2/text-to-image`. |
 | `-f, --file` | path | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | both | Explicit output path. |
 | `-i, --image` | path (repeatable) | omitted | edits | Presence routes through `/v1/images/edits`. |
 | `-m, --mask` | path (PNG, alpha) | omitted | edits | Opaque = preserved, transparent = regenerated. Requires `-i`. |
