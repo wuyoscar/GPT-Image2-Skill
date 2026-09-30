@@ -50,3 +50,6 @@ config/mcporter.json
 # Local Codex handoff
 AGENTS.md
 CLAUDE.md
+
+# 剧本素材图片需入库
+!剧本/**/*.png
