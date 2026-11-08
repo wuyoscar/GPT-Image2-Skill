@@ -7,6 +7,7 @@
 - Add an interactive illustration website, animation examples, and community-inspired 2.6 prompts. The atlas now has 171 entries; older examples and original PNGs remain available.
 - Add portable and Codex plugin manifests, source-specific update commands, an agent-readable install/update guide, and `gpt-image --version`.
 - Refresh both README layouts and prose while preserving the long gallery and 2.5 showcase.
+- Run offline tests, CLI smoke checks and package builds in GitHub Actions on Python 3.11 and 3.13.
 
 - Clarified the GPT Image skill as a gallery-first, CLI-first agent runbook: analyze user prompts, search Reference Gallery/craft files, confer when useful, then invoke the packaged CLI.
 - Added safer install and API-key guidance: check existing CLI/skill state first, avoid blind reinstall/overwrite, keep global/shared installs opt-in, and never write secrets unless explicitly requested.
