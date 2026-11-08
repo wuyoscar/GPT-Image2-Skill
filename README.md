@@ -1,5 +1,5 @@
-<h1 align="center">GPT Image 2/2.5 Prompt Gallery + Agent Skills + CLI</h1>
-<p align="center"><em>Prompts, reference images, two agent skills and a CLI for GPT Image 2 and 2.5.</em></p>
+<h1 align="center">GPT Image · Prompt gallery + skills + CLI</h1>
+<p align="center"><em>Prompts and reference images for GPT Image 2, 2.5 and 2.6, with two agent skills and a CLI.</em></p>
 
 <p align="center">
   <a href="README.md"><strong>English</strong></a> · <a href="README.zh.md">中文</a>
@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"/></a>
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
-  <img src="https://img.shields.io/badge/models-GPT%20Image%202%20%2F%202.5-purple.svg" alt="Models: GPT Image 2 / 2.5"/>
+  <img src="https://img.shields.io/badge/models-GPT%20Image%202%20%2F%202.5%20%2F%202.6-purple.svg" alt="Models: GPT Image 2 / 2.5 / 2.6"/>
   <img src="https://img.shields.io/badge/python-%E2%89%A53.11-blue.svg" alt="Python ≥ 3.11"/>
 </p>
 
@@ -18,12 +18,12 @@
 </p>
 
 <p align="center">
-  <a href="#overview">Overview</a> · <a href="#sunburst-samples">2.5 samples</a> · <a href="#image-example">Example</a> · <a href="#quickstart">Quick start</a> · <a href="#install">Install</a> · <a href="#cli-reference">CLI reference</a> · <a href="#guides">Guides</a> · <a href="#gallery-index">Gallery</a> · <a href="#community">Contribute</a>
+  <a href="#overview">Overview</a> · <a href="#creative-workflows">Animation & web</a> · <a href="#image-26-samples">2.6 samples</a> · <a href="#sunburst-samples">2.5 samples</a> · <a href="#image-example">Example</a> · <a href="#quickstart">Quick start</a> · <a href="#install">Install</a> · <a href="#cli-reference">CLI reference</a> · <a href="#guides">Guides</a> · <a href="#gallery-index">Gallery</a> · <a href="#community">Contribute</a>
 </p>
 
 <a id="overview"></a>
 
-## 🧭 What about this Repo
+## 🧭 About this project
 
 <table border="1" cellspacing="0" cellpadding="6">
   <tr>
@@ -32,7 +32,7 @@
   </tr>
   <tr>
     <td>Gallery size</td>
-    <td><strong>163 numbered entries</strong> across 31 categories, with selected images below</td>
+    <td><strong>171 numbered entries</strong> across 31 categories, with selected images below</td>
   </tr>
   <tr>
     <td>Surfaces</td>
@@ -40,7 +40,7 @@
   </tr>
   <tr>
     <td>Last update</td>
-    <td><strong>2026-09-10</strong></td>
+    <td><strong>2026-11-09</strong></td>
   </tr>
   <tr>
     <td>Docs</td>
@@ -48,21 +48,170 @@
   </tr>
 </table>
 
-The repo keeps the GPT Image 2 prompt collection and gallery alongside 2.5 API support, [reading material](#image-25-reading) and task-specific references. The two skills handle image generation/editing and image-to-prompt extraction.
-
-> TBH, GPT Image 2.5 feels seriously capable. I prefer giving it a clear reference: a shape, a sketch or an image. Sometimes showing a layout from a PDF is more useful than describing it at length. It's how I like to work with GPT-6, too: **minimize the prompt; make the reference clear.**
->
-> I collect prompts, useful building blocks and references here to help you find a workflow that suits the job. Thanks for all the love this little gallery has received 🫶.
+Browse the images, open a prompt and try it with your own references. The `gpt-image` skill generates and edits images; `get-prompt-from-image` extracts prompts from images. The CLI and generation skill default to GPT Image 2.6 Flare. Image 2 prompts and the 2.5 [reading material](#image-25-reading) and task guides remain available.
 
 For the CLI, export the relevant PDF pages as PNG, WebP or JPG, then attach them with `-i`. See the [supported image-reference formats](https://developers.openai.com/api/reference/python/resources/images/methods/edit). Keep required text and edit constraints explicit.
 
-For PPT work, try vector-style diagrams, icons and slide layouts. The [Image API outputs PNG, JPEG or WebP](https://developers.openai.com/api/docs/guides/image-generation#output-format); editable SVG or PowerPoint shapes need a separate authoring step.
+For PPT work, try vector-style diagrams, icons and slide layouts. Save still images as [PNG, JPEG or WebP](https://developers.openai.com/api/docs/guides/image-generation#output-format); editable SVG or PowerPoint shapes need a separate authoring step.
+
+<a id="creative-workflows"></a>
+
+## After the image: animation and web
+
+The image is the starting asset. On the left, the local tool slices an eight-cell sheet into a GIF. On the right, the brain office becomes an animation and a webpage with clickable rooms and a clock-in/out toggle.
+
+<table>
+  <tr>
+    <td width="60%" align="center" valign="top">
+      <a href="docs/demos/sword-player.html"><img src="docs/gaming/sword-cursor.gif" width="100%" alt="Eight-frame fire sword animation assembled locally"/></a><br/>
+      <sub><strong>A · Fire sword: sheet → GIF</strong><br/><code>"512x512"</code> · <code>"8 frames"</code> · <code>"1.28 s"</code><br/>Author: @hAru_mAki_ch · <a href="https://x.com/hAru_mAki_ch/status/2119072107196035314">Source: X workflow</a></sub>
+    </td>
+    <td width="40%" align="center" valign="top">
+      <a href="docs/demos/brain-office.html"><img src="docs/infographics-field-guides/brain-office-loop.gif" width="100%" alt="Nine-frame brain office animation used in an interactive webpage"/></a><br/>
+      <sub><strong>B · Brain office: image → website</strong><br/><code>"512x768"</code> · <code>"9 frames"</code> · <code>"1.8 s"</code><br/>Curated animation · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/">Concept: u/Ohsusannamarie</a></sub>
+    </td>
+  </tr>
+</table>
+
+See [creative workflows](docs/creative-workflows.md) for the commands and local demos. GitHub displays HTML source; download the repo and open the demos in a browser, or run a local server. The still images and full gallery continue below.
+
+<details>
+<summary><strong>Prompts and reusable tools</strong></summary>
+
+**A · Fire sword: sheet → GIF** · [No. 171](skills/gpt-image/references/gallery-gaming.md)
+
+```text
+An animation sprite sheet for a fantasy desktop cursor, inspired by a flaming-sword mouse pointer. Exactly 8 frames in a 4-column by 2-row uniform grid, read left to right then top to bottom. Canvas 2048 by 1024, each cell exactly 512 by 512. Transparent background, no gutters, no borders, no text, no labels. In every cell the same small ornate obsidian sword points diagonally toward the upper-left. Its sharp tip is fixed at cell coordinate (100,100), blade geometry and position identical in every frame. Bright amber and electric-blue flame curls around the blade, progressing smoothly through eight phases and returning to the initial shape at the loop boundary. The blade stays still; only flames, a few sparks and reflected light move. Keep all effects within the middle 360 by 360 pixels of each cell. Crisp illustrated game-UI asset, luminous edges, convincing metallic highlights, strong silhouette, no character, no duplicate swords within a cell. Do not draw checkerboards; use actual transparency.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -p "<PROMPT ABOVE>" --size 2048x1024 --quality high --background transparent --format png --moderation auto -f sheet.png
+gpt-image animate --sheet sheet.png --columns 4 --rows 2 --duration 160 \
+  -f cursor.gif --preview player.html --title "Emberglass cursor"
+```
+
+**B · Brain office: image → website** · [No. 167](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+Animate this exact illustrated brain-office cutaway as a short seamless looping GIF. Keep the camera, room layout, all signs and lettering fixed. Use small motions: the hamster turns the coffee wheel, tiny workers move papers along the conveyor, one paper airplane drifts near the roof, the red DEADLINE lamp gently blinks while the committee keeps eating biscuits. Preserve the drawing style and character identities. Most of the image stays still. End in the starting state. Return a single animated scene, not a grid or storyboard. No new text.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare \
+  -i docs/infographics-field-guides/overthinking-departments-26.png \
+  -p "<ANIMATION PROMPT ABOVE>" --format gif --frames 9 --frame-duration 200 \
+  --size 512x768 --quality medium -f brain-office.gif
+```
+
+The sword tip drifts slightly, so it is an animation asset rather than a registered system cursor. Small lettering changes in the brain animation; the webpage uses real HTML for room names and descriptions. The local player supports pause, frame scrubbing, speed changes and download. It does not repair inconsistent generated frames.
+
+</details>
+
+<a id="image-26-samples"></a>
+
+## ✨ Made with GPT Image 2.6
+
+We tried five ideas from X and Reddit with `gpt-image-2.6-flare` at `high` quality. Click an image for the original PNG, or open the prompts below to see the sources and our adaptations.
+
+<table>
+  <tr>
+    <td width="46%" align="center" valign="top">
+      <a href="docs/photography/failed-camera-roll-26.png"><img src="docs/assets/previews/failed-camera-roll-26.webp" width="100%" alt="Failed camera roll"/></a><br/>
+      <sub><strong>A · Failed camera roll</strong><br/><code>"864x1536"</code> · <code>"high"</code> · <a href="https://x.com/8co28/status/2099257877231972428"><code>"X"</code></a><br/>Author: @8co28</sub>
+    </td>
+    <td width="54%" align="center" valign="top">
+      <a href="docs/gaming/engineer-inventory-26.png"><img src="docs/assets/previews/engineer-inventory-26.webp" width="100%" alt="Cyber engineer's inventory"/></a><br/>
+      <sub><strong>B · Cyber engineer's inventory</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://x.com/chachaai_jp/status/2049066868502405257"><code>"X"</code></a><br/>Author: @chachaai_jp</sub>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/infographics-field-guides/overthinking-departments-26.png"><img src="docs/assets/previews/overthinking-departments-26.webp" width="100%" alt="Inside an overthinker's brain"/></a><br/>
+      <sub><strong>C · Inside an overthinker's brain</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/"><code>"Reddit"</code></a><br/>Author: u/Ohsusannamarie</sub>
+    </td>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/anime-manga/five-minute-fix-26.png"><img src="docs/assets/previews/five-minute-fix-26.webp" width="100%" alt="The five-minute fix"/></a><br/>
+      <sub><strong>D · The five-minute fix</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/"><code>"Reddit"</code></a><br/>Author: u/Ohsusannamarie</sub>
+    </td>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/infographics-field-guides/flatpack-dragon-26.png"><img src="docs/assets/previews/flatpack-dragon-26.webp" width="100%" alt="Flat-pack dragon assembly"/></a><br/>
+      <sub><strong>E · Flat-pack dragon assembly</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1pd0qeu/from_nuclear_to_summoning_a_dragon_ais_cursed/"><code>"Reddit"</code></a><br/>Author: u/Mary_ry</sub>
+    </td>
+  </tr>
+</table>
+
+A and B use [No. 31 · Ling Yuan's character sheet](skills/gpt-image/references/gallery-character-design.md), with the reference prompt credited to @MANISH1027512. Some source posts predate 2.6. We generated the images shown here.
+
+<details>
+<summary><strong>Prompts, commands and notes</strong></summary>
+
+**A · Failed camera roll** · [No. 164](skills/gpt-image/references/gallery-photography.md)
+
+```text
+Use the adult 26-year-old character in the reference sheet. 素人の失敗写真の数々、3x3、9:16。
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "<EXACT PROMPT ABOVE>" --size 864x1536 --quality high -f docs/photography/failed-camera-roll-26.png
+```
+
+**B · Cyber engineer's inventory** · [No. 166](skills/gpt-image/references/gallery-gaming.md)
+
+```text
+Use the fictional adult 26-year-old character in the reference sheet. このキャラのカバンの中身を紹介する画像を作成して。キャラの性格が伝わる構成、モダンなソシャゲのインベントリ画面のようなデザイン。 Keep this tasteful and non-explicit. Use English for item labels. Show a densely packed inventory with visually distinct items and short humorous descriptions. Portrait 2:3.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "<EXACT PROMPT ABOVE>" --size 1024x1536 --quality high -f docs/gaming/engineer-inventory-26.png
+```
+
+**C · Inside an overthinker's brain** · [No. 167](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+An elaborate illustrated cutaway of a fictional overthinker’s brain shaped like a chaotic six-storey office building. Title: INSIDE MY BRAIN. Each room has its own tiny employees, machines, incident and readable short sign. Top: IDEA DEPARTMENT launches paper airplanes into neighbouring offices. FACT CHECKING uses forklifts to move citation folders. REPLAYING ONE AWKWARD MOMENT has a cinema showing the same handshake. COFFEE POWER PLANT is a hamster-wheel espresso engine. FIVE-MINUTE TASK has construction workers expanding into adjacent rooms. SLEEP OFFICE is locked while employees nap in the corridor. A red deadline alarm is ignored by a committee eating biscuits. Draw absurd connections between these departments with pneumatic tubes, stairs and conveyor belts. Crisp editorial pen illustration with rich muted colour, numerous tiny visual jokes, large legible headings, portrait composition, fully illustrated rather than a chart of empty boxes.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<EXACT PROMPT ABOVE>" --size 1024x1536 --quality high -f docs/infographics-field-guides/overthinking-departments-26.png
+```
+
+**D · The five-minute fix** · [No. 168](skills/gpt-image/references/gallery-anime-and-manga.md)
+
+```text
+A witty six-panel editorial comic on one portrait page, two columns by three rows. Title: JUST A FIVE-MINUTE FIX. Same fictional adult developer, age 30, round glasses, mustard hoodie in every panel. Panel 1: relaxed at a tidy laptop, a tiny task card says CHANGE BUTTON COLOR. Panel 2: opens a cupboard labelled CSS, an avalanche of tangled wires falls out. Panel 3: inspects a small bug with a magnifier, behind it towers a dinosaur labelled LEGACY. Panel 4: now wearing a hard hat, demolishes the room, sign REBUILD EVERYTHING. Panel 5: midnight, exhausted, surrounded by twelve glowing monitors and sticky notes, tiny cat asleep on keyboard, caption THREE DAYS LATER. Panel 6: proud before the same laptop, button is exactly its original blue, small speech bubble IT WAS FINE BEFORE. Clear expressive physical comedy, detailed backgrounds that escalate, crisp ink and flat spot colours on warm white paper, readable exact short text, no extra panels.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<EXACT PROMPT ABOVE>" --size 1024x1536 --quality high -f docs/anime-manga/five-minute-fix-26.png
+```
+
+**E · Flat-pack dragon assembly** · [No. 169](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+A deadpan flat-pack furniture assembly instruction sheet for assembling a living dragon, named DRAKON. Six numbered illustrated stages, black technical line art on warm white paper, small mustard-yellow warning boxes. At the top a neat parts inventory: dragon head, two wings, coiled tail, four feet, huge ribbed body, bag of tiny screws, one comically small hex key. Step 1 a cheerful stick person sorts parts. Step 2 two people struggle to align a wing. Step 3 one extra screw remains. Step 4 assembled dragon sneezes a tiny flame onto the instruction page. Step 5 dragon eats the hex key. Step 6 dragon has curled up on the sofa, crushing it, while owner calmly phones support. Tiny alternate wrong-way wing diagram crossed out. Bottom warning reads WARNING: DO NOT FEED AFTER ASSEMBLY. Precise readable diagrams, escalating visual comedy, clean generous gutters, portrait layout. Fictional fantasy assembly only, no realistic dangerous instructions. Do not use a real company logo.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<EXACT PROMPT ABOVE>" --size 1024x1536 --quality high -f docs/infographics-field-guides/flatpack-dragon-26.png
+```
+
+A few details missed the brief. B uses the company name as the character's name. D never shows the original button colour, so the dialogue carries the final joke. The [run record](docs/image-2.6-samples.md) covers these checks. You can also find the [shared room](skills/gpt-image/references/gallery-architecture-and-interior.md) and [night-market seek-and-find attempt](skills/gpt-image/references/gallery-illustration.md) in the Reference Gallery.
+
+</details>
 
 <a id="sunburst-samples"></a>
 
 ## ✨ Made with GPT Image 2.5
 
-Two 2K samples: an exploded watch assembly with detailed callouts, and a multi-storey cafe cutaway built from a reference image. Both use `gpt-image-2.5-sunburst`, `2048x2048` and `high`.
+These earlier samples use `gpt-image-2.5-sunburst` at `2048x2048`, `high`: a mechanical watch with numbered parts, and a multi-storey cafe district opened up to reveal its interiors.
 
 <table>
   <tr>
@@ -76,6 +225,9 @@ Two 2K samples: an exploded watch assembly with detailed callouts, and a multi-s
     </td>
   </tr>
 </table>
+
+<details>
+<summary><strong>Prompts, reference image and notes</strong></summary>
 
 **A · [No. 113](skills/gpt-image/references/gallery-technical-illustration.md) · Prompt**
 
@@ -99,11 +251,13 @@ Use warm amber interiors against deep teal evening shadows, tactile brick, glaze
 
 See the [sample record](docs/sunburst-samples.md) for settings, inputs and review notes.
 
+</details>
+
 <a id="image-example"></a>
 
 ## 🖼️ From reference image to result
 
-Thanks to [@LunarXuan](https://github.com/LunarXuan) for **Get Prompt from Image**. A vision-capable agent extracts a prompt from a reference image, then passes it to `gpt-image` or another generator. The contributor-provided reference and its generated result are shown below.
+[@LunarXuan](https://github.com/LunarXuan) contributed **Get Prompt from Image**. Give a vision-capable agent a reference image, extract a prompt, then pass it to `gpt-image` or another generator. Below are the contributor's reference and generated result.
 
 <table>
   <tr>
@@ -126,7 +280,8 @@ Extract a reusable English positive prompt and a targeted negative prompt from t
 ```
 
 
-**📝 Extracted prompt used for the generated result**
+<details>
+<summary><strong>View the extracted prompt</strong></summary>
 
 **Positive Prompt**
 
@@ -140,6 +295,7 @@ A highly polished semi-realistic Japanese narrative illustration rendered in a p
 photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
 ~~~
 
+</details>
 
 <a id="quickstart"></a>
 
@@ -151,32 +307,35 @@ photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed
 | Extract a prompt from a reference | [`get-prompt-from-image`](skills/get-prompt-from-image/SKILL.md) |
 | Work in a terminal | CLI examples below, with the selected `--model` |
 
-### 🎛️ Choose a model
+### 🎛️ Image 2.6 by default
 
 | Model | Best starting point |
 |---|---|
-| `gpt-image-2.5-flare` | Fast, high-quality everyday generation |
-| `gpt-image-2.5-sunburst` | Precise edits and reference-image workflows |
-| `gpt-image-2` | Retain the model used by existing workflows |
+| `gpt-image-2.6-flare` | **Default**: fast generation and editing |
+| `gpt-image-2.6-sunburst` | Detailed visual work and precise editing |
+| `gpt-image-2.5-flare` / `gpt-image-2.5-sunburst` | Continue existing 2.5 workflows |
+| `gpt-image-2` | Retain Image 2 workflows |
 
-The Skill offers this menu when the model is missing or ambiguous (for example, “GPT 2.5”), then confirms the choice before generating. An exact supported model choice proceeds directly. It always passes an explicit `--model`; the standalone CLI still defaults to `gpt-image-2`. Changing models or adding outputs requires the user's approval.
+The CLI and Skill use `gpt-image-2.6-flare` unless you choose another model. The Skill passes that choice explicitly with `--model` and does not ask you to confirm the default. To keep an older command on Image 2, add `--model gpt-image-2`.
 
-Both 2.5 models add `--quality xhigh` / `max` and support transparent PNG/WebP output. Start with `low` drafts; higher quality can increase latency and cost. For example, after choosing Flare:
+The CLI generates and edits PNG, JPEG, WebP and GIF images. It defaults to `high` quality; use `low` for drafts. Models 2.5 and 2.6 also accept `xhigh` and `max`. SVG, complexity and markup controls are not exposed yet. Use `gpt-image animate` to assemble a sprite sheet locally. See the [run record](docs/image-2.6-samples.md) for the 2.6 Flare generations and reference edits we tested.
+
+For example, generate a transparent icon with 2.6 Flare:
 
 ```bash
-gpt-image --model gpt-image-2.5-flare \
+gpt-image --model gpt-image-2.6-flare \
   -p "An original flat leaf icon, centered with generous padding, transparent background" \
   --quality medium --background transparent --format png -f leaf.png
 ```
 
-See [model compatibility and verification notes](skills/gpt-image/references/models.md) and [GPT Image 2.5 prompt templates](skills/gpt-image/references/templates-gpt-image-2.5.md). Local output validation for these templates is pending. Existing gallery images keep their original model and source credits.
+The [model notes](skills/gpt-image/references/models.md) list compatibility and tested settings. The [GPT Image 2.5 prompt templates](skills/gpt-image/references/templates-gpt-image-2.5.md) are available to try, but we have not validated their outputs locally. Gallery images retain their original model and source credits.
 
-After install, every gallery entry below can be copy-pasted as `gpt-image --model <CHOSEN_MODEL> -p "…"` or requested from any skill-capable agent runtime in natural language, e.g. *"generate the Boston Spring poster from the skill gallery"*.
+After installing, copy a gallery prompt into `gpt-image --model <CHOSEN_MODEL> -p "…"`, or ask your agent to use it: *"Generate the Boston Spring poster from the skill gallery."*
 
 ### Text → image
 
 ```bash
-gpt-image --model gpt-image-2.5-flare -p "a photorealistic convenience store at 10pm" --size 1k --quality high -f store.png
+gpt-image --model gpt-image-2.6-flare -p "a photorealistic convenience store at 10pm" --size 1k --quality high -f store.png
 ```
 
 Under the hood: `POST /v1/images/generations` with the explicitly selected model.
@@ -185,23 +344,33 @@ Under the hood: `POST /v1/images/generations` with the explicitly selected model
 
 ```bash
 # Single-reference edit / restyle
-gpt-image --model gpt-image-2.5-sunburst -p "Make it a winter evening with heavy snowfall" \
+gpt-image --model gpt-image-2.6-sunburst -p "Make it a winter evening with heavy snowfall" \
   -i chess.png --quality high -f chess-winter.png
 
 # Multi-reference edit: the edits endpoint accepts multiple input images
-gpt-image --model gpt-image-2.5-sunburst -p "Place the dog from image 2 next to the woman in image 1. Match the same lighting, composition, and background. Do not change anything else." \
+gpt-image --model gpt-image-2.6-sunburst -p "Place the dog from image 2 next to the woman in image 1. Match the same lighting, composition, and background. Do not change anything else." \
   -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
 
 # Mask-based inpaint: opaque = keep, transparent = regenerate
-gpt-image --model gpt-image-2.5-sunburst -p "replace sky with aurora" \
+gpt-image --model gpt-image-2.6-sunburst -p "replace sky with aurora" \
   -i photo.jpg -m sky_mask.png -f aurora.png
 ```
 
-Under the hood: `POST /v1/images/edits` (multipart form). GPT Image 2 and both 2.5 models use this endpoint, with multiple `-i` inputs and an optional `-m` mask. Read results from `data[].b64_json` and omit `response_format`. See [model compatibility](skills/gpt-image/references/models.md).
+Under the hood: `POST /v1/images/edits` (multipart form). GPT Image 2, 2.5 and 2.6 models use this endpoint, with multiple `-i` inputs and an optional `-m` mask. Read results from `data[].b64_json` and omit `response_format`. See [model compatibility](skills/gpt-image/references/models.md).
 
 <a id="install"></a>
 
 ## 📥 Install
+
+Send this to your coding agent for a first install or an update:
+
+```text
+Install or update GPT Image Skill for me: https://raw.githubusercontent.com/wuyoscar/GPT-Image2-Skill/main/docs/install.md
+```
+
+The agent checks your current installation, uses the matching updater, and verifies
+the result. You can also follow the commands below yourself.
+
 Choose either skill or install both: `gpt-image` generates and edits images, while `get-prompt-from-image` extracts prompts from reference images.
 
 Check for an existing skill or CLI before installing. Preserve existing skill folders and API-key files. Use your runtime's skill list/status command when available, and ask before installing into a global or shared directory.
@@ -224,6 +393,14 @@ test -n "${OPENAI_API_KEY:-}" && echo "OPENAI_API_KEY is already set (value hidd
 
 <details>
 <summary><strong>Codex</strong></summary>
+
+For a managed install that records the remote source and supports `skills update`:
+
+```bash
+npx --yes skills@latest add wuyoscar/gpt_image_2_skill --skill gpt-image get-prompt-from-image --agent codex --copy
+```
+
+Recent Codex versions can also install the native plugin; see the [full steps](docs/install-update.md#codex-native-plugin). The skill-installer and manual alternatives follow.
 
 Codex ships with built-in skill helpers such as `$skill-installer` and `$skill-creator`.
 Open Codex and invoke the built-in installer with the GitHub skill-folder URL for each skill you want:
@@ -311,11 +488,11 @@ done
 <summary><strong>CLI</strong></summary>
 
 ```bash
-uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
+uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model gpt-image-2.6-flare -p "a cat astronaut"
 
 # or install to PATH if not already installed
 command -v gpt-image >/dev/null || uv tool install git+https://github.com/wuyoscar/gpt_image_2_skill
-gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
+gpt-image --model gpt-image-2.6-flare -p "a cat astronaut"
 ```
 
 </details>
@@ -323,21 +500,24 @@ gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
 <details>
 <summary><strong>Update</strong></summary>
 
-```bash
-# plugin: use Claude Code's update flow
-# codex skill: rerun the installer
-# manual git clone
-cd gpt_image_2_skill && git pull
+Use the updater that matches your installation, then start a new agent session.
 
-# CLI
-uv tool upgrade gpt-image-cli
-```
+| Installed as | Update command |
+|---|---|
+| Claude Code plugin | `claude plugin update gpt-image@wuyoscar-skills` |
+| Project skills for Codex / other agents via skills | `npx --yes skills@latest update gpt-image get-prompt-from-image --project` |
+| Global skills via skills | Replace `--project` above with `--global` |
+| Codex native plugin | `codex plugin marketplace upgrade wuyoscar-skills && codex plugin add gpt-image@wuyoscar-skills` |
+| Standalone Python CLI | `uv tool upgrade gpt-image-cli` |
+| Skills symlinked to a Git checkout | `git -C /path/to/gpt_image_2_skill pull --ff-only` |
+
+Claude Code can auto-update `wuyoscar-skills` from the Marketplaces tab in `/plugin`. After refreshing a Codex native plugin, check its installed version in `/plugins` in a new session. Check the CLI with `gpt-image --version`.
+
+Skills, plugins and a standalone CLI are separate installs. Updating one may not update another, and hand-copied folders may not be managed by skills. See [install and update](docs/install-update.md) for scope, setup and official sources.
 
 </details>
 
-Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without overriding an already-set env var.
-
-> **API keys:** This CLI reads the process environment, `.env` and `~/.env`. To avoid using a local key, check all three locations; `unset OPENAI_API_KEY` clears the process variable only. Codex users can choose its built-in image tool when they prefer platform-managed generation.
+> **API keys:** The CLI reads `OPENAI_API_KEY` from the process environment, then `.env`, then `~/.env`. It keeps any value already set. To avoid using a local key, check all three places; `unset OPENAI_API_KEY` clears only the process variable. Codex users can choose the built-in image tool for platform-managed generation.
 
 <a id="cli-reference"></a>
 
@@ -346,28 +526,24 @@ Reads `OPENAI_API_KEY` from process env, then `.env`, then `~/.env` without over
 <details>
 <summary><strong>Parameters, quality settings and SDK examples</strong></summary>
 
-### Parameters (complete)
-
-<details>
-<summary><strong>Show full parameter reference</strong></summary>
+### Parameters
 
 | Flag | Values | Default | Applies to | Notes |
 |---|---|---|---|---|
 | `-p, --prompt` | str | required | both | Full prompt text. |
-| `--model` | exact model ID above | `gpt-image-2` | both | The Skill always passes the confirmed model explicitly; the CLI default stays backward-compatible. |
+| `--model` | exact model ID above | `gpt-image-2.6-flare` | both | The Skill passes the resolved model explicitly, including the default. |
 | `-f, --file` | path | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | both | Explicit output path. |
 | `-i, --image` | path (repeatable) | omitted | edits | Presence routes through `/v1/images/edits`. |
 | `-m, --mask` | path (PNG, alpha) | omitted | edits | Opaque = preserved, transparent = regenerated. Requires `-i`. |
-| `--input-fidelity` | `low` · `high` | omitted | edits | Image 2 cannot set it, so the CLI omits it. For 2.5, explicit values pass through but behavior remains unverified; see model notes. |
-| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · literal `1024x1024` etc. | `1024x1024` | both | Literals must be 16-px multiples, max edge 3840, 3:1 cap, 655k-8.3M total pixels. |
-| `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | both | `xhigh` / `max` require a 2.5 model; use `low` drafts to assess quality, latency, and cost first. |
+| `--input-fidelity` | `low` · `high` | omitted | edits | Image 2 cannot set it, so the CLI omits it. For 2.5/2.6, explicit values pass through but behavior remains unverified; see model notes. |
+| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · literal `1024x1024` etc. | `1024x1024` | both | Image 2/2.5: 16-px multiples, max edge 3840, 3:1 cap, 655k-8.3M pixels. 2.6 custom sizes are validated by the API; see model notes. |
+| `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | both | `xhigh` / `max` require a 2.5 or 2.6 model; use `low` drafts to assess quality, latency, and cost first. |
 | `-n, --n` | 1-10 | 1 | both | Batch generation. `n>1` suffixes filenames `_0`, `_1`, … |
 | `--background` | `auto` · `opaque` · `transparent` | API default | both | Transparency requires PNG/WebP; Image 2 transparency remains in preview. |
 | `--moderation` | `auto` · `low` | `low` | generations | `low` is the default here for broader prompt exploration; switch to `auto` if you want the stricter API-side default. |
-| `--format` | `png` · `jpeg` · `webp` | `png` | both | Response encoding. |
+| `--format` | `png` · `jpeg` · `webp` · `gif` | `png` | both | Response encoding. |
+| `--frames` / `--frame-duration` | 2-16 / 20-2000 ms | API: 9 / 200 | GIF | Frame count and delay; GIF size defaults to `auto`. |
 | `--compression` | 0-100 | omitted | both | JPEG/WebP only. |
-
-</details>
 
 ### Budget / quality guide
 
@@ -385,7 +561,7 @@ Each entry includes a prompt and metadata (`"size"` · `"quality"` · source). U
 
 ```bash
 # CLI
-gpt-image --model gpt-image-2.5-flare -p "<PROMPT FROM ENTRY>" --size portrait --quality high -f out.png
+gpt-image --model gpt-image-2.6-flare -p "<PROMPT FROM ENTRY>" --size portrait --quality high -f out.png
 ```
 
 ```python
@@ -393,7 +569,7 @@ gpt-image --model gpt-image-2.5-flare -p "<PROMPT FROM ENTRY>" --size portrait -
 from openai import OpenAI
 client = OpenAI()
 result = client.images.generate(
-    model="gpt-image-2.5-flare",
+    model="gpt-image-2.6-flare",
     prompt="<PROMPT FROM ENTRY>",
     size="1024x1536",
     quality="high",
@@ -413,12 +589,12 @@ Exit codes: `0` success · `1` API/refusal error (full response body echoed to s
 > [!CAUTION]
 > Use generated images as references, workflow sketches or style targets for research figures. Prepare and verify the final figure separately before including it in a paper; directly publishing a raw generation can mislead readers.
 
-### 📖 Prompting Fundamentals
+### 📖 Prompting fundamentals
 
 <details>
 <summary><strong>Show prompting notes</strong></summary>
 
-Shared techniques from the [historical Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md), with current 2.5 guidance organized in a separate [official-source reference router](skills/gpt-image/references/openai-image-2.5.md). Image 2 retains gallery-first guidance. A precise, model-confirmed 2.5 request needs no reference loading; otherwise choose one short task slice. Migration notes are separate. API parameters stay in [model notes](skills/gpt-image/references/models.md); community templates remain separately attributed.
+These notes draw on the [Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md). The [2.5 reference index](skills/gpt-image/references/openai-image-2.5.md) links to official guidance by task, with migration notes in a separate file. For Image 2, start with a gallery example. For 2.5, a clear brief and a selected model are enough to begin; consult a task guide when you need help. Check [model notes](skills/gpt-image/references/models.md) for API parameters. Community templates keep their own source credits.
 
 1. **Structure, then goal.** Use a consistent order: `background/scene → subject → key details → constraints`, and **state the intended use** (ad, UI mock, infographic) so the model picks the right mode and polish level.
 2. **Any format works; consistency matters more.** Minimal prompts, descriptive paragraphs, JSON-style structures, instruction-style prompts, and tag-based prompts all work. For production, choose a format you can easily read and maintain.
@@ -433,6 +609,7 @@ Shared techniques from the [historical Image 2 Cookbook](skills/gpt-image/refere
 | Gallery index | [`gallery.md`](skills/gpt-image/references/gallery.md): choose a category, then read its prompts. |
 | Concrete examples | Load a relevant `gallery-*.md` file, such as [products](skills/gpt-image/references/gallery-product-and-food.md), [UI](skills/gpt-image/references/gallery-ui-ux-mockups.md) or [paper figures](skills/gpt-image/references/gallery-research-paper-figures.md). |
 | Prompt craft | [`craft.md`](skills/gpt-image/references/craft.md): text, composition, data relationships and edit constraints. |
+| GPT Image 2.6 | [Model defaults, API compatibility and validation status](skills/gpt-image/references/models.md). |
 | GPT Image 2.5 | [Reference index](skills/gpt-image/references/openai-image-2.5.md): separate generation, layout/text, editing and migration notes. |
 | Historical Image 2 guidance | [OpenAI Cookbook](skills/gpt-image/references/openai-cookbook.md), with original source and license. Use [current model notes](skills/gpt-image/references/models.md) and the user's settings for API calls. |
 
@@ -472,7 +649,7 @@ English-language official sources and established publications first, developer 
 
 ## 🎨 Gallery
 
-> Open a category to view its images and prompts. The complete 163-prompt collection is indexed in [`gallery.md`](skills/gpt-image/references/gallery.md), with full entries in the linked `gallery-*.md` files.
+> Open a category to view its images and prompts. The complete 171-prompt collection is indexed in [`gallery.md`](skills/gpt-image/references/gallery.md), with full entries in the linked `gallery-*.md` files.
 >
 > **Source labels.** `Curated` means a repo-curated or substantially reworked prompt/image; outside-source items keep visible author/source links.
 

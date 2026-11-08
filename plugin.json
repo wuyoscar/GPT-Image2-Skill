@@ -1,0 +1,35 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gpt-image",
+  "version": "0.3.0",
+  "description": "GPT Image prompt gallery and agent skills with a CLI for generation, editing and local sprite animation. Defaults to Image 2.6 Flare.",
+  "author": {
+    "name": "wuyoscar",
+    "url": "https://github.com/wuyoscar"
+  },
+  "homepage": "https://github.com/wuyoscar/gpt_image_2_skill",
+  "repository": "https://github.com/wuyoscar/gpt_image_2_skill",
+  "license": "MIT",
+  "keywords": [
+    "gpt-image-2",
+    "gpt-image",
+    "gpt-image-2-prompts",
+    "openai",
+    "image-generation",
+    "image-editing",
+    "image-prompt",
+    "text-to-image",
+    "prompt-gallery",
+    "prompt-library",
+    "prompt-templates",
+    "image-to-prompt",
+    "ai-image-prompts",
+    "agent-skills",
+    "codex-skill",
+    "claude-code-skill",
+    "chinese-typography",
+    "research-figures",
+    "anime",
+    "posters"
+  ]
+}

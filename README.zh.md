@@ -1,5 +1,5 @@
-<h1 align="center">GPT Image 2/2.5 Prompt Gallery + Agent Skills + CLI</h1>
-<p align="center"><em>GPT Image 2 与 2.5 的提示词、参考图、两个 Agent Skill 和 CLI。</em></p>
+<h1 align="center">GPT Image · Prompt gallery + skills + CLI</h1>
+<p align="center"><em>收集 GPT Image 2、2.5 与 2.6 的提示词和参考图，附两个 Agent Skill 和 CLI。</em></p>
 
 <p align="center">
   <a href="README.md">English</a> · <a href="README.zh.md"><strong>中文</strong></a>
@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"/></a>
   <a href="https://github.com/wuyoscar/gpt_image_2_skill/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
-  <img src="https://img.shields.io/badge/models-GPT%20Image%202%20%2F%202.5-purple.svg" alt="模型: GPT Image 2 / 2.5"/>
+  <img src="https://img.shields.io/badge/models-GPT%20Image%202%20%2F%202.5%20%2F%202.6-purple.svg" alt="模型: GPT Image 2 / 2.5 / 2.6"/>
   <img src="https://img.shields.io/badge/python-%E2%89%A53.11-blue.svg" alt="Python ≥ 3.11"/>
 </p>
 
@@ -18,12 +18,12 @@
 </p>
 
 <p align="center">
-  <a href="#overview">简介</a> · <a href="#sunburst-samples">2.5 样张</a> · <a href="#image-example">图片示例</a> · <a href="#quickstart">快速开始</a> · <a href="#install">安装</a> · <a href="#cli-reference">CLI 参数</a> · <a href="#guides">参考与阅读</a> · <a href="#gallery-index">图库</a> · <a href="#community">参与贡献</a>
+  <a href="#overview">简介</a> · <a href="#creative-workflows">动图与网页</a> · <a href="#image-26-samples">2.6 样张</a> · <a href="#sunburst-samples">2.5 样张</a> · <a href="#image-example">图片示例</a> · <a href="#quickstart">快速开始</a> · <a href="#install">安装</a> · <a href="#cli-reference">CLI 参数</a> · <a href="#guides">参考与阅读</a> · <a href="#gallery-index">图库</a> · <a href="#community">参与贡献</a>
 </p>
 
 <a id="overview"></a>
 
-## 🧭 关于这个 Report
+## 🧭 关于这个项目
 
 <table border="1" cellspacing="0" cellpadding="6">
   <tr>
@@ -32,7 +32,7 @@
   </tr>
   <tr>
     <td>图库规模</td>
-    <td><strong>163 个编号条目</strong>，分为 31 类；下方展示精选图片</td>
+    <td><strong>171 个编号条目</strong>，分为 31 类；下方展示精选图片</td>
   </tr>
   <tr>
     <td>支持形态</td>
@@ -40,7 +40,7 @@
   </tr>
   <tr>
     <td>最后更新</td>
-    <td><strong>2026-09-10</strong></td>
+    <td><strong>2026-11-09</strong></td>
   </tr>
   <tr>
     <td>文档</td>
@@ -48,21 +48,170 @@
   </tr>
 </table>
 
-这里保留 GPT Image 2 的提示词和图库，也整理了 2.5 的接口、[阅读资料](#image-25-reading)和按任务拆分的参考。两个 Skill 分别负责生图/改图和从图片提取 Prompt。
-
-> TBH，我觉得 GPT Image 2.5 真的很强。我更愿意给它一个清楚的 reference，比如形状、草图或图片。有时，直接展示 PDF 里的版式，比描述半天更有效。这也很像我用 GPT-6 的习惯：**minimize the prompt，把参考给清楚。**
->
-> 我把用得上的 Prompt、building blocks 和 reference 放在这里，希望能帮你了解 2.5 的工作方式，再挑适合自己的用法。谢谢大家喜欢这个小 gallery 🫶。
+挑一张喜欢的图，打开提示词，换上自己的参考图就能试。`gpt-image` 负责生图和改图，`get-prompt-from-image` 负责从图片提取提示词。CLI 和生图 Skill 默认使用 GPT Image 2.6 Flare；Image 2 的图库，以及 2.5 的[阅读资料](#image-25-reading)和任务指南也都保留。
 
 使用 CLI 时，先把相关 PDF 页面导出为 PNG、WebP 或 JPG，再通过 `-i` 附加。参见[支持的参考图片格式](https://developers.openai.com/api/reference/python/resources/images/methods/edit)。提示词里的必需文字和编辑约束仍要说清楚。
 
-做 PPT 时，可以试试矢量风格的信息图、图标和页面排版。[Image API 输出 PNG、JPEG 或 WebP](https://developers.openai.com/api/docs/guides/image-generation#output-format)；需要可编辑的 SVG 或 PowerPoint 形状时，再单独制作对应文件。
+做 PPT 时，可以试试矢量风格的信息图、图标和页面排版。静态图可保存为 PNG、JPEG 或 WebP（[API 格式说明](https://developers.openai.com/api/docs/guides/image-generation#output-format)）；需要可编辑的 SVG 或 PowerPoint 形状时，再单独制作对应文件。
+
+<a id="creative-workflows"></a>
+
+## 生图之后：动图和网页
+
+生图只是第一步。左边把八格序列图交给本地工具，切帧后组装成 GIF；右边将脑内公司做成动图，再用 HTML、CSS 和 JavaScript 加上可点击的房间和开关灯交互。
+
+<table>
+  <tr>
+    <td width="60%" align="center" valign="top">
+      <a href="docs/demos/sword-player.html"><img src="docs/gaming/sword-cursor.gif" width="100%" alt="Eight-frame fire sword animation assembled locally"/></a><br/>
+      <sub><strong>A · 火焰剑：序列图 → GIF</strong><br/><code>"512x512"</code> · <code>"8 frames"</code> · <code>"1.28 s"</code><br/>Author: @hAru_mAki_ch · <a href="https://x.com/hAru_mAki_ch/status/2119072107196035314">Source: X workflow</a></sub>
+    </td>
+    <td width="40%" align="center" valign="top">
+      <a href="docs/demos/brain-office.html"><img src="docs/infographics-field-guides/brain-office-loop.gif" width="100%" alt="Nine-frame brain office animation used in an interactive webpage"/></a><br/>
+      <sub><strong>B · 脑内公司：图片 → 网页</strong><br/><code>"512x768"</code> · <code>"9 frames"</code> · <code>"1.8 s"</code><br/>Curated animation · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/">Concept: u/Ohsusannamarie</a></sub>
+    </td>
+  </tr>
+</table>
+
+完整教程和本地运行方法见[创作流程](docs/creative-workflows.md)。GitHub 文件页不会执行 HTML；下载仓库后在浏览器打开演示，或启动本地服务器。原有静态图和完整图库都在下方。
+
+<details>
+<summary><strong>提示词与可复用工具</strong></summary>
+
+**A · 火焰剑：序列图 → GIF** · [No. 171](skills/gpt-image/references/gallery-gaming.md)
+
+```text
+An animation sprite sheet for a fantasy desktop cursor, inspired by a flaming-sword mouse pointer. Exactly 8 frames in a 4-column by 2-row uniform grid, read left to right then top to bottom. Canvas 2048 by 1024, each cell exactly 512 by 512. Transparent background, no gutters, no borders, no text, no labels. In every cell the same small ornate obsidian sword points diagonally toward the upper-left. Its sharp tip is fixed at cell coordinate (100,100), blade geometry and position identical in every frame. Bright amber and electric-blue flame curls around the blade, progressing smoothly through eight phases and returning to the initial shape at the loop boundary. The blade stays still; only flames, a few sparks and reflected light move. Keep all effects within the middle 360 by 360 pixels of each cell. Crisp illustrated game-UI asset, luminous edges, convincing metallic highlights, strong silhouette, no character, no duplicate swords within a cell. Do not draw checkerboards; use actual transparency.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -p "<PROMPT ABOVE>" --size 2048x1024 --quality high --background transparent --format png --moderation auto -f sheet.png
+gpt-image animate --sheet sheet.png --columns 4 --rows 2 --duration 160 \
+  -f cursor.gif --preview player.html --title "Emberglass cursor"
+```
+
+**B · 脑内公司：图片 → 网页** · [No. 167](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+Animate this exact illustrated brain-office cutaway as a short seamless looping GIF. Keep the camera, room layout, all signs and lettering fixed. Use small motions: the hamster turns the coffee wheel, tiny workers move papers along the conveyor, one paper airplane drifts near the roof, the red DEADLINE lamp gently blinks while the committee keeps eating biscuits. Preserve the drawing style and character identities. Most of the image stays still. End in the starting state. Return a single animated scene, not a grid or storyboard. No new text.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare \
+  -i docs/infographics-field-guides/overthinking-departments-26.png \
+  -p "<ANIMATION PROMPT ABOVE>" --format gif --frames 9 --frame-duration 200 \
+  --size 512x768 --quality medium -f brain-office.gif
+```
+
+火焰剑的尖端仍有轻微漂移，暂时只是动画素材，不能当作已调好的系统光标。脑内公司的小字在动画中有变形，所以网页用真实 HTML 显示房间名称和说明。本地工具提供暂停、逐帧拖动、调速与下载，不会自动修复生成图的对齐问题。
+
+</details>
+
+<a id="image-26-samples"></a>
+
+## ✨ GPT Image 2.6 实测
+
+我们从 X 和 Reddit 挑了五个点子，用 `gpt-image-2.6-flare`、`high` 质量重新生成。点击图片可查看 PNG 原图；展开下方提示词，可以找到原帖和改编说明。
+
+<table>
+  <tr>
+    <td width="46%" align="center" valign="top">
+      <a href="docs/photography/failed-camera-roll-26.png"><img src="docs/assets/previews/failed-camera-roll-26.webp" width="100%" alt="A character’s failed camera roll"/></a><br/>
+      <sub><strong>A · 凌渊的拍废相册</strong><br/><code>"864x1536"</code> · <code>"high"</code> · <a href="https://x.com/8co28/status/2099257877231972428"><code>"X"</code></a><br/>作者：@8co28</sub>
+    </td>
+    <td width="54%" align="center" valign="top">
+      <a href="docs/gaming/engineer-inventory-26.png"><img src="docs/assets/previews/engineer-inventory-26.webp" width="100%" alt="What is in a cyber engineer’s bag?"/></a><br/>
+      <sub><strong>B · 赛博工程师的背包</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://x.com/chachaai_jp/status/2049066868502405257"><code>"X"</code></a><br/>作者：@chachaai_jp</sub>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/infographics-field-guides/overthinking-departments-26.png"><img src="docs/assets/previews/overthinking-departments-26.webp" width="100%" alt="Inside the overthinking department"/></a><br/>
+      <sub><strong>C · 脑内公司</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/"><code>"Reddit"</code></a><br/>作者：u/Ohsusannamarie</sub>
+    </td>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/anime-manga/five-minute-fix-26.png"><img src="docs/assets/previews/five-minute-fix-26.webp" width="100%" alt="The five-minute fix"/></a><br/>
+      <sub><strong>D · 就改五分钟</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/"><code>"Reddit"</code></a><br/>作者：u/Ohsusannamarie</sub>
+    </td>
+    <td width="33.33%" align="center" valign="top">
+      <a href="docs/infographics-field-guides/flatpack-dragon-26.png"><img src="docs/assets/previews/flatpack-dragon-26.webp" width="100%" alt="Flat-pack dragon assembly"/></a><br/>
+      <sub><strong>E · 巨龙组装说明书</strong><br/><code>"1024x1536"</code> · <code>"high"</code> · <a href="https://www.reddit.com/r/ChatGPT/comments/1pd0qeu/from_nuclear_to_summoning_a_dragon_ais_cursed/"><code>"Reddit"</code></a><br/>作者：u/Mary_ry</sub>
+    </td>
+  </tr>
+</table>
+
+A、B 使用 [No. 31 · 凌渊角色设定图](skills/gpt-image/references/gallery-character-design.md)，参考提示词来自 @MANISH1027512。部分原帖早于 2.6，这里展示的图片由我们重新生成。
+
+<details>
+<summary><strong>提示词、命令与结果说明</strong></summary>
+
+**A · 凌渊的拍废相册** · [No. 164](skills/gpt-image/references/gallery-photography.md)
+
+```text
+Use the adult 26-year-old character in the reference sheet. 素人の失敗写真の数々、3x3、9:16。
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "<上方完整提示词>" --size 864x1536 --quality high -f docs/photography/failed-camera-roll-26.png
+```
+
+**B · 赛博工程师的背包** · [No. 166](skills/gpt-image/references/gallery-gaming.md)
+
+```text
+Use the fictional adult 26-year-old character in the reference sheet. このキャラのカバンの中身を紹介する画像を作成して。キャラの性格が伝わる構成、モダンなソシャゲのインベントリ画面のようなデザイン。 Keep this tasteful and non-explicit. Use English for item labels. Show a densely packed inventory with visually distinct items and short humorous descriptions. Portrait 2:3.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "<上方完整提示词>" --size 1024x1536 --quality high -f docs/gaming/engineer-inventory-26.png
+```
+
+**C · 脑内公司** · [No. 167](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+An elaborate illustrated cutaway of a fictional overthinker’s brain shaped like a chaotic six-storey office building. Title: INSIDE MY BRAIN. Each room has its own tiny employees, machines, incident and readable short sign. Top: IDEA DEPARTMENT launches paper airplanes into neighbouring offices. FACT CHECKING uses forklifts to move citation folders. REPLAYING ONE AWKWARD MOMENT has a cinema showing the same handshake. COFFEE POWER PLANT is a hamster-wheel espresso engine. FIVE-MINUTE TASK has construction workers expanding into adjacent rooms. SLEEP OFFICE is locked while employees nap in the corridor. A red deadline alarm is ignored by a committee eating biscuits. Draw absurd connections between these departments with pneumatic tubes, stairs and conveyor belts. Crisp editorial pen illustration with rich muted colour, numerous tiny visual jokes, large legible headings, portrait composition, fully illustrated rather than a chart of empty boxes.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<上方完整提示词>" --size 1024x1536 --quality high -f docs/infographics-field-guides/overthinking-departments-26.png
+```
+
+**D · 就改五分钟** · [No. 168](skills/gpt-image/references/gallery-anime-and-manga.md)
+
+```text
+A witty six-panel editorial comic on one portrait page, two columns by three rows. Title: JUST A FIVE-MINUTE FIX. Same fictional adult developer, age 30, round glasses, mustard hoodie in every panel. Panel 1: relaxed at a tidy laptop, a tiny task card says CHANGE BUTTON COLOR. Panel 2: opens a cupboard labelled CSS, an avalanche of tangled wires falls out. Panel 3: inspects a small bug with a magnifier, behind it towers a dinosaur labelled LEGACY. Panel 4: now wearing a hard hat, demolishes the room, sign REBUILD EVERYTHING. Panel 5: midnight, exhausted, surrounded by twelve glowing monitors and sticky notes, tiny cat asleep on keyboard, caption THREE DAYS LATER. Panel 6: proud before the same laptop, button is exactly its original blue, small speech bubble IT WAS FINE BEFORE. Clear expressive physical comedy, detailed backgrounds that escalate, crisp ink and flat spot colours on warm white paper, readable exact short text, no extra panels.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<上方完整提示词>" --size 1024x1536 --quality high -f docs/anime-manga/five-minute-fix-26.png
+```
+
+**E · 巨龙组装说明书** · [No. 169](skills/gpt-image/references/gallery-infographics-and-field-guides.md)
+
+```text
+A deadpan flat-pack furniture assembly instruction sheet for assembling a living dragon, named DRAKON. Six numbered illustrated stages, black technical line art on warm white paper, small mustard-yellow warning boxes. At the top a neat parts inventory: dragon head, two wings, coiled tail, four feet, huge ribbed body, bag of tiny screws, one comically small hex key. Step 1 a cheerful stick person sorts parts. Step 2 two people struggle to align a wing. Step 3 one extra screw remains. Step 4 assembled dragon sneezes a tiny flame onto the instruction page. Step 5 dragon eats the hex key. Step 6 dragon has curled up on the sofa, crushing it, while owner calmly phones support. Tiny alternate wrong-way wing diagram crossed out. Bottom warning reads WARNING: DO NOT FEED AFTER ASSEMBLY. Precise readable diagrams, escalating visual comedy, clean generous gutters, portrait layout. Fictional fantasy assembly only, no realistic dangerous instructions. Do not use a real company logo.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare --moderation auto \
+  -p "<上方完整提示词>" --size 1024x1536 --quality high -f docs/infographics-field-guides/flatpack-dragon-26.png
+```
+
+有些细节没按提示词来：B 把公司名当成了角色名；D 没有画出最初的按钮颜色，结尾的笑点靠台词交代。完整检查结果见[运行记录](docs/image-2.6-samples.md)。参考图库里还保留了[合租房间](skills/gpt-image/references/gallery-architecture-and-interior.md)和[夜市寻人尝试](skills/gpt-image/references/gallery-illustration.md)。
+
+</details>
 
 <a id="sunburst-samples"></a>
 
-## ✨ GPT Image 2.5 实际出图
+## ✨ GPT Image 2.5 实测
 
-两张 2K 样图：机械表的分层零件与标注，以及参考图驱动的多层咖啡街区剖面。均使用 `gpt-image-2.5-sunburst`、`2048x2048`、`high`。
+这两张旧版样图使用 `gpt-image-2.5-sunburst`、`2048x2048`、`high`：一张拆开机械表、标出内部零件，另一张沿用参考图的咖啡街区，打开外墙展示多层内部空间。
 
 <table>
   <tr>
@@ -76,6 +225,9 @@
     </td>
   </tr>
 </table>
+
+<details>
+<summary><strong>提示词、参考图与结果说明</strong></summary>
 
 **A · [No. 113](skills/gpt-image/references/gallery-technical-illustration.md) · Prompt**
 
@@ -99,11 +251,13 @@ Use warm amber interiors against deep teal evening shadows, tactile brick, glaze
 
 完整设置、输入与检查结果见[样张记录](docs/sunburst-samples.md)。
 
+</details>
+
 <a id="image-example"></a>
 
 ## 🖼️ 从参考图到生成结果
 
-感谢 [@LunarXuan](https://github.com/LunarXuan) 贡献 **Get Prompt from Image**。把参考图交给支持视觉输入的 Agent，提取 Prompt 后交给 `gpt-image` 等工具生成。下面保留了贡献者提供的参考图和对应结果。
+[@LunarXuan](https://github.com/LunarXuan) 贡献了 **Get Prompt from Image**。把参考图交给支持视觉输入的 Agent，提取提示词，再交给 `gpt-image` 等工具生成。下面是贡献者提供的参考图和生成结果。
 
 <table>
   <tr>
@@ -126,7 +280,8 @@ Use warm amber interiors against deep teal evening shadows, tactile brick, glaze
 ```
 
 
-**📝 生成结果所使用的反推 Prompt**
+<details>
+<summary><strong>查看反推提示词</strong></summary>
 
 **正向 Prompt**
 
@@ -140,6 +295,7 @@ Use warm amber interiors against deep teal evening shadows, tactile brick, glaze
 photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed, oil painting impasto, chibi proportions, deformed anatomy, malformed hands, extra limbs, oversized wolf, sunny summer weather, cluttered composition, readable text, watermark
 ~~~
 
+</details>
 
 <a id="quickstart"></a>
 
@@ -151,32 +307,35 @@ photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed
 | 从参考图提取 Prompt | [`get-prompt-from-image`](skills/get-prompt-from-image/SKILL.md) |
 | 在终端调用 | 下方 CLI 示例，按选定模型填写 `--model` |
 
-### 🎛️ 先选模型
+### 🎛️ 默认使用 Image 2.6
 
 | 模型 | 适合的起点 |
 |---|---|
-| `gpt-image-2.5-flare` | 快速、高质量的日常生图 |
-| `gpt-image-2.5-sunburst` | 精确编辑与参考图工作流 |
-| `gpt-image-2` | 保留已有工作流使用的模型 |
+| `gpt-image-2.6-flare` | **默认**：快速生图和编辑 |
+| `gpt-image-2.6-sunburst` | 细节要求更高的生成与精确编辑 |
+| `gpt-image-2.5-flare` / `gpt-image-2.5-sunburst` | 继续使用 2.5 工作流 |
+| `gpt-image-2` | 保留 Image 2 工作流 |
 
-当用户没指定模型，或只说“GPT 2.5”等不明确名称时，Skill 会先提供上述选项，确认后再生成。明确选择支持的模型后即可继续。Skill 始终显式传入 `--model`；独立 CLI 仍默认使用 `gpt-image-2`。更换模型或增加出图数量前，先征得用户同意。
+不指定模型时，CLI 和 Skill 都使用 `gpt-image-2.6-flare`。Skill 会通过 `--model` 显式传入这个默认值，无需再确认；你指定其他模型时，就按你的选择执行。旧命令要继续使用 Image 2，加上 `--model gpt-image-2` 即可。
 
-两个 2.5 模型新增 `--quality xhigh` / `max`，并支持透明 PNG/WebP。建议先用 `low` 出草稿；更高质量可能增加耗时和费用。例如，选择 Flare 后：
+CLI 支持生成和编辑 PNG、JPEG、WebP 和 GIF，默认质量为 `high`，草稿可以先用 `low`。2.5 和 2.6 还支持 `xhigh`、`max`。SVG、complexity 和标注编辑目前没有对应的 CLI 参数。序列图可以用 `gpt-image animate` 在本地组装成动图。已经测试过的 2.6 Flare 生图和参考图编辑见[运行记录](docs/image-2.6-samples.md)。
+
+例如，用 2.6 Flare 生成一个透明背景图标：
 
 ```bash
-gpt-image --model gpt-image-2.5-flare \
+gpt-image --model gpt-image-2.6-flare \
   -p "原创扁平叶片图标，居中，留足边距，透明背景" \
   --quality medium --background transparent --format png -f leaf.png
 ```
 
-参见[模型兼容性与验证说明](skills/gpt-image/references/models.md)和 [GPT Image 2.5 Prompt 模板](skills/gpt-image/references/templates-gpt-image-2.5.md)。这些模板的本地出图验证仍待完成。已有图库保留原始模型和来源标注。
+[模型说明](skills/gpt-image/references/models.md)列出了兼容性和已验证的设置。[GPT Image 2.5 Prompt 模板](skills/gpt-image/references/templates-gpt-image-2.5.md)也可以试，但我们还没有在本地逐一验证出图。图库中的图片保留原始模型和来源标注。
 
-安装后，下面每个图库条目都可以复制粘贴为 `gpt-image --model <已选模型> -p "…"`，也可以在任何支持 Skill 的 Agent 运行时里用自然语言请求，例如：*“生成技能图库中的波士顿春季海报”*。
+安装后，把图库提示词复制到 `gpt-image --model <已选模型> -p "…"`，或直接告诉 Agent：*生成技能图库中的波士顿春季海报。*
 
 ### 文本 → 图片
 
 ```bash
-gpt-image --model gpt-image-2.5-flare -p "晚上10点的逼真便利店" --size 1k --quality high -f store.png
+gpt-image --model gpt-image-2.6-flare -p "晚上10点的逼真便利店" --size 1k --quality high -f store.png
 ```
 
 底层实现：`POST /v1/images/generations`，传入显式选择的模型。
@@ -185,23 +344,31 @@ gpt-image --model gpt-image-2.5-flare -p "晚上10点的逼真便利店" --size 
 
 ```bash
 # 单参考图编辑 / 重风格化
-gpt-image --model gpt-image-2.5-sunburst -p "让它成为一个下大雪的冬日晚景" \
+gpt-image --model gpt-image-2.6-sunburst -p "让它成为一个下大雪的冬日晚景" \
   -i chess.png --quality high -f chess-winter.png
 
 # 多参考图编辑：edits 端点可以同时接收多张输入图
-gpt-image --model gpt-image-2.5-sunburst -p "把第 2 张图里的狗放到第 1 张图的女人旁边，匹配相同的光线、构图和背景，不要改动其他任何内容。" \
+gpt-image --model gpt-image-2.6-sunburst -p "把第 2 张图里的狗放到第 1 张图的女人旁边，匹配相同的光线、构图和背景，不要改动其他任何内容。" \
   -i woman.png -i dog.png --size portrait --quality medium -f woman-with-dog.png
 
 # 基于掩码的修补：不透明部分 = 保留，透明部分 = 重新生成
-gpt-image --model gpt-image-2.5-sunburst -p "将天空替换为极光" \
+gpt-image --model gpt-image-2.6-sunburst -p "将天空替换为极光" \
   -i photo.jpg -m sky_mask.png -f aurora.png
 ```
 
-底层实现：`POST /v1/images/edits`（多部分表单）。GPT Image 2 和两个 2.5 模型沿用此接口，支持多个 `-i` 输入及可选的 `-m` 掩码。响应仍从 `data[].b64_json` 读取，不传 `response_format`。详见[模型兼容性说明](skills/gpt-image/references/models.md)。
+底层实现：`POST /v1/images/edits`（多部分表单）。GPT Image 2、2.5 和 2.6 模型沿用此接口，支持多个 `-i` 输入及可选的 `-m` 掩码。响应仍从 `data[].b64_json` 读取，不传 `response_format`。详见[模型兼容性说明](skills/gpt-image/references/models.md)。
 
 <a id="install"></a>
 
 ## 📥 安装
+
+首次安装或更新，把这句话发给 coding agent 就行：
+
+```text
+帮我安装或更新 GPT Image Skill：https://raw.githubusercontent.com/wuyoscar/GPT-Image2-Skill/main/docs/install.md
+```
+
+Agent 会检查现有安装，选择对应的更新方式，再验证结果。你也可以自行使用下方命令。
 
 可以任选一个 Skill，也可以同时安装：`gpt-image` 负责生成和编辑图片，`get-prompt-from-image` 负责从参考图提取 Prompt。
 
@@ -225,6 +392,14 @@ test -n "${OPENAI_API_KEY:-}" && echo "OPENAI_API_KEY is already set (value hidd
 
 <details>
 <summary><strong>Codex</strong></summary>
+
+推荐用能记录来源的安装器，后续可直接运行上方的 skills 更新命令：
+
+```bash
+npx --yes skills@latest add wuyoscar/gpt_image_2_skill --skill gpt-image get-prompt-from-image --agent codex --copy
+```
+
+也可以使用支持 `codex plugin` 的新版 Codex 安装原生插件，见[完整步骤](docs/install-update.md#codex-native-plugin)。下面保留 Skill 安装器和手工安装方式。
 
 Codex 内置了 `$skill-installer`、`$skill-creator` 等 Skill 管理工具。
 打开 Codex，针对你想安装的每个 Skill，用对应的 GitHub skill 文件夹 URL 调用内置安装器：
@@ -312,11 +487,11 @@ done
 <summary><strong>CLI</strong></summary>
 
 ```bash
-uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
+uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model gpt-image-2.6-flare -p "a cat astronaut"
 
 # 或在尚未安装时安装到 PATH
 command -v gpt-image >/dev/null || uv tool install git+https://github.com/wuyoscar/gpt_image_2_skill
-gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
+gpt-image --model gpt-image-2.6-flare -p "a cat astronaut"
 ```
 
 </details>
@@ -324,21 +499,24 @@ gpt-image --model gpt-image-2.5-flare -p "a cat astronaut"
 <details>
 <summary><strong>更新</strong></summary>
 
-```bash
-# 插件：使用 Claude Code 的更新流程
-# codex 技能：重新运行安装器
-# 手动 git 克隆方式
-cd gpt_image_2_skill && git pull
+按最初的安装方式更新。更新后重新开始一次 Agent 会话。
 
-# CLI
-uv tool upgrade gpt-image-cli
-```
+| 安装方式 | 更新命令 |
+|---|---|
+| Claude Code 插件 | `claude plugin update gpt-image@wuyoscar-skills` |
+| 用 skills 安装到当前项目的 Codex / 其他 Skill | `npx --yes skills@latest update gpt-image get-prompt-from-image --project` |
+| 用 skills 全局安装 | 将上面的 `--project` 换成 `--global` |
+| Codex 原生插件 | `codex plugin marketplace upgrade wuyoscar-skills && codex plugin add gpt-image@wuyoscar-skills` |
+| 独立 Python CLI | `uv tool upgrade gpt-image-cli` |
+| 指向 Git checkout 的 Skill 符号链接 | `git -C /path/to/gpt_image_2_skill pull --ff-only` |
+
+Claude Code 可以在 `/plugin` 的 Marketplaces 中为 `wuyoscar-skills` 开启自动更新。Codex 原生插件刷新后，请在新会话的 `/plugins` 中核对安装版本。CLI 用 `gpt-image --version` 查看版本。
+
+Skill、插件和独立 CLI 是不同的安装；一个更新命令不一定覆盖另一个。手工复制的目录也不一定由 skills 管理。完整安装方式、作用范围和官方来源见[安装与更新](docs/install-update.md)。
 
 </details>
 
-按 process env、`.env`、`~/.env` 的顺序读取 `OPENAI_API_KEY`，且不会覆盖已经设置好的环境变量。
-
-> **API Key：** CLI 会依次读取进程环境、`.env` 和 `~/.env`。要避免使用本地 Key，请检查这三处；`unset OPENAI_API_KEY` 只清除进程变量。Codex 用户也可以选择平台管理的内置生图工具。
+> **API Key：** CLI 依次从进程环境、`.env`、`~/.env` 读取 `OPENAI_API_KEY`，保留已经设置的值。要避免使用本地 Key，请检查这三处；`unset OPENAI_API_KEY` 只清除进程变量。Codex 用户也可以选择由平台管理的内置生图工具。
 
 <a id="cli-reference"></a>
 
@@ -349,26 +527,22 @@ uv tool upgrade gpt-image-cli
 
 ### 参数（完整）
 
-<details>
-<summary><strong>显示完整参数参考</strong></summary>
-
 | 标志 | 取值 | 默认值 | 适用范围 | 备注 |
 |---|---|---|---|---|
 | `-p, --prompt` | 字符串 | 必需 | 两者 | 完整的提示文本。 |
-| `--model` | 上述精确模型 ID | `gpt-image-2` | 两者 | Skill 确认模型后始终显式传入；CLI 默认值保持兼容。 |
+| `--model` | 上述精确模型 ID | `gpt-image-2.6-flare` | 两者 | Skill 显式传入解析后的模型，包括默认模型。 |
 | `-f, --file` | 路径 | `./fig/YYYY-MM-DD-HH-MM-SS-<slug>.png` | 两者 | 明确输出路径。 |
 | `-i, --image` | 路径（可重复） | 不传 | 编辑 | 存在时走 `/v1/images/edits` 路由。 |
 | `-m, --mask` | 路径（PNG，带alpha通道） | 不传 | 编辑 | 不透明 = 保留，透明 = 重新生成。需要 `-i`。 |
-| `--input-fidelity` | `low` · `high` | 不传 | 编辑 | Image 2 无法设置，CLI 会省略此参数。2.5 仅在显式指定时透传，行为尚未验证；见模型说明。 |
-| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · 字面量如 `1024x1024` 等 | `1024x1024` | 两者 | 字面量必须为16像素倍数，最大边3840，比例限制3:1，像素总数介于655k-8.3M之间。 |
-| `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | 两者 | `xhigh` / `max` 仅支持两个 2.5 模型；先用 `low` 草稿评估质量、延迟和费用。 |
+| `--input-fidelity` | `low` · `high` | 不传 | 编辑 | Image 2 无法设置，CLI 会省略此参数。2.5/2.6 仅在显式指定时透传，行为尚未验证；见模型说明。 |
+| `--size` | `1k` · `2k` · `4k` · `portrait` · `landscape` · `square` · `wide` · `tall` · 字面量如 `1024x1024` 等 | `1024x1024` | 两者 | Image 2/2.5：16像素倍数，最大边3840，比例限制3:1，655k-8.3M像素。2.6 自定义尺寸由 API 校验，见模型说明。 |
+| `--quality` | `auto` · `low` · `medium` · `high` · `xhigh` · `max` | `high` | 两者 | `xhigh` / `max` 支持 2.5 和 2.6 模型；先用 `low` 草稿评估质量、延迟和费用。 |
 | `-n, --n` | 1-10 | 1 | 两者 | 批量生成。`n>1` 时文件名后缀依次为 `_0`、`_1`、… |
 | `--background` | `auto` · `opaque` · `transparent` | API 默认 | 两者 | 透明背景必须用 PNG/WebP；Image 2 的透明支持仍为预览。 |
 | `--moderation` | `auto` · `low` | `low` | 生成 | 这里默认用 `low`，更适合广泛探索提示词；如果你想回到更严格的 API 侧默认行为，就手动切到 `auto`。 |
-| `--format` | `png` · `jpeg` · `webp` | `png` | 两者 | 响应编码格式。 |
+| `--format` | `png` · `jpeg` · `webp` · `gif` | `png` | 两者 | 响应编码格式。 |
+| `--frames` / `--frame-duration` | 2-16 / 20-2000 ms | API: 9 / 200 | GIF | 帧数与每帧时长；GIF 默认尺寸为 `auto`。 |
 | `--compression` | 0-100 | 不传 | 两者 | 仅适用于 JPEG/WebP。 |
-
-</details>
 
 ### 预算 / 质量指南
 
@@ -378,7 +552,7 @@ uv tool upgrade gpt-image-cli
 - `medium` = 正常探索 / 风格试探
 - `high` = 最终海报，中文文本，图表，论文图形，横幅
 
-如果你要生成数十个候选项，先从 `low` 开始，仅对决选的最终稿使用 `high` 重新运行。2.5 的 `xhigh` / `max` 可用于细节要求更高的版本。比较档位前，先约定新增出图数量和费用。
+如果你要生成数十个候选项，先从 `low` 开始，仅对决选的最终稿使用 `high` 重新运行。2.5/2.6 的 `xhigh` / `max` 可用于细节要求更高的版本。比较档位前，先约定新增出图数量和费用。
 
 ### 从画廊 Prompt → CLI / SDK
 
@@ -386,7 +560,7 @@ uv tool upgrade gpt-image-cli
 
 ```bash
 # CLI
-gpt-image --model gpt-image-2.5-flare -p "<条目中的提示词>" --size portrait --quality high -f out.png
+gpt-image --model gpt-image-2.6-flare -p "<条目中的提示词>" --size portrait --quality high -f out.png
 ```
 
 ```python
@@ -394,7 +568,7 @@ gpt-image --model gpt-image-2.5-flare -p "<条目中的提示词>" --size portra
 from openai import OpenAI
 client = OpenAI()
 result = client.images.generate(
-    model="gpt-image-2.5-flare",
+    model="gpt-image-2.6-flare",
     prompt="<条目中的提示词>",
     size="1024x1536",
     quality="high",
@@ -419,7 +593,7 @@ result = client.images.generate(
 <details>
 <summary><strong>显示提示词笔记</strong></summary>
 
-通用技巧来自[历史 Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md)，当前 2.5 指南另行整理为[官方来源参考入口](skills/gpt-image/references/openai-image-2.5.md)。Image 2 保留原有 gallery-first 路径；2.5 在模型已确认、需求明确时无需加载参考，否则只选一份简短任务说明。迁移心得单独存放。接口参数统一放在[模型说明](skills/gpt-image/references/models.md)；社区模板单独保留来源标注。
+这些笔记参考了 [Image 2 Cookbook](skills/gpt-image/references/openai-cookbook.md)。[2.5 参考索引](skills/gpt-image/references/openai-image-2.5.md)按任务整理官方指南，迁移说明另放一份文件。使用 Image 2 时，先找一个图库案例；使用 2.5 时，选好模型、说清需求就可以开始，需要帮助再查对应的任务指南。API 参数见[模型说明](skills/gpt-image/references/models.md)，社区模板各自保留来源标注。
 
 1. **先结构，再目标。** 使用一致的顺序：`背景/场景 → 主体 → 关键细节 → 限制条件`，并**说明预期用途**（广告、UI 原型、信息图），以便模型选择正确模式和润色等级。
 2. **任何格式都可；一致性更重要。** 简短提示、描述段落、JSON 风格结构、指令风格提示和标签式提示均可。建议选择便于阅读和维护的提示词格式。
@@ -434,6 +608,7 @@ result = client.images.generate(
 | 图库索引 | [`gallery.md`](skills/gpt-image/references/gallery.md)：先选分类，再读具体提示词。 |
 | 分类用例 | `gallery-*.md` 按需读取，例如[产品](skills/gpt-image/references/gallery-product-and-food.md)、[UI](skills/gpt-image/references/gallery-ui-ux-mockups.md)、[论文配图](skills/gpt-image/references/gallery-research-paper-figures.md)。 |
 | Prompt 写法 | [`craft.md`](skills/gpt-image/references/craft.md)：文字、构图、数据关系和编辑约束。 |
+| GPT Image 2.6 | [默认模型、API 兼容性和验证状态](skills/gpt-image/references/models.md)。 |
 | GPT Image 2.5 | [`参考索引`](skills/gpt-image/references/openai-image-2.5.md)：生成、排版文字、编辑和迁移分别存放。 |
 | Image 2 历史资料 | [`OpenAI Cookbook`](skills/gpt-image/references/openai-cookbook.md)：保留原来源与许可；实际调用采用[当前模型说明](skills/gpt-image/references/models.md)和用户选定的参数。 |
 
@@ -473,7 +648,7 @@ result = client.images.generate(
 
 ## 🎨 分类图库
 
-> 展开分类即可查看图片和提示词。完整的 163 个提示词见 [`gallery.md`](skills/gpt-image/references/gallery.md) 及其链接的 `gallery-*.md` 分类文件。
+> 展开分类即可查看图片和提示词。完整的 171 个提示词见 [`gallery.md`](skills/gpt-image/references/gallery.md) 及其链接的 `gallery-*.md` 分类文件。
 >
 > **来源标签。** `Curated` 表示由本 repo 整理、改写或重新设计的 prompt / image；外部来源条目继续保留可见的作者和来源链接。
 
