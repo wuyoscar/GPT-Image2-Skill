@@ -1,6 +1,6 @@
 # 📷 Photography
 
-Range: No. 63–67 · Count: 5
+Range: No. 63–67, 164 · Count: 6
 
 Load this file only when the request matches this category. For cross-cutting writing rules, pair it with `craft.md`.
 
@@ -106,3 +106,29 @@ Apply these as the default aesthetic target.
 
 Avoid: CGI, 3D render, doll skin, porcelain skin, excessive skin smoothing, beauty-app face reshaping, huge eyes, perfectly symmetrical face, over-sharpened eyelashes, waxy highlights, glam studio lighting, commercial fashion campaign, artificial rim light, extreme bokeh, hyper-detailed pore texture, over-HDR, unreal anatomy, extra fingers, fused fingers, floating accessories, warped glasses, duplicated jewelry, fake text, malformed background objects.
 ```
+
+### No. 164 · A character’s failed camera roll
+
+- Image: `docs/photography/failed-camera-roll-26.png`
+- Display derivative: `docs/assets/previews/failed-camera-roll-26.webp` (full-resolution lossless WebP; original PNG retained).
+
+  <a href="../../../docs/photography/failed-camera-roll-26.png"><img src="../../../docs/assets/previews/failed-camera-roll-26.webp" alt="A character’s failed camera roll" width="420"/></a>
+- Input: [No. 31 character reference sheet](gallery-character-design.md), `docs/character-design/character-sheet.png`; reference prompt credited to @MANISH1027512.
+- Metadata: `gpt-image-2.6-flare` · `864x1536` · `high` · reference edit · `2026-11-09` · Author: @8co28 · Source: [X](https://x.com/8co28/status/2099257877231972428)
+- Adaptation: The author’s short Japanese prompt is retained, with an explicit adult-reference sentence. The source demonstration used 2.5; this is our 2.6 rerun.
+
+**Prompt**
+
+```text
+Use the adult 26-year-old character in the reference sheet. 素人の失敗写真の数々、3x3、9:16。
+```
+
+**CLI**
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "Use the adult 26-year-old character in the reference sheet. 素人の失敗写真の数々、3x3、9:16。" --size 864x1536 --quality high -f docs/photography/failed-camera-roll-26.png
+```
+
+- Visual QA: Nine cells show a blocked lens, bad framing, motion blur, spilled drinks and rain. Hair, glasses and jacket details recur, but the result shifts toward live-action cosplay; exact facial identity is not guaranteed.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md).

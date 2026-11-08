@@ -1,6 +1,6 @@
 # 🏛️ Architecture & Interior
 
-Range: No. 118–122 · Count: 5
+Range: No. 118–122, 165 · Count: 6
 
 Load this file only when the request matches this category. For cross-cutting writing rules, pair it with `craft.md`.
 
@@ -58,3 +58,29 @@ Generate a high-end photorealistic render of a future-facing biotech laboratory 
 ```text
 Render a majestic Gothic cathedral interior in photorealistic architectural style, viewed down the central nave with towering ribbed vaults, pointed arches, intricate tracery, and colored light from stained glass windows. Use a palette of cool stone gray, deep burgundy, sapphire blue, candle gold, and dusty ambient light. Include realistic worn limestone textures, carved choir stalls, a patterned stone floor, and a distant altar. Add a discreet informational plaque near the foreground with the in-image text "Nave Height 28.5 m" and "Westminster Hall of Light". The composition should emphasize verticality, symmetry, and sacred atmosphere while remaining architecturally believable. Lighting should mix soft daylight shafts and warm candlelight, with subtle volumetric dust. Prioritize accurate Gothic detailing, strong perspective, material realism, and crisp small text, producing a museum-grade architectural render rather than a fantasy scene.
 ```
+
+### No. 165 · The home your character would actually live in
+
+- Image: `docs/architecture-interior/engineer-share-life-26.png`
+- Display derivative: `docs/assets/previews/engineer-share-life-26.webp` (full-resolution lossless WebP; original PNG retained).
+
+  <a href="../../../docs/architecture-interior/engineer-share-life-26.png"><img src="../../../docs/assets/previews/engineer-share-life-26.webp" alt="The home your character would actually live in" width="420"/></a>
+- Input: [No. 31 character reference sheet](gallery-character-design.md), `docs/character-design/character-sheet.png`; reference prompt credited to @MANISH1027512.
+- Metadata: `gpt-image-2.6-flare` · `1152x1536` · `high` · reference edit · `2026-11-09` · Author: @_a5_s_ · Source: [X](https://x.com/_a5_s_/status/2118282185845174678)
+- Adaptation: An English adaptation of the author’s character-driven shared-home concept, using the existing Ling Yuan reference. This is not a verbatim translation.
+
+**Prompt**
+
+```text
+Use Ling Yuan, the fictional 26-year-old cyber engineer in the reference. Imagine the home he shares with an unseen roommate. Let his documented occupation, equipment and Neo-Shanghai setting drive the layout, materials, tools and lived-in clutter, rather than merely using his colors. Show paired everyday objects and distinct shared and personal spaces. Keep only Ling Yuan visible, off-center and small enough to reveal the whole room. Give him new relaxed indoor clothing, pose and expression, while retaining his recognizable face, silver hair and glasses. Catch him doing an ordinary activity suited to this home, looking at his work rather than the camera. View from the unseen roommate’s position inside the room, wide angle, believable furniture scale and contact. High-quality 3D animation lighting and materials. No captions. Tasteful, non-explicit, fully clothed. Portrait 3:4.
+```
+
+**CLI**
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/character-design/character-sheet.png \
+  -p "Use Ling Yuan, the fictional 26-year-old cyber engineer in the reference. Imagine the home he shares with an unseen roommate. Let his documented occupation, equipment and Neo-Shanghai setting drive the layout, materials, tools and lived-in clutter, rather than merely using his colors. Show paired everyday objects and distinct shared and personal spaces. Keep only Ling Yuan visible, off-center and small enough to reveal the whole room. Give him new relaxed indoor clothing, pose and expression, while retaining his recognizable face, silver hair and glasses. Catch him doing an ordinary activity suited to this home, looking at his work rather than the camera. View from the unseen roommate’s position inside the room, wide angle, believable furniture scale and contact. High-quality 3D animation lighting and materials. No captions. Tasteful, non-explicit, fully clothed. Portrait 3:4." --size 1152x1536 --quality high -f docs/architecture-interior/engineer-share-life-26.png
+```
+
+- Visual QA: Silver hair and glasses carry through; indoor clothing, posture and room are new. Tools, repair equipment and the skyline reflect the reference setting. Shared occupancy is suggested by foreground seating and objects but is not clearly established as a two-person household.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md).

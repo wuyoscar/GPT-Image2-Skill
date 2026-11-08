@@ -16,6 +16,7 @@ __pycache__/
 *.jpg
 *.jpeg
 *.webp
+*.gif
 !docs/**/
 !docs/*.png
 !docs/*.jpg
@@ -23,6 +24,7 @@ __pycache__/
 !docs/**/*.jpg
 !docs/**/*.jpeg
 !docs/**/*.webp
+!docs/**/*.gif
 
 # macOS
 .DS_Store
@@ -50,3 +52,6 @@ config/mcporter.json
 # Local Codex handoff
 AGENTS.md
 CLAUDE.md
+
+# Local generation experiments and QA previews
+.scratch/
