@@ -8,9 +8,17 @@
     {
       "name": "gpt-image",
       "source": "./",
-      "description": "OpenAI GPT Image 2/2.5 skill — model choice, on-demand prompt references, and a packaged CLI for generation and editing. Keeps Image 2 references and lightweight 2.5 guidance separate.",
+      "description": "OpenAI GPT Image 2/2.5/2.6 skill — Image 2.6 Flare by default, on-demand prompt references, and a packaged CLI for generation and editing.",
       "homepage": "https://github.com/wuyoscar/gpt_image_2_skill",
-      "keywords": ["gpt-image-2", "openai", "image-generation", "prompt-library"]
+      "keywords": [
+        "gpt-image-2",
+        "openai",
+        "image-generation",
+        "prompt-library"
+      ]
     }
-  ]
+  ],
+  "metadata": {
+    "description": "Image generation, editing and animation skills from Oscar."
+  }
 }

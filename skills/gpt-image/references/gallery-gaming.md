@@ -1,6 +1,6 @@
 # 🎮 Gaming
 
-Range: No. 13–22 · Count: 10
+Range: No. 13–22, 166, 171 · Count: 12
 
 Load this file only when the request matches this category. For cross-cutting writing rules, pair it with `craft.md`.
 
@@ -113,3 +113,45 @@ Create an isometric low-poly strategy game screenshot of a mountainous Japanese 
 ```text
 Create a square 3x3 worldbuilding set for an original dark-fantasy universe called "Saltwind Reach". Each panel is a distinct but consistent scene: a storm-battered coastal fortress at dawn, a foggy market street, a knight relic close-up, a handwritten map fragment, a monster silhouette study, a candlelit tavern interior, an alchemist kit flat lay, a moonlit harbor, and a faction banner concept. Keep one cohesive art direction across all nine panels: painterly realism, muted teal / rust / bone palette, cinematic weather, premium concept-art presentation, small caption labels, and strong consistency across costume motifs, architecture, symbols, and lighting. The full board should feel like a polished pre-production worldbuilding sheet rather than a collage of unrelated images.
 ```
+
+### No. 166 · What is in a cyber engineer’s bag?
+
+- Image: `docs/gaming/engineer-inventory-26.png`
+- Display derivative: `docs/assets/previews/engineer-inventory-26.webp` (full-resolution lossless WebP; PNG retained).
+
+  <a href="../../../docs/gaming/engineer-inventory-26.png"><img src="../../../docs/assets/previews/engineer-inventory-26.webp" alt="What is in a cyber engineer’s bag?" width="420"/></a>
+- Input: [No. 31 character sheet](gallery-character-design.md), `docs/character-design/character-sheet.png`; reference prompt credited to @MANISH1027512.
+- Metadata: `gpt-image-2.6-flare` · `1024x1536` · `high` · reference edit · `2026-11-09` · Author: @chachaai_jp · Source: [original post](https://x.com/chachaai_jp/status/2049066868502405257)
+- Adaptation: Character belongings shown as a mobile-game inventory; original author labels it GPT Image 2. The exact executed prompt below includes our scenario and layout choices.
+
+**Prompt**
+
+```text
+Use the fictional adult 26-year-old character in the reference sheet. このキャラのカバンの中身を紹介する画像を作成して。キャラの性格が伝わる構成、モダンなソシャゲのインベントリ画面のようなデザイン。 Keep this tasteful and non-explicit. Use English for item labels. Show a densely packed inventory with visually distinct items and short humorous descriptions. Portrait 2:3.
+```
+
+- Visual QA: The output has 24 illustrated inventory cells, short item descriptions and character reactions. The source character cues recur, but HUXING (the company name in the reference) is used like the character name. This is a fictional UI illustration, not a working inventory or a verified item-count system.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md#second-round-six-community-candidates).
+
+### No. 171 · Fire cursor: sprite sheet to local GIF
+
+- Images: `docs/gaming/sword-cursor-sheet.png` (generated sheet), `docs/gaming/sword-cursor.gif` (local assembly).
+
+  <a href="../../../docs/gaming/sword-cursor-sheet.png"><img src="../../../docs/gaming/sword-cursor.gif" alt="Animated fire sword from an eight-frame sheet" width="320"/></a>
+- Metadata: `gpt-image-2.6-flare` · `2048x1024` sheet · `high` · `2026-11-09` · Author: @hAru_mAki_ch · Source: [X cursor workflow](https://x.com/hAru_mAki_ch/status/2119072107196035314) and [author tutorial](https://note.com/sunwood_ai_labs/n/na0dbbfa3811f).
+- Adaptation: our fire-and-ice sword brief follows the author's image-to-cursor workflow. It is not the author's exact prompt.
+- Local output: eight `512x512` frames, `160 ms` each, `1.28 s`, infinite GIF loop. The HTML player also plays the original PNG cells without GIF palette reduction.
+
+**Prompt**
+
+```text
+An animation sprite sheet for a fantasy desktop cursor, inspired by a flaming-sword mouse pointer. Exactly 8 frames in a 4-column by 2-row uniform grid, read left to right then top to bottom. Canvas 2048 by 1024, each cell exactly 512 by 512. Transparent background, no gutters, no borders, no text, no labels. In every cell the same small ornate obsidian sword points diagonally toward the upper-left. Its sharp tip is fixed at cell coordinate (100,100), blade geometry and position identical in every frame. Bright amber and electric-blue flame curls around the blade, progressing smoothly through eight phases and returning to the initial shape at the loop boundary. The blade stays still; only flames, a few sparks and reflected light move. Keep all effects within the middle 360 by 360 pixels of each cell. Crisp illustrated game-UI asset, luminous edges, convincing metallic highlights, strong silhouette, no character, no duplicate swords within a cell. Do not draw checkerboards; use actual transparency.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -p "<PROMPT ABOVE>" --size 2048x1024 --quality high --background transparent --format png --moderation auto -f sheet.png
+gpt-image animate --sheet sheet.png --columns 4 --rows 2 --duration 160 -f cursor.gif --preview player.html --title "Emberglass cursor"
+```
+
+- Visual QA: actual alpha is present; eight distinct cells show changing flames and highlights. The sword tip shifts slightly between frames. This is an animation asset study, not a pixel-registered OS cursor or an installed `.cur`/`.ani` package.
+- [Interactive frame player](../../../docs/demos/sword-player.html) · [Workflow and checks](../../../docs/creative-workflows.md).

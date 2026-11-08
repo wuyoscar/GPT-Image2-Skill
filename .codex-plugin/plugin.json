@@ -1,0 +1,13 @@
+{
+  "name": "gpt-image",
+  "version": "0.3.0",
+  "description": "GPT Image prompt gallery and agent skills with a CLI for generation, editing and local sprite animation. Defaults to Image 2.6 Flare.",
+  "author": {
+    "name": "wuyoscar",
+    "url": "https://github.com/wuyoscar"
+  },
+  "homepage": "https://github.com/wuyoscar/gpt_image_2_skill",
+  "repository": "https://github.com/wuyoscar/gpt_image_2_skill",
+  "license": "MIT",
+  "skills": "./skills/"
+}

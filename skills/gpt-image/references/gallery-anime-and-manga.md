@@ -1,6 +1,6 @@
 # 🎌 Anime & Manga
 
-Range: No. 1–12 · Count: 12
+Range: No. 1–12, 168 · Count: 13
 
 Load this file only when the request matches this category. For cross-cutting writing rules, pair it with `craft.md`.
 
@@ -173,3 +173,21 @@ Create a portrait-oriented anime fashion illustration of an adult woman, age 24,
 ```text
 Create a portrait anime key visual of an adult woman, age 25, posing cutely in a convex traffic safety mirror beside a rainy roadside bus stop at blue hour. The image should show both the round mirror reflection and a bit of the real street around it: wet asphalt, umbrellas, blurred bus headlights, a small timetable sign, and glowing convenience-store windows. She wears a camel duffle coat, short plaid skirt, sheer black stockings, ankle boots, knitted scarf, and a tiny charm bracelet; her expression is playful and bashful, looking at the viewer through the mirror reflection. Keep the styling tasteful and wholesome: no nudity, no lingerie, no explicit pose, no school-uniform framing, adult character only. Use high-end anime rendering, delicate rain highlights, crisp line art, luminous eyes, soft cel shading, realistic mirror distortion, and a cozy rainy-city atmosphere.
 ```
+
+### No. 168 · The five-minute fix
+
+- Image: `docs/anime-manga/five-minute-fix-26.png`
+- Display derivative: `docs/assets/previews/five-minute-fix-26.webp` (full-resolution lossless WebP; PNG retained).
+
+  <a href="../../../docs/anime-manga/five-minute-fix-26.png"><img src="../../../docs/assets/previews/five-minute-fix-26.webp" alt="The five-minute fix" width="420"/></a>
+- Metadata: `gpt-image-2.6-flare` · `1024x1536` · `high` · generation · `2026-11-09` · Author: u/Ohsusannamarie · Source: [original post](https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/)
+- Adaptation: Adaptation of the original five-minute-task escalation prompt, using a fictional developer and a concrete button-colour task. The exact executed prompt below includes our scenario and layout choices.
+
+**Prompt**
+
+```text
+A witty six-panel editorial comic on one portrait page, two columns by three rows. Title: JUST A FIVE-MINUTE FIX. Same fictional adult developer, age 30, round glasses, mustard hoodie in every panel. Panel 1: relaxed at a tidy laptop, a tiny task card says CHANGE BUTTON COLOR. Panel 2: opens a cupboard labelled CSS, an avalanche of tangled wires falls out. Panel 3: inspects a small bug with a magnifier, behind it towers a dinosaur labelled LEGACY. Panel 4: now wearing a hard hat, demolishes the room, sign REBUILD EVERYTHING. Panel 5: midnight, exhausted, surrounded by twelve glowing monitors and sticky notes, tiny cat asleep on keyboard, caption THREE DAYS LATER. Panel 6: proud before the same laptop, button is exactly its original blue, small speech bubble IT WAS FINE BEFORE. Clear expressive physical comedy, detailed backgrounds that escalate, crisp ink and flat spot colours on warm white paper, readable exact short text, no extra panels.
+```
+
+- Visual QA: Six panels show the escalating task and the final blue button. Main captions are readable and the character is consistent. The initial button is not visible, so unchanged colour is conveyed by the final joke rather than demonstrated; the requested twelve monitors are not all present.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md#second-round-six-community-candidates).

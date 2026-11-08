@@ -4,6 +4,7 @@
 # dependencies = [
 #     "openai>=2.32.0",
 #     "python-dotenv>=1.0",
+#     "Pillow>=12.0",
 # ]
 # ///
 """Skill launcher for the shared gpt-image CLI.

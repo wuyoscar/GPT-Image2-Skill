@@ -1,0 +1,37 @@
+name: CLI checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          python-version: ${{ matrix.python }}
+          enable-cache: false
+      - name: Test offline request and animation behavior
+        run: uv run python -m unittest discover -s tests -v
+      - name: Check Python syntax and CLI entry points
+        run: |
+          uv run python -m py_compile src/gpt_image_cli/cli.py src/gpt_image_cli/animation.py src/gpt_image_cli/__init__.py
+          uv run gpt-image --version
+          uv run gpt-image --help
+          uv run gpt-image animate --help
+      - name: Build wheel and source distribution
+        run: uv build

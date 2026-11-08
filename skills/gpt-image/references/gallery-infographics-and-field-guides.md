@@ -1,6 +1,6 @@
 # 📊 Infographics & Field Guides
 
-Range: No. 68–75 · Count: 8
+Range: No. 68–75, 167, 169 · Count: 10
 
 Load this file only when the request matches this category. For cross-cutting writing rules, pair it with `craft.md`.
 
@@ -122,3 +122,58 @@ Make me an image in 35 mm film style of a diagram showing the knowledge of camer
 ```text
 Create a visually rich infographic in Chinese about an endangered animal. Start by finding one online, research its habitat, diet, and unique traits. Present information through annotated visuals and structured callouts, not generic sections. Style it like a bold graphic illustration: a detailed, photorealistic central animal as the focal point, supported by diagrams, callouts, and concise text elements. Use clean backgrounds and a mix of photorealism with strong graphic elements (shapes, icons, color blocking) in a layered composition. Make it dense, tactile, and professionally authored.
 ```
+
+### No. 167 · Inside the overthinking department
+
+- Image: `docs/infographics-field-guides/overthinking-departments-26.png`
+- Display derivative: `docs/assets/previews/overthinking-departments-26.webp` (full-resolution lossless WebP; PNG retained).
+
+  <a href="../../../docs/infographics-field-guides/overthinking-departments-26.png"><img src="../../../docs/assets/previews/overthinking-departments-26.webp" alt="Inside the overthinking department" width="420"/></a>
+- Metadata: `gpt-image-2.6-flare` · `1024x1536` · `high` · generation · `2026-11-09` · Author: u/Ohsusannamarie · Source: [original post](https://www.reddit.com/r/ChatGPT/comments/1w0jh1w/i_started_asking_chatgpt_to_create_images_using/)
+- Adaptation: Inspired by the original Inside My Brain and brain-as-an-organisation prompts; all persona details here are fictional. The exact executed prompt below includes our scenario and layout choices.
+
+**Prompt**
+
+```text
+An elaborate illustrated cutaway of a fictional overthinker’s brain shaped like a chaotic six-storey office building. Title: INSIDE MY BRAIN. Each room has its own tiny employees, machines, incident and readable short sign. Top: IDEA DEPARTMENT launches paper airplanes into neighbouring offices. FACT CHECKING uses forklifts to move citation folders. REPLAYING ONE AWKWARD MOMENT has a cinema showing the same handshake. COFFEE POWER PLANT is a hamster-wheel espresso engine. FIVE-MINUTE TASK has construction workers expanding into adjacent rooms. SLEEP OFFICE is locked while employees nap in the corridor. A red deadline alarm is ignored by a committee eating biscuits. Draw absurd connections between these departments with pneumatic tubes, stairs and conveyor belts. Crisp editorial pen illustration with rich muted colour, numerous tiny visual jokes, large legible headings, portrait composition, fully illustrated rather than a chart of empty boxes.
+```
+
+- Visual QA: The labelled departments, citation forklift, awkward-handshake cinema, coffee machinery, sleeping staff and ignored deadline alarm are visible. The floor structure is not an exact six-storey building; this is a satirical cutaway, not a validated floor plan.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md#second-round-six-community-candidates).
+
+### Animation and website variation of No. 167
+
+- Output: `docs/infographics-field-guides/brain-office-loop.gif`; 2.6 Flare reference edit, `512x768`, `medium`, 9 frames × 200 ms, 1.8 s, `2026-11-09`.
+- Input: `docs/infographics-field-guides/overthinking-departments-26.png`. Animation brief and webpage: Curated; original concept credit remains u/Ohsusannamarie above.
+
+  <a href="../../../docs/demos/brain-office.html"><img src="../../../docs/infographics-field-guides/brain-office-loop.gif" alt="Animated overthinking office" width="300"/></a>
+
+**Animation prompt**
+
+```text
+Animate this exact illustrated brain-office cutaway as a short seamless looping GIF. Keep the camera, room layout, all signs and lettering fixed. Use small motions: the hamster turns the coffee wheel, tiny workers move papers along the conveyor, one paper airplane drifts near the roof, the red DEADLINE lamp gently blinks while the committee keeps eating biscuits. Preserve the drawing style and character identities. Most of the image stays still. End in the starting state. Return a single animated scene, not a grid or storyboard. No new text.
+```
+
+```bash
+gpt-image --model gpt-image-2.6-flare -i docs/infographics-field-guides/overthinking-departments-26.png -p "<ANIMATION PROMPT ABOVE>" --format gif --frames 9 --frame-duration 200 --size 512x768 --quality medium -f brain-office.gif
+```
+
+The motion is subtle and small lettering changes between frames. The [interactive website](../../../docs/demos/brain-office.html) adds readable HTML room descriptions, clickable hotspots and a clock-in/out motion toggle. Its layout and controls are code, not generated image content.
+
+### No. 169 · Flat-pack dragon assembly
+
+- Image: `docs/infographics-field-guides/flatpack-dragon-26.png`
+- Display derivative: `docs/assets/previews/flatpack-dragon-26.webp` (full-resolution lossless WebP; PNG retained).
+
+  <a href="../../../docs/infographics-field-guides/flatpack-dragon-26.png"><img src="../../../docs/assets/previews/flatpack-dragon-26.webp" alt="Flat-pack dragon assembly" width="420"/></a>
+- Metadata: `gpt-image-2.6-flare` · `1024x1536` · `high` · generation · `2026-11-09` · Author: u/Mary_ry · Source: [original post](https://www.reddit.com/r/ChatGPT/comments/1pd0qeu/from_nuclear_to_summoning_a_dragon_ais_cursed/)
+- Adaptation: The original asks for furniture-assembly instructions for something that should never have a furniture manual. This adaptation selects a fictional dragon. The exact executed prompt below includes our scenario and layout choices.
+
+**Prompt**
+
+```text
+A deadpan flat-pack furniture assembly instruction sheet for assembling a living dragon, named DRAKON. Six numbered illustrated stages, black technical line art on warm white paper, small mustard-yellow warning boxes. At the top a neat parts inventory: dragon head, two wings, coiled tail, four feet, huge ribbed body, bag of tiny screws, one comically small hex key. Step 1 a cheerful stick person sorts parts. Step 2 two people struggle to align a wing. Step 3 one extra screw remains. Step 4 assembled dragon sneezes a tiny flame onto the instruction page. Step 5 dragon eats the hex key. Step 6 dragon has curled up on the sofa, crushing it, while owner calmly phones support. Tiny alternate wrong-way wing diagram crossed out. Bottom warning reads WARNING: DO NOT FEED AFTER ASSEMBLY. Precise readable diagrams, escalating visual comedy, clean generous gutters, portrait layout. Fictional fantasy assembly only, no realistic dangerous instructions. Do not use a real company logo.
+```
+
+- Visual QA: The parts list, six numbered stages, spare screw, fire sneeze, eaten hex key, broken sofa and warning are readable. The drawing is a fantasy joke, not mechanically meaningful assembly guidance.
+- Run record: [Image 2.6 community samples](../../../docs/image-2.6-samples.md#second-round-six-community-candidates).

@@ -1,0 +1,20 @@
+{
+  "name": "wuyoscar-skills",
+  "interface": {
+    "displayName": "Oscar’s image skills"
+  },
+  "plugins": [
+    {
+      "name": "gpt-image",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

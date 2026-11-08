@@ -1,4 +1,4 @@
 interface:
   display_name: "GPT Image"
-  short_description: "Generate/edit GPT Image 2 and 2.5 visuals with model choice"
-  default_prompt: "Use $gpt-image to resolve my image model choice, consult references only when needed, and generate or edit through the packaged CLI with the chosen model."
+  short_description: "Create images, GIFs and web assets with GPT Image 2.6"
+  default_prompt: "Use $gpt-image to generate, edit, or turn image assets into animations and webpages through the packaged tools, defaulting to GPT Image 2.6 Flare unless I choose another model. Consult references only when needed."
