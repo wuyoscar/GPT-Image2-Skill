@@ -1,11 +1,11 @@
-"""gpt-image-cli — OpenAI GPT Image 2 command-line interface."""
+"""gpt-image-cli — OpenAI GPT Image command-line interface."""
 
 from __future__ import annotations
 
 from typing import NoReturn
 
 __all__ = ["main"]
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 
 def main() -> int | NoReturn:

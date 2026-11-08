@@ -4,9 +4,10 @@
 # dependencies = [
 #     "openai>=2.32.0",
 #     "python-dotenv>=1.0",
+#     "Pillow>=12.0",
 # ]
 # ///
-"""General-purpose CLI for OpenAI GPT Image 2 and 2.5.
+"""General-purpose CLI for OpenAI GPT Image 2, 2.5 and 2.6.
 
 Mirrors the two official endpoints from the OpenAI cookbook using the official
 `openai` Python SDK:
@@ -16,7 +17,7 @@ Mirrors the two official endpoints from the OpenAI cookbook using the official
 
 Common generation and editing parameters are exposed as flags. Reads OPENAI_API_KEY from
 process env, then .env, then ~/.env without overriding existing env. Writes the
-returned PNG/JPEG/WebP bytes to disk and prints the output path(s) on stdout.
+returned PNG/JPEG/WebP/GIF bytes to disk and prints the output path(s) on stdout.
 
 Exit codes: 0 success, 1 API error, 2 bad args.
 
@@ -79,7 +80,7 @@ SIZE_SHORTCUTS: dict[str, str] = {
     "tall": "2160x3840",
 }
 
-DEFAULT_MODEL = "gpt-image-2"
+DEFAULT_MODEL = "gpt-image-2.6-flare"
 DEFAULT_SIZE = "1024x1024"
 DEFAULT_MODERATION = "low"
 
@@ -108,9 +109,16 @@ def model_rejects_input_fidelity(model: str) -> bool:
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="gpt-image",
-        description="Call OpenAI GPT Image 2/2.5 (generations or edits) via the official openai Python SDK.",
+        description="Call OpenAI GPT Image 2/2.5/2.6 (generations or edits) via the official openai Python SDK.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="Local animation: gpt-image animate --help (sprite sheet to GIF and HTML preview).",
     )
+    from importlib.metadata import PackageNotFoundError, version
+    try:
+        package_version = version("gpt-image-cli")
+    except PackageNotFoundError:
+        package_version = "uninstalled source"
+    p.add_argument("--version", action="version", version=f"gpt-image-cli {package_version}")
     p.add_argument("-p", "--prompt", required=True, help="Text prompt / edit instruction.")
     p.add_argument(
         "-f", "--file",
@@ -127,16 +135,16 @@ def parse_args() -> argparse.Namespace:
         help="Alpha-channel PNG mask (opaque = preserved, transparent = regenerated). "
              "Edits endpoint only; requires -i.",
     )
-    p.add_argument("--model", default=DEFAULT_MODEL, help=f"Model ID: gpt-image-2.5-flare, gpt-image-2.5-sunburst, or {DEFAULT_MODEL} (compatibility default).")
+    p.add_argument("--model", default=DEFAULT_MODEL, help=f"Model ID. Default {DEFAULT_MODEL}; also supports gpt-image-2.6-sunburst, gpt-image-2.5-flare, gpt-image-2.5-sunburst, and gpt-image-2.")
     p.add_argument(
-        "--size", default=DEFAULT_SIZE,
+        "--size", default=None,
         help="Image size. Accepts literals (1024x1024, 1536x1024, 2048x2048, 3840x2160, "
-             "any 16px-multiple up to 3840 max edge, 3:1 ratio cap) or shortcuts "
-             "(1k, 2k, 4k, portrait, landscape, square, wide, tall). Default 1024x1024.",
+             "model-supported WIDTHxHEIGHT) or shortcuts "
+             "(1k, 2k, 4k, portrait, landscape, square, wide, tall). Default 1024x1024; GIF defaults to auto.",
     )
     p.add_argument(
         "--quality", default="high", choices=["auto", "low", "medium", "high", "xhigh", "max"],
-        help="Rendering fidelity / budget knob. Default high; xhigh/max require GPT Image 2.5. "
+        help="Rendering fidelity / budget knob. Default high; xhigh/max require GPT Image 2.5 or 2.6. "
              "Use low for cheap drafts, medium for normal exploration, high for final text-heavy or shipping-facing assets.",
     )
     p.add_argument("-n", "--n", type=int, default=1, help="Number of images to return. Default 1.")
@@ -150,13 +158,17 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--input-fidelity", dest="input_fidelity", default=None, choices=["low", "high"],
-        help="Edits only; omitted by default. Dropped for gpt-image-2; explicit 2.5 values are passed to the API (support unverified).",
+        help="Edits only; omitted by default. Dropped for gpt-image-2; explicit 2.5/2.6 values are passed to the API (support unverified).",
     )
     p.add_argument(
         "--format", dest="output_format", default=None,
-        choices=["png", "jpeg", "webp"],
-        help="Output encoding. Default png.",
+        choices=["png", "jpeg", "webp", "gif"],
+        help="Output encoding. Default png; animated gif requires Image 2.6 access.",
     )
+    p.add_argument("--frames", dest="frame_count", type=int, default=None,
+                   help="GIF only: 2-16 frames. API default 9.")
+    p.add_argument("--frame-duration", dest="frame_duration_ms", type=int, default=None,
+                   help="GIF only: 20-2000 ms per frame, rounded by the API to 10 ms. API default 200.")
     p.add_argument(
         "--compression", dest="output_compression", type=int, default=None,
         help="0-100 compression level for jpeg/webp. Ignored for png.",
@@ -167,9 +179,26 @@ def parse_args() -> argparse.Namespace:
     )
     args = p.parse_args()
     image25 = re.fullmatch(r"gpt-image-2\.5-(?:flare|sunburst)(?:-\d{4}-\d{2}-\d{2})?", args.model) is not None
-    if args.quality in ("xhigh", "max") and not image25:
-        p.error("--quality xhigh/max requires --model gpt-image-2.5-flare or gpt-image-2.5-sunburst")
-    if args.background == "transparent" and args.output_format == "jpeg":
+    image26 = args.model in ("gpt-image-2.6-flare", "gpt-image-2.6-sunburst")
+    gif = args.output_format == "gif"
+    if gif:
+        if not image26:
+            p.error("--format gif requires a GPT Image 2.6 model")
+        if args.mask or args.output_compression is not None:
+            p.error("GIF output does not support --mask or --compression")
+        if args.frame_count is not None and not 2 <= args.frame_count <= 16:
+            p.error("--frames must be between 2 and 16")
+        if args.frame_duration_ms is not None and not 20 <= args.frame_duration_ms <= 2000:
+            p.error("--frame-duration must be between 20 and 2000 milliseconds")
+        if args.file and Path(args.file).suffix.lower() != ".gif":
+            p.error("GIF output requires a .gif output filename")
+    elif args.frame_count is not None or args.frame_duration_ms is not None:
+        p.error("--frames and --frame-duration require --format gif")
+    if args.size is None:
+        args.size = "auto" if gif else DEFAULT_SIZE
+    if args.quality in ("xhigh", "max") and not (image25 or image26):
+        p.error("--quality xhigh/max requires a GPT Image 2.5 or 2.6 Flare/Sunburst model")
+    if args.background == "transparent" and args.output_format in ("jpeg", "gif"):
         p.error("--background transparent requires --format png or webp")
     if not 1 <= args.n <= 10:
         p.error("--n must be between 1 and 10")
@@ -178,12 +207,18 @@ def parse_args() -> argparse.Namespace:
     if args.mask and not args.image:
         p.error("--mask requires --image (edits endpoint only)")
     size = resolve_size(args.size)
-    if (image25 or model_rejects_input_fidelity(args.model)) and size != "auto":
+    if (image25 or image26 or model_rejects_input_fidelity(args.model)) and size != "auto":
         match = re.fullmatch(r"(\d+)x(\d+)", size)
         if not match:
             p.error("--size must be auto, a size shortcut, or WIDTHxHEIGHT")
         width, height = map(int, match.groups())
-        if (min(width, height) <= 0 or max(width, height) > 3840
+        if min(width, height) <= 0:
+            p.error("--size dimensions must be positive")
+        if gif and (width % 16 or height % 16):
+            p.error("GIF frame dimensions must be multiples of 16")
+        # The published custom-size limits name Image 2/2.5 only. Let the API
+        # validate 2.6 limits rather than borrowing a sibling model's bounds.
+        if not image26 and (max(width, height) > 3840
                 or width % 16 or height % 16 or max(width, height) > 3 * min(width, height)
                 or not 655360 <= width * height <= 8294400):
             p.error("--size requires 16px multiples, edges <=3840px, aspect ratio <=3:1, and 655360–8294400 pixels")
@@ -193,6 +228,12 @@ def parse_args() -> argparse.Namespace:
 def _filter_none(d: dict[str, Any]) -> dict[str, Any]:
     """Drop keys whose value is None — SDK treats missing vs None differently."""
     return {k: v for k, v in d.items() if v is not None}
+
+
+def _animation_body(args: argparse.Namespace) -> dict[str, Any] | None:
+    # Keep compatibility with SDKs whose typed image methods predate GIF fields.
+    return _filter_none({"frame_count": args.frame_count,
+                         "frame_duration_ms": args.frame_duration_ms}) or None
 
 
 def call_generate(client: OpenAI, args: argparse.Namespace) -> Any:
@@ -207,6 +248,7 @@ def call_generate(client: OpenAI, args: argparse.Namespace) -> Any:
         "output_format": args.output_format,
         "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
         "user": args.user,
+        "extra_body": _animation_body(args),
     }))
 
 
@@ -243,6 +285,7 @@ def call_edit(client: OpenAI, args: argparse.Namespace) -> Any:
             "output_format": args.output_format,
             "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
             "user": args.user,
+            "extra_body": _animation_body(args),
         }))
     finally:
         for h in image_handles:
@@ -277,6 +320,12 @@ def write_outputs(data: list[Any], out_path: Path, n: int) -> list[Path]:
 
 
 def main() -> int:
+    if sys.argv[1:2] == ["animate"]:
+        if __package__:
+            from .animation import main as animate_main
+        else:  # Also support running this PEP 723 script directly.
+            from animation import main as animate_main
+        return animate_main(sys.argv[2:])
     args = parse_args()
 
     _load_env_chain()
