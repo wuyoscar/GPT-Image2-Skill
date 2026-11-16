@@ -17,7 +17,8 @@ Mirrors the two official endpoints from the OpenAI cookbook using the official
 
 Common generation and editing parameters are exposed as flags. Reads OPENAI_API_KEY from
 process env, then .env, then ~/.env without overriding existing env. Writes the
-returned PNG/JPEG/WebP/GIF bytes to disk and prints the output path(s) on stdout.
+returned PNG/JPEG/WebP/GIF/SVG bytes to disk and prints the output path(s) on stdout.
+Token usage (and SVG author usage) is reported on stderr.
 
 Exit codes: 0 success, 1 API error, 2 bad args.
 
@@ -39,6 +40,9 @@ Examples:
 
     # Grid of 4, opaque background, webp
     gpt-image -p "isometric chair, minimalist" -n 4 --background opaque --format webp
+
+    # Editable SVG (Image 2.6, generations only; a text model authors the vector file)
+    gpt-image -p "flat vector fox mascot icon" --format svg -f fox.svg
 
     # Skill launcher (same implementation, installed skill-folder path)
     uv run "$SKILL_DIR/scripts/generate.py" -p "a cat astronaut on the moon"
@@ -83,6 +87,10 @@ SIZE_SHORTCUTS: dict[str, str] = {
 DEFAULT_MODEL = "gpt-image-2.6-flare"
 DEFAULT_SIZE = "1024x1024"
 DEFAULT_MODERATION = "low"
+# Text model that authors SVG output from the reference image. The API requires
+# `svg.model` when SVG model selection is enabled for the account.
+DEFAULT_SVG_MODEL = "gpt-6.1-sol"
+SVG_EFFORTS = ["none", "minimal", "low", "medium", "high", "xhigh", "max"]
 
 
 def slugify(text: str, max_len: int = 30) -> str:
@@ -162,8 +170,23 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--format", dest="output_format", default=None,
-        choices=["png", "jpeg", "webp", "gif"],
-        help="Output encoding. Default png; animated gif requires Image 2.6 access.",
+        choices=["png", "jpeg", "webp", "gif", "svg"],
+        help="Output encoding. Default png; animated gif and svg require Image 2.6 access. "
+             "svg is generations-only and n=1.",
+    )
+    p.add_argument(
+        "--complexity", default=None, choices=["low", "medium", "high"],
+        help="Image 2.6 only: planning effort, independent of --quality. API default high. "
+             "For svg it controls the reference image.",
+    )
+    p.add_argument(
+        "--svg-model", dest="svg_model", default=None,
+        help=f"SVG only: text model that authors the SVG. Default {DEFAULT_SVG_MODEL}.",
+    )
+    p.add_argument(
+        "--svg-effort", dest="svg_effort", default=None, choices=SVG_EFFORTS,
+        help="SVG only: reasoning effort for the SVG author. Omitted = author model default; "
+             "supported values depend on the author model.",
     )
     p.add_argument("--frames", dest="frame_count", type=int, default=None,
                    help="GIF only: 2-16 frames. API default 9.")
@@ -181,6 +204,24 @@ def parse_args() -> argparse.Namespace:
     image25 = re.fullmatch(r"gpt-image-2\.5-(?:flare|sunburst)(?:-\d{4}-\d{2}-\d{2})?", args.model) is not None
     image26 = args.model in ("gpt-image-2.6-flare", "gpt-image-2.6-sunburst")
     gif = args.output_format == "gif"
+    svg = args.output_format == "svg"
+    if args.complexity is not None and not image26:
+        p.error("--complexity requires a GPT Image 2.6 model")
+    if svg:
+        if not image26:
+            p.error("--format svg requires a GPT Image 2.6 model")
+        if args.image or args.mask:
+            p.error("SVG output is generations-only; it does not support --image or --mask")
+        if args.n != 1:
+            p.error("SVG output requires --n 1")
+        if args.output_compression is not None:
+            p.error("SVG output does not support --compression")
+        if args.file and Path(args.file).suffix.lower() != ".svg":
+            p.error("SVG output requires a .svg output filename")
+        if args.svg_model is None:
+            args.svg_model = DEFAULT_SVG_MODEL
+    elif args.svg_model is not None or args.svg_effort is not None:
+        p.error("--svg-model and --svg-effort require --format svg")
     if gif:
         if not image26:
             p.error("--format gif requires a GPT Image 2.6 model")
@@ -195,7 +236,7 @@ def parse_args() -> argparse.Namespace:
     elif args.frame_count is not None or args.frame_duration_ms is not None:
         p.error("--frames and --frame-duration require --format gif")
     if args.size is None:
-        args.size = "auto" if gif else DEFAULT_SIZE
+        args.size = "auto" if gif or svg else DEFAULT_SIZE
     if args.quality in ("xhigh", "max") and not (image25 or image26):
         p.error("--quality xhigh/max requires a GPT Image 2.5 or 2.6 Flare/Sunburst model")
     if args.background == "transparent" and args.output_format in ("jpeg", "gif"):
@@ -230,10 +271,18 @@ def _filter_none(d: dict[str, Any]) -> dict[str, Any]:
     return {k: v for k, v in d.items() if v is not None}
 
 
-def _animation_body(args: argparse.Namespace) -> dict[str, Any] | None:
-    # Keep compatibility with SDKs whose typed image methods predate GIF fields.
+def _extra_body(args: argparse.Namespace) -> dict[str, Any] | None:
+    # Keep compatibility with SDKs whose typed image methods predate the 2.6
+    # GIF, SVG and complexity fields.
+    svg = None
+    if args.output_format == "svg":
+        svg = {"model": args.svg_model}
+        if args.svg_effort:
+            svg["reasoning"] = {"effort": args.svg_effort}
     return _filter_none({"frame_count": args.frame_count,
-                         "frame_duration_ms": args.frame_duration_ms}) or None
+                         "frame_duration_ms": args.frame_duration_ms,
+                         "complexity": args.complexity,
+                         "svg": svg}) or None
 
 
 def call_generate(client: OpenAI, args: argparse.Namespace) -> Any:
@@ -248,7 +297,7 @@ def call_generate(client: OpenAI, args: argparse.Namespace) -> Any:
         "output_format": args.output_format,
         "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
         "user": args.user,
-        "extra_body": _animation_body(args),
+        "extra_body": _extra_body(args),
     }))
 
 
@@ -285,7 +334,7 @@ def call_edit(client: OpenAI, args: argparse.Namespace) -> Any:
             "output_format": args.output_format,
             "output_compression": args.output_compression if args.output_format in ("jpeg", "webp") else None,
             "user": args.user,
-            "extra_body": _animation_body(args),
+            "extra_body": _extra_body(args),
         }))
     finally:
         for h in image_handles:
@@ -317,6 +366,28 @@ def write_outputs(data: list[Any], out_path: Path, n: int) -> list[Path]:
         target.write_bytes(raw)
         written.append(target)
     return written
+
+
+def _usage_dict(value: Any) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    if hasattr(value, "model_dump"):
+        return value.model_dump(exclude_none=True)
+    return value if isinstance(value, dict) else None
+
+
+def report_usage(result: Any) -> None:
+    """Print token usage to stderr so callers can price the request."""
+    usage = _usage_dict(getattr(result, "usage", None))
+    if usage:
+        details = usage.get("output_tokens_details") or {}
+        print(f"usage: input {usage.get('input_tokens')} tok, "
+              f"output {details.get('image_tokens', usage.get('output_tokens'))} image tok", file=sys.stderr)
+    svg_usage = _usage_dict(getattr(result, "svg_usage", None))
+    if svg_usage:
+        print(f"svg author: {svg_usage.get('model')} input {svg_usage.get('input_tokens')} tok, "
+              f"output {svg_usage.get('output_tokens')} tok "
+              f"(reasoning {svg_usage.get('reasoning_tokens', 0)})", file=sys.stderr)
 
 
 def main() -> int:
@@ -354,6 +425,7 @@ def main() -> int:
 
     for p in write_outputs(data, out_path, args.n):
         print(p)
+    report_usage(result)
     return 0
 
 

@@ -318,7 +318,7 @@ photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed
 
 不指定模型时，CLI 和 Skill 都使用 `gpt-image-2.6-flare`。Skill 会通过 `--model` 显式传入这个默认值，无需再确认；你指定其他模型时，就按你的选择执行。旧命令要继续使用 Image 2，加上 `--model gpt-image-2` 即可。
 
-CLI 支持生成和编辑 PNG、JPEG、WebP 和 GIF，默认质量为 `high`，草稿可以先用 `low`。2.5 和 2.6 还支持 `xhigh`、`max`。SVG、complexity 和标注编辑目前没有对应的 CLI 参数。序列图可以用 `gpt-image animate` 在本地组装成动图。已经测试过的 2.6 Flare 生图和参考图编辑见[运行记录](docs/image-2.6-samples.md)。
+CLI 支持生成和编辑 PNG、JPEG、WebP 和 GIF，默认质量为 `high`，草稿可以先用 `low`。2.5 和 2.6 还支持 `xhigh`、`max`。2.6 可用 `--format svg` 生成可编辑 SVG（仅限生成，`--svg-model` 指定写 SVG 的模型，默认 `gpt-6.1-sol`），`--complexity` 控制规划强度。标注编辑目前没有对应的 CLI 参数。序列图可以用 `gpt-image animate` 在本地组装成动图。已经测试过的 2.6 Flare 生图和参考图编辑见[运行记录](docs/image-2.6-samples.md)。
 
 例如，用 2.6 Flare 生成一个透明背景图标：
 

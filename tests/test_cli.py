@@ -206,6 +206,73 @@ class CliTests(unittest.TestCase):
                 self.assertEqual(exc.exception.code, 2)
         self.assertEqual(self.requests, [])
 
+    def test_svg_serialization_and_defaults(self):
+        self.assertEqual(parse('--model', IMAGE26_MODELS[0], '--format', 'svg').size, 'auto')
+        for model in IMAGE26_MODELS:
+            with self.subTest(model=model):
+                cli.call_generate(self.client, parse('--model', model, '--format', 'svg', '--quality', 'low'))
+                body = json.loads(self.requests[-1].content)
+                self.assertEqual(self.requests[-1].url.path, '/v1/images/generations')
+                self.assertEqual(body['output_format'], 'svg')
+                self.assertEqual(body['n'], 1)
+                self.assertEqual(body['svg'], {'model': cli.DEFAULT_SVG_MODEL})
+                self.assertNotIn('output_compression', body)
+                self.assertNotIn('extra_body', body)
+        cli.call_generate(self.client, parse('--format', 'svg', '--svg-model', 'gpt-5.5',
+                                             '--svg-effort', 'low', '--complexity', 'medium'))
+        body = json.loads(self.requests[-1].content)
+        self.assertEqual(body['svg'], {'model': 'gpt-5.5', 'reasoning': {'effort': 'low'}})
+        self.assertEqual(body['complexity'], 'medium')
+        cli.call_generate(self.client, parse())
+        body = json.loads(self.requests[-1].content)
+        self.assertNotIn('svg', body)
+        self.assertNotIn('complexity', body)
+
+    def test_invalid_svg_and_complexity_settings(self):
+        cases = [('--format', 'svg', '--model', 'gpt-image-2.5-flare'),
+                 ('--format', 'svg', '--model', 'gpt-image-2'),
+                 ('--format', 'svg', '-i', str(self.image)),
+                 ('--format', 'svg', '--n', '2'),
+                 ('--format', 'svg', '--compression', '80'),
+                 ('--format', 'svg', '-f', 'wrong.png'),
+                 ('--format', 'svg', '--svg-effort', 'huge'),
+                 ('--svg-model', 'gpt-6.1-sol'), ('--svg-effort', 'low'),
+                 ('--complexity', 'low', '--model', 'gpt-image-2.5-flare'),
+                 ('--complexity', 'extreme')]
+        for flags in cases:
+            with self.subTest(flags=flags), contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as exc:
+                    parse(*flags)
+                self.assertEqual(exc.exception.code, 2)
+        self.assertEqual(self.requests, [])
+
+    def test_main_reports_svg_usage(self):
+        svg = b'<svg xmlns="http://www.w3.org/2000/svg"/>'
+
+        def respond(request):
+            self.requests.append(request)
+            return httpx.Response(200, request=request, json={
+                'created': 0, 'data': [{'b64_json': base64.b64encode(svg).decode()}],
+                'usage': {'input_tokens': 11, 'output_tokens': 824, 'total_tokens': 835,
+                          'input_tokens_details': {'image_tokens': 0, 'text_tokens': 11},
+                          'output_tokens_details': {'image_tokens': 824, 'text_tokens': 0}},
+                'svg_usage': {'model': 'gpt-6.1-sol', 'input_tokens': 2236, 'output_tokens': 1595,
+                              'reasoning_tokens': 1034, 'total_tokens': 3831}})
+
+        client = OpenAI(api_key='offline-test-not-a-real-key', max_retries=0,
+                        http_client=httpx.Client(transport=httpx.MockTransport(respond)))
+        self.addCleanup(client.close)
+        path = self.folder / 'logo.svg'
+        stderr = io.StringIO()
+        with patch.object(sys, 'argv', ['gpt-image', '-p', 'Offline test', '--format', 'svg', '-f', str(path)]), \
+             patch.object(cli, '_load_env_chain'), patch.dict(os.environ, {'OPENAI_API_KEY': 'offline-test'}), \
+             patch.object(cli, 'OpenAI', return_value=client), contextlib.redirect_stdout(io.StringIO()), \
+             contextlib.redirect_stderr(stderr):
+            self.assertEqual(cli.main(), 0)
+        self.assertEqual(path.read_bytes(), svg)
+        self.assertIn('output 824 image tok', stderr.getvalue())
+        self.assertIn('svg author: gpt-6.1-sol input 2236 tok, output 1595 tok', stderr.getvalue())
+
     def test_missing_edit_file_no_request(self):
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
             cli.call_edit(self.client, parse('--model', MODELS[0], '-i', str(self.folder / 'missing.png')))

@@ -318,7 +318,7 @@ photorealistic, 3D render, flat vector style, pure cel shading, watercolor bleed
 
 The CLI and Skill use `gpt-image-2.6-flare` unless you choose another model. The Skill passes that choice explicitly with `--model` and does not ask you to confirm the default. To keep an older command on Image 2, add `--model gpt-image-2`.
 
-The CLI generates and edits PNG, JPEG, WebP and GIF images. It defaults to `high` quality; use `low` for drafts. Models 2.5 and 2.6 also accept `xhigh` and `max`. SVG, complexity and markup controls are not exposed yet. Use `gpt-image animate` to assemble a sprite sheet locally. See the [run record](docs/image-2.6-samples.md) for the 2.6 Flare generations and reference edits we tested.
+The CLI generates and edits PNG, JPEG, WebP and GIF images. It defaults to `high` quality; use `low` for drafts. Models 2.5 and 2.6 also accept `xhigh` and `max`. On 2.6, `--format svg` returns an editable SVG (generations only; `--svg-model` picks the author model, default `gpt-6.1-sol`) and `--complexity` sets planning effort. Markup controls are not exposed yet. Use `gpt-image animate` to assemble a sprite sheet locally. See the [run record](docs/image-2.6-samples.md) for the 2.6 Flare generations and reference edits we tested.
 
 For example, generate a transparent icon with 2.6 Flare:
 

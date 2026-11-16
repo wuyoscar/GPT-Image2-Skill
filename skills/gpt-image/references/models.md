@@ -98,7 +98,14 @@ masks and compression. Frame sizes must be multiples of 16; the API checks the
 request pixel budget. A native 9-frame Flare GIF edit was inspected on 2026-11-09.
 `gpt-image animate` also assembles a sprite sheet locally with no API request.
 See [creative workflows](../../../docs/creative-workflows.md) for results and limits.
-SVG, complexity control and markup-guided editing are not exposed by this CLI yet.
+`--format svg` (2.6 generations only, `n=1`, no compression) sends
+`svg: {model, reasoning?}`; the author model defaults to `gpt-6.1-sol` and the
+API returns 400 `missing_required_parameter` without it. `--complexity`
+(`low`/`medium`/`high`, 2.6 only) is forwarded on generations and edits.
+Live check on 2026-11-17: 2.6 Flare, `quality=medium`, logo prompt with a
+two-word wordmark, returned a static SVG in ~60 s (reference 1132 image tokens;
+author `gpt-6.1-sol` 2236 in / 1595 out tokens). The CLI reports `usage` and
+`svg_usage` on stderr. Markup-guided editing is not exposed by this CLI yet.
 Historical 2.5 samples are not evidence of 2.6 output quality.
 
 The dependency floor is `openai>=2.32.0`. This 2.6 update was tested with
