@@ -1,6 +1,6 @@
 ---
 name: gpt-image
-description: "Generate or edit images through the packaged CLI and Reference Gallery, defaulting to GPT Image 2.6 Flare. Use for posters, typography, reference edits, inpainting, native GIFs, sprite animation, image-led websites, and explicit Image 2/2.5/2.6 requests."
+description: "Generate or edit images through the packaged CLI and Reference Gallery, defaulting to GPT Image 2.6 Flare. Use for posters, typography, reference edits, inpainting, native GIFs, editable SVG logos/icons/illustrations, sprite animation, image-led websites, and explicit Image 2/2.5/2.6 requests."
 compatibility: "Requires Python 3.11+ and either `gpt-image`, `uv`, or `uvx`. CLI/API calls read `OPENAI_API_KEY` and may incur OpenAI API charges."
 metadata: {"openclaw":{"requires":{"anyBins":["gpt-image","uv","uvx"]},"primaryEnv":"OPENAI_API_KEY","homepage":"https://github.com/wuyoscar/gpt_image_2_skill"}}
 ---
@@ -60,6 +60,7 @@ uvx --from git+https://github.com/wuyoscar/gpt_image_2_skill gpt-image --model M
 
 Match the deliverable, not just the first image:
 
+- **Editable SVG**: use `--format svg -f NAME.svg` on a 2.6 model for logos, icons and flat illustrations that need editable paths, shapes and colors. The API draws a reference image (`--quality` / `--complexity` control it), then a text model (`--svg-model`, default `gpt-6.1-sol`; optional `--svg-effort`) writes static SVG. Generations only: no `-i`/`-m`, `n=1`, no compression. Expect 30–90 s. Cost = reference image tokens + author text tokens; the CLI prints both on stderr. Prompts with heavy lettering, charts or long labels fail more often (HTTP 5xx); report the error, do not silently retry. Open or render the SVG to check it before reporting.
 - **Native GIF**: use `--format gif`, optional `--frames` (2-16) and `--frame-duration` (20-2000 ms). Size defaults to `auto` for GIF. Inspect all frames and actual playback. Do not use masks or compression with GIF.
 - **Sprite sheet to GIF**: generate one evenly divided grid with a fixed camera, scale, anchor and explicit cell order, then run `gpt-image animate --sheet sheet.png --columns 4 --rows 2 --duration 160 -f loop.gif --preview player.html`. This local step needs no key and makes no API calls. It slices existing frames; it does not invent motion from a still or fix registration errors. `--ping-pong`, `--margin`, `--gutter` and `--count` handle playback and spacing. Inspect alpha, every cell, loop seam and jitter.
 - **Image-led website**: generate visual assets, then build real HTML/CSS/JS around them. Keep controls and readable interface text in HTML. Test clicks, pause/reduced-motion behaviour, mobile layout and asset paths. A screenshot is not a working website.
@@ -89,7 +90,10 @@ Read [creative workflows](../../../docs/creative-workflows.md) in a full repo/pl
 | `--background` | `auto`, `opaque`; 2.5/2.6 also `transparent` | Transparency requires PNG or WebP, not JPEG |
 | `--input-fidelity` | `low`, `high`; omitted by default | Edit-only; explicit 2.5/2.6 values are forwarded to the API, not assumed supported |
 | `--moderation` | `auto`, `low` | Generation moderation setting |
-| `--format` | `png`, `jpeg`, `webp`, `gif` | GIF uses 2.6; default remains PNG |
+| `--format` | `png`, `jpeg`, `webp`, `gif`, `svg` | GIF/SVG use 2.6; default remains PNG; SVG is generations-only, `n=1` |
+| `--complexity` | `low`, `medium`, `high` | 2.6 only; planning effort independent of quality; API default `high` |
+| `--svg-model` | text model ID | SVG only; author model, default `gpt-6.1-sol` |
+| `--svg-effort` | `none` … `max` | SVG only; author reasoning effort; omitted = model default |
 | `--frames` / `--frame-duration` | 2-16 / 20-2000 ms | Native GIF only; API defaults 9 / 200 |
 | `--compression` | `0-100` | JPEG/WebP compression |
 | `--user` | string | Optional end-user identifier |
@@ -115,6 +119,8 @@ Size policy:
 | Text-to-image | no `-i` | `/v1/images/generations` |
 | Reference edit | one or more `-i` | `/v1/images/edits` |
 | Inpaint | `-i` + `-m` | `/v1/images/edits` with mask |
+
+SVG (`--format svg`) always uses `/v1/images/generations` with an `svg` object; the edits endpoint does not return or accept SVG.
 
 Surface API errors verbatim enough for debugging; exit codes: `0` success, `1` API/refusal, `2` bad args/missing key.
 

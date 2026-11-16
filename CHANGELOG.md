@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add `--format svg` for GPT Image 2.6 editable SVG output, with `--svg-model` (default `gpt-6.1-sol`, required by the API) and `--svg-effort`. SVG is generations-only, `n=1`, and defaults to `size=auto`.
+- Add `--complexity low|medium|high` for GPT Image 2.6.
+- Report image token usage and SVG author usage on stderr after each successful request.
+
 ## v0.3.0 — 2026-11-09
 
 - Default generation and editing to GPT Image 2.6 Flare while preserving explicit Image 2 and 2.5 models.
