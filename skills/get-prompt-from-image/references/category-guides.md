@@ -4,7 +4,7 @@ Select the relevant sections according to the image’s actual type. Images with
 
 ## General Image
 
-Cover the subject content, artistic or medium style, color scheme, lighting, composition logic, material qualities, camera language, spatial layers, mood, image-quality requirements, and detail treatment. The Chinese and English positive Prompts must have the same meaning; do not add new elements in the English version.
+Choose relevant features from the subject content, artistic or medium style, color scheme, lighting, composition logic, material qualities, camera language, spatial layers, mood, image-quality requirements, and detail treatment. The Chinese and English positive Prompts must have the same meaning; do not add new elements in the English version.
 
 ## People and Portrait Photography
 
@@ -22,7 +22,7 @@ Analyze product category, shape, color, orientation, share of frame, packaging s
 
 Analyze modern, vintage, cyber, handwritten, minimal, or decorative style; letterform width, slant, roundness, geometry, and proportions; stroke weight, serif or sans-serif structure, bevels, cuts, connections, broken strokes, and negative space; letter spacing, line spacing, hierarchy, and layout logic; outlines, glow, gradients, embossing, shadows, and 3D effects; metal, matte, glass, plastic, neon, or paper materials; and the relationship among palette, composition, lighting, and background.
 
-When a logo or text is a supporting element, translate it into an abstract symbol, simplified pattern, or blurred mark. Write specific text in the Prompt only when the user explicitly requests it and provides the content.
+When a logo or text is a supporting element, translate it into an abstract symbol, simplified pattern, or blurred mark. For a headline or lettering that is the main subject, follow the wording and placement guidance in SKILL.md.
 
 ## Natural Landscapes and City Scenes
 
@@ -34,7 +34,7 @@ Analyze space type and function, perspective direction, vanishing points, main l
 
 ## Illustration
 
-When the image’s primary medium is hand-drawn, digital-painted, flat-shaded, painterly, watercolor, pencil, printmaking, vector, anime-style, children’s-book, or another illustration, continue reading and applying [illustration-style.md](illustration-style.md). This section separates subject content from style expression and prioritizes observable techniques such as line, shape, value, color, and texture. Do not use it to rewrite analysis rules for photography, 3D renders, product images, or other non-illustration types.
+When the image’s primary medium is hand-drawn, digital-painted, flat-shaded, painterly, watercolor, pencil, printmaking, vector, anime-style, children’s-book, or another illustration and the user wants to carry over its drawing technique, continue reading and applying [illustration-style.md](illustration-style.md). This section separates subject content from style expression and prioritizes observable techniques such as line, shape, value, color, and texture. Do not use it to rewrite analysis rules for photography, 3D renders, product images, or other non-illustration types.
 
 ## 3D Rendering
 

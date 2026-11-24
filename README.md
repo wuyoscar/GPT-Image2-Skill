@@ -276,9 +276,19 @@ Attach an image and invoke the skill with a slash command, `$get-prompt-from-ima
 
 ```text
 /get-prompt-from-image
-Extract a reusable English positive prompt and a targeted negative prompt from this image, then recreate it with gpt-image.
+Write an English prompt to recreate this image, then generate it with gpt-image.
 ```
 
+You can also specify what to borrow or what to fix:
+
+| Goal | Example request |
+|---|---|
+| Borrow a style | Keep the poster’s limited palette and block lettering. Replace the mountain rider with the last tram of the night. |
+| Borrow a composition | Keep the figure’s position, hand gesture, and empty space on the left. Make the subject a watchmaker. |
+| Combine references | I’ll attach both images when generating. Use the palette from image 1 and the layout from image 2. |
+| Refine a prompt | Image 1 is the reference and image 2 is the result. The saucer was cropped. Revise only the sentence about framing. |
+
+By default, the skill returns Chinese and English positive prompts sized to the scene. It adds a separate negative prompt when the generator supports one and there is a specific error to prevent. [See the contributor’s side-by-side examples](https://github.com/LunarXuan/image-prompt-reverse/tree/main/gallery).
 
 <details>
 <summary><strong>View the extracted prompt</strong></summary>

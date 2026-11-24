@@ -276,9 +276,19 @@ Use warm amber interiors against deep teal evening shadows, tactile brick, glaze
 
 ```text
 /get-prompt-from-image
-从这张图片中提取可复用的英文正向 Prompt 和有针对性的负向 Prompt，然后使用 gpt-image 重新生成。
+从这张图反推一份复现整图的英文提示词，再用 gpt-image 生成。
 ```
 
+也可以在调用时说明要参考哪些内容，或根据成图指出需要修正的地方。
+
+| 想做什么 | 调用示例 |
+|---|---|
+| 参考画风 | 保留海报的有限配色和块状字形，把雪山骑手换成末班电车。 |
+| 参考构图 | 保留人物的位置、手势和左侧留白，主体换成修表师。 |
+| 组合多张参考图 | 生图时我会附上这两张图。参考图一的配色和图二的布局。 |
+| 根据成图修词 | 图一是参考图，图二是生成结果。杯碟底边被裁掉了，请只改构图那一句。 |
+
+默认输出中英文正向提示词，篇幅随画面复杂度调整。目标工具支持独立负面词，且有具体偏差需要避免时，才会单列负面词。[查看贡献者的左右对比案例](https://github.com/LunarXuan/image-prompt-reverse/tree/main/gallery)。
 
 <details>
 <summary><strong>查看反推提示词</strong></summary>
