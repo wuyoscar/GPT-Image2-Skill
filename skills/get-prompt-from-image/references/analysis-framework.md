@@ -8,7 +8,7 @@ Determine whether the image is closer to advertising material, a game key visual
 
 ## 2. Medium
 
-Determine whether the image is photography, realistic 3D, semi-realistic 3D, anime-style illustration, painterly illustration, flat vector, product rendering, UI or graphic design, mixed media, or another type. The final Prompt must make the medium boundary explicit, and the Negative Prompt must exclude easily confused media.
+Determine whether the image is photography, realistic 3D, semi-realistic 3D, anime-style illustration, painterly illustration, flat vector, product rendering, UI or graphic design, mixed media, or another type. For recreation, describe the visible features of the medium. For composition transfer, use the requested target medium.
 
 ## 3. Subject Type
 
@@ -19,6 +19,8 @@ Analyze only the specialized rules relevant to the subject type. Without a perso
 ## 4. Composition
 
 Analyze aspect ratio and orientation, subject position and share of the frame, foreground/middle ground/background and negative space, centered/thirds/symmetrical/diagonal/framing/scattered composition, visual structures such as horizontal, vertical, diagonal, triangular, S-shaped, circular, or radial lines, visual center and eye flow, near/far relationships, and the size, occlusion, repetition, balance, and hierarchy among subjects.
+
+Express aspect ratios as width:height (for example, 360 × 480 is 3:4 portrait). If only the orientation is clear, give that alone.
 
 ## 5. Camera, Viewpoint, and Perspective
 
@@ -56,4 +58,4 @@ When high resolution, high detail, or 8K is used as a generation-quality require
 
 ## 12. Visual Anchors
 
-Extract the 3–5 elements that most affect similarity from distinctive composition, subject silhouette/pose/proportion, unusual camera relationships, signature lighting, key materials, background geometry, color relationships, spatial layers, and mood constructed from concrete elements. Prioritize them in the first third of the positive Prompt.
+Select the features most relevant to the requested use from distinctive composition, subject silhouette/pose/proportion, unusual camera relationships, signature lighting, key materials, background geometry, color relationships, spatial layers, and mood constructed from concrete elements. Lead the prompt with those features.

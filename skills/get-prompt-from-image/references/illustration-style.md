@@ -41,36 +41,8 @@ When styles conflict, keep the side with stronger evidence, larger coverage, or 
 
 Do not replace observation by stacking artist names, art movements, or contradictory atmosphere words. Translate recognizable reference styles into line, shape, value, color, brushwork, texture, and detail distribution.
 
-## 4. Illustration Visual Anchors
+## 4. Apply the style to a prompt
 
-When extracting 3–5 reproduction-critical elements for an illustration, choose at least two style anchors and prioritize combinations from the following list:
+For whole-image recreation, introduce the subject alongside its most recognizable drawing techniques, then describe composition and setting. For style transfer, apply those techniques to the new subject. A red scarf belongs to the original subject, while a small warm-red accent that draws the eye can carry over. Describe paper grain, bleeding pigment, or outlines only when visible.
 
-- One primary medium or rendering method
-- One line, shape, or value anchor
-- One color or lighting anchor
-- One brushwork, texture, or detail-distribution anchor
-- When necessary, the composition or spatial relationship that most affects similarity
-
-Put these anchors in the first third of the positive Prompt. Subject identity matters, but do not postpone all style anchors until after the subject and story description.
-
-## 5. Information Weight in an Illustration Positive Prompt
-
-Use the following organizational proportions only for illustration positive Prompts. They are writing weights, not requirements for mechanical counting:
-
-- Approximately 35–45% describing the style fingerprint and key style anchors
-- Approximately 20–30% describing subject appearance, action, clothing, or design
-- Approximately 15–20% describing composition, viewpoint, lighting, and spatial layers
-- The remaining content describing background, narrative relationships, specific mood, post-processing, and medium boundaries
-
-First state the primary medium, line and shape language, value treatment, core palette, and key texture, then connect naturally to subject, composition, and scene. The final output must still follow `SKILL.md`’s default length, semantic consistency between the two languages, and two-section format.
-
-## 6. Pre-Completion Check
-
-Confirm internally that:
-
-- The style fingerprint describes “how it is drawn” without repeating “what is depicted.”
-- There is only one primary style direction, with no more than two compatible supporting techniques.
-- The style anchors that most affect similarity appear in the first third.
-- The description uses observable evidence about line, color, value, and texture rather than empty mood words.
-- Photography parameters, 3D material logic, or rules from other types have not been forced into the illustration.
-- No medium, texture, character, prop, or background element absent from the original image has been added.
+For composition alone, use the spatial relationships from the main skill. When the user wants both style and composition, specify the techniques and the layout to carry over.
